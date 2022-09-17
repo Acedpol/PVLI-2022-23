@@ -36,8 +36,10 @@ export default class Boot extends Phaser.Scene
 
 
         // --- OBJECTS --- 
-        // fuel
-        this.load.image('fuel', './assets/sprites/fuel.png')
+        // object
+        this.load.image('object', './assets/sprites/fuel.png')
+
+        // pick audio
         this.load.audio('pick', './assets/sounds/pick.wav')
 
         // meteoro spritesheet

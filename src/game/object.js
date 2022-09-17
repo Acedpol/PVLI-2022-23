@@ -1,6 +1,6 @@
-import PlayerContainer from '../game/playerContainer.js'
+import PlayerContainer from './playerContainer.js'
 
-export default class Fuel extends Phaser.Physics.Arcade.Image
+export default class Object extends Phaser.Physics.Arcade.Image
 {
     /** @type {Phaser.Scene} */
     scene
@@ -20,7 +20,7 @@ export default class Fuel extends Phaser.Physics.Arcade.Image
         // this.scene.physics.add.existing(this)
         this.scene.physics.world.enable(this)
 
-        console.log('new fuel x:' + x + ', y:' + y + ', texture:' + texture) // print info
+        console.log('new object x:' + x + ', y:' + y + ', texture:' + texture) // print info
 
         // set active and visible
         this.setActive(true)

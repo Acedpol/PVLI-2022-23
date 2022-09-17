@@ -1,8 +1,8 @@
-import Fuel from '../game/fuel.js'
+import Object from '../game/object.js'
 import PlayerContainer from '../game/playerContainer.js'
 import Meteor from '../game/meteoro.js'
 
-export default class JetPac extends Phaser.Scene 
+export default class pvliGame extends Phaser.Scene 
 {
     // --- PLAYER --- 
     /** @type {Phaser.GameObjects.Container} */
@@ -22,8 +22,8 @@ export default class JetPac extends Phaser.Scene
     /** @type {Phaser.Physics.Arcade.StaticGroup} */
     meteoros
 
-    /** @type {Fuel} */
-    fuel
+    /** @type {Object} */
+    object
 
     // --- TIMER --- 
     /** @type {Number} */
@@ -32,13 +32,13 @@ export default class JetPac extends Phaser.Scene
 
     // --- UI --- 
     /** @type {Phaser.GameObjects.Text} */
-    fuelCollectedText
+    objectCollectedText
     
     // --- GAME LOGIC --- 
     /** @type {Number} */
     level
-    fuelCollected
-    fuelToFinish
+    objectCollected
+    objectToFinish
 
     /**
      * Constructor de la escena
@@ -57,22 +57,22 @@ export default class JetPac extends Phaser.Scene
         console.log('Level = ' + this.level)
 
         // Level parameters by difficulty
-        this.fuelCollected = 0
-        this.fuelToFinish = 2
+        this.objectCollected = 0
+        this.objectToFinish = 2
 
         if (this.level == 1)
         {
-            this.fuelToFinish = 2
+            this.objectToFinish = 2
             this.cooldownAsteroids = 2 * 1000
         }
         else if (this.level == 2)
         {
-            this.fuelToFinish = 3
+            this.objectToFinish = 3
             this.cooldownAsteroids = 1 * 1000
         }
         else if (this.level == 3)
         {
-            this.fuelToFinish = 5
+            this.objectToFinish = 5
             this.cooldownAsteroids = 0.5 * 1000
         }
 
@@ -82,7 +82,7 @@ export default class JetPac extends Phaser.Scene
 
     preload() 
     {
-        console.log("Jetpac scene")
+        console.log("pvliGame scene")
     }
 
     create() 
@@ -101,7 +101,7 @@ export default class JetPac extends Phaser.Scene
         this.createPlayer(this.map)
 
         // Crea un combustible para recoger en la escena
-        this.createRandomFuel(this.map)
+        this.createRandomobject(this.map)
 
         // Inits the timer
         this.timeLapsed = 0
@@ -172,25 +172,27 @@ export default class JetPac extends Phaser.Scene
     }
 
     /**
-     * Creates a new random positioned fuel
+     * Creates a new random positioned object
      * @param {Phaser.Tilemaps.Tilemap} map Mapa del juego ya creado
      */
-    createRandomFuel(map)
+    createRandomobject(map)
     {
         // dimensiones del mapa
         const mapWidth = map.width * map.tileWidth
         const mapHeight = map.height * map.tileHeight
 
-        if (this.fuelCollected < this.fuelToFinish)
+        if (this.objectCollected < this.objectToFinish)
         {
-            // creates new Fuel object to pick up
-            this.fuel = new Fuel(this, Phaser.Math.Between(12, mapWidth - 12), Phaser.Math.Between(12, mapHeight - 12), 'fuel')
-            this.physics.add.collider(this.fuel, this.groundLayer)
+            // creates new object object to pick up
+            this.object = new Object(this, Phaser.Math.Between(12, mapWidth - 12), Phaser.Math.Between(12, mapHeight - 12), 'object')
+            this.physics.add.collider(this.object, this.groundLayer)
         }
         else
         {
             this.spaceShip.prepareToFlight() // practically-end-scene
         }
+
+        return this.object;
     }
 
     /**

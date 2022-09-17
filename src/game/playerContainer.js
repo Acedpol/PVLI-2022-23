@@ -6,6 +6,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 
     /** @type {Phaser.Types.Input.Keyboard.CursorKeys} */
     cursors
+    action
 
     /** @type {Number} */
     _speed
@@ -16,8 +17,8 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     /** @type {Boolean} */
     carriesObject
 
-    /** @type {Fuel} */
-    fuel
+    /** @type {object} */
+    object
 
     /** @type {Phaser.Sound.BaseSound} */
     jetpack
@@ -59,11 +60,12 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 
         // eventos de teclado
         this.cursors = scene.input.keyboard.createCursorKeys() // init cursors
+        this.action = scene.input.keyboard.addKey('SPACE')
 
         // inicialización de variables
         this._speed = 100
         this.carriesObject = false
-        this.fuel = null
+        this.object = null
 
         // inicialización de audios fx
         this.jetpack = this.scene.sound.add('jetpack')
@@ -149,6 +151,12 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             this.body.setVelocityY(-100)
         }
 
+        // actives the main action of the player
+        if (this.action.isDown)
+        {
+            this.dropObject()
+        }
+
         // wraps the player (movimiento toroidal)
         this.horizontalWrap(this)
     }
@@ -176,47 +184,65 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
      */
     carryObject(object)
     {
-        // keeps save the object
-        this.fuel = object
-        this.carriesObject = true
+        if (!this.carriesObject)
+        {
+            // keeps save the object
+            this.object = object
+            this.carriesObject = true
 
-        // disable from physics world
-        this.scene.physics.world.disableBody(object.body)
+            // disable from physics world
+            this.scene.physics.world.disableBody(object.body)
 
-        // Recoge el fuel y se lo añade a playerContainer (y lo coloca)
-        this.add(object)
-        object.setPosition(0, -object.height -2)
-        object.setOrigin(0)
+            // Recoge el object y se lo añade a playerContainer (y lo coloca)
+            this.add(object)
+            object.setPosition(0, -object.height -2)
+            object.setOrigin(0)
+
+            console.log('pick')
+        }
     }
 
     /**
-     * Drops an object carried
+     * Drops an object that is being carried
      */
     dropObject()
     {
         if (this.carriesObject)
         {
-            // hide from display (utilizado en caso de colectividad)
-            // this.scene.fuels.killAndHide(fuel)
-            
-            // suma uno al marcador
-            this.scene.fuelCollected++
-            
-            // create new text value and set it
-            const value = this.scene.fuelCollected + '/' + this.scene.fuelToFinish
-            this.scene.fuelCollectedText.text = value
+            // registers the actual position relative to the player container
+            let posX = this.x;
+            let posY = this.y - this.object.height - 2;
 
-            // removes the object from the scene
-            this.fuel.destroy() // posible recurso (utilizado en caso de exclusividad)
+            // removes and deletes the first object carried by the player container
+            this.remove(this.getAt(1), true)
+
+            // creates a new one in the same position
+            let object = this.scene.createRandomobject(this.scene.map)
+            object.setPosition(posX, posY)
+            object.setOrigin(0)
+
+            // reset physics
+            this.scene.physics.world.enable(object)
+            object.setVelocityY(-100)
 
             // reset values
-            this.fuel = null
+            this.object = null
             this.carriesObject = false
 
-            // creates a new one if it's not finished the game
-            this.scene.createRandomFuel(this.scene.map)
+            console.log('drop')
         }        
     }
 
-
+    /**
+     * Adds another collected object to the score
+     */
+    collectObject()
+    {
+        // suma uno al marcador
+        this.scene.objectCollected++
+            
+        // create new text value and set it
+        const value = this.scene.objectCollected + '/' + this.scene.objectToFinish
+        this.scene.objectCollectedText.text = value      
+    }
 }

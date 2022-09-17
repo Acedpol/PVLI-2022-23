@@ -4,7 +4,7 @@
 // ---------------------------------
 
 import Boot from './scenes/boot.js';
-import GameLogic from './scenes/pvli-game.js';
+import GameLogic from './scenes/pvliGame.js';
 import Menu from './scenes/menu.js';
 import GameOver from './scenes/gameOver.js';
 
