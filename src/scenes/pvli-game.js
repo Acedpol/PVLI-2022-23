@@ -1,33 +1,16 @@
 import Fuel from '../game/fuel.js'
 import PlayerContainer from '../game/playerContainer.js'
-import SpaceShip from '../game/spaceShipContainer.js'
 import Meteor from '../game/meteoro.js'
 
 export default class JetPac extends Phaser.Scene 
 {
+    // --- PLAYER --- 
     /** @type {Phaser.GameObjects.Container} */
     playerContainer
 
-    /** @type {Phaser.Physics.Arcade.StaticGroup} */
-    meteoros
-
-    /** @type {Fuel} */
-    fuel
-
-    /** @type {SpaceShip} */
-    spaceShip
-
+    // --- SCENE --- 
     /** @type {Phaser.Physics.Arcade.StaticBody} */
     platform
-
-    /** @type {Phaser.GameObjects.Text} */
-    fuelCollectedText
-
-    /** @type {Number} */
-    level
-    fuelCollected
-    fuelToFinish
-    cooldownAsteroids
 
     /** @type {Phaser.Tilemaps.Tilemap} */
     map
@@ -35,11 +18,27 @@ export default class JetPac extends Phaser.Scene
     /** @type {Phaser.Tilemaps.TilemapLayer} */
     groundLayer
 
-    /** @type {Number} */
-    lastMeteorTime
+    // --- OBJECTS --- 
+    /** @type {Phaser.Physics.Arcade.StaticGroup} */
+    meteoros
 
+    /** @type {Fuel} */
+    fuel
+
+    // --- TIMER --- 
     /** @type {Number} */
     timeLapsed
+    cooldownAsteroids
+
+    // --- UI --- 
+    /** @type {Phaser.GameObjects.Text} */
+    fuelCollectedText
+    
+    // --- GAME LOGIC --- 
+    /** @type {Number} */
+    level
+    fuelCollected
+    fuelToFinish
 
     /**
      * Constructor de la escena
@@ -47,7 +46,7 @@ export default class JetPac extends Phaser.Scene
     constructor() 
     {
         super({
-            key: 'jetpacGame'
+            key: 'pvliGame'
         });
     }
 
@@ -103,9 +102,6 @@ export default class JetPac extends Phaser.Scene
 
         // Crea un combustible para recoger en la escena
         this.createRandomFuel(this.map)
-
-        // Creates the spaceShip
-        this.createShip(this.map)
 
         // Inits the timer
         this.timeLapsed = 0
@@ -198,34 +194,7 @@ export default class JetPac extends Phaser.Scene
     }
 
     /**
-     * Creates and positions the spaceShip
-     * @param {Phaser.Tilemaps.Tilemap} map Mapa del juego ya creado
-     */
-    createShip(map)
-    {
-        // dimensiones del mapa
-        const mapWidth = map.width * map.tileWidth
-        const mapHeight = map.height * map.tileHeight
-
-        // Añade la nave como Imagen
-        let spaceShip = this.add.image(0, 0, 'ship')
-
-        // creates the ship
-        this.spaceShip = new SpaceShip(this, mapWidth * 0.6, mapHeight * 0.6, spaceShip)
-        this.physics.add.collider(this.spaceShip, this.groundLayer)
-
-        // text score for fuels
-        const style = { color: '#fff', fontSize: 8, fontFamily: 'Pixeled' }
-        const x = this.spaceShip.body.x + this.spaceShip.body.width * 0.45
-        const y = this.spaceShip.body.y
-
-        this.fuelCollectedText = this.add.text(x, y, '0/' + this.fuelToFinish, style)
-            .setScrollFactor(0)
-            .setOrigin(0.5, 0)
-    }
-
-    /**
-     * Creates and positions the player
+     * Creates and positions the Player
      * @param {Phaser.Tilemaps.Tilemap} map Mapa del juego ya creado
      */
     createPlayer(map)

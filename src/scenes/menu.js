@@ -53,7 +53,7 @@ export default class Menu extends Phaser.Scene
     initGame(lv)
     {
         // inits the game main scene
-        this.scene.start('jetpacGame', lv)
+        this.scene.start('pvliGame', lv)
     }
 
     /**

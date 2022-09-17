@@ -4,9 +4,8 @@
 // ---------------------------------
 
 import Boot from './scenes/boot.js';
-import Jetpac from './scenes/jetpac.js';
+import GameLogic from './scenes/pvli-game.js';
 import Menu from './scenes/menu.js';
-import MenuGeom from './scenes/menuGeom.js';
 import GameOver from './scenes/gameOver.js';
 
 window.onload = ()=>{
@@ -21,7 +20,7 @@ window.onload = ()=>{
             // autoCenter: Phaser.Scale.Center.CENTER_HORIZONTALLY
         },
         pixelArt: true,
-        scene: [ Boot, Jetpac, Menu, GameOver, MenuGeom ],
+        scene: [ Boot, GameLogic, Menu, GameOver ],
         physics: {
             default: 'arcade',
             arcade: {
