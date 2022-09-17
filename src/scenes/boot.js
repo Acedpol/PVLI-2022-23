@@ -42,8 +42,8 @@ export default class Boot extends Phaser.Scene
         // pick audio
         this.load.audio('pick', './assets/sounds/pick.wav')
 
-        // meteoro spritesheet
-        this.load.spritesheet('meteor', "./assets/sprites/meteor.png", 
+        // bullet spritesheet
+        this.load.spritesheet('bullet', "./assets/sprites/meteor.png", 
             { frameWidth: 16, frameHeight: 14 }) 
         
         // explosion spritesheet
@@ -86,16 +86,16 @@ export default class Boot extends Phaser.Scene
         })
 
 
-        // --- METEOR --- 
-        // creates meteor animation 
+        // --- BULLET --- 
+        // creates bullet animation 
         this.anims.create({
-          key: 'fly-meteor',
-          frames: this.anims.generateFrameNames('meteor', { start: 0, end: 3 }),
+          key: 'fly-bullet',
+          frames: this.anims.generateFrameNames('bullet', { start: 0, end: 3 }),
           frameRate: 6,
           repeat: -1
         })
 
-        // creates meteor-explosion animation 
+        // creates bullet-explosion animation 
         this.anims.create({
           key: 'explote',
           frames: this.anims.generateFrameNames('explosion', { start: 0, end: 2 }),

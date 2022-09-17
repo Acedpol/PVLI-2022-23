@@ -1,6 +1,6 @@
 import Object from '../game/object.js'
 import PlayerContainer from '../game/playerContainer.js'
-import Meteor from '../game/meteoro.js'
+import Bullet from '../game/bullet.js'
 
 export default class pvliGame extends Phaser.Scene 
 {
@@ -20,7 +20,7 @@ export default class pvliGame extends Phaser.Scene
 
     // --- OBJECTS --- 
     /** @type {Phaser.Physics.Arcade.StaticGroup} */
-    meteoros
+    bullets
 
     /** @type {Object} */
     object
@@ -90,12 +90,12 @@ export default class pvliGame extends Phaser.Scene
         // creates the game map
         this.map = this.createMap('nivel', 8, 8, 'platform', 'img_tilemap', 'platforms')
 
-        // Grupo de Meteoritos
-        this.meteoros = this.physics.add.group({
-            classType: Meteor
+        // Grupo de Bullets
+        this.bullets = this.physics.add.group({
+            classType: Bullet
         })
 
-        this.physics.add.collider(this.meteoros, this.groundLayer)
+        this.physics.add.collider(this.bullets, this.groundLayer)
 
         // Creates the player
         this.createPlayer(this.map)
@@ -105,7 +105,7 @@ export default class pvliGame extends Phaser.Scene
 
         // Inits the timer
         this.timeLapsed = 0
-        this.createRandomMeteor(this.map)
+        this.createRandomBullet(this.map)
     }
 
     update(t, dt) 
@@ -113,10 +113,10 @@ export default class pvliGame extends Phaser.Scene
         // actualiza el timer
         this.timeLapsed = this.timeLapsed + dt
 
-        // Cooldown to create a new meteor
+        // Cooldown to create a new bullet
         if (this.timeLapsed > this.cooldownAsteroids)
         {
-            this.createRandomMeteor(this.map)
+            this.createRandomBullet(this.map)
             this.timeLapsed = 0
         }
 
@@ -225,10 +225,10 @@ export default class pvliGame extends Phaser.Scene
     }
 
      /**
-     * Creates a new random positioned meteor
+     * Creates a new random positioned bullet
      * @param {Phaser.Tilemaps.Tilemap} map Mapa del juego ya creado
      */
-    createRandomMeteor(map)
+    createRandomBullet(map)
     {
         // dimensiones del mapa
         const mapWidth = map.width * map.tileWidth
@@ -238,8 +238,8 @@ export default class pvliGame extends Phaser.Scene
         let x = Phaser.Math.Between(10, mapWidth - 10)
         let y = Phaser.Math.Between(10, mapHeight * -0.15)
 
-        let meteor = this.meteoros.create(x, y, 'meteor')
-        this.physics.add.collider(meteor, this.groundLayer)
+        let bullet = this.bullets.create(x, y, 'bullet')
+        this.physics.add.collider(bullet, this.groundLayer)
     }
 
     /**
@@ -250,7 +250,7 @@ export default class pvliGame extends Phaser.Scene
     {
         // kill object and play feedback
         this.playerContainer.destroy()
-        this.meteoros.killAndHide(object)
+        this.bullets.killAndHide(object)
         this.sound.play('lose')
 
         // inits the game final scene

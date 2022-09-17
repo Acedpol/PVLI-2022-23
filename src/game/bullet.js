@@ -1,4 +1,4 @@
-export default class Meteor extends Phaser.Physics.Arcade.Sprite
+export default class Bullet extends Phaser.Physics.Arcade.Sprite
 {
     /** @type {Phaser.Scene} */
     scene
@@ -17,10 +17,10 @@ export default class Meteor extends Phaser.Physics.Arcade.Sprite
 
     /**
      * Constructor del objeto combustible
-     * @param {Phaser.Scene} scene Escena a la que pertenece el meteorito
+     * @param {Phaser.Scene} scene Escena a la que pertenece el proyectil
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
-     * @param {Phaser.Textures.Texture} texture Textura usada para el meteororo (spritesheet)
+     * @param {Phaser.Textures.Texture} texture Textura usada para el proyectil (spritesheet)
      */
     constructor(scene, x, y, texture) 
     {
@@ -63,7 +63,7 @@ export default class Meteor extends Phaser.Physics.Arcade.Sprite
         this.vel.scale(this.incV)
 
         // animation
-        this.play('fly-meteor')
+        this.play('fly-bullet')
 
         // inicialización de audio sfx
         this.isExploted = false
@@ -96,11 +96,11 @@ export default class Meteor extends Phaser.Physics.Arcade.Sprite
             }
             this.scene.physics.world.disableBody(this.body)
             this.scene.time.delayedCall(1000, () => {
-                this.scene.meteoros.killAndHide(this)
+                this.scene.bullets.killAndHide(this)
             })
         }
 
-        // wraps the meteor (movimiento toroidal)
+        // wraps the bullet (movimiento toroidal)
         this.horizontalWrap(this)
     }
 
