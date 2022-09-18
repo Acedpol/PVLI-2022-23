@@ -21,10 +21,9 @@ export default class Menu extends Phaser.Scene
         const{width,height} = this.scale
 
         // compone el titulo y subtitulo del menu principal del juego
-        this.add.text(width * 0.5, 25, 'JetPac Game', {
+        this.add.text(width * 0.5, 25, 'PVLI Game', {
                 fontSize: 14,
                 fontFamily: 'Pixeled',
-                fontStyle: 'bold', 
                 color: '#FFFFFF'
             })
             .setOrigin(0.5)
@@ -72,7 +71,8 @@ export default class Menu extends Phaser.Scene
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, ()=>{
                 this.initGame(lv)
             })
-            .setScale(2.25, 1)
+            .setScale(2.25, 1) // para el dibujo hecho en paint
+            // .setScale(0.5, 0.3) // para la imagen descargada actual
 
         // selecciona el color del texto
         let _color = ''
@@ -84,7 +84,6 @@ export default class Menu extends Phaser.Scene
         this.add.text(x, y, name, {
                 fontSize: 14,
                 fontFamily: 'Pixeled',
-                fontStyle: 'bold', 
                 color: _color
             })
             .setOrigin(0.5)
