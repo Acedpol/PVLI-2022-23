@@ -199,6 +199,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             object.setOrigin(0)
 
             console.log('pick')
+            this.collectObject()
         }
     }
 
@@ -217,7 +218,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             this.remove(this.getAt(1), true)
 
             // creates a new one in the same position
-            let object = this.scene.createRandomobject(this.scene.map)
+            let object = this.scene.createRandomObject(this.scene.map)
             object.setPosition(posX, posY)
             object.setOrigin(0)
 
@@ -230,7 +231,21 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             this.carriesObject = false
 
             console.log('drop')
+            this.unCollectObject()
         }        
+    }
+
+    /**
+     * Subs a collected object from the score
+     */
+    unCollectObject()
+    {
+        // suma uno al marcador
+        this.scene.objectCollected--
+            
+        // create new text value and set it
+        const value = this.scene.objectCollected + '/' + this.scene.objectToFinish
+        this.scene.objectCollectedText.text = value      
     }
 
     /**
@@ -240,7 +255,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     {
         // suma uno al marcador
         this.scene.objectCollected++
-            
+             
         // create new text value and set it
         const value = this.scene.objectCollected + '/' + this.scene.objectToFinish
         this.scene.objectCollectedText.text = value      

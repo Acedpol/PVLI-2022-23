@@ -87,7 +87,7 @@ export default class pvliGame extends Phaser.Scene
 
     create() 
     {
-        // creates the game map
+        // Creates the Game Map
         this.map = this.createMap('nivel', 8, 8, 'platform', 'img_tilemap', 'platforms')
 
         // Grupo de Bullets
@@ -100,8 +100,11 @@ export default class pvliGame extends Phaser.Scene
         // Creates the player
         this.createPlayer(this.map)
 
-        // Crea un combustible para recoger en la escena
-        this.createRandomobject(this.map)
+        // Crea un objeto para recoger en la escena
+        this.createRandomObject(this.map)
+
+        // Creates the Score UI
+        this.createScoreUI()
 
         // Inits the timer
         this.timeLapsed = 0
@@ -119,7 +122,6 @@ export default class pvliGame extends Phaser.Scene
             this.createRandomBullet(this.map)
             this.timeLapsed = 0
         }
-
     }
 
     /**
@@ -175,7 +177,7 @@ export default class pvliGame extends Phaser.Scene
      * Creates a new random positioned object
      * @param {Phaser.Tilemaps.Tilemap} map Mapa del juego ya creado
      */
-    createRandomobject(map)
+    createRandomObject(map)
     {
         // dimensiones del mapa
         const mapWidth = map.width * map.tileWidth
@@ -189,7 +191,8 @@ export default class pvliGame extends Phaser.Scene
         }
         else
         {
-            this.spaceShip.prepareToFlight() // practically-end-scene
+            // --- COULD BE THE GAME COMPLETE RESPONSE --- 
+            // this.spaceShip.prepareToFlight() // practically-end-scene
         }
 
         return this.object;
@@ -240,6 +243,24 @@ export default class pvliGame extends Phaser.Scene
 
         let bullet = this.bullets.create(x, y, 'bullet')
         this.physics.add.collider(bullet, this.groundLayer)
+    }
+
+    /**
+     * Creates the Game Score UI for collectionable objects
+     */
+    createScoreUI() 
+    {
+        // gets the sizes of the screen
+        const{width,height} = this.scale
+
+        // text score for fuels	
+        const style = { color: '#fff', fontSize: 8, fontFamily: 'Pixeled' }	
+        const x = width / 2;
+        const y = height / 30;
+
+        this.objectCollectedText = this.add.text(x, y, '0/' + this.objectToFinish, style)	
+            .setScrollFactor(0)	
+            .setOrigin(0.5, 0)
     }
 
     /**
