@@ -53,7 +53,7 @@ Semejanzas con película Exmachina
 
 **Público objetivo**:
 
-● Adolescentes y adultos jóvenes - PEGI-16.
+● Adolescentes y adultos jóvenes - A partir de 12 años.  
 
 **Idioma**: Inglés.
 
