@@ -108,9 +108,9 @@ La puntuación final está basada en el número de niveles completados y pájaro
 • Personajes  
 • Objetos y enemigos  
 
-[**V. Arquitectura y gestión**][6]  
+[**V. Arquitectura y gestión**][5]  
 
-[**VI. Referencias**][5]  
+[**VI. Referencias**][6]  
 
 ---  
 
@@ -235,11 +235,12 @@ El protagonista regresa a su pueblo invadido por pájaros y sus amigos y vecinos
 [img2]: ./assets/images/sangre.PNG
 [img3]: ./assets/images/oculto.PNG
 [video]: https://www.youtube.com/watch?v=_JTclTVKeSs&ab_channel=MarkRoberenEspa%C3%B1ol  
-[indice]: https://github.com/Acedpol/PVLI-2022-23/edit/main/README.md#%C3%ADndice  
-[1]: https://github.com/Acedpol/PVLI-2022-23/edit/main/README.md#1-aspectos-generales  
-[2]: https://github.com/Acedpol/PVLI-2022-23/edit/main/README.md#2-controles-de-juego  
-[3]: https://github.com/Acedpol/PVLI-2022-23/edit/main/README.md#3-jugabilidad  
-[4]: https://github.com/Acedpol/PVLI-2022-23/edit/main/README.md#4-contenidos  
-[5]: https://github.com/Acedpol/PVLI-2022-23/edit/main/README.md#5-arquitectura-y-gesti%C3%B3n  
-[6]: https://github.com/Acedpol/PVLI-2022-23/edit/main/README.md#6-referencias  
+
+[indice]: #%C3%ADndice  
+[1]: #1-aspectos-generales  
+[2]: #2-controles-de-juego  
+[3]: #3-jugabilidad  
+[4]: #4-contenidos  
+[5]: #5-arquitectura-y-gesti%C3%B3n  
+[6]: #6-referencias  
 
