@@ -179,13 +179,13 @@ Todo comienza en un museo, donde unos críos le quitan unas extremidades a una e
 ### 3. Personaje y enemigos
 
 #### **Todos los enemigos del juego causan daño por contacto**
-   ##### Esqueleto
-    Enemigo a melé, se mueve de un lado a otro dentro de su área y si ve a un enemigo ataca. 
+   ##### ![Pantalla inicio][esqueleto] Esqueleto   
+    Enemigo a melé, se mueve de un lado a otro dentro de su área y si ve a un enemigo ataca.
     
    ##### Guarda de seguridad
     Enemigo a distancia, se mueve de un lado a otro hasta que el jugador entra en el rango de ataque empieza a atacar.
     
-   ##### Perro
+   ##### ![Pantalla inicio][perro] Perro
     No ataca pero hace daño por contacto, es más rápido que el esqueleto.
 
 ### 4. Objetos
@@ -213,6 +213,8 @@ Todo comienza en un museo, donde unos críos le quitan unas extremidades a una e
 [WEB]: https://acedpol.github.io/Proyecto_PVLI---AVES/ "Web del Proyecto"
 [portada]: ./assets/images/donde_sin_ed_menu.jpg
 [niveles]: ./assets/images/Niveles.PNG
+[esqueleto]: ./assets/sprites/Skeleton%20Sprite%20Pack/Skeleton/GIFS/Skeleton%20Walk.gif
+[perro]: ./assets/sprites/gothicvania%20patreon%20collection/gothicvania%20patreon%20collection/Hell-Hound-Files/GIFS/hell-hound-walk.gif
 [video]: https://www.youtube.com/watch?v=_JTclTVKeSs&ab_channel=MarkRoberenEspa%C3%B1ol  
 
 [indice]: #%C3%ADndice  
