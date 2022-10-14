@@ -157,7 +157,8 @@ Estética pixel art. La mayoría de los recursos van a ser cogidos de internet.
 [Go back to index -->][indice]
 
 ## 3. Menús y modos de juego
-Existirá un único menú donde al iniciar el juego indicas si quieres JUGAR o CONFIGURAR, y durante el juego indicas si quieres REANUDAR o CONFIGURAR.
+A ambas opciones se accederá a través de dos grandes botones que hagan contraste con el fondo que se decida. En el primer botón pondrá "PLAY" en grande y mayúsculas, mientras que en el segundo pondrá o bien "OPTIONS" de la misma forma que el botón anterior o bien con un dibujo de una tuerca, llave inglesa o similar.
+En la parte del PLAY se le introducirán al jugador los controles para a continuación iniciarle un pseudo-tutorial donde tenga que enfrentarse a un enemigo muy sencillito, casi diría uno que es un punchbag.
 
 ### 1. Configuración
 
@@ -169,11 +170,23 @@ Existirá un único menú donde al iniciar el juego indicas si quieres JUGAR o C
 
 ### 1. Historia
 
+Todo comienza en un museo, donde unos críos le quitan unas extremidades a una estatua que ya de por sí le faltaban alguna que otra. Poco después, de repente, cae un estruendoso rayo que da vida a todas las estatuas del museo (incluyendo a nuestra protagonista). Ella, sabiendo lo que le acaban de quitar esos críos y lo que adicionalmente le falta para volver a ser la que fue, para estar "completa". Emprendiendo este camino de justicia deberá enfrentarse a multitud de enemigos que obstaculizan su camino hacia la victoria.
+
 ### 2. Niveles
 
-[niveles]
+ ![Pantalla inicio][niveles]
 
 ### 3. Personaje y enemigos
+
+#### **Todos los enemigos del juego causan daño por contacto**
+   ##### Esqueleto
+    Enemigo a melé, se mueve de un lado a otro dentro de su área y si ve a un enemigo ataca. 
+    
+   ##### Guarda de seguridad
+    Enemigo a distancia, se mueve de un lado a otro hasta que el jugador entra en el rango de ataque empieza a atacar.
+    
+   ##### Perro
+    No ataca pero hace daño por contacto, es más rápido que el esqueleto.
 
 ### 4. Objetos
 
