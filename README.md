@@ -89,131 +89,97 @@ El objetivo principal es acabar con Jefe,para ello debemos ir avanzando a lo lar
 
 ## Índice  
 
-[**I. Aspectos generales**][1]  
-• Relato breve y parcial de una partida típica
+[**1. Aspectos generales**][1]  
+1. Relato breve y parcial de una partida típica
 
-[**II. Jugabilidad**][2]  
-• Configuración  
-• Controles  
+[**2. Jugabilidad**][2]  
+1. Configuración  
+2. Controles  
 
-[**III. Jugabilidad**][3]  
-• Mecánica  
-	- Mecánicas del personaje
-	- Mecánicas de escenario
-	- Controles
-	- Cámara
-• Dinámica  
-• Estética  
+[**3. Jugabilidad**][3]  
+1. Mecánica  
+	1. Mecánicas del personaje
+    2. Mecánicas de escenario
+    3. Controles
+    4. Cámara
+2. Dinámica  
+3. Estética  
 
 [**IV. Menús y modos de juego**][4]  
-• Configuración  
-• Interfaz y control   
+1. Configuración  
+2. Interfaz y control   
 
 [**V. Contenido**][5]  
-• Historia
-• Niveles
-• Personajes y enemigos
-• Objetos
+1. Historia
+2. Niveles
+3. Personajes y enemigos
+4. Objetos
 
 [**VI. Referencias**][6]  
 
 ---  
 
 ## 1. Aspectos generales  
-
-1.1 **Relato breve y parcial de una partida típica :**
 Metroidvania pixelart basado en reconstrucción de victoria. La experiencia general de juego será un plataformas en los que irás consiguiendo powerUps que te permitirán avanzar con más facilidad y acceder a nuevos sitios. 
 
-1.2 **Relato breve y parcial de una partida típica :**
+### 1. **Relato breve y parcial de una partida típica**
 Comienza con un menú donde se selecciona “iniciar partida”. Nada más empezar, se te introducirá el juego y su mecánica básica, y en esa misma sala se confrontará un enemigo, para a continuación conseguir sus brazos. Una vez pasada esa sala ...
 
 [Go back to index -->][indice]
 
-## 2. Controles de juego  
+## 2. Jugabilidad  
 
-2.1 **Configuración**
-Al iniciar el juego desde el menú principal, se mostrará al personaje protagonista en su casa, 
-este entorno hace de menú de inicio. 
+### 1. Mecánica
+   #### 1. Mecánicas del personaje:
+    Se basan en las piezas del cuerpo que se van encontrando a través de los niveles.
+      ● Básicas: Movimiento lateral y salto. Estas mecánicas se pueden usar desde el inicio.
+	  ● Brazos: Cuando consigues los brazos, el personaje consigue la capacidad para atacar y matar a los enemigos.
+      ● Alas: Al obtener las alas podrás dar doble salto, lo que te permitirá llegar a sitios antes inaccesibles.
+      ● Cabeza: La cabeza te permite lanzar un proyectil. Con esto puedes matar a enemigos a distancia y acceder a la sala final.
+	  
+   #### 2. Mecánicas del escenario:
+    ● Plataformas
+	● Enemigos: Tanto enemigos  a melé como enemigos que lanzan proyectiles.
+	● Puerta: Antes del nivel final hay una puerta que tiene que ser activada.
+   #### 3. Controles
+    ● WASD para el movimiento 
+	● J / Botón izq ratón para ataque normal
+	● K / Botón drc ratón para ataque a distancia
+   #### 4. Cámara
+    ● Cámara que sigue al personaje.
 
-2.2 **Interfaz y control**
+### 2. Dinámica
+La dinámica principal del juego es avanzar a lo largo de las salas disponibles consiguiendo powerUps para conseguir acceso a otras salas, hasta llegar a la sala final y terminar el juego.
 
-2.2.1. **Interfaz**
-
-**DENTRO DEL JUEGO:**
-- Pausa: Pausa el juego
-- Habilidades: Radio. (ON/OFF para evitar enemigos.)
-
-2.2.2. **Control**
-- Movimiento con wasd
-- Esconderse con la "e"
-- Atacar con la barra espaciadora  
-
-[Go back to index -->][indice]  
-
-## 3. Jugabilidad  
-
-3.1. **Mecánicas**
-
-**Jugador**:
-El jugador tiene un movimiento ortodireccional controlado con WASD.
-Se apunta con el cursor y ataca golpeando a melé con un bate en un área en forma de cono.
-Interactúa con objetos pulsando la ‘E’.
-
-**Sistema de Vida**:
-
-● *Vida del personaje*: 
-    Cuando el jugador entra en contacto con los pájaros se quita vida por segundo, cuantos más hay, más daño hacen. 
-    Se regenera cuando se termina el nivel o recogiendo la “comida” repartida por el nivel.
-
-**Objetivos**:
-    Habrá dos objetivos a cumplir:
-
-● *Principal*: 
-    El objetivo principal es rescatar a las personas que se encuentran en apuros. 
-    Se debe completar este objetivo para avanzar al siguiente nivel.
-
-● *Flexible*:
-    En cada zona se tienen que recoger suministros para poder mantener segura la casa donde se refugian los supervivientes.
-
-**Sigilo**:
-    Por los niveles hay cabinas telefónicas y otras estructuras repartidas por el mapa para poder esconderse.  
-    Al entrar en ellas, las aves dejan de atacar y se empeziezan a mover de forma errática.
-
-**Enemigos**:
-	Los enemigos de este juego son las aves.  Estas aparecen por las esquinas de la pantalla y se accercan al jugador para atacarle. 
-Hacen daño por contacto, el daño depende del número de aves atacando al jugador.
-Hay enemigos individuales, representados por un ave además de enemigos bandada, varias aves juntas que cuentan como una sola entidad con mayor salud y daño.
-
-3.2. **Dinámicas**
-
-El juego está dividido en niveles. 
-Se llega a la ubicación de cada nivel en coche, una vez ahí se tiene que completar el objetivo principal (rescatar al habitante) y volver al coche para completar el nivel. Además, de conseguir recursos para el hogar.
-
-● Hay un tiempo límite indicado con un contador que tiene el objetivo de causar el estrés que infunde la película.
-● La dificultad de los niveles aumenta con cada nivel completado y a medida que avanza el contador aumenta también la dificultad. 
-● El juego es injugable (debido a la dificultad) una vez termina el contador.
-
-3.3. **Estética**
-
-● Años 60 en un pueblo pesquero.
-
-● Vista cenital (top-down), claro-oscuro, paisaje exterior.
-
-● Salpicaduras y charcos de sangre y cristales rotos.  
+### 2. Estética
+Estética pixel art. La mayoría de los recursos van a ser cogidos de internet.
 
 [Go back to index -->][indice]
 
-## 4. Contenidos  
+## 3. Menús y modos de juego
+Existirá un único menú donde al iniciar el juego indicas si quieres JUGAR o CONFIGURAR, y durante el juego indicas si quieres REANUDAR o CONFIGURAR.
 
-4.1. **Historia**
+### 1. Configuración
 
-El protagonista regresa a su pueblo invadido por pájaros y sus amigos y vecinos en peligro, armado con su fiel bate intentará rescatar a todos o morirá en el intento.  
+### 2. Interfaz y control
 
 [Go back to index -->][indice]
 
-## 5. Arquitectura y Gestión  
-- Pivotal como sistema de gestión.
-- Discord como sistema de comunicación para realizar las reuniones grupales y whatsapp para planear reuniones.  
+## 4. Contenido
+
+### 1. Historia
+
+### 2. Niveles
+
+[niveles]
+
+### 3. Personaje y enemigos
+
+### 4. Objetos
+
+[Go back to index -->][indice]
+
+## 5. Referencias
 
 [Go back to index -->][indice]
 
@@ -231,15 +197,9 @@ El protagonista regresa a su pueblo invadido por pájaros y sus amigos y vecinos
 
 [Go back to index -->][indice]
 
-[Nueva arquitectura]: https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1#G1tDmkLnVFnr4bHvG2TSwnUaOESLTw9hM0 "Arquitectura UML"
-[Pivotal Tracker]: https://www.pivotaltracker.com/n/projects/2534895 "Herramienta de gestión del Proyecto"
 [WEB]: https://acedpol.github.io/Proyecto_PVLI---AVES/ "Web del Proyecto"
-[Sprites]: https://www.spriters-resource.com/
-[Otros Sprites]: https://www.spriters-resource.com/
 [portada]: ./assets/images/donde_sin_ed_menu.jpg
-[img1]: ./assets/images/begin.PNG
-[img2]: ./assets/images/sangre.PNG
-[img3]: ./assets/images/oculto.PNG
+[niveles]: ./assets/images/Niveles.PNG
 [video]: https://www.youtube.com/watch?v=_JTclTVKeSs&ab_channel=MarkRoberenEspa%C3%B1ol  
 
 [indice]: #%C3%ADndice  
