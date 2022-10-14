@@ -49,7 +49,7 @@ Semejanzas con película Exmachina
 
 **Géneros**: Acción, Aventura.
 
-**Modos**: Un jugador.
+**Modos**: Historia, single player.
 
 **Público objetivo**:
 
@@ -60,55 +60,60 @@ Semejanzas con película Exmachina
 **Plataformas**: Web con teclado y ratón.
 
 **Cantidades**:
+● Escenarios: 4-5
 
-● Personaje principal.
+● Objetos: Pociones
 
-● Pájaros - enemigos.
+● Armas: Extremidades
 
-● Materiales.
+● Personajes: Debris (player) y Jefe (boss)
+
+● Palabras: Estatua, extremidades. 
 
 **Versiones del documento**:
 
-<!-- ![Captura del menú][capturamenu] -->
+● Fecha de propuesta del concepto: 30 de septiembre 2022
 
-<!-- ![Captura de Juego][capturajuego] -->
+● Fechas de pre-producción: 27 de octubre 2022
+
+● Fechas de producción: 01 de diciembre 2022
+
+● Fecha de lanzamiento 16 de diciembre 2022
 
 **Descripción**
 
-Aves es un juego top down de acción y supervivencia. Combina combate y sigilo e involucra mecánicas de aggro y distancia a los enemigos.
-
-El protagonista es el líder nato del pueblo, con una personalidad humanista que intenta ayudar a los habitantes del pueblo a pasar la tormenta.
-
-La dificultad avanza con cada nivel, las hordas de pájaros van aumentando y son cada vez son más letales. 
-
-El objetivo principal es rescatar a los pueblerinos.
-
-La puntuación final está basada en el número de niveles completados y pájaros eliminados.  
+Se trata de un juego plataformas estilo metroidvania con scroll lateral donde el personaje es una estatua que debe recuperar sus extremidades perdidas. 
+El objetivo principal es acabar con Jefe,para ello debemos ir avanzando a lo largo del museo y recuperando nuevas piezas para  acceder a sitios que anteriormente estaban bloqueados. A lo largo del juego nos encontraremos con enemigos y consumibles que podremos usar.
 
 ---  
 
 ## Índice  
 
 [**I. Aspectos generales**][1]  
-• Vista general  
-• Relato de un nivel  
+• Relato breve y parcial de una partida típica
 
-[**II. Controles de juego**][2]  
+[**II. Jugabilidad**][2]  
 • Configuración  
 • Controles  
 
 [**III. Jugabilidad**][3]  
-• Mecánicas  
-• Dinámicas  
+• Mecánica  
+	- Mecánicas del personaje
+	- Mecánicas de escenario
+	- Controles
+	- Cámara
+• Dinámica  
 • Estética  
 
-[**IV. Contenidos**][4]  
-• Historia  
-• Niveles  
-• Personajes  
-• Objetos y enemigos  
+[**IV. Menús y modos de juego**][4]  
+• Configuración  
+• Interfaz y control   
 
-[**V. Arquitectura y gestión**][5]  
+[**V. Contenido**][5]  
+• Historia
+• Niveles
+• Personajes y enemigos
+• Objetos
 
 [**VI. Referencias**][6]  
 
@@ -116,10 +121,11 @@ La puntuación final está basada en el número de niveles completados y pájaro
 
 ## 1. Aspectos generales  
 
-1.2 **Relato de un nivel :**
-El jugador llegará al pueblo en coche, desde donde comenzará el nivel. 
-Nada más comenzar el jugador será perseguido por bandadas de cuervos y deberá recorrer las calles para encontrar al habitante que esté en peligro. 
-Una vez rescatado, el jugador tendrá que hacerse camino de vuelta al coche.  
+1.1 **Relato breve y parcial de una partida típica :**
+Metroidvania pixelart basado en reconstrucción de victoria. La experiencia general de juego será un plataformas en los que irás consiguiendo powerUps que te permitirán avanzar con más facilidad y acceder a nuevos sitios. 
+
+1.2 **Relato breve y parcial de una partida típica :**
+Comienza con un menú donde se selecciona “iniciar partida”. Nada más empezar, se te introducirá el juego y su mecánica básica, y en esa misma sala se confrontará un enemigo, para a continuación conseguir sus brazos. Una vez pasada esa sala ...
 
 [Go back to index -->][indice]
 
