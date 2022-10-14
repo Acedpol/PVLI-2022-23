@@ -27,7 +27,7 @@ Semejanzas con película Exmachina
  ![Pantalla inicio][portada]
  ___
  #### IMPORTANTE:
- - En el fichero **_index.html_** se encuentra el punto de acceso que componeel acceso al videojuego.
+ - En el fichero **_index.html_** se encuentra el punto de acceso que compone el acceso al videojuego.
  - En el actual fichero **_readme_** se prensenta información relevante para su uso y sobre el desarrollo del juego.
  - En la carpeta **_assets_** se encuentran los recursos de los dispone el videojuego.
  ___
@@ -45,7 +45,7 @@ Semejanzas con película Exmachina
 - JOSE EDUARDO ROBLES ROCA		> joseer01@ucm.es  
 ---  
 
-## Resumen  
+## Resumen  <-- Hay que cambiar todo desde aqui-->
 
 **Géneros**: Acción, Aventura.
 
