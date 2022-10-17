@@ -45,8 +45,7 @@ Semejanzas con película Exmachina
 - JOSE EDUARDO ROBLES ROCA		> joseer01@ucm.es  
 ---  
 
-## Resumen  <-- Hay que cambiar todo desde aqui-->
-
+## Resumen 
 **Géneros**: Acción, Aventura.
 
 **Modos**: Historia, single player.
