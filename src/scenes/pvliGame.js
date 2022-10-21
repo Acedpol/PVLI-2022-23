@@ -165,7 +165,7 @@ export default class pvliGame extends Phaser.Scene
         // gets the sizes of the screen
         const{width,height} = this.scale
 
-        this.add.image(0, 0, keymap)
+        this.add.image(width/2, height/2, keymap)
     }
 
     /**

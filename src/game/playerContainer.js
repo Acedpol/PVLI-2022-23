@@ -144,7 +144,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         // jump input logic
         if (this.cursors.up.isDown)
         {
-            if()
+            //if()
             this.body.setVelocityX(-100)
         }
 

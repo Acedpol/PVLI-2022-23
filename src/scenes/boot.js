@@ -16,8 +16,9 @@ export default class Boot extends Phaser.Scene
 
         // --- PLAYER --- 
         // player spritesheet
+        //this.load.spritesheet('jetpac', "./assets/sprites/sprites_angel_original_y_escalado/angel3.png", //cambiar el sprite para la animacion 
         this.load.spritesheet('jetpac', "./assets/sprites/jetpac.png", //cambiar el sprite para la animacion 
-            { frameWidth: 17, frameHeight: 24 }) 
+        { frameWidth: 17, frameHeight: 24 }) 
 
         // jetpack audio
         this.load.audio('jetpack', './assets/sounds/jetpack2.wav')//cambio mas tarde
@@ -32,6 +33,7 @@ export default class Boot extends Phaser.Scene
 
         // map
         this.load.image('img_tilemap', './assets/sprites/tileset.png')
+        this.load.image('img_back', './assets/images/donde_sin_ed_menu.jpg')
         this.load.tilemapTiledJSON('nivel', './assets/map/space-jetpac.json')
 
 

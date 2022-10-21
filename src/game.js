@@ -14,7 +14,7 @@ window.onload = ()=>{
         type: Phaser.AUTO,
         parent: "phaserGame",
         scale: {
-            width: 256,
+            width: 360,
             height: 192,
             zoom: 3,
             // autoCenter: Phaser.Scale.Center.CENTER_HORIZONTALLY
