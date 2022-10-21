@@ -87,6 +87,9 @@ export default class pvliGame extends Phaser.Scene
 
     create() 
     {
+        // Create background image
+        this.background = this.createBackground('img_back');
+
         // Creates the Game Map
         this.map = this.createMap('nivel', 8, 8, 'platform', 'img_tilemap', 'platforms')
 
@@ -152,6 +155,17 @@ export default class pvliGame extends Phaser.Scene
         this.groundLayer.setCollisionByProperty({ suelo: true })
         
         return map
+    }
+
+    /**
+     * Crea una imagen y la ajusta al fondo
+     * @param {String} keymap Nombre dado a la imagen del fondo en boot 
+     */
+    createBackground(keymap){
+        // gets the sizes of the screen
+        const{width,height} = this.scale
+
+        this.add.image(0, 0, keymap)
     }
 
     /**
