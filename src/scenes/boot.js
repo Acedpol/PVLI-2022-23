@@ -16,14 +16,14 @@ export default class Boot extends Phaser.Scene
 
         // --- PLAYER --- 
         // player spritesheet
-        this.load.spritesheet('jetpac', "./assets/sprites/jetpac.png", 
+        this.load.spritesheet('jetpac', "./assets/sprites/jetpac.png", //cambiar el sprite para la animacion 
             { frameWidth: 17, frameHeight: 24 }) 
 
         // jetpack audio
-        this.load.audio('jetpack', './assets/sounds/jetpack2.wav')
+        this.load.audio('jetpack', './assets/sounds/jetpack2.wav')//cambio mas tarde
     
         // walking audio
-        this.load.audio('walk-audio', './assets/sounds/soldier-walk.wav')
+        this.load.audio('walk-audio', './assets/sounds/soldier-walk.wav')//cambio mas tarde
         
 
         // --- SCENE --- 
@@ -37,11 +37,15 @@ export default class Boot extends Phaser.Scene
 
         // --- OBJECTS --- 
         // object
-        this.load.image('object', './assets/sprites/fuel.png')
+        this.load.image('object', './assets/sprites/fuel.png')//poti
+        //this.load.image('object', './assets/sprites/fuel.png') // brazos
+        //this.load.image('object', './assets/sprites/fuel.png') // cabeza
+        //this.load.image('object', './assets/sprites/fuel.png') // alas
 
         // pick audio
-        this.load.audio('pick', './assets/sounds/pick.wav')
+        this.load.audio('pick', './assets/sounds/pick.wav')//yo lo dejaria
 
+        /*Todo esto para ataques a distancia*/
         // bullet spritesheet
         this.load.spritesheet('bullet', "./assets/sprites/meteor.png", 
             { frameWidth: 16, frameHeight: 14 }) 
@@ -52,11 +56,11 @@ export default class Boot extends Phaser.Scene
 
         // explode audio
         this.load.audio('explode', './assets/sounds/explosion.wav')
-
+        /*------------------------------------------------------------------------*/
 
         // --- UI --- 
         // button background
-        this.load.image('button', './assets/images/button.png')
+        this.load.image('button', './assets/images/button.png')//Esto igual cambiar texto y resultado
 
         // win audio
         this.load.audio('win', './assets/sounds/win.wav')
@@ -68,7 +72,7 @@ export default class Boot extends Phaser.Scene
 
     create() 
     {      
-        // --- PLAYER --- 
+        // --- PLAYER --- cuadriplicar para cada cosa que se pilla
         // creates walk animation for player
         this.anims.create({
             key: 'walk',
@@ -86,10 +90,10 @@ export default class Boot extends Phaser.Scene
         })
 
 
-        // --- BULLET --- 
+        // --- BULLET --- duplicar esto disparo enemigo y disparo player
         // creates bullet animation 
         this.anims.create({
-          key: 'fly-bullet',
+          key: 'fly-bullet',//cambio para decir que es municion
           frames: this.anims.generateFrameNames('bullet', { start: 0, end: 3 }),
           frameRate: 6,
           repeat: -1
@@ -108,10 +112,4 @@ export default class Boot extends Phaser.Scene
         // inits the game menu scene
         this.scene.start('menuGame')
     }
-
-    update() 
-    {
-
-    }
-
 }
