@@ -41,11 +41,6 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         this.scene.add.existing(this)
         this.scene.physics.add.existing(this)
 
-        // disable some direction colliders from player
-        // this.body.checkCollision.up = false
-        // this.body.checkCollision.right = false
-        // this.body.checkCollision.left = false
-
         // colisiona con los bordes del mundo de juego
         this.body.collideWorldBounds = true
 
@@ -64,7 +59,8 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 
         // inicialización de variables
         this._speed = 100
-        this.carriesObject = false
+        this.groundCheck = false
+        this.jump = false;
         this.object = null
 
         // inicialización de audios fx
@@ -132,12 +128,12 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         // left and right input logic
         if (this.cursors.left.isDown)
         {
-            this.body.setVelocityX(-100)
+            this.body.setVelocityX(-80)
             this.player.flipX = true
         }
         else if (this.cursors.right.isDown)
         {
-            this.body.setVelocityX(100)
+            this.body.setVelocityX(80)
             this.player.flipX = false
         }
         else
@@ -148,116 +144,125 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         // jump input logic
         if (this.cursors.up.isDown)
         {
-            this.body.setVelocityY(-100)
+            if()
+            this.body.setVelocityX(-100)
         }
 
         // actives the main action of the player
         if (this.action.isDown)
         {
-            this.dropObject()
+            if(this.groundCheck == true)
+            {
+                this.body.setVelocityX(-100)
+                groundcheck = false;
+            }
+           // else if()
         }
 
-        // wraps the player (movimiento toroidal)
-        this.horizontalWrap(this)
+    }
+
+    jump()
+    {
+
     }
 
     /**
      * @param {Phaser.Physics.Arcade.Sprite} object
      */
-    horizontalWrap(object)
-    {
-        const halfWidth = object.body.width * 0.25
-        const gameWidth = this.scene.scale.width
-        if (object.x < -halfWidth*3)
-        {
-            object.x = gameWidth - halfWidth
-        }
-        else if (object.x > gameWidth - halfWidth)
-        {
-            object.x = -halfWidth*3
-        }
-    }
+    // horizontalWrap(object)
+    // {
+    //     const halfWidth = object.body.width * 0.25
+    //     const gameWidth = this.scene.scale.width
+    //     if (object.x < -halfWidth*3)
+    //     {
+    //         object.x = gameWidth - halfWidth
+    //     }
+    //     else if (object.x > gameWidth - halfWidth)
+    //     {
+    //         object.x = -halfWidth*3
+    //     }
+    // }
 
-    /** 
-     * Carries an object
-     * @param {Phaser.GameObjects.GameObject} object The object that will carry over
-     */
-    carryObject(object)
-    {
-        if (!this.carriesObject)
-        {
-            // keeps save the object
-            this.object = object
-            this.carriesObject = true
+    // /** 
+    //  * Carries an object
+    //  * @param {Phaser.GameObjects.GameObject} object The object that will carry over
+    //  */
+    // carryObject(object)
+    // {
+    //     if (!this.carriesObject)
+    //     {
+    //         // keeps save the object
+    //         this.object = object
+    //         this.carriesObject = true
 
-            // disable from physics world
-            this.scene.physics.world.disableBody(object.body)
+    //         // disable from physics world
+    //         this.scene.physics.world.disableBody(object.body)
 
-            // Recoge el object y se lo añade a playerContainer (y lo coloca)
-            this.add(object)
-            object.setPosition(0, -object.height -2)
-            object.setOrigin(0)
+    //         // Recoge el object y se lo añade a playerContainer (y lo coloca)
+    //         this.add(object)
+    //         object.setPosition(0, -object.height -2)
+    //         object.setOrigin(0)
 
-            console.log('pick')
-            this.collectObject()
-        }
-    }
+    //         console.log('pick')
+    //         this.collectObject()
+    //     }
+    // }
 
     /**
      * Drops an object that is being carried
      */
-    dropObject()
-    {
-        if (this.carriesObject)
-        {
-            // registers the actual position relative to the player container
-            let posX = this.x;
-            let posY = this.y - this.object.height - 2;
+    // dropObject()
+    // {
+    //     if (this.carriesObject)
+    //     {
+    //         // registers the actual position relative to the player container
+    //         let posX = this.x;
+    //         let posY = this.y - this.object.height - 2;
 
-            // removes and deletes the first object carried by the player container
-            this.remove(this.getAt(1), true)
+    //         // removes and deletes the first object carried by the player container
+    //         this.remove(this.getAt(1), true)
 
-            // creates a new one in the same position
-            let object = this.scene.createRandomObject(this.scene.map)
-            object.setPosition(posX, posY)
-            object.setOrigin(0)
+    //         // creates a new one in the same position
+    //         let object = this.scene.createRandomObject(this.scene.map)
+    //         object.setPosition(posX, posY)
+    //         object.setOrigin(0)
 
-            // reset physics
-            this.scene.physics.world.enable(object)
-            object.setVelocityY(-100)
+    //         // reset physics
+    //         this.scene.physics.world.enable(object)
+    //         object.setVelocityY(-100)
 
-            // reset values
-            this.object = null
-            this.carriesObject = false
+    //         // reset values
+    //         this.object = null
+    //         this.carriesObject = false
 
-            console.log('drop')
-            this.unCollectObject()
-        }        
-    }
+    //         console.log('drop')
+    //         this.unCollectObject()
+    //     }        
+    // }
 
-    /**
-     * Subs a collected object from the score
-     */
-    unCollectObject()
-    {
-        // suma uno al marcador
-        this.scene.objectCollected--
+    // /**
+    //  * Subs a collected object from the score
+    //  */
+    // unCollectObject()
+    // {
+    //     // suma uno al marcador
+    //     this.scene.objectCollected--
             
-        // create new text value and set it
-        const value = this.scene.objectCollected + '/' + this.scene.objectToFinish
-        this.scene.objectCollectedText.text = value      
-    }
+    //     // create new text value and set it
+    //     const value = this.scene.objectCollected + '/' + this.scene.objectToFinish
+    //     this.scene.objectCollectedText.text = value      
+    // }
 
-    /**
-     * Adds another collected object to the score
-     */
-    collectObject()
-    {
-        // suma uno al marcador
-        this.scene.objectCollected++
+    // /**
+    //  * Adds another collected object to the score
+    //  */
+    // collectObject()
+    // {
+    //     // suma uno al marcador
+    //     this.scene.objectCollected++
              
-        // create new text value and set it
-        const value = this.scene.objectCollected + '/' + this.scene.objectToFinish
-        this.scene.objectCollectedText.text = value      
-    }
+    //     // create new text value and set it
+    //     const value = this.scene.objectCollected + '/' + this.scene.objectToFinish
+    //     this.scene.objectCollectedText.text = value      
+    // }
 }
