@@ -8,23 +8,8 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     cursors
     action
 
-    /** @type {Number} */
-    _speed
-
     /** @type {Phaser.Physics.Arcade.Sprite} */
     player
-
-    /** @type {Boolean} */
-    carriesObject
-
-    /** @type {object} */
-    object
-
-    /** @type {Phaser.Sound.BaseSound} */
-    jetpack
-
-    /** @type {Phaser.Sound.BaseSound} */
-    walk
 
     /**
      * Constructor del container del jugador
@@ -60,23 +45,28 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         // inicialización de variables
         this._speed = 100
         this.groundCheck = false
-        this.jump = false;
-        this.object = null
+        this.jump = true;
+        this.jumpCount = true;
+        //this.object = null
 
-        // inicialización de audios fx
-        this.jetpack = this.scene.sound.add('jetpack')
-        this.walk = this.scene.sound.add('walk-audio')
+        // // inicialización de audios fx
+        // this.jetpack = this.scene.sound.add('jetpack')
+        // this.walk = this.scene.sound.add('walk-audio')
     }
 
     preUpdate(t,dt)
     {
         this.iterate( (child) => child.preUpdate(t,dt) ) // for animations
 
-        // check if player is touching something below it
-        const touchingDown = this.body.onFloor()
-
+        // revisar si esta en contacto con el suelgo y recargar salto
+        this.groundCheck = this.body.onFloor()
+        if(this.body.onFloor())
+        {
+            this.groundCheck = true
+            this.jump = true
+        }
         // walk animation
-        if (touchingDown && (this.cursors.left.isDown || this.cursors.right.isDown))
+        if (this.groundCheck && (this.cursors.left.isDown || this.cursors.right.isDown))
         {
             if (this.player.anims.currentAnim.key != 'walk')
             {
@@ -86,46 +76,51 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             this.player.anims.resume()
 
             // sfx
-            if (!this.walk.isPlaying)
-            {
-                this.walk.play({
-                    volume: 0.75,
-                    rate: 1.5
-                })
-            }
+            // if (!this.walk.isPlaying)
+            // {
+            //     this.walk.play({
+            //         volume: 0.75,
+            //         rate: 1.5
+            //     })
+            // }
         }
-        else if (touchingDown)
+        else if (this.groundCheck)
         {
             // initial animation pause
             this.player.play('walk')    
             this.player.anims.pause()
 
-            this.walk.stop() // keeps sure to stop playing sound
+            //this.walk.stop() // keeps sure to stop playing sound
         }
 
         // flying animation
-        if (!touchingDown)
+        if (!this.groundCheck)
         {
             // sfx
-            if (!this.jetpack.isPlaying)
-            {
-                this.jetpack.play({
-                    volume: 0.5
-                })
-            }
+            // if (!this.jetpack.isPlaying)
+            // {
+            //     this.jetpack.play({
+            //         volume: 0.5
+            //     })
+            // }
 
             // animation
             if (this.player.anims.currentAnim.key != 'jump')
                 this.player.play('jump')
 
-            this.walk.stop() // keeps sure to stop playing sound
+            //this.walk.stop() // keeps sure to stop playing sound
         }
-        else
-        {
-            this.jetpack.stop() // keeps sure to stop playing sound
-        }
+        // else
+        // {
+        //     this.jetpack.stop() // keeps sure to stop playing sound
+        // }
 
-        // left and right input logic
+        this.playerController();
+    }
+
+    playerController()
+    {
+        //movement
         if (this.cursors.left.isDown)
         {
             this.body.setVelocityX(-80)
@@ -144,26 +139,15 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         // jump input logic
         if (this.cursors.up.isDown)
         {
-            //if()
-            this.body.setVelocityX(-100)
-        }
-
-        // actives the main action of the player
-        if (this.action.isDown)
-        {
-            if(this.groundCheck == true)
+            if(this.jump)
             {
-                this.body.setVelocityX(-100)
-                groundcheck = false;
+                this.body.setVelocityY(-150)
             }
-           // else if()
+            if(!this.groundCheck)
+            {
+                this.jump = false
+            }
         }
-
-    }
-
-    jump()
-    {
-
     }
 
     /**
