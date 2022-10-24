@@ -1,7 +1,6 @@
 import Object from '../game/object.js'
 import PlayerContainer from '../game/playerContainer.js'
 import Bullet from '../game/bullet.js'
-import Enemy from '../game/enemy.js'
 
 export default class pvliGame extends Phaser.Scene 
 {
@@ -22,6 +21,10 @@ export default class pvliGame extends Phaser.Scene
     // --- OBJECTS --- 
     /** @type {Phaser.Physics.Arcade.StaticGroup} */
     bullets
+
+    // --- OBJECTS --- 
+    /** @type {Phaser.Physics.Arcade.StaticGroup} */
+    enemies
 
     /** @type {Object} */
     object
@@ -61,21 +64,21 @@ export default class pvliGame extends Phaser.Scene
         this.objectCollected = 0
         this.objectToFinish = 2
 
-        if (this.level == 1)
-        {
-            this.objectToFinish = 2
-            this.cooldownAsteroids = 2 * 1000
-        }
-        else if (this.level == 2)
-        {
-            this.objectToFinish = 3
-            this.cooldownAsteroids = 1 * 1000
-        }
-        else if (this.level == 3)
-        {
-            this.objectToFinish = 5
-            this.cooldownAsteroids = 0.5 * 1000
-        }
+        // if (this.level == 1)
+        // {
+        //     this.objectToFinish = 2
+        //     this.cooldownAsteroids = 2 * 1000
+        // }
+        // else if (this.level == 2)
+        // {
+        //     this.objectToFinish = 3
+        //     this.cooldownAsteroids = 1 * 1000
+        // }
+        // else if (this.level == 3)
+        // {
+        //     this.objectToFinish = 5
+        //     this.cooldownAsteroids = 0.5 * 1000
+        // }
 
         // cancela las colisiones con el techo
         this.physics.world.checkCollision.up = false
@@ -104,8 +107,6 @@ export default class pvliGame extends Phaser.Scene
         // Creates the player
         this.createPlayer(this.map)
 
-        this.enemy = new Enemy(this, 200, 165, 15, 15, 'wolf');
-
         // Crea un objeto para recoger en la escena
         //this.createRandomObject(this.map)
 
@@ -114,7 +115,7 @@ export default class pvliGame extends Phaser.Scene
 
         // Inits the timer
         this.timeLapsed = 0
-        //this.createRandomBullet(this.map)
+        this.createEnemy(this.map, this.mapWidth/2, this.mapHeight/2)
     }
 
     update(t, dt) 
@@ -215,6 +216,7 @@ export default class pvliGame extends Phaser.Scene
         return this.object;
     }
 
+    
     /**
      * Creates and positions the Player
      * @param {Phaser.Tilemaps.Tilemap} map Mapa del juego ya creado
@@ -231,7 +233,7 @@ export default class pvliGame extends Phaser.Scene
         // Añade al jugador como Sprite
         let player = this.add.sprite(0, 0, 'angel', 27)
         // creates the player in the middle of the screen
-        this.playerContainer = new PlayerContainer(this, mapWidth * 0.2, mapHeight * 0.60, player)
+        this.playerContainer = new PlayerContainer(this, mapWidth * 0.2, mapHeight * 0.75, player)
 
         // Adds main physics
         this.physics.add.collider(this.playerContainer, this.groundLayer)
@@ -256,11 +258,16 @@ export default class pvliGame extends Phaser.Scene
         // position
         let x = Phaser.Math.Between(10, mapWidth - 10)
         let y = Phaser.Math.Between(10, mapHeight * -0.15)
-
+        
         let bullet = this.bullets.create(x, y, 'bullet')
         this.physics.add.collider(bullet, this.groundLayer)
     }
 
+    createEnemy(map, x, y)
+    {   
+        let enemy = this.add.sprite(x, y, 'houndIdleSprite', 0)
+        this.physics.add.collider(enemy, this.groundLayer)
+    }
     /**
      * Creates the Game Score UI for collectionable objects
      */
@@ -283,14 +290,14 @@ export default class pvliGame extends Phaser.Scene
      * Game Lose, the has die
      * @param {Phaser.GameObjects.GameObject} object The object that kill the player
      */
-    handleGameLose(object)
-    {
-        // kill object and play feedback
-        this.playerContainer.destroy()
-        this.bullets.killAndHide(object)
-        this.sound.play('lose')
+    // handleGameLose(object)
+    // {
+    //     // kill object and play feedback
+    //     this.playerContainer.destroy()
+    //     this.bullets.killAndHide(object)
+    //     this.sound.play('lose')
 
-        // inits the game final scene
-        this.scene.start('GameOver')
-    }
+    //     // inits the game final scene
+    //     this.scene.start('GameOver')
+    // }
 }

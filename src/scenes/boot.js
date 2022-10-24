@@ -16,11 +16,12 @@ export default class Boot extends Phaser.Scene
         // --- PLAYER --- 
         // player spritesheet
         this.load.spritesheet('angel', "./assets/sprites/angel/angel3.png", //cambiar el sprite para la animacion 
-        { frameWidth: 91, frameHeight: 72 }) 
-        this.load.spritesheet('jetpac', "./assets/sprites/jetpac.png", //cambiar el sprite para la animacion 
-        { frameWidth: 17, frameHeight: 24 })
-        this.load.spritesheet('wolf', "./assets/sprites/wolf.png",
-        { frameWidth: 62, frameHeight: 52 })
+        { frameWidth: 61, frameHeight: 48 }) 
+
+        // --- ENEMIGOS ---
+        // Lobo
+        this.load.spritesheet('houndIdleSprite', "./assets/sprites/houndSprites/hound-idle.png",
+        { frameWidth: 42, frameHeight: 24 })
 
         // // jetpack audio
         // this.load.audio('jetpack', './assets/sounds/jetpack2.wav')//cambio mas tarde
@@ -76,7 +77,7 @@ export default class Boot extends Phaser.Scene
 
     create() 
     {      
-        // --- PLAYER --- cuadriplicar para cada cosa que se pilla
+        // --- PLAYER --- 
         // creates walk animation for player
         this.anims.create({
             key: 'walk',
@@ -89,6 +90,15 @@ export default class Boot extends Phaser.Scene
         this.anims.create({
           key: 'jump',
           frames: this.anims.generateFrameNames('angel', { start: 9, end: 17 }),
+          frameRate: 10,
+          repeat: -1
+        })
+
+        // --- Enemigos --- cuadriplicar para cada cosa que se pilla
+        // creates walk animation for hound
+        this.anims.create({
+          key: 'houndIdle',
+          frames: this.anims.generateFrameNames('houndIdleSprite', { start: 0, end: 5 }),
           frameRate: 10,
           repeat: -1
         })

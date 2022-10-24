@@ -20,8 +20,8 @@ export default class Enemy extends Phaser.GameObjects.Sprite{
         this.scene.add.existing(this);
         this.scene = scene;
         this.spritesheet = spritesheet;
-        this.speed = 300;
-        this.play('wolf_walk');
+        //this.speed = 300;
+        this.play('houndIdle');
     }
 
     /**
@@ -29,35 +29,11 @@ export default class Enemy extends Phaser.GameObjects.Sprite{
      * @param {number} x_player
      */
 
-    attackPlayer(x_player){
-        let dir = x_player - x;
-        if (dir > 0) this.body.setVelocityX(this.speed);
-        else if (dir < 0) this.body.setVelocityX(-this.speed);
-        else this.body.setVelocityX(0);
-    }
+    // attackPlayer(x_player){
+    //     let dir = x_player - x;
+    //     if (dir > 0) this.body.setVelocityX(this.speed);
+    //     else if (dir < 0) this.body.setVelocityX(-this.speed);
+    //     else this.body.setVelocityX(0);
+    // }
 
-    /**
-     * Método que se encarga de las animaciones (las descritas aquí sirven
-     * para el lobo con ataque físico)
-     */
-    animator(){
-        this.scene.anims.create({
-            key : 'wolf_running',
-            frames : this.anims.generateFrameNumbers('wolf', {start: 12, end: 16}),
-            frameRate: 10,
-            repeat: -1 // Bucle de animación
-        });
-        this.scene.anims.create({
-            key : 'wolf_idle',
-            frames : this.anims.generateFrameNumbers('wolf', {start: 0, end : 5}),
-            frameRate : 10,
-            repeat: -1
-        });
-        this.scene.anims.create({
-            key : 'wolf_walk',
-            frames : this.anims.generateFrameNumbers('wolf', {start: 24, end : 35}),
-            frameRate : 10,
-            repeat: -1
-        });
-    }
 }
