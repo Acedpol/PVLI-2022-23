@@ -2,41 +2,48 @@
 Proyecto final de PVLI curso 22/23 para el grado GDV-UCM.  
 > Pivotal: https://www.pivotaltracker.com/n/projects/2597082  
 > Twitter: https://www.twitter.com/StormSudio  
-> videojuego: https://www.acedpol.github.io/PVLI-2022-23/  
-> Link Arquitectura: [visualizar UML][Nueva Arquitectura]  
+> Videojuego: https://www.acedpol.github.io/PVLI-2022-23/  
+> Arquitectura: [visualizar UML][Nueva Arquitectura]  
 > Video-demo final: [demo][video]  
+
+---  
 
 ## Idea principal
 Venus de Milo es la protagonista, que llegado un día un crío coge un bate y la revienta la cabeza, dado que se cae también pierde las piernas, entonces por cosas de la vida cobra vida propia y comienza a moverse en busca de sus extremidades, las cuales le van a ir dando power-ups, primero recuperará las piernas, con lo que podrá andar y saltar, luego un brazo con el que podrá pegar a los enemigos, luego el otro brazo que la dará la posibilidad de alcanzar sitios lejanos o atrapar enemigos con un gancho y finalmente la cabeza que la dará un poder mágico como defensa o algo parecido. Sería una especie de frankestein y podría ir cambiando sus piezas.
 
-## Para iniciar el servidor http 
+## Para iniciar el servidor http  
 Primero, iniciar Git Bash en la ruta del proyecto y luego ejecutar el comando: `npx http-server`  
 Si no está instalado http-server, ejecutar: `npm install http-server`  
 Si node.js no está instalado, descargar e instalar: https://nodejs.org/dist/v16.17.0/node-v16.17.0-x64.msi  
+> Phaser docs: https://photonstorm.github.io/phaser3-docs/  
 
-## Relaciones
-Genero metroidvania  
-Semejanzas con película Exmachina  
-
-# Redemption Debris - Storm Studios
- > EN: This will be the proyect for PVLI, whose proyect is a Phaser 3 implementation, in which we will use JavaScrypt, HTML5, CSS and JSON files. 
- 
- > SP: Este repositorio está dedicado al proyecto de PVLI, cuyo proyecto será una implementación de Phaser 3, en el cual se usarán archivos de tipo JavaScrypt, HTML5, CSS y JSON.
- ___
- #### Proyecto desarrollado por: _STORM STUDIOS_
- ![Pantalla inicio][portada]
- ___
- #### IMPORTANTE:
- - En el fichero **_index.html_** se encuentra el punto de acceso que compone el acceso al videojuego.
- - En el actual fichero **_readme_** se prensenta información relevante para su uso y sobre el desarrollo del juego.
- - En la carpeta **_assets_** se encuentran los recursos de los dispone el videojuego.
- ___
- ___
-
-## GDD: Game Design Document / Documento de Diseño del Videojuego  
-### **Redemption Debris - A bow to our ancestors.**  
 ---  
-## **Documento de Diseño - Grupo #03**  
+---  
+
+# Redemption Debris - Storm Studios  
+ > EN: This will be the proyect for PVLI, whose proyect is a Phaser 3 implementation, in which we will use JavaScrypt, HTML5, CSS and JSON files.  
+ 
+ > SP: Este repositorio está dedicado al proyecto de PVLI, cuyo proyecto será una implementación de Phaser 3, en el cual se usarán archivos de tipo JavaScrypt, HTML5, CSS y JSON.  
+
+---  
+
+ #### Proyecto desarrollado por: _STORM STUDIOS_  
+ ![Pantalla inicio][portada]  
+ 
+---  
+
+ #### IMPORTANTE:  
+ - En el fichero **_index.html_** se encuentra el punto de acceso que compone el acceso al videojuego.  
+ - En el actual fichero **_readme_** se prensenta información relevante para su uso y sobre el desarrollo del juego.  
+ - En la carpeta **_assets_** se encuentran los recursos de los dispone el videojuego.  
+ 
+---  
+---  
+
+# GDD: Game Design Document  
+> Documento de Diseño del Videojuego  
+>> **Redemption Debris - A bow to our ancestors.**  
+
 ### **Contribuidores:** GRUPO #03 - PVLI : STORM STUDIOS   
 - JONATHAN ALBERTO CARRERA SANTAMARÍA 	> jocarr01@ucm.es  
 - PEDRO PABLO CUBELLS TALAVERA		> pablocub@ucm.es  
@@ -196,15 +203,8 @@ Todo comienza en un museo, donde unos críos le quitan unas extremidades a una e
 
 ## VI - Referencias  
 
-● Alfred Hitchcock - Pájaros
-
-● AC - Assassin 's  Creed: tema de sigilo y agro.
-
-● Counter strike: sistema de rehenes.
-
-● Boxhead:  oleadas de pájaros y dinámica de la IA.
-
-● Hotline Miami: Cámara, movimiento por la escena y combate a melé.
+* Género Metroidvania  
+* Semejanzas con película Exmachina  
 
 [Go back to index -->][indice]  
 
