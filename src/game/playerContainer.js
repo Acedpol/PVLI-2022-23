@@ -22,7 +22,8 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 
         // ajustes del jugador
         this.player = aspecto
-        this.body.setSize(this.player.width/2, this.player.height/2)
+        this.body.setSize(this.player.width / 2, this.player.height / 2)
+        this.body.offset.y = 30
         this.player.setOrigin(0.5,0)
 
         // initial animation pause
