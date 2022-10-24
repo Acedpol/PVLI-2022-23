@@ -22,9 +22,9 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 
         // ajustes del jugador
         this.player = aspecto
-        this.body.setSize(this.player.width / 2, this.player.height / 2)
-        this.body.offset.y = 20
-        this.player.setOrigin(0.5,0)
+        this.body.setSize(this.player.width / 3, this.player.height * 70 / 100)
+        // this.body.offset.y = 20
+        this.player.setOrigin(0.3,0.2)
 
         // initial animation pause
         this.player.play('walk')
@@ -133,7 +133,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         {
             if(this.jump)
             {
-                this.body.setVelocityY(-150)
+                this.body.setVelocityY(-175)
             }
             if(!this.groundCheck)
             {
