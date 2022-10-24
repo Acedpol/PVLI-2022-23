@@ -95,7 +95,7 @@ export default class pvliGame extends Phaser.Scene
         this.background = this.createBackground('img_back');
 
         // Creates the Game Map
-        this.map = this.createMap('nivel', 8, 8, 'platform', 'img_tilemap', 'platforms')
+        this.map = this.createMap('nivel', 18, 21, 'platform', 'img_tilemap', 'plataformas')
 
         // Grupo de Bullets
         this.bullets = this.physics.add.group({
@@ -233,7 +233,7 @@ export default class pvliGame extends Phaser.Scene
         // Añade al jugador como Sprite
         let player = this.add.sprite(0, 0, 'angel', 27)
         // creates the player in the middle of the screen
-        this.playerContainer = new PlayerContainer(this, mapWidth * 0.2, mapHeight * 0.75, player)
+        this.playerContainer = new PlayerContainer(this, mapWidth * 0.2, mapHeight * 0.5, player)
 
         // Adds main physics
         this.physics.add.collider(this.playerContainer, this.groundLayer)
