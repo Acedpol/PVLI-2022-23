@@ -16,16 +16,15 @@ export default class Boot extends Phaser.Scene
 
         // --- PLAYER --- 
         // player spritesheet
-        this.load.spritesheet('angel', "./assets/sprites/sprites_angel_original_y_escalado/angel3.png", //cambiar el sprite para la animacion 
-        { frameWidth: 91, frameHeight: 72 }) 
+        //this.load.spritesheet('jetpac', "./assets/sprites/sprites_angel_original_y_escalado/angel3.png", //cambiar el sprite para la animacion 
         this.load.spritesheet('jetpac', "./assets/sprites/jetpac.png", //cambiar el sprite para la animacion 
         { frameWidth: 17, frameHeight: 24 }) 
 
-        // // jetpack audio
-        // this.load.audio('jetpack', './assets/sounds/jetpack2.wav')//cambio mas tarde
+        // jetpack audio
+        this.load.audio('jetpack', './assets/sounds/jetpack2.wav')//cambio mas tarde
     
-        // // walking audio
-        // this.load.audio('walk-audio', './assets/sounds/soldier-walk.wav')//cambio mas tarde
+        // walking audio
+        this.load.audio('walk-audio', './assets/sounds/soldier-walk.wav')//cambio mas tarde
         
 
         // --- SCENE --- 
@@ -79,7 +78,7 @@ export default class Boot extends Phaser.Scene
         // creates walk animation for player
         this.anims.create({
             key: 'walk',
-            frames: this.anims.generateFrameNames('angel', { start: 4, end: 7 }),
+            frames: this.anims.generateFrameNames('jetpac', { start: 4, end: 7 }),
             frameRate: 10,
             repeat: -1
         })
