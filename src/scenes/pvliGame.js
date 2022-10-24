@@ -1,6 +1,7 @@
 import Object from '../game/object.js'
 import PlayerContainer from '../game/playerContainer.js'
 import Bullet from '../game/bullet.js'
+import Enemy from '../game/enemy.js'
 
 export default class pvliGame extends Phaser.Scene 
 {
@@ -102,6 +103,8 @@ export default class pvliGame extends Phaser.Scene
 
         // Creates the player
         this.createPlayer(this.map)
+
+        this.enemy = new Enemy(this, 200, 165, 15, 15, 'wolf');
 
         // Crea un objeto para recoger en la escena
         //this.createRandomObject(this.map)
