@@ -15,8 +15,8 @@ export default class Boot extends Phaser.Scene
 
         // --- PLAYER --- 
         // player spritesheet
-        this.load.spritesheet('angel', "./assets/sprites/angel/angel.png", //cambiar el sprite para la animacion 
-        { frameWidth: 122, frameHeight: 96 }) 
+        this.load.spritesheet('angel', "./assets/sprites/angel/angel3.png", //cambiar el sprite para la animacion 
+        { frameWidth: 91, frameHeight: 72 }) 
         this.load.spritesheet('jetpac', "./assets/sprites/jetpac.png", //cambiar el sprite para la animacion 
         { frameWidth: 17, frameHeight: 24 }) 
 

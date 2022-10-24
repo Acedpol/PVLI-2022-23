@@ -228,7 +228,7 @@ export default class pvliGame extends Phaser.Scene
         // Añade al jugador como Sprite
         let player = this.add.sprite(0, 0, 'angel', 27)
         // creates the player in the middle of the screen
-        this.playerContainer = new PlayerContainer(this, mapWidth * 0.2, mapHeight * 0.75, player)
+        this.playerContainer = new PlayerContainer(this, mapWidth * 0.2, mapHeight * 0.60, player)
 
         // Adds main physics
         this.physics.add.collider(this.playerContainer, this.groundLayer)
