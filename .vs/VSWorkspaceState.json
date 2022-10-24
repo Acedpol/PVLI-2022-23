@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\lib",
+    "\\src",
+    "\\src\\game",
+    "\\src\\scenes"
   ],
-  "SelectedNode": "\\jsconfig.json",
+  "SelectedNode": "\\src\\scenes\\pvliGame.js",
   "PreviewInSolutionExplorer": false
 }
