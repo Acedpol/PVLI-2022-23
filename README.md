@@ -47,35 +47,33 @@ Semejanzas con película Exmachina
 
 ## Resumen  
 
-| Título | Contenido |
+| **Introducción** |  |
 | :--- | :---: |
 | **Descripción** | Se trata de un juego plataformas estilo metroidvania con scroll lateral donde el personaje es una estatua que debe recuperar sus extremidades perdidas. El objetivo principal es acabar con Jefe,para ello debemos ir avanzando a lo largo del museo y recuperando nuevas piezas para  acceder a sitios que anteriormente estaban bloqueados. A lo largo del juego nos encontraremos con enemigos y consumibles que podremos usar. |
 | **Versión** | ( v-1.0 ) –-> 24 de octubre de 2022 |
 
-| Título | Contenido |
-| :--- | :---: |
+| **Detalles generales** |  |
+| ---: | :---: |
 | **Géneros** | Acción, Aventura. |
 | **Modos** | Historia, single player. |
 | **Público objetivo** | Adolescentes y adultos jóvenes - A partir de 12 años. |
 | **Idioma** | Inglés. |
 | **Plataformas** | Web con teclado y ratón. |
 
-| Título | Contenido |
-| :--- | :---: |
 | **Cantidades** |  |
-| ● Escenarios | 4-5 |
-| ● Objetos | Pociones |
-| ● Armas | Extremidades |
-| ● Personajes | Debris (player) y Jefe (boss) |
-| ● Palabras | Estatua, extremidades. |
+| :--- | ---: |
+| **Escenarios** | 4-5 |
+| **Objetos** | Pociones |
+| **Armas** | Extremidades |
+| **Personajes** | Debris (player) y Jefe (boss) |
+| **Palabras** | Estatua, extremidades. |
 
-| Título | Contenido |
-| :--- | :---: |
-| **Versiones del documento** |   |
-| ● Fecha de propuesta del concepto | 30 de septiembre 2022 |
-| ● Fechas de pre-producción | 27 de octubre 2022 |
-| ● Fechas de producción | 01 de diciembre 2022 |
-| ● Fecha de lanzamiento | 16 de diciembre 2022 |
+| **Versiones del documento** | 2022 |
+| :--- | ---: |
+| **Fecha de propuesta del concepto** | 30 de septiembre |
+| **Fechas de pre-producción** | 27 de octubre |
+| **Fechas de producción** | 01 de diciembre |
+| **Fecha de lanzamiento** | 16 de diciembre |
 
 ---  
 
