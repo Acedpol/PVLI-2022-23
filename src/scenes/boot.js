@@ -18,7 +18,9 @@ export default class Boot extends Phaser.Scene
         this.load.spritesheet('angel', "./assets/sprites/angel/angel3.png", //cambiar el sprite para la animacion 
         { frameWidth: 91, frameHeight: 72 }) 
         this.load.spritesheet('jetpac', "./assets/sprites/jetpac.png", //cambiar el sprite para la animacion 
-        { frameWidth: 17, frameHeight: 24 }) 
+        { frameWidth: 17, frameHeight: 24 })
+        this.load.spritesheet('wolf', "./assets/sprites/wolf.png",
+        { frameWidth: 62, frameHeight: 52 })
 
         // // jetpack audio
         // this.load.audio('jetpack', './assets/sounds/jetpack2.wav')//cambio mas tarde
