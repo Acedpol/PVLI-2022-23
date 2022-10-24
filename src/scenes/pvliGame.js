@@ -104,14 +104,14 @@ export default class pvliGame extends Phaser.Scene
         this.createPlayer(this.map)
 
         // Crea un objeto para recoger en la escena
-        this.createRandomObject(this.map)
+        //this.createRandomObject(this.map)
 
         // Creates the Score UI
         this.createScoreUI()
 
         // Inits the timer
         this.timeLapsed = 0
-        this.createRandomBullet(this.map)
+        //this.createRandomBullet(this.map)
     }
 
     update(t, dt) 
@@ -120,11 +120,11 @@ export default class pvliGame extends Phaser.Scene
         this.timeLapsed = this.timeLapsed + dt
 
         // Cooldown to create a new bullet
-        if (this.timeLapsed > this.cooldownAsteroids)
-        {
-            this.createRandomBullet(this.map)
-            this.timeLapsed = 0
-        }
+        // if (this.timeLapsed > this.cooldownAsteroids)
+        // {
+        //     this.createRandomBullet(this.map)
+        //     this.timeLapsed = 0
+        // }
     }
 
     /**
@@ -226,8 +226,7 @@ export default class pvliGame extends Phaser.Scene
         const mapHeight = map.height * map.tileHeight
 
         // Añade al jugador como Sprite
-        let player = this.add.sprite(0, 0, 'jetpac', 7)
-
+        let player = this.add.sprite(0, 0, 'angel', 27)
         // creates the player in the middle of the screen
         this.playerContainer = new PlayerContainer(this, mapWidth * 0.2, mapHeight * 0.75, player)
 

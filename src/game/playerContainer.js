@@ -1,15 +1,6 @@
 /** @type {Phaser.GameObjects.GameObject} */
 export default class PlayerContainer extends Phaser.GameObjects.Container
 {
-    /** @type {Phaser.Scene} */
-    scene
-
-    /** @type {Phaser.Types.Input.Keyboard.CursorKeys} */
-    cursors
-    action
-
-    /** @type {Phaser.Physics.Arcade.Sprite} */
-    player
 
     /**
      * Constructor del container del jugador
@@ -31,8 +22,8 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 
         // ajustes del jugador
         this.player = aspecto
-        this.body.setSize(this.player.width, this.player.height)
-        this.player.setOrigin(0)
+        this.body.setSize(this.player.width/2, this.player.height/2)
+        this.player.setOrigin(0.5,0)
 
         // initial animation pause
         this.player.play('walk')
