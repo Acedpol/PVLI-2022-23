@@ -226,7 +226,7 @@ export default class pvliGame extends Phaser.Scene
         const mapHeight = map.height * map.tileHeight
 
         // Añade al jugador como Sprite
-        let player = this.add.sprite(0, 0, 'jetpac', 7)
+        let player = this.add.sprite(0, 0, 'angel', 7)
 
         // creates the player in the middle of the screen
         this.playerContainer = new PlayerContainer(this, mapWidth * 0.2, mapHeight * 0.75, player)
