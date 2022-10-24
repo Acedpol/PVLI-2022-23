@@ -111,7 +111,7 @@ export default class pvliGame extends Phaser.Scene
         //this.createRandomObject(this.map)
 
         // Creates the Score UI
-        this.createScoreUI()
+        // this.createScoreUI()
 
         // Inits the timer
         this.timeLapsed = 0
@@ -242,7 +242,7 @@ export default class pvliGame extends Phaser.Scene
         // this.cameras.main.startFollow(this.playerContainer)
 
         // World Bounds and Camera dead zones properties
-        this.worldBoundsNCameraDeadZones(this.map)
+        // this.worldBoundsNCameraDeadZones(this.map)
     }
 
      /**
