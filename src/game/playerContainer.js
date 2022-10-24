@@ -37,7 +37,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         // inicialización de variables
         this._speed = 100
         this.groundCheck = false
-        this.jump = true;
+        this.allowJump = true;
         this.jumpCount = true;
         //this.object = null
 
@@ -52,11 +52,8 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 
         // revisar si esta en contacto con el suelgo y recargar salto
         this.groundCheck = this.body.onFloor()
-        if(this.body.onFloor())
-        {
-            this.groundCheck = true
-            this.jump = true
-        }
+        this.groundCheck ? this.allowJump = true : this.allowJump = false;
+
         // walk animation
         if (this.groundCheck && (this.cursors.left.isDown || this.cursors.right.isDown))
         {
@@ -129,16 +126,9 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         }
 
         // jump input logic
-        if (this.cursors.up.isDown)
+        if (this.cursors.up.isDown && this.allowJump)
         {
-            if(this.jump)
-            {
-                this.body.setVelocityY(-175)
-            }
-            if(!this.groundCheck)
-            {
-                this.jump = false
-            }
+            this.body.setVelocityY(-175)
         }
     }
 
