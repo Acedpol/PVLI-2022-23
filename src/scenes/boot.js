@@ -37,12 +37,13 @@ export default class Boot extends Phaser.Scene
         // map
         this.load.image('img_tilemap', './assets/sprites/ground.png')
         this.load.image('img_back', './assets/images/donde_sin_ed_menu.jpg')
-        this.load.tilemapTiledJSON('nivel', './assets/map/space-jetpac.json')
+        this.load.tilemapTiledJSON('nivel', './assets/map/demo.json')
 
 
         // --- OBJECTS --- 
         // object
-        this.load.image('object', './assets/sprites/fuel.png')//poti
+        this.load.image('object', './assets/sprites/calabaza.png') // cabeza
+        //this.load.image('object', './assets/sprites/fuel.png') // poti
         //this.load.image('object', './assets/sprites/fuel.png') // brazos
         //this.load.image('object', './assets/sprites/fuel.png') // cabeza
         //this.load.image('object', './assets/sprites/fuel.png') // alas

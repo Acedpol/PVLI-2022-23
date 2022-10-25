@@ -1,9 +1,18 @@
 import PlayerContainer from './playerContainer.js'
 
-export default class Object extends Phaser.Physics.Arcade.Image
+export default class Object extends Phaser.Physics.Arcade.Sprite
 {
     /** @type {Phaser.Scene} */
     scene
+
+    /** @type {boolean} */
+    stop
+
+    /** @type {boolean} */
+    onRotation
+
+    /** @type {Number} */
+    incRot
 
     /**
      * Constructor del objeto combustible
@@ -21,6 +30,11 @@ export default class Object extends Phaser.Physics.Arcade.Image
         this.scene.physics.world.enable(this)
 
         console.log('new object x:' + x + ', y:' + y + ', texture:' + texture) // print info
+        this.setScale(0.5,0.5);
+
+        this.stopMoving = false;
+        this.rotation = false;
+        this.incRot = 0;
 
         // set active and visible
         this.setActive(true)
@@ -32,6 +46,8 @@ export default class Object extends Phaser.Physics.Arcade.Image
 
     preUpdate(t,dt) 
     {
+        super.preUpdate(t,dt) // for animation
+
         /** @type {PlayerContainer} */
         let container = this.scene.playerContainer
 
@@ -40,6 +56,40 @@ export default class Object extends Phaser.Physics.Arcade.Image
         {            
             container.carryObject(this)
             this.scene.sound.play('pick')   // sound feedback
+        }
+        
+        if (this.stop) {
+            this.stopInertia();
+            console.log(this.onRotation)
+        }
+        if (this.onRotation) {
+            this.angle += this.incRot;
+        }
+    }
+
+    setIncRot(inc) {
+        this.incRot = inc;
+    }
+
+    toggleRotationActivity() {
+        this.onRotation = !this.onRotation
+    }
+    ensureRotationActivity() {
+        this.onRotation = false;
+    }
+
+    toggleStopInertia() {
+        this.stop = !this.stop
+    }
+
+    stopInertia() {
+        if (this.body.velocity.y == 0 && this.body.onFloor()) {
+            this.toggleRotationActivity();
+            this.toggleStopInertia();
+            this.scene.time.delayedCall(250, () => {
+                this.setVelocityX(0)
+            })
+
         }
     }
 
