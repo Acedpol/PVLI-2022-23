@@ -42,7 +42,8 @@ export default class Boot extends Phaser.Scene
 
         // --- OBJECTS --- 
         // object
-        this.load.image('object', './assets/sprites/fuel.png')//poti
+        this.load.image('object', './assets/sprites/calabaza.png') // cabeza
+        //this.load.image('object', './assets/sprites/fuel.png') // poti
         //this.load.image('object', './assets/sprites/fuel.png') // brazos
         //this.load.image('object', './assets/sprites/fuel.png') // cabeza
         //this.load.image('object', './assets/sprites/fuel.png') // alas

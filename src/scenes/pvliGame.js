@@ -108,7 +108,7 @@ export default class pvliGame extends Phaser.Scene
         this.createPlayer(this.map)
 
         // Crea un objeto para recoger en la escena
-        //this.createRandomObject(this.map)
+        this.createRandomObject(this.map)
 
         // Creates the Score UI
         // this.createScoreUI()

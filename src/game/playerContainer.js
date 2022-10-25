@@ -104,7 +104,14 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         //     this.jetpack.stop() // keeps sure to stop playing sound
         // }
 
+        // actives the main action of the player
+        if (this.action.isDown)
+        {
+            this.dropObject()
+        }
+
         this.playerController();
+        // this.horizontalWrap(this);
     }
 
     playerController()
@@ -114,11 +121,13 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         {
             this.body.setVelocityX(-80)
             this.player.flipX = true
+            if (this.carriesObject) this.object.flipX = true
         }
         else if (this.cursors.right.isDown)
         {
             this.body.setVelocityX(80)
             this.player.flipX = false
+            if (this.carriesObject) this.object.flipX = false
         }
         else
         {
@@ -153,58 +162,76 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     //  * Carries an object
     //  * @param {Phaser.GameObjects.GameObject} object The object that will carry over
     //  */
-    // carryObject(object)
-    // {
-    //     if (!this.carriesObject)
-    //     {
-    //         // keeps save the object
-    //         this.object = object
-    //         this.carriesObject = true
+    carryObject(object)
+    {
+        if (!this.carriesObject)
+        {
+            // keeps save the object
+            /** @type {Phaser.Physics.Arcade.Image} */
+            this.object = object
+            this.object.angle = 0
+            this.object.ensureRotationActivity()
+            this.carriesObject = true
 
-    //         // disable from physics world
-    //         this.scene.physics.world.disableBody(object.body)
+            // disable from physics world
+            this.scene.physics.world.disableBody(object.body)
 
-    //         // Recoge el object y se lo añade a playerContainer (y lo coloca)
-    //         this.add(object)
-    //         object.setPosition(0, -object.height -2)
-    //         object.setOrigin(0)
+            // Recoge el object y se lo añade a playerContainer (y lo coloca)
+            this.add(object)
+            object.setPosition(0 + this.player.width * 7.5 / 100, 0 - this.player.height * 12 / 100)
+            object.setOrigin(0)
 
-    //         console.log('pick')
-    //         this.collectObject()
-    //     }
-    // }
+            console.log('pick')
+            // this.collectObject()
+        }
+    }
 
     /**
      * Drops an object that is being carried
      */
-    // dropObject()
-    // {
-    //     if (this.carriesObject)
-    //     {
-    //         // registers the actual position relative to the player container
-    //         let posX = this.x;
-    //         let posY = this.y - this.object.height - 2;
+    dropObject()
+    {
+        if (this.carriesObject)
+        {
+            // registers the actual position relative to the player container
+            let posX = this.x + this.body.width / 2;
+            let posY = this.y - this.player.height * 25 / 100;
 
-    //         // removes and deletes the first object carried by the player container
-    //         this.remove(this.getAt(1), true)
+            // removes and deletes the first object carried by the player container
+            this.remove(this.getAt(1), true)
 
-    //         // creates a new one in the same position
-    //         let object = this.scene.createRandomObject(this.scene.map)
-    //         object.setPosition(posX, posY)
-    //         object.setOrigin(0)
+            // creates a new one in the same position
+            let object = this.scene.createRandomObject(this.scene.map)
+            object.setPosition(posX, posY)
+            object.setOrigin(0.5,0.5)
 
-    //         // reset physics
-    //         this.scene.physics.world.enable(object)
-    //         object.setVelocityY(-100)
+            // reset physics
+            this.scene.physics.world.enable(object)
+            object.setVelocityY(-100)
+            object.toggleRotationActivity()
 
-    //         // reset values
-    //         this.object = null
-    //         this.carriesObject = false
+            if (this.player.flipX) {
+                object.setVelocityX(-75);
+                object.flipX = true;
+                object.setIncRot(5);
+            } else {
+                object.setVelocityX(75);
+                object.flipX = false;
+                object.setIncRot(-5);
+            }
 
-    //         console.log('drop')
-    //         this.unCollectObject()
-    //     }        
-    // }
+            this.scene.time.delayedCall(100, () => {
+                object.toggleStopInertia()
+            })
+
+            // reset values
+            this.object = null
+            this.carriesObject = false
+
+            console.log('drop')
+            // this.unCollectObject()
+        }        
+    }
 
     // /**
     //  * Subs a collected object from the score
