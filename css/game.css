@@ -1,10 +1,26 @@
 @font-face {
   font-family: 'Pixeled';
-  src: url('../fonts/Minecraftia.ttf') format('truetype');
+  src: url('../assets/fonts/Minecraftia.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Greconian';
+  src: url('../assets/fonts/Greconian.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Canterbury';
+  src: url('../assets/fonts/Canterbury.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roman';
+  src: url('../assets/fonts/roman_font_7.ttf') format('truetype');
 }
 
 h1 {
   text-align: center;
-  font-family: 'Pixeled', monospace;
+  font-family: 'Greconian', monospace;
+  font-size: 64px;
   color: #fff;
 }
