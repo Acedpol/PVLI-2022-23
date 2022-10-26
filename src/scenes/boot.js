@@ -66,7 +66,7 @@ export default class Boot extends Phaser.Scene
 
         // --- UI --- 
         // button background
-        this.load.image('button', './assets/images/button.png')//Esto igual cambiar texto y resultado
+        this.load.image('button', './assets/images/btn-piedra.png')//Esto igual cambiar texto y resultado
 
         // win audio
         this.load.audio('win', './assets/sounds/win.wav')
