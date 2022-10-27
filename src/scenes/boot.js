@@ -58,12 +58,12 @@ export default class Boot extends Phaser.Scene
 
         /*Todo esto para ataques a distancia*/
         // bullet spritesheet
-        this.load.spritesheet('bullet', "./assets/sprites/meteor.png", 
-            { frameWidth: 16, frameHeight: 14 }) 
+        // this.load.spritesheet('bullet', "./assets/sprites/meteor.png", 
+        //     { frameWidth: 16, frameHeight: 14 }) 
         
         // explosion spritesheet
-        this.load.spritesheet('explosion', "./assets/sprites/explosion.png", 
-            { frameWidth: 24, frameHeight: 17 }) 
+        // this.load.spritesheet('explosion', "./assets/sprites/explosion.png", 
+        //     { frameWidth: 24, frameHeight: 17 }) 
 
         // explode audio
         this.load.audio('explode', './assets/sounds/explosion.wav')
@@ -71,7 +71,7 @@ export default class Boot extends Phaser.Scene
 
         // --- UI --- 
         // button background
-        this.load.image('button', './assets/images/button.png')//Esto igual cambiar texto y resultado
+        this.load.image('button', './assets/images/btn-piedra.png')//Esto igual cambiar texto y resultado
 
         // win audio
         this.load.audio('win', './assets/sounds/win.wav')
@@ -123,20 +123,20 @@ export default class Boot extends Phaser.Scene
 
         // --- BULLET --- duplicar esto disparo enemigo y disparo player
         // creates bullet animation 
-        this.anims.create({
-          key: 'fly-bullet',//cambio para decir que es municion
-          frames: this.anims.generateFrameNames('bullet', { start: 0, end: 3 }),
-          frameRate: 6,
-          repeat: -1
-        })
+        // this.anims.create({
+        //   key: 'fly-bullet',//cambio para decir que es municion
+        //   frames: this.anims.generateFrameNames('bullet', { start: 0, end: 3 }),
+        //   frameRate: 6,
+        //   repeat: -1
+        // })
 
         // creates bullet-explosion animation 
-        this.anims.create({
-          key: 'explote',
-          frames: this.anims.generateFrameNames('explosion', { start: 0, end: 2 }),
-          frameRate: 5,
-          repeat: -1
-        })
+        // this.anims.create({
+        //   key: 'explote',
+        //   frames: this.anims.generateFrameNames('explosion', { start: 0, end: 2 }),
+        //   frameRate: 5,
+        //   repeat: -1
+        // })
 
 
         // --- START POINT --- 

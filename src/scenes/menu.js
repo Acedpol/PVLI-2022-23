@@ -20,25 +20,27 @@ export default class Menu extends Phaser.Scene
         // gets the sizes of the screen
         const{width,height} = this.scale
 
+        // Create background image
+        this.background = this.createBackground('img_back');
+
         // compone el titulo y subtitulo del menu principal del juego
         this.add.text(width * 0.5, 25, 'PVLI Game', {
-                fontSize: 14,
-                fontFamily: 'Pixeled',
+                fontSize: 24,
+                fontFamily: 'Greconian',
                 color: '#FFFFFF'
             })
             .setOrigin(0.5)
 
         this.add.text(width * 0.5, 45, 'Selecciona un nivel de dificultad', {
-                fontSize: 8,
-                fontFamily: 'Pixeled',
+                fontSize: 10,
+                fontFamily: 'Greconian',
                 color: '#FFFFFF'
             })
             .setOrigin(0.5)
 
-        // three buttons, three levels on difficulty
-        this.createButtonGame(width * 0.5, height * 0.35, 'button', 'Fácil', 1)
-        this.createButtonGame(width * 0.5, height * 0.55, 'button', 'Intermedio', 2)
-        this.createButtonGame(width * 0.5, height * 0.75, 'button', 'Difícil', 3)
+        // three buttons, three levels on difficulty (0.35, 0.55, 0.75)
+        this.createButtonGame(width * 0.5, height * 0.45, 'button', 'Jugar', 3)
+        this.createButtonGame(width * 0.5, height * 0.65, 'button', 'Opciones', 3)
     }
 
     update() 
@@ -71,7 +73,7 @@ export default class Menu extends Phaser.Scene
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, ()=>{
                 this.initGame(lv)
             })
-            .setScale(2.25, 1) // para el dibujo hecho en paint
+            .setScale(1.25, 0.75) // para el dibujo hecho en paint
             // .setScale(0.5, 0.3) // para la imagen descargada actual
 
         // selecciona el color del texto
@@ -82,11 +84,22 @@ export default class Menu extends Phaser.Scene
 
         // compone el button con un texto
         this.add.text(x, y, name, {
-                fontSize: 14,
-                fontFamily: 'Pixeled',
+                fontSize: 16,
+                fontFamily: 'Greconian',
                 color: _color
             })
             .setOrigin(0.5)
+    }
+
+    /**
+     * Crea una imagen y la ajusta al fondo
+     * @param {String} keymap Nombre dado a la imagen del fondo en boot 
+     */
+    createBackground(keymap){
+        // gets the sizes of the screen
+        const{width,height} = this.scale
+
+        this.add.image(width/2, height/2, keymap)
     }
     
 }
