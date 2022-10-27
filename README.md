@@ -20,7 +20,7 @@ Si node.js no está instalado, descargar e instalar: https://nodejs.org/dist/v16
 ---  
 ---  
 
-# Redemption Debris - Storm Studios  
+# Forgottenks Debris - Storm Studios  
  > EN: This will be the proyect for PVLI, whose proyect is a Phaser 3 implementation, in which we will use JavaScrypt, HTML5, CSS and JSON files.  
  
  > SP: Este repositorio está dedicado al proyecto de PVLI, cuyo proyecto será una implementación de Phaser 3, en el cual se usarán archivos de tipo JavaScrypt, HTML5, CSS y JSON.  
@@ -42,7 +42,7 @@ Si node.js no está instalado, descargar e instalar: https://nodejs.org/dist/v16
 
 # GDD: Game Design Document  
 > Documento de Diseño del Videojuego  
->> **Redemption Debris - A bow to our ancestors.**  
+>> **Forgottenks Debris - A bow to our ancestors.**  
 
 ### **Contribuidores:** GRUPO #03 - PVLI : STORM STUDIOS   
 - JONATHAN ALBERTO CARRERA SANTAMARÍA 	> jocarr01@ucm.es  
