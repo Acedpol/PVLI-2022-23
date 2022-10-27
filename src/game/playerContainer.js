@@ -1,3 +1,5 @@
+import { Game } from "phaser";
+
 /** @type {Phaser.GameObjects.GameObject} */
 export default class PlayerContainer extends Phaser.GameObjects.Container
 {
@@ -32,7 +34,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 
         // initial animation pause
         this.player.play('walk')
-        this.player.anims.pause()
+            this.player.anims.pause()
 
         // eventos de teclado
         this.cursors = scene.input.keyboard.createCursorKeys() // init cursors
@@ -199,6 +201,16 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         if(this.health > this.maxHealth)
         {
             this.health = this.maxHealth
+            //console.log("health" + this.health)
+        }
+    }
+    hurt(power)
+    {
+        this.health -= power;
+        if(this.health < 1)
+        {
+            this.scene.handleGameLose();
+            //console.log("health" + this.health)
         }
     }
     dropObject()

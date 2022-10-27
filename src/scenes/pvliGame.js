@@ -269,16 +269,15 @@ export default class pvliGame extends Phaser.Scene
      * Game Lose, the has die
      * @param {Phaser.GameObjects.GameObject} object The object that kill the player
      */
-    // handleGameLose(object)
-    // {
-        //     // kill object and play feedback
-    //     this.playerContainer.destroy()
-    //     this.bullets.killAndHide(object)
-    //     this.sound.play('lose')
+    handleGameLose()
+    {
+            // kill object and play feedback
+        this.playerContainer.destroy()
+        this.sound.play('lose')
+        this.scene.start('GameOver')
 
-    //     // inits the game final scene
-    //     this.scene.start('GameOver')
-    // }
+        // inits the game final scene
+    }
     
          /**
          * Creates a new random positioned bullet
