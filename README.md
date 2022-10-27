@@ -229,4 +229,4 @@ Todo comienza en un museo, donde unos críos le quitan unas extremidades a una e
 [5]: #v---arquitectura-y-gesti%C3%B3n  
 [6]: #vi---referencias  
 
-[img-comp-basicas]: ./assets/images/diagramaClases.png  "Diagrama componentes básicas"  
+[img-comp-basicas]: ./docs/UML/DiagramaClases.png "Diagrama componentes básicas"  
