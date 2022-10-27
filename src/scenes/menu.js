@@ -24,15 +24,8 @@ export default class Menu extends Phaser.Scene
         this.background = this.createBackground('img_back');
 
         // compone el titulo y subtitulo del menu principal del juego
-        this.add.text(width * 0.5, 25, 'PVLI Game', {
+        this.add.text(width * 0.5, 40, 'FORGOTTEN DEBRIS', {
                 fontSize: 24,
-                fontFamily: 'Greconian',
-                color: '#FFFFFF'
-            })
-            .setOrigin(0.5)
-
-        this.add.text(width * 0.5, 45, 'Selecciona un nivel de dificultad', {
-                fontSize: 10,
                 fontFamily: 'Greconian',
                 color: '#FFFFFF'
             })
