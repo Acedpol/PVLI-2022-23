@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/game.css">
     <script src="./lib/phaser.js"></script>
 
@@ -54,6 +55,80 @@
             height: 64px;
         }
     </style>
+
+    <div id="info" class="info menu">
+        <div class="fondo">
+            <h1>Controles</h1>
+            <p>Se usan las teclas «WASD» para el movimiento</p>
+            <p>... la «barra espaciadora» para saltar ...</p> 
+            <p>... y «J/K» para los ataques ...</p>
+            <hr>
+            <p>En la interfaz estará la vida</p>
+            <p>(estará el maná / estamina si se quiere poner)</p>
+        </div>
+
+    </div>
+
+    <style>
+        .info {
+            flex-direction: column;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: -webkit-fill-available;
+            height: -webkit-fill-available;
+            display: none;
+        }
+        .info {
+            background-image:url("./assets/images/santuario-helenistico-apolo-didima.jpeg");
+            background-size: cover;
+        }
+        .info img {
+            width: -webkit-fill-available;
+            height: -webkit-fill-available;
+        }
+        .info h1, .info p {
+            color: cyan;
+        }
+        .info p {
+            text-align: center;
+            font-family: 'Greconian', monospace;
+            font-size: 32px;
+        }
+        .fondo {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 5px 20px;
+        }
+    </style>
+
+    <div id="ask" class="ask">
+        <a href="#" onclick="toggleInfo()"><i class="fa fa-question-circle" style="font-size: 42px;" aria-hidden="true"></i></a>
+        <!-- <button onclick=""></button> -->
+    </div>
+
+    <style>
+        .ask {
+            position: absolute;
+            top: 4.5vh;
+            left: 74vw;
+        }
+        .ask a {
+            color: white;
+        }
+        .ask a:hover {
+            color: blue;
+        }
+    </style>
+
+    <script>
+        function toggleInfo(){
+            if (document.getElementById("info").style.display == "flex")
+                document.getElementById("info").style.display = "none";
+            else
+                document.getElementById("info").style.display = "flex";
+        }
+    </script>
+
 </body>
 
 </html>
