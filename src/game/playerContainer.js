@@ -213,8 +213,8 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         if(this.health > this.maxHealth)
         {
             this.health = this.maxHealth
-            console.log("health" + this.health)
         }
+        console.log("health" + this.health)
     }
     hurt(power)
     {

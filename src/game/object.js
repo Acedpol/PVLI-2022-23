@@ -55,6 +55,7 @@ export default class Object extends Phaser.Physics.Arcade.Sprite
         if (this.scene.physics.overlap(this, container))
         {            
             container.carryObject(this)
+            container.heal(3)
             this.scene.sound.play('pick')   // sound feedback
         }
         
