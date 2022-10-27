@@ -105,7 +105,7 @@ export default class Boot extends Phaser.Scene
         this.anims.create({
           key: 'wolf_idle',
           frames: this.anims.generateFrameNames('houndIdleSprite', { start: 0, end: 5 }),
-          frameRate: 10,
+          frameRate: 5,
           repeat: -1
         })
         this.anims.create({
