@@ -8,14 +8,17 @@ import GameLogic from './scenes/pvliGame.js';
 import Menu from './scenes/menu.js';
 import GameOver from './scenes/gameOver.js';
 
-window.onload = ()=>{
+window.onload = cargarJuego();
 
+export function cargarJuego() {
     const config = {
         type: Phaser.AUTO,
         parent: "phaserGame",
         scale: {
-            width: 360,
-            height: 189,
+            // width: 360,
+            // height: 189,
+            width: Math.floor(360  / 1488 * window.innerWidth),
+            height: Math.floor(189 / 783 * window.innerHeight),
             zoom: 3,
             // autoCenter: Phaser.Scale.Center.CENTER_HORIZONTALLY
         },

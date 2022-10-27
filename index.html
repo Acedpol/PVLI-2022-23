@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="./assets/images/icons/favicon/ico-halloween-evil.png" type="image/x-icon">
     <link rel="icon" href="./assets/images/icons/favicon/ico-halloween-evil.png" type="image/x-icon">
@@ -15,19 +15,25 @@
 
 <body>
     <h1>Forgotten Debris</h1>
-    <div id="phaserGame"></div>
-    <script src="./src/game.js" type="module"></script>
+    <div id="cover" class="menu"><div id="phaserGame"></div></div>
+    <script id="engine" src="./src/game.js" type="module"></script>
+
     <style>
         h1 {
-            margin: 10px auto;
-            padding: 10px;
+            margin: 1.25vh auto;
+            padding: 1.25vh; /* 10px == 1.25vh */
         }
         #phaserGame {
             /* Canvas game */
-            width: 1080px;
-            height: 567px;
-            margin: 5px auto;
-            border: 5px solid black;
+            /* width: fit-content; *//* 1080px; */
+            /* height: fit-content; *//* 567px; */
+            /* margin: 5px auto;
+            border: 5px solid black; */
+            background-color: rgb(0, 0, 100);
+        }
+        .game {
+            /* margin: 5px auto; */
+            border: 0.625vh solid black; /* 5px == 0.625vh */
             background-color: rgb(0, 0, 100);
         }
         body {
@@ -36,10 +42,10 @@
     </style>
 
     <div class="menu">
-        <a href="mailto: grupo03pvli@yopmail.com"><img src="./assets/images/icons/serius-mail.ico"></a>
-        <a href="https://www.pivotaltracker.com/n/projects/2597082"><img src="./assets/images/icons/pivotal-tracker256-blanco.png"></a>
-        <a href="https://www.twitter.com/StormSudio"><img src="./assets/images/icons/twitter-sombra256.png"></a>
-        <a href="https://github.com/Acedpol/PVLI-2022-23"><img src="./assets/images/icons/logo-github.png"></a>
+        <a title="Contacta con nosotros" href="mailto: grupo03pvli@yopmail.com"><img src="./assets/images/icons/serius-mail.ico"></a>
+        <a title="Observa como nos organizamos" href="https://www.pivotaltracker.com/n/projects/2597082"><img src="./assets/images/icons/pivotal-tracker256-blanco.png"></a>
+        <a title="Disfruta de nuestros avances" href="https://www.twitter.com/StormSudio"><img src="./assets/images/icons/twitter-sombra256.png"></a>
+        <a title="Accede a nuestro trabajo" href="https://github.com/Acedpol/PVLI-2022-23"><img src="./assets/images/icons/logo-github.png"></a>
     </div>
 
     <style>
@@ -49,12 +55,12 @@
             justify-content: center;
         }
         .menu, .menu img {
-            padding: 5px;
-            margin-inline: 10px;
+            padding: 0.625vh;
+            margin-inline: 1.25vh;
         } 
         .menu img {
-            width: 64x;
-            height: 64px;
+            width: 8vh;
+            height: 8vh;
         }
     </style>
 
@@ -95,16 +101,16 @@
         .info p {
             text-align: center;
             font-family: 'Greconian', monospace;
-            font-size: 32px;
+            font-size: 4vh; /* 32px == 4vh */
         }
         .fondo {
             background-color: rgba(0, 0, 0, 0.6);
-            padding: 5px 20px;
+            padding: 0.625vh 2.5vh; /* 20px == 2.5vh */
         }
     </style>
 
     <div id="ask" class="ask">
-        <a href="#" onclick="toggleInfo()"><i class="fa fa-question-circle" style="font-size: 42px;" aria-hidden="true"></i></a>
+        <a title="Consulta la información adicional" href="#" onclick="toggleInfo()"><i class="fa fa-question-circle" style="font-size: 5.25vh;" aria-hidden="true"></i></a>
         <!-- <button onclick=""></button> -->
     </div>
 
@@ -130,6 +136,7 @@
                 document.getElementById("info").style.display = "flex";
         }
     </script>
+    <script id="magia-arcana" src="./lib/responsive.js" type="module"></script>
 
 </body>
 
