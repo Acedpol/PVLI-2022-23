@@ -24,7 +24,7 @@ export default class Boot extends Phaser.Scene
         { frameWidth: 42, frameHeight: 24 })
         // Lobo - walk
         this.load.spritesheet('houndWalkSprite', "./assets/sprites/houndSprites/hound-walk.png",
-        { frameWidth: 42, frameHeight: 24 })
+        { frameWidth: 45, frameHeight: 26 })
         // Lobo - run
         this.load.spritesheet('houndRunSprite', "./assets/sprites/houndSprites/hound-run.png",
         { frameWidth: 42, frameHeight: 24 })

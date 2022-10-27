@@ -24,10 +24,10 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite{
         this.setOrigin(0.5)
         
         this.player = this.scene.playerContainer
-        this.power = 2;
-
+        this.power = 3;
+        this.dir = 1;
         //this.spritesheet = spritesheet;
-        this.speed = 200;
+        this.speed = 50;
         
         this.play('wolf_idle');
        // this.player.anims.pause()
@@ -40,12 +40,12 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite{
         super.preUpdate(t,dt) // for animation
 
 
-        //this.move()
+        this.move()
 
         // checks if the player overlap with this GameObject
         if (this.scene.physics.overlap(this, this.player))
         {            
-            this.player.hurt(power)
+            this.player.hurt(this.power)
             //this.scene.sound.play('pick')   // sound feedback
         }
         
@@ -56,21 +56,43 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite{
      * @param {number} x_player
      */
 
-    move(x_player){
+    move(){
 
-        if(this.y < player.y)
+        if(this.y-90 < this.player.y || this.y-20 < this.player.y)
         {
-
+            if (this.anims.currentAnim.key != 'wolf_walk')
+            {
+                this.play('wolf_walk')
+            }
+            if(this.x < this.player.x + 50 && this.dir === 1)
+            {
+                this.body.setVelocityX(this.speed);
+                this.flipX = true
+            }
+            else if(this.x > this.player.x - 50)
+            {
+                this.dir = -1
+            }
+            if(this.x > this.player.x - 50 && this.dir === -1)
+            {
+                this.body.setVelocityX(-this.speed);
+                this.flipX = false
+            }
+            else if(this.x < this.player.x + 50)
+            {
+                this.dir = 1
+            }
         }
+        else
+        {
+            if (this.anims.currentAnim.key != 'wolf_idle')
+            {
+                this.play('wolf_idle')
+            }
+            //this.player.anims.pause()
+            this.body.setVelocityX(0);
+        }   
 
-
-
-
-
-        let dir = x_player - x;
-        if (dir > 0) this.body.setVelocityX(this.speed);
-        else if (dir < 0) this.body.setVelocityX(-this.speed);
-        else this.body.setVelocityX(0);
     }
 
 }

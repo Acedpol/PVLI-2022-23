@@ -27,7 +27,7 @@ window.onload = ()=>{
                 gravity: {
                     y: 200
                 },
-                debug: false // for showing box-colliders
+                debug: true // for showing box-colliders
             }
         }
         

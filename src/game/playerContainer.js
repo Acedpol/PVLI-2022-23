@@ -1,5 +1,3 @@
-import { Game } from "phaser";
-
 /** @type {Phaser.GameObjects.GameObject} */
 export default class PlayerContainer extends Phaser.GameObjects.Container
 {
@@ -20,8 +18,8 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         this.scene.physics.add.existing(this)
 
         //vida
-        this.health = 10;
-        this.maxHealth = 10;
+        this.health = 9;
+        this.maxHealth = 9;
 
         // colisiona con los bordes del mundo de juego
         this.body.collideWorldBounds = true
@@ -45,6 +43,11 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         this.groundCheck = false
         this.allowJump = true;
         this.jumpCount = true;
+
+        //cada cuanto puede recibir daño
+        this.damageTimer = 2000000000000000000
+        //booleanno para saber si puede ser dañado
+        this.canDamage = true
         //this.object = null
 
         // // inicialización de audios fx
@@ -117,6 +120,15 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         }
 
         this.playerController();
+
+        this.timeLapsed += this.timeLapsed + dt;
+
+        if(this.timeLapsed > this.damageTimer && !this.canDamage)
+        {
+            this.canDamage = true;
+            console.log("puede ser dañado")
+        }
+
         // this.horizontalWrap(this);
     }
 
@@ -201,16 +213,23 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         if(this.health > this.maxHealth)
         {
             this.health = this.maxHealth
-            //console.log("health" + this.health)
+            console.log("health" + this.health)
         }
     }
     hurt(power)
     {
-        this.health -= power;
-        if(this.health < 1)
+        if(this.canDamage)
         {
-            this.scene.handleGameLose();
-            //console.log("health" + this.health)
+            this.health -= power;
+            this.timeLapsed = 0;
+            this.canDamage = false;
+            console.log("health" + this.health)
+            
+            //el jugador muere
+            if(this.health < 1)
+            {
+                this.scene.handleGameLose();
+            }
         }
     }
     dropObject()
