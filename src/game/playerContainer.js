@@ -17,6 +17,10 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         this.scene.add.existing(this)
         this.scene.physics.add.existing(this)
 
+        //vida
+        this.health = 10;
+        this.maxHealth = 10;
+
         // colisiona con los bordes del mundo de juego
         this.body.collideWorldBounds = true
 
@@ -189,6 +193,14 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     /**
      * Drops an object that is being carried
      */
+    heal(power)
+    {
+        this.health += power;
+        if(this.health > this.maxHealth)
+        {
+            this.health = this.maxHealth
+        }
+    }
     dropObject()
     {
         if (this.carriesObject)
@@ -233,29 +245,5 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         }        
     }
 
-    // /**
-    //  * Subs a collected object from the score
-    //  */
-    // unCollectObject()
-    // {
-    //     // suma uno al marcador
-    //     this.scene.objectCollected--
-            
-    //     // create new text value and set it
-    //     const value = this.scene.objectCollected + '/' + this.scene.objectToFinish
-    //     this.scene.objectCollectedText.text = value      
-    // }
 
-    // /**
-    //  * Adds another collected object to the score
-    //  */
-    // collectObject()
-    // {
-    //     // suma uno al marcador
-    //     this.scene.objectCollected++
-             
-    //     // create new text value and set it
-    //     const value = this.scene.objectCollected + '/' + this.scene.objectToFinish
-    //     this.scene.objectCollectedText.text = value      
-    // }
 }

@@ -4,7 +4,7 @@
  * los diferentes enemigos con distintos ataques y estadísticas.
  */
 
-export default class Enemy extends Phaser.GameObjects.Sprite{
+export default class Enemy extends Phaser.Physics.Arcade.Sprite{
     /**
      * Constructor de enemigo
      * @param {Phaser.Scene} scene Escena del enemigo
@@ -15,13 +15,19 @@ export default class Enemy extends Phaser.GameObjects.Sprite{
      * @param {spritesheet} spritesheet Spritesheet
      */
 
-    constructor(scene, x, y, width, height, spritesheet){
-        super(scene, x, y, width, height);
-        this.scene.add.existing(this);
-        this.scene = scene;
-        this.spritesheet = spritesheet;
+    constructor(scene, x, y, spritesheet, n){
+        super(scene, x, y, spritesheet, n);
+        this.scene.physics.add.existing(this)
+        this.body.setCollideWorldBounds();
+        console.log('enemy spawned') // print info
+        
+        //this.spritesheet = spritesheet;
         //this.speed = 300;
-        this.play('houndIdle');
+        
+        this.play('wolf_idle');
+       // this.player.anims.pause()
+
+
     }
 
     /**

@@ -1,6 +1,7 @@
 import Object from '../game/object.js'
 import PlayerContainer from '../game/playerContainer.js'
 import Bullet from '../game/bullet.js'
+import Enemy from '../game/enemy.js'
 
 export default class pvliGame extends Phaser.Scene 
 {
@@ -23,7 +24,7 @@ export default class pvliGame extends Phaser.Scene
     bullets
 
     // --- OBJECTS --- 
-    /** @type {Phaser.Physics.Arcade.StaticGroup} */
+    /** @type {Phaser.Physics.Arcade.Group} */
     enemies
 
     /** @type {Object} */
@@ -106,6 +107,7 @@ export default class pvliGame extends Phaser.Scene
 
         // Creates the player
         this.createPlayer(this.map)
+        this.createEnemy(50, 100)
 
         // Crea un objeto para recoger en la escena
         this.createRandomObject(this.map)
@@ -115,7 +117,6 @@ export default class pvliGame extends Phaser.Scene
 
         // Inits the timer
         this.timeLapsed = 0
-        this.createEnemy(this.map, this.mapWidth/2, this.mapHeight/2)
     }
 
     update(t, dt) 
@@ -204,15 +205,9 @@ export default class pvliGame extends Phaser.Scene
         if (this.objectCollected < this.objectToFinish)
         {
             // creates new object object to pick up
-            this.object = new Object(this, Phaser.Math.Between(12, mapWidth - 12), Phaser.Math.Between(12, mapHeight - 12), 'object')
+            this.object = new Object(this, Phaser.Math.Between(12, mapWidth - 12), Phaser.Math.Between(12, mapHeight - 12), 'object', 3)
             this.physics.add.collider(this.object, this.groundLayer)
         }
-        else
-        {
-            // --- COULD BE THE GAME COMPLETE RESPONSE --- 
-            // this.spaceShip.prepareToFlight() // practically-end-scene
-        }
-
         return this.object;
     }
 
@@ -244,28 +239,12 @@ export default class pvliGame extends Phaser.Scene
         // World Bounds and Camera dead zones properties
         // this.worldBoundsNCameraDeadZones(this.map)
     }
-
-     /**
-     * Creates a new random positioned bullet
-     * @param {Phaser.Tilemaps.Tilemap} map Mapa del juego ya creado
-     */
-    createRandomBullet(map)
-    {
-        // dimensiones del mapa
-        const mapWidth = map.width * map.tileWidth
-        const mapHeight = map.height * map.tileHeight
-
-        // position
-        let x = Phaser.Math.Between(10, mapWidth - 10)
-        let y = Phaser.Math.Between(10, mapHeight * -0.15)
-        
-        let bullet = this.bullets.create(x, y, 'bullet')
-        this.physics.add.collider(bullet, this.groundLayer)
-    }
-
-    createEnemy(map, x, y)
-    {   
-        let enemy = this.add.sprite(x, y, 'houndIdleSprite', 0)
+    
+    createEnemy(x, y)
+    {  
+        //let enemySpr = this.add.sprite(x, y, 'houndIdleSprite', 0)
+        let enemy = new Enemy(this, x, y, 'houndIdleSprite', 0)
+        this.add.existing(enemy)
         this.physics.add.collider(enemy, this.groundLayer)
     }
     /**
@@ -275,7 +254,7 @@ export default class pvliGame extends Phaser.Scene
     {
         // gets the sizes of the screen
         const{width,height} = this.scale
-
+        
         // text score for fuels	
         const style = { color: '#fff', fontSize: 8, fontFamily: 'Pixeled' }	
         const x = width / 2;
@@ -284,15 +263,15 @@ export default class pvliGame extends Phaser.Scene
         this.objectCollectedText = this.add.text(x, y, '0/' + this.objectToFinish, style)	
             .setScrollFactor(0)	
             .setOrigin(0.5, 0)
-    }
-
+        }
+        
     /**
      * Game Lose, the has die
      * @param {Phaser.GameObjects.GameObject} object The object that kill the player
      */
     // handleGameLose(object)
     // {
-    //     // kill object and play feedback
+        //     // kill object and play feedback
     //     this.playerContainer.destroy()
     //     this.bullets.killAndHide(object)
     //     this.sound.play('lose')
@@ -300,4 +279,22 @@ export default class pvliGame extends Phaser.Scene
     //     // inits the game final scene
     //     this.scene.start('GameOver')
     // }
+    
+         /**
+         * Creates a new random positioned bullet
+        //  * @param {Phaser.Tilemaps.Tilemap} map Mapa del juego ya creado
+        //  */
+        // createRandomBullet(map)
+        // {
+        //     // dimensiones del mapa
+        //     const mapWidth = map.width * map.tileWidth
+        //     const mapHeight = map.height * map.tileHeight
+    
+        //     // position
+        //     let x = Phaser.Math.Between(10, mapWidth - 10)
+        //     let y = Phaser.Math.Between(10, mapHeight * -0.15)
+            
+        //     let bullet = this.bullets.create(x, y, 'bullet')
+        //     this.physics.add.collider(bullet, this.groundLayer)
+        // }
 }

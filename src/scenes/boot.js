@@ -19,8 +19,14 @@ export default class Boot extends Phaser.Scene
         { frameWidth: 61, frameHeight: 48 }) 
 
         // --- ENEMIGOS ---
-        // Lobo
+        // Lobo - idle
         this.load.spritesheet('houndIdleSprite', "./assets/sprites/houndSprites/hound-idle.png",
+        { frameWidth: 42, frameHeight: 24 })
+        // Lobo - walk
+        this.load.spritesheet('houndWalkSprite', "./assets/sprites/houndSprites/hound-walk.png",
+        { frameWidth: 42, frameHeight: 24 })
+        // Lobo - run
+        this.load.spritesheet('houndRunSprite', "./assets/sprites/houndSprites/hound-run.png",
         { frameWidth: 42, frameHeight: 24 })
 
         // // jetpack audio
@@ -42,8 +48,7 @@ export default class Boot extends Phaser.Scene
 
         // --- OBJECTS --- 
         // object
-        this.load.image('object', './assets/sprites/calabaza.png') // cabeza
-        //this.load.image('object', './assets/sprites/fuel.png') // poti
+        this.load.image('object', './assets/sprites/calabaza.png')//poti
         //this.load.image('object', './assets/sprites/fuel.png') // brazos
         //this.load.image('object', './assets/sprites/fuel.png') // cabeza
         //this.load.image('object', './assets/sprites/fuel.png') // alas
@@ -98,12 +103,23 @@ export default class Boot extends Phaser.Scene
         // --- Enemigos --- cuadriplicar para cada cosa que se pilla
         // creates walk animation for hound
         this.anims.create({
-          key: 'houndIdle',
+          key: 'wolf_idle',
           frames: this.anims.generateFrameNames('houndIdleSprite', { start: 0, end: 5 }),
           frameRate: 10,
           repeat: -1
         })
-
+        this.anims.create({
+          key : 'wolf_running',
+          frames : this.anims.generateFrameNumbers('houndRunSprite', {start: 0, end: 4}),
+          frameRate: 10,
+          repeat: -1 // Bucle de animación
+        });
+        this.anims.create({
+          key : 'wolf_walk',
+          frames : this.anims.generateFrameNumbers('houndWalkSprite', {start: 0, end : 11}),
+          frameRate : 10,
+          repeat: -1
+        });
 
         // --- BULLET --- duplicar esto disparo enemigo y disparo player
         // creates bullet animation 
