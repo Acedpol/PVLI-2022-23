@@ -74,17 +74,19 @@
             <p>En la interfaz estará la vida</p>
             <p>(estará el maná / estamina si se quiere poner)</p>
         </div>
-
     </div>
 
     <style>
         .info {
             flex-direction: column;
             position: absolute;
-            top: 0px;
+
+            padding: 0px;
+            margin: 0px;
+            /* top: 0px;
             left: 0px;
             width: -webkit-fill-available;
-            height: -webkit-fill-available;
+            height: -webkit-fill-available; */
             display: none;
         }
         .info {
@@ -105,13 +107,13 @@
         }
         .fondo {
             background-color: rgba(0, 0, 0, 0.6);
+            overflow: hidden;
             padding: 0.625vh 2.5vh; /* 20px == 2.5vh */
         }
     </style>
 
     <div id="ask" class="ask">
         <a title="Consulta la información adicional" href="#" onclick="toggleInfo()"><i class="fa fa-question-circle" style="font-size: 5.25vh;" aria-hidden="true"></i></a>
-        <!-- <button onclick=""></button> -->
     </div>
 
     <style>
