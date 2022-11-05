@@ -70,7 +70,7 @@
         }
     </style>
 
-    <div id="info" class="info menu">
+    <div id="info" class="info menu" style="display: none;">
         <div class="fondo">
             <div name="sub-menu" id="controles" style="display: block;">
                 <h1><a href="#" onclick="toggleSubMenu('controles')">Controles</a></h1>
@@ -165,26 +165,6 @@
             color: blue;
         }
     </style>
-
-    <script>
-        function toggleInfo(){
-            if (document.getElementById("info").style.display == "flex")
-                document.getElementById("info").style.display = "none";
-            else
-                document.getElementById("info").style.display = "flex";
-        }
-
-        function toggleSubMenu(origen) {
-            if (compruebaContenido(origen)) {
-                apagaContenidoDirecto(origen);
-                muestraOtrosSubMenus();
-            } else {
-                muestraContenidoDirecto(origen);
-                apagaOtrosSubMenus(origen);
-            }
-        }
-
-    </script>
     
     <script id="magia-arcana" src="./lib/responsive.js" type="module"></script>
 

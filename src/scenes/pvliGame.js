@@ -134,6 +134,10 @@ export default class pvliGame extends Phaser.Scene
         //     this.timeLapsed = 0
         // }        
 
+        this.handlePause();
+    }
+
+    handlePause() {
         // pause logic
         if (this.p.isDown) {
             this.scene.pause();
