@@ -8,6 +8,8 @@
     <link rel="shortcut icon" href="./assets/images/icons/favicon/ico-halloween-evil.png" type="image/x-icon">
     <link rel="icon" href="./assets/images/icons/favicon/ico-halloween-evil.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/game.css">
+
+    <script id="submenus" src="./lib/submenus.js"></script>
     <script src="./lib/phaser.js"></script>
 
     <title>Forgotten Debris</title>
@@ -22,6 +24,10 @@
         h1 {
             margin: 1.25vh auto;
             padding: 1.25vh; /* 10px == 1.25vh */
+        }
+        h2 {
+            margin: 0.75vh auto;
+            padding: 0.75vh; /* 10px == 1.25vh */
         }
         #phaserGame {
             /* Canvas game */
@@ -66,13 +72,35 @@
 
     <div id="info" class="info menu">
         <div class="fondo">
-            <h1>Controles</h1>
-            <p>Se usan las teclas «WASD» para el movimiento</p>
-            <p>... la «barra espaciadora» para saltar ...</p> 
-            <p>... y «J/K» para los ataques ...</p>
-            <hr>
-            <p>En la interfaz estará la vida</p>
-            <p>(estará el maná / estamina si se quiere poner)</p>
+            <div name="sub-menu" id="controles" style="display: block;">
+                <h1><a href="#" onclick="toggleSubMenu('controles')">Controles</a></h1>
+                <div name="content" id="content-controles" style="display: none;">
+                    <p>Se usan las teclas «WASD» para el movimiento</p>
+                    <p>... la «barra espaciadora» para saltar ...</p> 
+                    <p>... y «J/K» para los ataques ...</p>
+                    <hr>
+                    <p>En la interfaz estará la vida</p>
+                    <p>(estará el maná / estamina si se quiere poner)</p>
+                </div>
+            </div>
+            <div name="sub-menu" id="about-us" style="display: block;">
+                <h1><a href="#" onclick="toggleSubMenu('about-us')">Equipo</a></h1>
+                <div name="content" id="content-about-us" style="display: none;">
+                    <h2>GRUPO #03 - PVLI : STORM STUDIOS</h2>
+                    <p>JONATHAN ALBERTO CARRERA SANTAMARÍA > <a href="mailto: jocarr01@ucm.es">jocarr01@ucm.es</a></p>
+                    <p>PEDRO PABLO CUBELLS TALAVERA > <a href="mailto: pablocub@ucm.es">pablocub@ucm.es</a></p> 
+                    <p>IGNACIO LIGERO MARTÍN > <a href="mailto: iligero@ucm.es">iligero@ucm.es</a></p>
+                    <p>MANUEL PRADA MÍNGUEZ > <a href="mailto: manuelpr@ucm.es">manuelpr@ucm.es</a></p>
+                    <p>JOSE EDUARDO ROBLES ROCA > <a href="mailto: joseer01@ucm.es">joseer01@ucm.es</a></p>
+                </div>
+            </div>
+            <div name="sub-menu" id="about-game" style="display: block;">
+                <h1><a href="#" onclick="toggleSubMenu('about-game')">Historia</a></h1>
+                <div name="content" id="content-about-game" style="display: none;">
+                    <p>Estás en el louvre, durante una noche de tormenta que ocurre un apagón, este sirve como excusa perfecta para que unos granujas entren y rompan la estatua que será el jugador además de algunas otras, Venus de Milo al rato cobra vida y quiere recomponerse para poder sanar su divinidad y ascender al cielo.</p>
+                    <p>Para ello tendrá que recuperar las partes perdidas de su cuerpo para poder trascender hasta la sala final.</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -103,7 +131,14 @@
         .info p {
             text-align: center;
             font-family: 'Greconian', monospace;
-            font-size: 4vh; /* 32px == 4vh */
+            font-size: 4vh; /* 32px == 4vh */            
+        }
+        .info p a {
+            color: goldenrod;
+            text-decoration: none;
+        }
+        .info p a:hover {
+            color: greenyellow;
         }
         .fondo {
             background-color: rgba(0, 0, 0, 0.6);
@@ -122,10 +157,11 @@
             top: 4.5vh;
             left: 74vw;
         }
-        .ask a {
+        .ask a, h1 a {
             color: white;
+            text-decoration: none;
         }
-        .ask a:hover {
+        .ask a:hover, h1 a:hover {
             color: blue;
         }
     </style>
@@ -137,7 +173,19 @@
             else
                 document.getElementById("info").style.display = "flex";
         }
+
+        function toggleSubMenu(origen) {
+            if (compruebaContenido(origen)) {
+                apagaContenidoDirecto(origen);
+                muestraOtrosSubMenus();
+            } else {
+                muestraContenidoDirecto(origen);
+                apagaOtrosSubMenus(origen);
+            }
+        }
+
     </script>
+    
     <script id="magia-arcana" src="./lib/responsive.js" type="module"></script>
 
 </body>
