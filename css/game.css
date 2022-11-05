@@ -29,7 +29,21 @@ h1 {
 }
 
 h2 {
-  font-size: 5vh;
+  font-size: 3.75vh;
+}
+
+div#content-about-game p {
+  font-family: 'Canterbury', monospace;
+  font-size: 4vh;
+}
+
+div.fondo {
+  max-width: 70%;
+}
+
+div#content-about-us p {
+  line-height: 0.25vh;
+  font-size: 3vh;
 }
 
 /* ARREGLO PARA LOS INTERLINEADOS */
