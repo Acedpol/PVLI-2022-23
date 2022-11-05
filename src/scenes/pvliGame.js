@@ -83,6 +83,8 @@ export default class pvliGame extends Phaser.Scene
 
         // cancela las colisiones con el techo
         this.physics.world.checkCollision.up = false
+
+        this.p = this.input.keyboard.addKey('P');
     }
 
     preload() 
@@ -130,7 +132,14 @@ export default class pvliGame extends Phaser.Scene
         // {
         //     this.createRandomBullet(this.map)
         //     this.timeLapsed = 0
-        // }
+        // }        
+
+        // pause logic
+        if (this.p.isDown) {
+            this.scene.pause();
+            this.scene.launch('blankPause');
+            console.log("PAUSE");
+        }
     }
 
     /**
@@ -272,7 +281,7 @@ export default class pvliGame extends Phaser.Scene
      */
     handleGameLose()
     {
-            // kill object and play feedback
+        // kill object and play feedback
         this.playerContainer.destroy()
         this.sound.play('lose')
         this.scene.start('GameOver')

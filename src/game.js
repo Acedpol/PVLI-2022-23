@@ -7,6 +7,7 @@ import Boot from './scenes/boot.js';
 import GameLogic from './scenes/pvliGame.js';
 import Menu from './scenes/menu.js';
 import GameOver from './scenes/gameOver.js';
+import BlankPause from './scenes/blankPause.js';
 
 window.onload = cargarJuego();
 
@@ -23,7 +24,7 @@ export function cargarJuego() {
             // autoCenter: Phaser.Scale.Center.CENTER_HORIZONTALLY
         },
         pixelArt: true,
-        scene: [ Boot, GameLogic, Menu, GameOver ],
+        scene: [ Boot, GameLogic, Menu, GameOver, BlankPause ],
         physics: {
             default: 'arcade',
             arcade: {
