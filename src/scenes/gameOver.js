@@ -1,13 +1,17 @@
-export default class GameOver extends Phaser.Scene 
+import blankScene from "./scene.js";
+
+export default class GameOver extends blankScene 
 {
     /**
      * Constructor de la escena
      */
     constructor() 
     {
-        super({
-            key: 'GameOver'
-        });
+        super('GameOver');
+    }
+
+    init() {
+        super.init();
     }
 
     preload() 
@@ -45,7 +49,7 @@ export default class GameOver extends Phaser.Scene
 
     update() 
     {
-        
+        super.update();
     }
 
 }

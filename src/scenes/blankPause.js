@@ -1,20 +1,19 @@
 import { toggleInfo } from '../../lib/pauseCtrl.js'
+import blankScene from './scene.js';
 
-export default class blankPause extends Phaser.Scene
+export default class blankPause extends blankScene
 {
     /**
      * Constructor de la escena
      */
     constructor() 
     {
-        super({
-            key: 'blankPause'
-        });
+        super('blankPause');
     }
 
     init()
     {
-        this.p = this.input.keyboard.addKey('P');
+        super.init();
         toggleInfo();
     }
 
@@ -29,17 +28,12 @@ export default class blankPause extends Phaser.Scene
 
     update(t, dt) 
     {
-        if (this.p.isDown) {
-            const evt = createEvent('pause');
-            document.dispatchEvent(evt);
-        }
+        super.update();
     }
 
+    /** @override */
     handleResume(scene) {
-        // pause logic
+        super.handleResume(scene);
         toggleInfo();
-        this.scene.resume(scene);
-        this.scene.stop();
-        console.log("UN-PAUSE");        
     }
 };
