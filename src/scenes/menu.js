@@ -10,9 +10,13 @@ export default class Menu extends Phaser.Scene
         });
     }
 
+    init() {
+        this.p = this.input.keyboard.addKey('P');
+    }
+
     preload() 
     {
-        console.log("Menu scene")
+        console.log(" - Menu scene - ")
     }
 
     create() 
@@ -34,11 +38,20 @@ export default class Menu extends Phaser.Scene
         // three buttons, three levels on difficulty (0.35, 0.55, 0.75)
         this.createButtonGame(width * 0.5, height * 0.45, 'button', 'Jugar', 3)
         this.createButtonGame(width * 0.5, height * 0.65, 'button', 'Opciones', 3)
+
+        // pause ctrl
+        this.active = true;
+        this.events.on('resume', () => {
+            this.active = true;
+        })
     }
 
     update() 
     {
-
+        if (this.p.isDown) {
+            const evt = createEvent('pause');
+            document.dispatchEvent(evt);
+        }
     }
 
     /**
@@ -48,6 +61,18 @@ export default class Menu extends Phaser.Scene
     {
         // inits the game main scene
         this.scene.start('pvliGame', lv)
+        this.active = false;
+    }
+
+    isActive() { return this.active; }
+    toggleActive() { this.active = !this.active; }
+
+    handlePause() {
+        // pause logic
+        this.scene.pause();
+        this.scene.launch('blankPause');
+        this.active = false;
+        console.log("PAUSE");
     }
 
     /**

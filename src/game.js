@@ -11,6 +11,7 @@ import BlankPause from './scenes/blankPause.js';
 
 window.onload = cargarJuego();
 
+export var gameLogic;
 export function cargarJuego() {
     const config = {
         type: Phaser.AUTO,
@@ -31,13 +32,14 @@ export function cargarJuego() {
                 gravity: {
                     y: 200
                 },
-                debug: true // for showing box-colliders
+                debug: true // use this to show box-colliders
             }
         }
         
     };
 
-    var game = new Phaser.Game(config);
+    gameLogic = new Phaser.Game(config);
+    // console.log(gameLogic);
 };
 
 // ---------------------------------

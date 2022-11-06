@@ -45,6 +45,9 @@ export default class pvliGame extends Phaser.Scene
     objectCollected
     objectToFinish
 
+    /** @type {boolean} */
+    active
+
     /**
      * Constructor de la escena
      */
@@ -120,6 +123,12 @@ export default class pvliGame extends Phaser.Scene
 
         // Inits the timer
         this.timeLapsed = 0
+
+        // pause ctrl
+        this.active = true;
+        this.events.on('resume', () => {
+            this.active = true;
+        });
     }
 
     update(t, dt) 
@@ -133,17 +142,23 @@ export default class pvliGame extends Phaser.Scene
         //     this.createRandomBullet(this.map)
         //     this.timeLapsed = 0
         // }        
+        // this.input.keyboard.on('keydown_P', this.handlePause, this);
 
-        this.handlePause();
+        if (this.p.isDown) {
+            const evt = createEvent('pause');
+            document.dispatchEvent(evt);
+        }
     }
+
+    isActive() { return this.active; }
+    toggleActive() { this.active = !this.active; }
 
     handlePause() {
         // pause logic
-        if (this.p.isDown) {
-            this.scene.pause();
-            this.scene.launch('blankPause');
-            console.log("PAUSE");
-        }
+        this.scene.pause();
+        this.scene.launch('blankPause');
+        this.active = false;
+        console.log("PAUSE");
     }
 
     /**
@@ -288,6 +303,7 @@ export default class pvliGame extends Phaser.Scene
         // kill object and play feedback
         this.playerContainer.destroy()
         this.sound.play('lose')
+        this.scene.stop('pvliGame')
         this.scene.start('GameOver')
 
         // inits the game final scene

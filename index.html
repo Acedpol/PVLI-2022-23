@@ -148,7 +148,7 @@
     </style>
 
     <div id="ask" class="ask">
-        <a title="Consulta la información adicional" href="#" onclick="toggleInfo()"><i class="fa fa-question-circle" style="font-size: 5.25vh;" aria-hidden="true"></i></a>
+        <a title="Consulta la información adicional" href="#" onclick="pause()"><i class="fa fa-question-circle" style="font-size: 5.25vh;" aria-hidden="true"></i></a>
     </div>
 
     <style>
@@ -165,8 +165,16 @@
             color: blue;
         }
     </style>
+
+    <script>
+        function pause() {
+            const evt = createEvent('pause');
+            document.dispatchEvent(evt);
+        }        
+    </script>
     
     <script id="magia-arcana" src="./lib/responsive.js" type="module"></script>
+    <script id="magia-arcana" src="./lib/pauseCtrl.js" type="module"></script>
 
 </body>
 

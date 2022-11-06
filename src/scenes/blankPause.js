@@ -1,4 +1,4 @@
-import '../../lib/submenus.js'
+import { toggleInfo } from '../../lib/pauseCtrl.js'
 
 export default class blankPause extends Phaser.Scene
 {
@@ -16,7 +16,6 @@ export default class blankPause extends Phaser.Scene
     {
         this.p = this.input.keyboard.addKey('P');
         toggleInfo();
-        // console.log(document.getElementById('info'));
     }
 
     preload() 
@@ -30,16 +29,17 @@ export default class blankPause extends Phaser.Scene
 
     update(t, dt) 
     {
-        this.handleResume();
+        if (this.p.isDown) {
+            const evt = createEvent('pause');
+            document.dispatchEvent(evt);
+        }
     }
 
-    handleResume() {
+    handleResume(scene) {
         // pause logic
-        if (this.p.isDown) {
-            toggleInfo();
-            this.scene.resume('pvliGame');
-            this.scene.stop();
-            console.log("UN-PAUSE");
-        }
+        toggleInfo();
+        this.scene.resume(scene);
+        this.scene.stop();
+        console.log("UN-PAUSE");        
     }
 };
