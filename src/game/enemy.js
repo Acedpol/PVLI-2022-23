@@ -17,82 +17,27 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite{
      * @param {playerContainer} player container
      */
 
-    constructor(scene, x, y, spritesheet, n){
+    constructor(scene, x, y, spritesheet, n, p){
         super(scene, x, y, spritesheet, n);
         this.scene.physics.add.existing(this)
         this.body.setCollideWorldBounds();
         this.setOrigin(0.5)
         
         this.player = this.scene.playerContainer
-        this.power = 3;
+        this.power = p;
         this.dir = 1;
         //this.spritesheet = spritesheet;
         this.speed = 50;
-        
-        this.play('wolf_idle');
        // this.player.anims.pause()
 
 
     }
-
-    preUpdate(t,dt) 
+    playerColide()
     {
-        super.preUpdate(t,dt) // for animation
-
-
-        this.move()
-
-        // checks if the player overlap with this GameObject
         if (this.scene.physics.overlap(this, this.player))
         {            
             this.player.hurt(this.power)
             //this.scene.sound.play('pick')   // sound feedback
-        }
-        
+        }  
     }
-
-    /**
-     * Método ir hacia el jugador (si lo toca le disminuye la vida)
-     * @param {number} x_player
-     */
-
-    move(){
-
-        if(this.y-90 < this.player.y || this.y-20 < this.player.y)
-        {
-            if (this.anims.currentAnim.key != 'wolf_walk')
-            {
-                this.play('wolf_walk')
-            }
-            if(this.x < this.player.x + 50 && this.dir === 1)
-            {
-                this.body.setVelocityX(this.speed);
-                this.flipX = true
-            }
-            else if(this.x > this.player.x - 50)
-            {
-                this.dir = -1
-            }
-            if(this.x > this.player.x - 50 && this.dir === -1)
-            {
-                this.body.setVelocityX(-this.speed);
-                this.flipX = false
-            }
-            else if(this.x < this.player.x + 50)
-            {
-                this.dir = 1
-            }
-        }
-        else
-        {
-            if (this.anims.currentAnim.key != 'wolf_idle')
-            {
-                this.play('wolf_idle')
-            }
-            //this.player.anims.pause()
-            this.body.setVelocityX(0);
-        }   
-
-    }
-
 }

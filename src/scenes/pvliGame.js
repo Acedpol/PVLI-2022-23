@@ -1,7 +1,7 @@
 import Object from '../game/object.js'
 import PlayerContainer from '../game/playerContainer.js'
 import Bullet from '../game/bullet.js'
-import Enemy from '../game/enemy.js'
+import Hound from '../game/hound.js'
 
 export default class pvliGame extends Phaser.Scene 
 {
@@ -112,6 +112,7 @@ export default class pvliGame extends Phaser.Scene
         // Crea un objeto para recoger en la escena
         this.createRandomObject(this.map)
 
+        //this.poti = new Potion(this, 100, 100)
         // Creates the Score UI
         // this.createScoreUI()
 
@@ -243,7 +244,7 @@ export default class pvliGame extends Phaser.Scene
     createEnemy(x, y)
     {  
         //let enemySpr = this.add.sprite(x, y, 'houndIdleSprite', 0)
-        let enemy = new Enemy(this, x, y, 'houndIdleSprite', 0)
+        let enemy = new Hound(this, x, y)
         this.add.existing(enemy)
         this.physics.add.collider(enemy, this.groundLayer)
     }
