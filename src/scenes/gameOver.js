@@ -1,18 +1,22 @@
-export default class GameOver extends Phaser.Scene 
+import blankMenu from "./menu.js";
+
+export default class GameOver extends blankMenu
 {
     /**
      * Constructor de la escena
      */
     constructor() 
     {
-        super({
-            key: 'GameOver'
-        });
+        super('GameOver');
+    }
+
+    init() {
+        super.init();
     }
 
     preload() 
     {
-        console.log("GameOver scene")
+        console.log(" - gameOver scene - ")
     }
 
     create() 
@@ -21,21 +25,10 @@ export default class GameOver extends Phaser.Scene
         const{width,height} = this.scale
 
         // compone el titulo del final
-        this.add.text(width * 0.5, height * 0.5, 'Game Over', {
-                fontSize: 22,
-                fontFamily: 'Pixeled',
-                fontStyle: 'bold', 
-                color: '#88ff88'
-            })
-            .setOrigin(0.5)
+        this.addText(width * 0.5, height * 0.5, 'Game Over', 22, '#88ff88', 'Pixeled', 'bold')
 
         // play again text
-        this.add.text(width * 0.5, height - 25, 'Press space to play again', {
-                fontSize: 8,
-                fontFamily: 'Pixeled',
-                color: '#FFFFFF'
-            })
-            .setOrigin(0.5)
+        this.addText(width * 0.5, height - 25, 'Press space to play again', 8, '#FFFFFF', 'Pixeled')
 
         // click to play again
         this.input.keyboard.once('keydown-SPACE', () => {
@@ -45,7 +38,7 @@ export default class GameOver extends Phaser.Scene
 
     update() 
     {
-        
+        super.update();
     }
 
 }

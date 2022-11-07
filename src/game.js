@@ -5,9 +5,9 @@
 
 import Boot from './scenes/boot.js';
 import GameLogic from './scenes/pvliGame.js';
-import Menu from './scenes/menu.js';
+import Menu from './scenes/mainMenu.js';
 import GameOver from './scenes/gameOver.js';
-import BlankPause from './scenes/blankPause.js';
+import BlankPause from './scenes/pause.js';
 
 window.onload = cargarJuego();
 

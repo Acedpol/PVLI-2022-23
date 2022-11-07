@@ -2,8 +2,9 @@ import Object from '../game/object.js'
 import PlayerContainer from '../game/playerContainer.js'
 import Bullet from '../game/bullet.js'
 import Hound from '../game/hound.js'
+import blankScene from './scene.js'
 
-export default class pvliGame extends Phaser.Scene 
+export default class pvliGame extends blankScene
 {
     // --- PLAYER --- 
     /** @type {Phaser.GameObjects.Container} */
@@ -32,7 +33,6 @@ export default class pvliGame extends Phaser.Scene
 
     // --- TIMER --- 
     /** @type {Number} */
-    timeLapsed
     cooldownAsteroids
 
     // --- UI --- 
@@ -45,21 +45,18 @@ export default class pvliGame extends Phaser.Scene
     objectCollected
     objectToFinish
 
-    /** @type {boolean} */
-    active
-
     /**
      * Constructor de la escena
      */
     constructor() 
     {
-        super({
-            key: 'pvliGame'
-        });
+        super('pvliGame');
     }
 
     init(level)
     {
+        super.init();
+
         // Level select assignment
         this.level = level
         console.log('Level = ' + this.level)
@@ -86,13 +83,11 @@ export default class pvliGame extends Phaser.Scene
 
         // cancela las colisiones con el techo
         this.physics.world.checkCollision.up = false
-
-        this.p = this.input.keyboard.addKey('P');
     }
 
     preload() 
     {
-        console.log("pvliGame scene")
+        console.log(" - pvliGame scene - ")
     }
 
     create() 
@@ -120,45 +115,11 @@ export default class pvliGame extends Phaser.Scene
         //this.poti = new Potion(this, 100, 100)
         // Creates the Score UI
         // this.createScoreUI()
-
-        // Inits the timer
-        this.timeLapsed = 0
-
-        // pause ctrl
-        this.active = true;
-        this.events.on('resume', () => {
-            this.active = true;
-        });
     }
 
     update(t, dt) 
     {
-        // actualiza el timer
-        this.timeLapsed = this.timeLapsed + dt
-
-        // Cooldown to create a new bullet
-        // if (this.timeLapsed > this.cooldownAsteroids)
-        // {
-        //     this.createRandomBullet(this.map)
-        //     this.timeLapsed = 0
-        // }        
-        // this.input.keyboard.on('keydown_P', this.handlePause, this);
-
-        if (this.p.isDown) {
-            const evt = createEvent('pause');
-            document.dispatchEvent(evt);
-        }
-    }
-
-    isActive() { return this.active; }
-    toggleActive() { this.active = !this.active; }
-
-    handlePause() {
-        // pause logic
-        this.scene.pause();
-        this.scene.launch('blankPause');
-        this.active = false;
-        console.log("PAUSE");
+        super.update(t,dt);
     }
 
     /**
