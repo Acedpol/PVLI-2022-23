@@ -18,11 +18,32 @@
   src: url('../assets/fonts/roman_font_7.ttf') format('truetype');
 }
 
-h1 {
+h1, h2 {
   text-align: center;
   font-family: 'Greconian', monospace;
-  font-size: 8vh; /* 64px == 4em == 8vh */
   color: #fff;
+}
+
+h1 {
+  font-size: 8vh; /* 64px == 4em == 8vh */
+}
+
+h2 {
+  font-size: 3.75vh;
+}
+
+div#content-about-game p {
+  font-family: 'Canterbury', monospace;
+  font-size: 4vh;
+}
+
+div.fondo {
+  max-width: 70%;
+}
+
+div#content-about-us p {
+  line-height: 0.25vh;
+  font-size: 3vh;
 }
 
 /* ARREGLO PARA LOS INTERLINEADOS */
