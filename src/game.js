@@ -7,9 +7,11 @@ import Boot from './scenes/boot.js';
 import GameLogic from './scenes/pvliGame.js';
 import Menu from './scenes/menu.js';
 import GameOver from './scenes/gameOver.js';
+import BlankPause from './scenes/blankPause.js';
 
 window.onload = cargarJuego();
 
+export var gameLogic;
 export function cargarJuego() {
     const config = {
         type: Phaser.AUTO,
@@ -23,20 +25,21 @@ export function cargarJuego() {
             // autoCenter: Phaser.Scale.Center.CENTER_HORIZONTALLY
         },
         pixelArt: true,
-        scene: [ Boot, GameLogic, Menu, GameOver ],
+        scene: [ Boot, GameLogic, Menu, GameOver, BlankPause ],
         physics: {
             default: 'arcade',
             arcade: {
                 gravity: {
                     y: 200
                 },
-                debug: true // for showing box-colliders
+                debug: true // use this to show box-colliders
             }
         }
         
     };
 
-    var game = new Phaser.Game(config);
+    gameLogic = new Phaser.Game(config);
+    // console.log(gameLogic);
 };
 
 // ---------------------------------
