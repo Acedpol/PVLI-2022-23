@@ -29,6 +29,11 @@ export default class Boot extends Phaser.Scene
         this.load.spritesheet('houndRunSprite', "./assets/sprites/houndSprites/hound-run.png",
         { frameWidth: 42, frameHeight: 24 })
 
+        // --- OBJETOS ---
+        // pocion
+        this.load.spritesheet('potiSprite', "./assets/sprites/houndSprites/llena.png",
+        { frameWidth: 16, frameHeight: 16 })
+
         // // jetpack audio
         // this.load.audio('jetpack', './assets/sounds/jetpack2.wav')//cambio mas tarde
     

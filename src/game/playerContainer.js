@@ -16,6 +16,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         this.scene = scene
         this.scene.add.existing(this)
         this.scene.physics.add.existing(this)
+        this.setInput()
 
         //vida
         this.health = 9;
@@ -85,7 +86,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         else if (this.groundCheck)
         {
             // initial animation pause
-            this.player.play('walk')    
+            this.player.play('walk')
             this.player.anims.pause()
 
             //this.walk.stop() // keeps sure to stop playing sound
@@ -114,7 +115,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         // }
 
         // actives the main action of the player
-        if (this.action.isDown)
+        if (this.j.isDown)
         {
             this.dropObject()
         }
@@ -135,13 +136,13 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     playerController()
     {
         //movement
-        if (this.cursors.left.isDown)
+        if (this.a.isDown)
         {
             this.body.setVelocityX(-80)
             this.player.flipX = true
             if (this.carriesObject) this.object.flipX = true
         }
-        else if (this.cursors.right.isDown)
+        else if (this.d.isDown)
         {
             this.body.setVelocityX(80)
             this.player.flipX = false
@@ -153,9 +154,13 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         }
 
         // jump input logic
-        if (this.cursors.up.isDown && this.allowJump)
+        if (this.space.isDown && this.allowJump)
         {
             this.body.setVelocityY(-175)
+        }
+
+        if (this.j.isDown || this.leftClick) {
+            this.dropObject();
         }
     }
 
@@ -176,7 +181,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     //     }
     // }
 
-    // /** 
+    // /**
     //  * Carries an object
     //  * @param {Phaser.GameObjects.GameObject} object The object that will carry over
     //  */
@@ -216,6 +221,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         }
         console.log("health" + this.health)
     }
+
     hurt(power)
     {
         if(this.canDamage)
@@ -224,7 +230,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             this.timeLapsed = 0;
             this.canDamage = false;
             console.log("health" + this.health)
-            
+
             //el jugador muere
             if(this.health < 1)
             {
@@ -273,8 +279,30 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 
             console.log('drop')
             // this.unCollectObject()
-        }        
+        }
+    }
+    /**
+     * Throws the object that the player has in its inventory
+     */
+    throwObject(){
+        if (this.carriesObject){
+
+        }
     }
 
-
+    /**
+     * Sets the basic controlls for the player
+     */
+         setInput(){
+            // this.keys = this.input.keyboard.addKeys('W,S,A,D'); no funciona
+            this.w = this.scene.input.keyboard.addKey('W');
+            this.a = this.scene.input.keyboard.addKey('A');
+            this.s = this.scene.input.keyboard.addKey('S');
+            this.d = this.scene.input.keyboard.addKey('D');
+            this.j = this.scene.input.keyboard.addKey('J');
+            this.k = this.scene.input.keyboard.addKey('K');
+            this.space = this.scene.input.keyboard.addKey('SPACE');
+            // this.leftClick = this.scene.input.mousePointer.leftButtonDown;
+            // this.rightClick = this.scene.input.mousePointer.rightButtonDown;
+        }
 }
