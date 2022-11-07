@@ -19,7 +19,7 @@ export default class blankPause extends blankScene
 
     preload() 
     {
-        console.log("blankPause scene")
+        console.log(" - blankPause scene - ")
     }
 
     create() 
