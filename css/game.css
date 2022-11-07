@@ -21,6 +21,22 @@
 h1 {
   text-align: center;
   font-family: 'Greconian', monospace;
-  font-size: 64px;
+  font-size: 8vh; /* 64px == 4em == 8vh */
   color: #fff;
 }
+
+/* ARREGLO PARA LOS INTERLINEADOS */
+#phaserGame, .menu {
+  line-height: 0px;
+  vertical-align: text-top;
+  font-size: 0px;
+}
+
+.info {
+  line-height: normal;
+}
+
+/* CANCELA EL SCROLL */
+/* body {
+  overflow: hidden;
+} */
