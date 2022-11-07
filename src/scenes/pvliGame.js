@@ -87,7 +87,7 @@ export default class pvliGame extends blankScene
 
     preload() 
     {
-        console.log("pvliGame scene")
+        console.log(" - pvliGame scene - ")
     }
 
     create() 

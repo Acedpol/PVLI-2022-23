@@ -18,7 +18,9 @@ export default class blankScene extends Phaser.Scene
     init()
     {
         this.timeLapsed = 0;
-        this.setPauseCtrl();
+        this.active = false;
+        this.p = this.input.keyboard.addKey('P');
+        this.setSceneEvents();
     }
 
     preload() 
@@ -40,6 +42,7 @@ export default class blankScene extends Phaser.Scene
         }
     }
 
+    // --- --- TIMER SYSTEM --- --- 
     cooldown(keyTime, fn) {
         if (this.timeLapsed > keyTime)
         {
@@ -47,10 +50,12 @@ export default class blankScene extends Phaser.Scene
             this.timeLapsed = 0;
         }
     }
+    // --- --- --- 
 
-    setPauseCtrl() {
-        this.p = this.input.keyboard.addKey('P');
-        this.active = true;      
+    // --- --- PAUSE SYSTEM --- --- 
+    setSceneEvents() {             
+        this.events.on('start', () => { this.active = true; });
+        this.events.on('create', () => { this.active = true; });
         this.events.on('resume', () => { this.active = true; });
         this.events.on('pause', () => { this.active = false; });
         this.events.on('shutdown', () => { this.active = false; });
@@ -62,10 +67,22 @@ export default class blankScene extends Phaser.Scene
     handlePause() {
         this.scene.pause();
         this.scene.launch('blankPause');
+        // this.scene.start('blankPause');
     }
 
     handleResume(scene) {
         this.scene.resume(scene);
         this.scene.stop();
+        // this.scene.start(scene);
+    }
+    // --- --- --- 
+
+    /**
+     * Crea una imagen y la ajusta al fondo
+     * @param {String} keymap Nombre dado a la imagen del fondo en boot 
+     */
+    createBackground(keymap){
+        const{width,height} = this.scale
+        this.add.image(width/2, height/2, keymap)
     }
 };
