@@ -1,4 +1,4 @@
-import Object from '../game/object.js'
+import Magic from '../game/magic.js'
 import PlayerContainer from '../game/playerContainer.js'
 import Bullet from '../game/bullet.js'
 import Hound from '../game/hound.js'
@@ -195,7 +195,7 @@ export default class pvliGame extends blankScene
         if (this.objectCollected < this.objectToFinish)
         {
             // creates new object object to pick up
-            this.object = new Object(this, Phaser.Math.Between(12, mapWidth - 12), Phaser.Math.Between(12, mapHeight - 12), 'object', 3)
+            this.object = new Magic(this, 200, 100)
             this.physics.add.collider(this.object, this.groundLayer)
         }
         return this.object;

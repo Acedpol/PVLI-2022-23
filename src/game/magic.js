@@ -2,9 +2,6 @@ import Object from './object.js'
 
 export default class Magic extends Object
 {
-    /** @type {Phaser.Scene} */
-    scene
-
     /** @type {boolean} */
     stop
 
@@ -54,7 +51,7 @@ export default class Magic extends Object
 
     effect()
     {
-        container.carryObject(this)
+        this.container.carryObject(this)
         this.scene.sound.play('pick')
     }
 
