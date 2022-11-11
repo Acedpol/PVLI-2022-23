@@ -181,36 +181,53 @@ Todo comienza en un museo, donde unos críos le quitan unas extremidades a una e
  ###Descripción de niveles.
    ####  Nivel 1:
     Se basan en las piezas del cuerpo que se van encontrando a través de los niveles.
-      ● Cumple las funciones básicas de tutorial, te muestra como moverte y saltar y puedes practicarlo. Antes de llegar a la salida, se puede ver un camino hacia arriba que conduce al nivel 3, de momento inaccesible. Al final del nivel obtendrás los brazos.
+      ● Cumple las funciones básicas de tutorial, te muestra como moverte y saltar y puedes practicarlo.
+	Antes de llegar a la salida, se puede ver un camino hacia arriba que conduce al nivel 3,
+	de momento inaccesible. Al final del nivel obtendrás los brazos.
 	####  Nivel 2:
-	  ● Al llegar al nivel dos puedes ver una sala amplia con varias plataformas y enemigos. Una vez te hayas hecho paso, podrás ver que hay otro camino hacia arriba, aún inaccesible. Cuando el personaje sigue por el único camino restante y termina con más enemigos podrá llegar a por las alas para conseguir el doble salto y llegar al nivel 3 por ese camino anterior.
+	  ● Al llegar al nivel dos puedes ver una sala amplia con varias plataformas y enemigos.
+	Una vez te hayas hecho paso, podrás ver que hay otro camino hacia arriba, aún inaccesible.
+	Cuando el personaje sigue por el único camino restante y termina con más enemigos podrá llegar a por
+	las alas para conseguir el doble salto y llegar al nivel 3 por ese camino anterior.
 	####  Nivel 3:
-      ● Accedes a este nivel depués de conseguir las alas desde el nivel 2. Será un nivel mixtro en el que entraran los enemigos a distancia y zonas de parkour en las que habrá que usar doble salto. Antes de completarlo, a la izquierda se encontrará el ultimo powerUp, la cabeza, solo que antes habrá que pasar por una zona en la que te puedes caer, y llegar de nuevo al nivel uno por el pasadizo que ves al principio, pero si aún no has conseguido la cabeza tendrás que volverlo a intentar.
+      ● Accedes a este nivel depués de conseguir las alas desde el nivel 2.
+	Será un nivel mixtro en el que entraran los enemigos a distancia y zonas de parkour en las que habrá que usar doble salto.
+	Antes de completarlo, a la izquierda se encontrará el ultimo powerUp, la cabeza, solo que antes habrá que pasar por una zona en la
+	que te puedes caer, y llegar de nuevo al nivel uno por el pasadizo que ves al principio,
+	pero si aún no has conseguido la cabeza tendrás que volverlo a intentar.
 	####  Nivel 4:
-      ● Una vez pasado en nivel tres, podrás volver al 2 y abrir un pasadizo subterrane o que confuce al nivel final, el 4. Aquí aparecerán los perros, enemigos que te podrán perseguir, acompañados de el resto de enemigos antes vistos. También habrá trampas de pinchos. En este nivel el jugador tendrá que superar el mayor reto, formado por todos los obstaculos vistos anteriormente, para poder completar el juego.
+      ● Una vez pasado en nivel tres, podrás volver al 2 y abrir un pasadizo subterrane o que confuce al nivel final, el 4.
+	Aquí aparecerán los perros, enemigos que te podrán perseguir, acompañados de el resto de enemigos antes vistos.
+	También habrá trampas de pinchos. En este nivel el jugador tendrá que superar el mayor reto,
+	formado por todos los obstaculos vistos anteriormente, para poder completar el juego.
 
 ### 3. Personaje y enemigos
 
 #### **Todos los enemigos del juego causan daño por contacto**
    ##### ![Pantalla inicio][esqueleto] Esqueleto   
-    Enemigo a melé, se mueve de un lado a otro dentro de su área y si ve a un enemigo ataca. Puede aguantar más de un golpe normal del personaje, y más de un proyectil mágico.
+    Enemigo a melé, se mueve de un lado a otro dentro de su área y si ve a un enemigo ataca.
+	Puede aguantar más de un golpe normal del personaje, y más de un proyectil mágico.
     
    ##### Guarda de seguridad
-    Enemigo a distancia, se mueve de un lado a otro hasta que el jugador entra en el rango de ataque empieza a atacar. Puede aguantar un golpe normal, pero no un proyectil mágico.
+    Enemigo a distancia, se mueve de un lado a otro hasta que el jugador entra en el rango de ataque empieza a atacar.
+	Puede aguantar un golpe normal, pero no un proyectil mágico.
     
    ##### ![Pantalla inicio][perro] Perro
-    No ataca pero hace daño por contacto, es más rápido que el esqueleto y persigue al jugador si esste entra en su rango de visión. Muere de un golpe, sea cual sea, pero se verá en mayores números.
+    No ataca pero hace daño por contacto, es más rápido que el esqueleto y persigue al jugador si esste entra en su rango de visión.
+	Muere de un golpe, sea cual sea, pero se verá en mayores números.
 
 ### 4. Objetos  
 #### **Tanto los powerUps como las pociones se recogen al contacto, y desaparecen al instante**
    ##### Power Ups  
-    Las partes de la victoria que estás intentando recomponer y que proporcionan las abilidades de juego. Estas están explicadas en el apartado de mecánicas, pero están compuestas por los brazos, las alas y la cabeza.
+    Las partes de la victoria que estás intentando recomponer y que proporcionan las abilidades de juego.
+	Estas están explicadas en el apartado de mecánicas, pero están compuestas por los brazos, las alas y la cabeza.
     
    ##### Consumibles
     Hasta el moomento el único consumible que queremos implementar son las pociones de vida, las cuales curarán al jugador un corazón.
     
    ##### Trampas
-    Las trampas son objetos en el nivel, en forma de pinchos, que al entrar en contacto con ellos, dañarán al jugador. Son indestructibles y lo unico que se puede hacer ante ellos es evitarlos.
+    Las trampas son objetos en el nivel, en forma de pinchos, que al entrar en contacto con ellos, dañarán al jugador.
+	Son indestructibles y lo unico que se puede hacer ante ellos es evitarlos.
 
 [Go back to index -->][indice]  
 
