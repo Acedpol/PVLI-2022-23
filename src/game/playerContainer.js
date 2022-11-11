@@ -65,7 +65,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         this.groundCheck ? this.allowJump = true : this.allowJump = false;
 
         // walk animation
-        if (this.groundCheck && (this.cursors.left.isDown || this.cursors.right.isDown))
+        if (this.groundCheck && (this.a.isDown || this.d.isDown))
         {
             if (this.player.anims.currentAnim.key != 'walk')
             {
