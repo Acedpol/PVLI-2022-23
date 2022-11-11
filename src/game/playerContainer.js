@@ -42,8 +42,11 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         // inicialización de variables
         this._speed = 100
         this.groundCheck = false
-        this.allowJump = true;
-        this.jumpCount = true;
+
+        // maximum number of allowed jumps
+        this.maxJumps = 1;
+        this.nextJump = this.scene.time.now;
+        this.allowedJumps = this.maxJumps;
 
         //cada cuanto puede recibir daño
         this.damageTimer = 2000000000000000000
@@ -62,10 +65,10 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 
         // revisar si esta en contacto con el suelgo y recargar salto
         this.groundCheck = this.body.onFloor()
-        this.groundCheck ? this.allowJump = true : this.allowJump = false;
+        // this.groundCheck ? this.allowJump = true : this.allowJump = false;
 
         // walk animation
-        if (this.groundCheck && (this.a.isDown || this.d.isDown))
+        if (this.groundCheck && (this.a.isDown || this.d.isDown || this.cursors.left.isDown || this.cursors.right.isDown))
         {
             if (this.player.anims.currentAnim.key != 'walk')
             {
@@ -136,13 +139,13 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     playerController()
     {
         //movement
-        if (this.a.isDown)
+        if (this.a.isDown || this.cursors.left.isDown)
         {
             this.body.setVelocityX(-80)
             this.player.flipX = true
             if (this.carriesObject) this.object.flipX = true
         }
-        else if (this.d.isDown)
+        else if (this.d.isDown || this.cursors.right.isDown)
         {
             this.body.setVelocityX(80)
             this.player.flipX = false
@@ -154,13 +157,25 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         }
 
         // jump input logic
-        if (this.space.isDown && this.allowJump)
+        if (this.allowedJumps > 0 && (this.space.isDown || this.w.isDown || this.cursors.up.isDown) && this.nextJump < this.scene.time.now)
         {
-            this.body.setVelocityY(-175)
+            this.allowedJumps--;
+            console.log(this.allowedJumps);
+            this.body.setVelocityY(-175);
+            this.nextJump = this.scene.time.now + 500;
+        }
+
+        if (this.groundCheck){
+            this.allowedJumps = this.maxJumps;
         }
 
         if (this.j.isDown || this.leftClick) {
             this.dropObject();
+        }
+
+        if (this.k.isDown){
+            this.changeMaxJumps(2);
+            console.log(this.maxJumps);
         }
     }
 
@@ -293,16 +308,20 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     /**
      * Sets the basic controlls for the player
      */
-         setInput(){
-            // this.keys = this.input.keyboard.addKeys('W,S,A,D'); no funciona
-            this.w = this.scene.input.keyboard.addKey('W');
-            this.a = this.scene.input.keyboard.addKey('A');
-            this.s = this.scene.input.keyboard.addKey('S');
-            this.d = this.scene.input.keyboard.addKey('D');
-            this.j = this.scene.input.keyboard.addKey('J');
-            this.k = this.scene.input.keyboard.addKey('K');
-            this.space = this.scene.input.keyboard.addKey('SPACE');
-            // this.leftClick = this.scene.input.mousePointer.leftButtonDown;
-            // this.rightClick = this.scene.input.mousePointer.rightButtonDown;
-        }
+    setInput() {
+        // this.keys = this.input.keyboard.addKeys('W,S,A,D'); no funciona
+        this.w = this.scene.input.keyboard.addKey('W');
+        this.a = this.scene.input.keyboard.addKey('A');
+        this.s = this.scene.input.keyboard.addKey('S');
+        this.d = this.scene.input.keyboard.addKey('D');
+        this.j = this.scene.input.keyboard.addKey('J');
+        this.k = this.scene.input.keyboard.addKey('K');
+        this.space = this.scene.input.keyboard.addKey('SPACE');
+        // this.leftClick = this.scene.input.mousePointer.leftButtonDown;
+        // this.rightClick = this.scene.input.mousePointer.rightButtonDown;
+    }
+
+    changeMaxJumps(jumps){
+        this.maxJumps = jumps;
+    }
 }
