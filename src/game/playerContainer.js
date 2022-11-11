@@ -117,12 +117,6 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         //     this.jetpack.stop() // keeps sure to stop playing sound
         // }
 
-        // actives the main action of the player
-        if (this.j.isDown)
-        {
-            this.dropObject()
-        }
-
         this.playerController();
 
         this.timeLapsed += this.timeLapsed + dt;
@@ -169,7 +163,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             this.allowedJumps = this.maxJumps;
         }
 
-        if (this.j.isDown || this.leftClick) {
+        if (this.j.isDown || this.scene.input.mousePointer.isDown) {
             this.dropObject();
         }
 
@@ -320,7 +314,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         // this.leftClick = this.scene.input.mousePointer.leftButtonDown;
         // this.rightClick = this.scene.input.mousePointer.rightButtonDown;
     }
-
+    
     changeMaxJumps(jumps){
         this.maxJumps = jumps;
     }
