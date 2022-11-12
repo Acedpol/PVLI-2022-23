@@ -21,9 +21,6 @@ export default class Magic extends Object
     constructor(scene, x, y) 
     {
         super(scene, x, y, 'object', 3)
-        // this.scene.physics.world.enable(this)
-        // this.setScale(0.5,0.5);
-
         this.stopMoving = false;
         this.rotation = false;
         this.incRot = 0;
@@ -33,7 +30,6 @@ export default class Magic extends Object
         this.setVisible(true)
  
         // colisiona con los limites del mundo
-        this.body.collideWorldBounds = true
     }
 
     preUpdate(t,dt) 

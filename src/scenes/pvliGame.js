@@ -3,6 +3,7 @@ import PlayerContainer from '../game/playerContainer.js'
 import Bullet from '../game/bullet.js'
 import Hound from '../game/hound.js'
 import blankScene from './scene.js'
+import Potion from '../game/potion.js'
 
 export default class pvliGame extends blankScene
 {
@@ -111,8 +112,8 @@ export default class pvliGame extends blankScene
 
         // Crea un objeto para recoger en la escena
         this.createRandomObject(this.map)
-
-        //this.poti = new Potion(this, 100, 100)
+        this.poti = new Potion(this, 300, 100)
+        this.physics.add.collider(this.poti, this.groundLayer)
         // Creates the Score UI
         // this.createScoreUI()
     }

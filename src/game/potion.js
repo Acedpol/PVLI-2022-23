@@ -13,7 +13,7 @@ export default class Potion extends Object
     constructor(scene, x, y) 
     {
         super(scene, x, y, 'potiSprite', 0)
-        this.scene = scene
+        this.setScale(1);
     }
 
     preUpdate(t,dt) 
@@ -23,7 +23,7 @@ export default class Potion extends Object
     }
     effect()
     {
-        container.heal(3)
+        this.container.heal(3)
         this.scene.sound.play('pick')   // sound feedback
         this.destroy()
     }

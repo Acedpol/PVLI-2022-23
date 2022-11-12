@@ -31,7 +31,7 @@ export default class Boot extends Phaser.Scene
 
         // --- OBJETOS ---
         // pocion
-        this.load.spritesheet('potiSprite', "./assets/sprites/houndSprites/llena.png",
+        this.load.spritesheet('potiSprite', "./assets/sprites/llena.png",
         { frameWidth: 16, frameHeight: 16 })
 
         // // jetpack audio
