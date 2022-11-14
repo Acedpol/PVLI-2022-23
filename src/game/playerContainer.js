@@ -27,9 +27,11 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 
         // ajustes del jugador
         this.player = aspecto
-        this.body.setSize(this.player.width / 3, this.player.height * 70 / 100)
+        this.body.setSize(this.player.width * 11 / 100, this.player.height * 48 / 100)
         // this.body.offset.y = 20
-        this.player.setOrigin(0.3,0.2)
+        this.player.setOrigin(0.4275,0.3275);
+
+        this.player.setScale(0.75, 0.75);
 
         // initial animation pause
         this.player.play('walk')
@@ -52,6 +54,8 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         this.damageTimer = 2000000000000000000
         //booleanno para saber si puede ser dañado
         this.canDamage = true
+        this.xHead = 0;
+        this.yHead = 0;
         //this.object = null
 
         // // inicialización de audios fx
@@ -127,7 +131,8 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             console.log("puede ser dañado")
         }
 
-        // this.horizontalWrap(this);
+        this.horizontalWrap(this);
+        this.headAnimation();        
     }
 
     playerController()
@@ -173,22 +178,59 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         }
     }
 
+    headAnimation() {
+        if (this.carriesObject)
+        {
+            if (!this.groundCheck)
+            {
+                // console.log("index flying: " + this.player.anims.currentFrame.index);
+                let index = this.player.anims.currentFrame.index;
+                let zoom = 2; // this.scene.game.config.zoom;
+                let sx = this.player.scaleX;
+                let sy = this.player.scaleY;
+                if (index >= 2 && index <= 6) {
+                    let ix = 1.639 * sx; // - ((this.player.width * 1 / 4) * 100 / 122); 
+                    let iy = 2.105 * sy; // - ((this.player.height * 1 / 4) * 100 / 95);
+                    this.xHead += ix / zoom * sx;
+                    this.yHead += iy / zoom * sy;
+                } else if (index > 6 && index <= 9) {
+                    let ix = 2.459 * sx; // - ((this.player.width * 1 / 4) * 100 / 122);
+                    let iy = 3.158 * sy; // - ((this.player.height * 1 / 4) * 100 / 95);
+                    this.xHead -= ix / zoom * sx;
+                    this.yHead -= iy / zoom * sy;
+                } else {
+                    this.xHead = 0; this.yHead = 0;
+                }
+                if (!this.player.flipX) 
+                    this.object.setPosition(0 - this.player.width * (-2 + this.xHead) / 100, 0 - this.player.height * (9 + this.yHead) / 100);
+                else
+                    this.object.setPosition(0 + this.player.width * (-4 + this.xHead) / 100, 0 - this.player.height * (9 + this.yHead) / 100);
+            } else {
+                this.xHead = 0; this.yHead = 0;
+                if (!this.player.flipX)
+                    this.object.setPosition(0 + this.player.width * 0 / 100, 0 - this.player.height * 6 / 100);
+                else 
+                    this.object.setPosition(0 + this.player.width * -2 / 100, 0 - this.player.height * 6 / 100);
+            }
+        }
+    }
+
     /**
      * @param {Phaser.Physics.Arcade.Sprite} object
      */
-    // horizontalWrap(object)
-    // {
-    //     const halfWidth = object.body.width * 0.25
-    //     const gameWidth = this.scene.scale.width
-    //     if (object.x < -halfWidth*3)
-    //     {
-    //         object.x = gameWidth - halfWidth
-    //     }
-    //     else if (object.x > gameWidth - halfWidth)
-    //     {
-    //         object.x = -halfWidth*3
-    //     }
-    // }
+    horizontalWrap(object)
+    {
+        const halfWidth = object.body.width * 0.25
+        const gameWidth = this.scene.scale.width
+        if (object.x < -halfWidth*3)
+        {
+            object.x = gameWidth - halfWidth
+        }
+        else if (object.x > gameWidth - halfWidth)
+        {
+            object.x = -halfWidth*3
+        }
+    }
 
     // /**
     //  * Carries an object
@@ -210,7 +252,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 
             // Recoge el object y se lo añade a playerContainer (y lo coloca)
             this.add(object)
-            object.setPosition(0 + this.player.width * 7.5 / 100, 0 - this.player.height * 12 / 100)
+            object.setPosition(0 + this.player.width * 0 / 100, 0 - this.player.height * 5 / 100)
             object.setOrigin(0)
 
             console.log('pick')
@@ -253,7 +295,12 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         {
             // registers the actual position relative to the player container
             let posX = this.x + this.body.width / 2;
-            let posY = this.y - this.player.height * 25 / 100;
+            let posY = this.y - this.player.height * 10 / 100;
+            if (this.player.flipX) {
+                posX -= this.body.width * 95 / 100;
+            } else {
+                posX += this.body.width * 95 / 100;
+            }
 
             // removes and deletes the first object carried by the player container
             this.remove(this.getAt(1), true)

@@ -108,7 +108,7 @@ export default class pvliGame extends blankScene
 
         // Creates the player
         this.createPlayer(this.map)
-        this.createEnemy(30, 100)
+        // this.createEnemy(30, 100)
 
         // Crea un objeto para recoger en la escena
         this.createRandomObject(this.map)
@@ -196,7 +196,7 @@ export default class pvliGame extends blankScene
         if (this.objectCollected < this.objectToFinish)
         {
             // creates new object object to pick up
-            this.object = new Magic(this, 200, 100)
+            this.object = new Magic(this, 150, 150)
             this.physics.add.collider(this.object, this.groundLayer)
         }
         return this.object;
@@ -217,7 +217,7 @@ export default class pvliGame extends blankScene
         const mapHeight = map.height * map.tileHeight
 
         // Añade al jugador como Sprite
-        let player = this.add.sprite(0, 0, 'angel', 27)
+        let player = this.add.sprite(0, 0, 'angel', 0)
         // creates the player in the middle of the screen
         this.playerContainer = new PlayerContainer(this, mapWidth * 0.2, mapHeight * 0.5, player)
 
@@ -228,7 +228,7 @@ export default class pvliGame extends blankScene
         // this.cameras.main.startFollow(this.playerContainer)
 
         // World Bounds and Camera dead zones properties
-        // this.worldBoundsNCameraDeadZones(this.map)
+        this.worldBoundsNCameraDeadZones(this.map)
     }
     
     createEnemy(x, y)

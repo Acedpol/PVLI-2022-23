@@ -13,14 +13,15 @@ window.onload = cargarJuego();
 
 export var gameLogic;
 export function cargarJuego() {
+    let zoomV = 0;
     const config = {
         type: Phaser.AUTO,
         parent: "phaserGame",
         scale: {
             // width: 360,
             // height: 189,
-            width: Math.floor(360  / 1488 * window.innerWidth),
-            height: Math.floor(189 / 783 * window.innerHeight),
+            width: Math.floor(360 - (360 * (zoomV/3))  / 1488 * window.innerWidth),
+            height: Math.floor(189 - (189 * (zoomV/3)) / 783 * window.innerHeight),
             zoom: 3,
             // autoCenter: Phaser.Scale.Center.CENTER_HORIZONTALLY
         },

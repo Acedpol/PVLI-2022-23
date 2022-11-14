@@ -15,8 +15,8 @@ export default class Boot extends Phaser.Scene
 
         // --- PLAYER --- 
         // player spritesheet
-        this.load.spritesheet('angel', "./assets/sprites/angel/angel3.png", //cambiar el sprite para la animacion 
-        { frameWidth: 61, frameHeight: 48 }) 
+        this.load.spritesheet('angel', "./assets/sprites/jugador/victoria.png", //cambiar el sprite para la animacion 
+        { frameWidth: 122, frameHeight: 95 }) 
 
         // --- ENEMIGOS ---
         // Lobo - idle
@@ -91,17 +91,25 @@ export default class Boot extends Phaser.Scene
         // --- PLAYER --- 
         // creates walk animation for player
         this.anims.create({
+            key: 'idle',
+            frames: this.anims.generateFrameNames('angel', { start: 0, end: 0 }),
+            frameRate: 2,
+            repeat: -1
+        })
+
+        // creates walk animation for player
+        this.anims.create({
             key: 'walk',
-            frames: this.anims.generateFrameNames('angel', { start: 27, end: 34 }),
-            frameRate: 10,
+            frames: this.anims.generateFrameNames('angel', { start: 20, end: 27 }),
+            frameRate: 8,
             repeat: -1
         })
 
         // creates jump animation for player
         this.anims.create({
           key: 'jump',
-          frames: this.anims.generateFrameNames('angel', { start: 9, end: 17 }),
-          frameRate: 10,
+          frames: this.anims.generateFrameNames('angel', { start: 10, end: 18 }),
+          frameRate: 9,
           repeat: -1
         })
 
