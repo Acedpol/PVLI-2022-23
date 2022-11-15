@@ -161,15 +161,32 @@ export default class pvliGame extends blankScene
      */ 
     worldBoundsNCameraDeadZones(map)
     {
+        const{width,height} = this.scale;
+
         // dimensiones del mapa
         const mapWidth = map.width * map.tileWidth
         const mapHeight = map.height * map.tileHeight
     
         // tamaño del mundo de juego
-        this.physics.world.setBounds(mapWidth * (-0.5), 0, mapWidth * 2, mapHeight)
+        // this.physics.world.setBounds(0, 0, width, height)
+        this.physics.world.setBounds(mapWidth * (-0.25), 0, mapWidth * 1.5, mapHeight)
+        // this.physics.world.setBounds(mapWidth * (-0.5), 0, mapWidth * 2, mapHeight)
 
-        // set the horizontal dead zone to 1.5x game width         
-        this.cameras.main.setDeadzone(mapWidth * 1.25, mapHeight * 0.655)
+        // set the horizontal dead zone to 1.5x game width        
+        // this.cameras.main.setDeadzone(width, height) 
+        this.cameras.main.setDeadzone(mapWidth * 0.5, mapHeight * 0.5)
+        // this.cameras.main.setDeadzone(mapWidth * 1.25, mapHeight * 0.655)
+
+        this.cameras.main.setSize(width, height)
+            .setZoom(1.5,1.5)
+            .setViewport(0,0,width,height);
+            // .flash(500, 0, 0, 255, false)
+            // .setOrigin(0.5)
+
+        let vec2 = this.cameras.main.getScroll(mapWidth/2, mapHeight/2);
+        this.cameras.main.setScroll(vec2.x, vec2.y);
+
+        console.log(this.cameras.main.midPoint);
     }
 
     /**
@@ -208,13 +225,13 @@ export default class pvliGame extends blankScene
         // Añade al jugador como Sprite
         let player = this.add.sprite(0, 0, 'angel', 0)
         // creates the player in the middle of the screen
-        this.playerContainer = new PlayerContainer(this, mapWidth * 0.2, mapHeight * 0.5, player)
+        this.playerContainer = new PlayerContainer(this, mapWidth * 0.5, mapHeight * 0.5, player)
 
         // Adds main physics
         this.physics.add.collider(this.playerContainer, this.groundLayer)
 
         // follow the player
-        // this.cameras.main.startFollow(this.playerContainer)
+        this.cameras.main.startFollow(this.playerContainer)
 
         // World Bounds and Camera dead zones properties
         this.worldBoundsNCameraDeadZones(this.map)
