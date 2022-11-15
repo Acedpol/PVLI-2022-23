@@ -154,17 +154,6 @@ export default class pvliGame extends blankScene
     }
 
     /**
-     * Crea una imagen y la ajusta al fondo
-     * @param {String} keymap Nombre dado a la imagen del fondo en boot 
-     */
-    createBackground(keymap){
-        // gets the sizes of the screen
-        const{width,height} = this.scale
-
-        this.add.image(width/2, height/2, keymap)
-    }
-
-    /**
      * Ajusta los límites del mundo de juego y
      * los parámetros de seguimiento de la cámara
      * al tamaño del mapa ya creado

@@ -82,7 +82,8 @@ export default class blankScene extends Phaser.Scene
      * @param {String} keymap Nombre dado a la imagen del fondo en boot 
      */
     createBackground(keymap){
-        const{width,height} = this.scale
+        const{width,height} = this.scale;
         this.add.image(width/2, height/2, keymap)
+            .setDisplaySize(width,height);
     }
 };
