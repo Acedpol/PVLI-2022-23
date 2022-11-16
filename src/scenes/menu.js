@@ -37,13 +37,13 @@ export default class blankMenu extends blankScene
      */
     createButtonGame(x, y, texture, text, fn, scene, v)
     {
-        const{width,height} = this.scale;
-        let zw = width;
-        let zh = width * 567 / 1080;
+        // const{width,height} = this.scale;
+        // let zw = width;
+        // let zh = width * 567 / 1080;
 
-        let gz = this.game.config.zoom;
-        let zx = 3 / gz * zw / 1080;
-        let zy = 3 / gz * zh / 567;
+        // let gz = this.game.config.zoom;
+        let zx = 3 * this.zw / this.logicWidth;
+        let zy = 3 * this.zh / this.logicHeight;
 
         // crea el button y lo hace interactivo
         let img = this.add.image(x, y, texture)
@@ -73,12 +73,18 @@ export default class blankMenu extends blankScene
      */
     addText(x, y, text, size, color = '#FFFFFF', fuente = 'Greconian', style = 'normal') 
     {
-        const{width,height} = this.scale;
-        let zw = width;
-        let zh = width * 567 / 1080;
+        // const{width,height} = this.scale;
+        // let zw = width;
+        // let zh = width * 567 / 1080;
 
-        let gz = this.game.config.zoom;
-        let zs = size * 3 / gz * zh / 567;
+        // let gz = this.game.config.zoom;
+        // let zs = size * 3 * this.zh / this.logicHeight;
+        let zs = size * 3 * this.zw / this.logicWidth;
+        // let ar = this.globalAR() - this.logicAR();
+        // let zs = size * 3 * ar;
+        // let zx = 3 * this.zw / this.logicWidth;
+        // let zy = 3 * this.zh / this.logicHeight;
+        // let zs = size * (size * this.zh / this.zw) / 1.5;
 
         this.add.text(x, y, text, {
             fontSize: zs, // <--

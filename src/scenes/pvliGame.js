@@ -166,10 +166,6 @@ export default class pvliGame extends blankScene
     worldBoundsNCameraDeadZones(map)
     {
         const{width,height} = this.scale;
-        let gz = this.game.config.zoom;
-        let zw = width;
-        let zh = width * 567 / 1080;
-        let mh = (height - zh) / 2;
 
         // dimensiones del mapa
         const mapWidth = map.width * map.tileWidth
@@ -182,17 +178,18 @@ export default class pvliGame extends blankScene
 
         // set the horizontal dead zone to 1.5x game width        
         // this.cameras.main.setDeadzone(width, height) 
-        let dw = 162 * (zw * gz) / 1080;
-        let dh = 85.05 * (zh * gz) / 567;
+        // let dw = 162 * (zw * gz) / 1080;
+        // let dh = 85.05 * (zh * gz) / 567;
         // let dw = 0.05 * 3 / gz * zw / 1080;
         // let dh = 0.05 * 3 / gz * zh / 567;
-        this.cameras.main.setDeadzone(162, 85.05);
-        console.log("death zone: " + dw + ", " + dh);
+        // this.cameras.main.setDeadzone(162, 85.05);
+        this.cameras.main.setDeadzone(this.logicWidth * 0.15, this.logicHeight * 0.15);
+        // console.log("death zone: " + dw + ", " + dh);
         // this.cameras.main.setDeadzone(mapWidth * 1.25, mapHeight * 0.655)
 
         // let zoom = (this.game.config.zoom * 50 / 2) / 100 + 1
-        var z = 2.625;
         // z = gz / 2;
+        var z = 2.625;
         // switch(gz){
         //     case 1: z = 2.7; break;
         //     case 2: z = 2; break;
@@ -205,18 +202,21 @@ export default class pvliGame extends blankScene
         console.log("width: " + width + ", height: " + height);
         console.log("Game zoom: " + this.game.config.zoom);
         console.log("Zoom: " + z);
-        console.log("margen: "+ mh);
+        console.log("margen: "+ this.mw + ", " + this.mh);
 
         // let zx = zw * 2.7 / 1080;
         // let zy = zh * 2.7 / 567;
-        let zx = z / gz * zw / 1080;
-        let zy = z / gz * zh / 567;
+        let mw = 0; let mh = 0;
+        if(this.mw) mw = this.mw;
+        if(this.mh) mh = this.mh;
+        let zx = z * this.zw / this.logicWidth;
+        let zy = z * this.zh / this.logicHeight;
         // let zx = 2;
         // let zy = 2.1;
         console.log("Zoom: zx: " + zx + ", zy: " + zy);
         this.cameras.main
             .setZoom(zx,zy)
-            .setViewport(0,mh,zw,zh);
+            .setViewport(mw,mh,this.zw,this.zh);
             // .flash(500, 0, 0, 255, false)
             // .setOrigin(0.5)
 

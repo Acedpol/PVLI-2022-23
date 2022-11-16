@@ -8,6 +8,28 @@ export default class blankScene extends Phaser.Scene
     /** @type {boolean} */
     active
 
+    // --- ASPECT --- 
+    /** @type {Number} */
+    logicWidth
+    /** @type {Number} */
+    logicHeight
+    /** @type {Number} */
+    globalWidth
+    /** @type {Number} */
+    globalHeight    
+
+    // --- CAMERA --- 
+    /** @type {Number} */
+    zoom
+    /** @type {Number} */
+    zw
+    /** @type {Number} */
+    zh
+    /** @type {Number} */
+    mw
+    /** @type {Number} */
+    mh
+
     constructor(keyname) 
     {
         super({
@@ -21,6 +43,16 @@ export default class blankScene extends Phaser.Scene
         this.active = false;
         this.p = this.input.keyboard.addKey('P');
         this.setSceneEvents();
+
+        this.logicWidth = 1080;
+        this.logicHeight = 567;
+        const{width,height} = this.scale;
+        this.globalWidth = width;
+        this.globalHeight = height;  
+
+        this.zoom = this.game.config.zoom;  
+        // this.aspect_16_9();
+        this.aspect_4_3();
     }
 
     preload() 
@@ -74,6 +106,40 @@ export default class blankScene extends Phaser.Scene
         this.scene.resume(scene);
         this.scene.stop();
         // this.scene.start(scene);
+    }
+    // --- --- --- 
+
+    // --- --- ASPECT RATIO --- --- 
+    logicToGlobalWidth(w) {
+        return w *  this.globalWidth / (this.logicWidth * this.zoom);
+    }
+    logicToGlobalHeight(h) {
+        return h * this.globalHeight / (this.logicHeight * this.zoom);
+    }
+    globalAR() {
+        return this.globalWidth / this.globalHeight;
+    }
+    logicAR() {
+        return this.logicWidth / this.logicHeight;
+    }
+    realAR() {
+        return this.zw / this.zh;
+    }
+    aspect_ratio_W() {
+        return this.logicWidth / this.logicHeight;
+    }
+    aspect_ratio_H() {
+        return this.logicHeight / this.logicWidth;
+    }
+    aspect_16_9() {
+        this.zw = this.globalWidth;
+        this.zh = this.globalWidth * this.aspect_ratio_H();
+        this.mh = (this.globalHeight - this.zh) / 2;
+    }
+    aspect_4_3() {
+        this.zh = this.globalHeight;
+        this.zw = this.globalHeight * this.aspect_ratio_W();
+        this.mw = (this.globalWidth - this.zw) / 2;
     }
     // --- --- --- 
 
