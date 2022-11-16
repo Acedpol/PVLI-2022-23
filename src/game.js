@@ -13,16 +13,22 @@ window.onload = cargarJuego();
 
 export var gameLogic;
 export function cargarJuego() {
-    let zoomV = -1.5;
+    // let zoomV = -1.5;
+    let z = 1; let x = 3 / z;
+
     const config = {
         type: Phaser.AUTO,
         parent: "phaserGame",
         scale: {
             // width: 360,
             // height: 189,
-            width: Math.floor((360 - (360 * (zoomV/3)))  / 1488 * window.innerWidth),
-            height: Math.floor((189 - (189 * (zoomV/3))) / 783 * window.innerHeight),
-            zoom: 2,
+            // width: Math.floor((360 - (360 * (zoomV/3)))  / 1488 * window.innerWidth),
+            // height: Math.floor((189 - (189 * (zoomV/3))) / 783 * window.innerHeight),
+            // width: Math.floor((360 + 360 * (1 + x))  / 1488 * window.innerWidth),
+            // height: Math.floor((189 + 189 * (1 + x)) / 783 * window.innerHeight),
+            width: Math.floor((360 * x)  / 1488 * window.innerWidth),
+            height: Math.floor((189 * x) / 783 * window.innerHeight),
+            zoom: z,
             // autoCenter: Phaser.Scale.Center.CENTER_HORIZONTALLY
         },
         pixelArt: true,
@@ -33,7 +39,7 @@ export function cargarJuego() {
                 gravity: {
                     y: 200
                 },
-                debug: true // use this to show box-colliders
+                debug: false // use this to show box-colliders
             }
         }
         

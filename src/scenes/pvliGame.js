@@ -93,11 +93,15 @@ export default class pvliGame extends blankScene
 
     create() 
     {
-        // Create background image
-        this.background = this.createBackground('img_back');
-
         // Creates the Game Map
         this.map = this.createMap('nivel', 18, 21, 'platform', 'img_tilemap', 'plataformas')
+
+        // dimensiones del mapa
+        const mapWidth = this.map.width * this.map.tileWidth
+        const mapHeight = this.map.height * this.map.tileHeight
+
+        // Create background image
+        this.createBackgroundS('img_back', mapWidth, mapHeight);
 
         // Grupo de Bullets
         this.bullets = this.physics.add.group({
@@ -108,7 +112,7 @@ export default class pvliGame extends blankScene
 
         // Creates the player
         this.createPlayer(this.map)
-        // this.createEnemy(30, 100)
+        this.createEnemy(30, 100)
 
         // Crea un objeto para recoger en la escena
         this.createRandomObject(this.map)
@@ -162,6 +166,10 @@ export default class pvliGame extends blankScene
     worldBoundsNCameraDeadZones(map)
     {
         const{width,height} = this.scale;
+        let gz = this.game.config.zoom;
+        let zw = width;
+        let zh = width * 567 / 1080;
+        let mh = (height - zh) / 2;
 
         // dimensiones del mapa
         const mapWidth = map.width * map.tileWidth
@@ -174,12 +182,41 @@ export default class pvliGame extends blankScene
 
         // set the horizontal dead zone to 1.5x game width        
         // this.cameras.main.setDeadzone(width, height) 
-        this.cameras.main.setDeadzone(mapWidth * 0.5, mapHeight * 0.5)
+        let dw = 162 * (zw * gz) / 1080;
+        let dh = 85.05 * (zh * gz) / 567;
+        // let dw = 0.05 * 3 / gz * zw / 1080;
+        // let dh = 0.05 * 3 / gz * zh / 567;
+        this.cameras.main.setDeadzone(162, 85.05);
+        console.log("death zone: " + dw + ", " + dh);
         // this.cameras.main.setDeadzone(mapWidth * 1.25, mapHeight * 0.655)
 
-        this.cameras.main.setSize(width, height)
-            .setZoom(1.5,1.5)
-            .setViewport(0,0,width,height);
+        // let zoom = (this.game.config.zoom * 50 / 2) / 100 + 1
+        var z = 2.625;
+        // z = gz / 2;
+        // switch(gz){
+        //     case 1: z = 2.7; break;
+        //     case 2: z = 2; break;
+        //     case 3: z = 1.5; break;
+        // }
+
+        
+
+        console.log("window.width: " + window.innerWidth + ", window.height: " + window.innerHeight);
+        console.log("width: " + width + ", height: " + height);
+        console.log("Game zoom: " + this.game.config.zoom);
+        console.log("Zoom: " + z);
+        console.log("margen: "+ mh);
+
+        // let zx = zw * 2.7 / 1080;
+        // let zy = zh * 2.7 / 567;
+        let zx = z / gz * zw / 1080;
+        let zy = z / gz * zh / 567;
+        // let zx = 2;
+        // let zy = 2.1;
+        console.log("Zoom: zx: " + zx + ", zy: " + zy);
+        this.cameras.main
+            .setZoom(zx,zy)
+            .setViewport(0,mh,zw,zh);
             // .flash(500, 0, 0, 255, false)
             // .setOrigin(0.5)
 
