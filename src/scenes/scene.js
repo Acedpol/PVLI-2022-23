@@ -80,10 +80,21 @@ export default class blankScene extends Phaser.Scene
     /**
      * Crea una imagen y la ajusta al fondo
      * @param {String} keymap Nombre dado a la imagen del fondo en boot 
+     * @param {number} width ancho del fondo
+     * @param {number} height alto del fondo
+     */
+    createBackgroundS(keymap, width, height){
+        this.background = this.add.image(width/2, height/2, keymap)
+            .setDisplaySize(width,height);
+    }
+
+    /**
+     * Crea una imagen y la ajusta al fondo
+     * @param {String} keymap Nombre dado a la imagen del fondo en boot 
      */
     createBackground(keymap){
         const{width,height} = this.scale;
-        this.add.image(width/2, height/2, keymap)
+        this.background = this.add.image(width/2, height/2, keymap)
             .setDisplaySize(width,height);
     }
 };
