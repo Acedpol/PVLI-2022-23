@@ -26,7 +26,7 @@
         {
          "columns":6,
          "firstgid":1,
-         "image":"..\/sprites\/ground.png",
+         "image":"..\/sprites\/escenario\/ground.png",
          "imageheight":21,
          "imagewidth":112,
          "margin":0,
