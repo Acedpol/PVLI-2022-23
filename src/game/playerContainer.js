@@ -131,7 +131,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             console.log("puede ser dañado")
         }
 
-        this.horizontalWrap(this);
+        // this.horizontalWrap(this);
         this.headAnimation();        
     }
 
