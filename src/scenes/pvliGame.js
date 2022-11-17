@@ -2,49 +2,20 @@ import Magic from '../game/magic.js'
 import PlayerContainer from '../game/playerContainer.js'
 import Bullet from '../game/bullet.js'
 import Hound from '../game/hound.js'
-import blankScene from './scene.js'
+import blankGame from './blankGame.js'
 import Potion from '../game/potion.js'
 
-export default class pvliGame extends blankScene
+export default class pvliGame extends blankGame
 {
-    // --- PLAYER --- 
-    /** @type {Phaser.GameObjects.Container} */
-    playerContainer
-
-    // --- SCENE --- 
-    /** @type {Phaser.Physics.Arcade.StaticBody} */
-    platform
-
-    /** @type {Phaser.Tilemaps.Tilemap} */
-    map
-
-    /** @type {Phaser.Tilemaps.TilemapLayer} */
-    groundLayer
-
     // --- OBJECTS --- 
-    /** @type {Phaser.Physics.Arcade.StaticGroup} */
-    bullets
+    /** @type {Phaser.Physics.Arcade.StaticGroup} */    coins
 
-    // --- OBJECTS --- 
-    /** @type {Phaser.Physics.Arcade.Group} */
-    enemies
-
-    /** @type {Object} */
-    object
-
-    // --- TIMER --- 
-    /** @type {Number} */
-    cooldownAsteroids
-
-    // --- UI --- 
-    /** @type {Phaser.GameObjects.Text} */
-    objectCollectedText
+    // --- ENEMIES --- 
+    /** @type {Phaser.Physics.Arcade.Group} */          enemies
     
     // --- GAME LOGIC --- 
-    /** @type {Number} */
-    level
-    objectCollected
-    objectToFinish
+    /** @type {Number} */                               objectCollected
+    /** @type {Number} */                               objectToFinish
 
     /**
      * Constructor de la escena
@@ -56,34 +27,8 @@ export default class pvliGame extends blankScene
 
     init(level)
     {
-        super.init();
-
-        // Level select assignment
-        this.level = level
-        console.log('Level = ' + this.level)
-
-        // Level parameters by difficulty
-        this.objectCollected = 0
-        this.objectToFinish = 2
-
-        // if (this.level == 1)
-        // {
-        //     this.objectToFinish = 2
-        //     this.cooldownAsteroids = 2 * 1000
-        // }
-        // else if (this.level == 2)
-        // {
-        //     this.objectToFinish = 3
-        //     this.cooldownAsteroids = 1 * 1000
-        // }
-        // else if (this.level == 3)
-        // {
-        //     this.objectToFinish = 5
-        //     this.cooldownAsteroids = 0.5 * 1000
-        // }
-
-        // cancela las colisiones con el techo
-        this.physics.world.checkCollision.up = false
+        super.init(level);
+        this.checkCollisions(false);
     }
 
     preload() 
@@ -94,218 +39,27 @@ export default class pvliGame extends blankScene
     create() 
     {
         // Creates the Game Map
-        this.map = this.createMap('nivel', 18, 21, 'platform', 'img_tilemap', 'plataformas')
-
-        // dimensiones del mapa
-        const mapWidth = this.map.width * this.map.tileWidth
-        const mapHeight = this.map.height * this.map.tileHeight
-
+        this.createMap('nivel', 18, 21, 'platform', 'img_tilemap', 'plataformas');
+        
         // Create background image
-        this.createBackgroundS('img_back', mapWidth, mapHeight);
-
-        // Grupo de Bullets
-        this.bullets = this.physics.add.group({
-            classType: Bullet
-        })
-
-        this.physics.add.collider(this.bullets, this.groundLayer)
-
+        this.createMapBackground('img_back', this.map);
+        
         // Creates the player
-        this.createPlayer(this.map)
-        this.createEnemy(30, 100)
+        this.createPlayer(this.mapWidth * 0.5, this.mapHeight * 0.5, 'angel');
+
+        // Sets the camera view
+        this.startCamera({ width: this.mapWidth, height: this.mapHeight});
+
+        // Creates the enemy
+        this.addToScene(new Hound(this, 30, 100));
 
         // Crea un objeto para recoger en la escena
-        this.createRandomObject(this.map)
-        this.poti = new Potion(this, 300, 100)
-        this.physics.add.collider(this.poti, this.groundLayer)
-        // Creates the Score UI
-        // this.createScoreUI()
+        this.addToScene(new Magic(this, 150, 150));
+        this.addToScene(new Potion(this, 300, 100));
     }
 
     update(t, dt) 
     {
         super.update(t,dt);
     }
-
-    /**
-     * Constructor del mapa
-     * @param {String} clave Nombre dado al 'mapa.json' en 'boot.js'
-     * @param {number} tileWidth Tamaño horizontal en pixeles de cada tile
-     * @param {number} tileHeight Tamaño vertical en pixeles de cada tile
-     * @param {String} tileset Nombre dado al 'tileset' en 'mapa.json'
-     * @param {String} tilesetImg Nombre dado a la imagen asociada al 'tileset' en 'boot.js'
-     * @param {String} layer Nombre dado a la capa de tiles (tilemap) en 'mapa.json'
-     */
-    createMap(clave, tileWidth, tileHeight, tileset, tilesetImg, layer) 
-    {
-        // creación del mapa:
-        const map = this.make.tilemap({
-          key: clave,
-          tileWidth: tileWidth,
-          tileHeight: tileHeight
-        });
-    
-        // asignación de imagenes
-        const _tileset = map.addTilesetImage(tileset, tilesetImg)
-    
-        // creación de layers: 3 principales (fondo, fore y colliders)
-        this.groundLayer = map.createLayer(layer, [_tileset]).setDepth(1)  // 'GroundLayer'        
-    
-        // definición de colisiones: -> con propiedad en TILED
-        this.groundLayer.setCollisionByProperty({ suelo: true })
-        
-        return map
-    }
-
-    /**
-     * Ajusta los límites del mundo de juego y
-     * los parámetros de seguimiento de la cámara
-     * al tamaño del mapa ya creado
-     * @param {Phaser.Tilemaps.Tilemap} map Mapa del juego ya creado
-     */ 
-    worldBoundsNCameraDeadZones(map)
-    {
-        // relación de aspecto
-        var z = 2.625;
-        let mw = 0; let mh = 0;
-        if(this.mw) mw = this.mw;
-        if(this.mh) mh = this.mh;
-        let zx = z * this.zw / this.logicWidth;
-        let zy = z * this.zh / this.logicHeight;
-
-        // dimensiones del mapa
-        const mapWidth = map.width * map.tileWidth
-        const mapHeight = map.height * map.tileHeight
-    
-        // tamaño del mundo de juego
-        this.physics.world.setBounds(mapWidth * (-0.25), 0, mapWidth * 1.5, mapHeight)
-
-        // set the horizontal dead zone to 0.15x game width
-        this.cameras.main.setDeadzone(this.logicWidth * 0.15, this.logicHeight * 0.15);
-                
-        // debugger: datos del canvas y la cámara
-        const{width,height} = this.scale
-        console.log("window.width: " + window.innerWidth + ", window.height: " + window.innerHeight);
-        console.log("width: " + width + ", height: " + height);
-        console.log("Game zoom: " + this.game.config.zoom);
-        console.log("Zoom: " + z);
-        console.log("margen: "+ this.mw + ", " + this.mh);
-        console.log("Zoom: zx: " + zx + ", zy: " + zy);
-
-        // establece en la cámara el zoom y el viewport
-        this.cameras.main
-            .setZoom(zx,zy)
-            .setViewport(mw,mh,this.zw,this.zh);
-
-        let vec2 = this.cameras.main.getScroll(mapWidth/2, mapHeight/2);
-        this.cameras.main.setScroll(vec2.x, vec2.y);
-
-        console.log(this.cameras.main.midPoint);
-    }
-
-    /**
-     * Creates a new random positioned object
-     * @param {Phaser.Tilemaps.Tilemap} map Mapa del juego ya creado
-     */
-    createRandomObject(map)
-    {
-        // dimensiones del mapa
-        const mapWidth = map.width * map.tileWidth
-        const mapHeight = map.height * map.tileHeight
-
-        if (this.objectCollected < this.objectToFinish)
-        {
-            // creates new object object to pick up
-            this.object = new Magic(this, 150, 150)
-            this.physics.add.collider(this.object, this.groundLayer)
-        }
-        return this.object;
-    }
-
-    
-    /**
-     * Creates and positions the Player
-     * @param {Phaser.Tilemaps.Tilemap} map Mapa del juego ya creado
-     */
-    createPlayer(map)
-    {
-        // gets the sizes of the screen
-        const{width,height} = this.scale
-
-        // dimensiones del mapa
-        const mapWidth = map.width * map.tileWidth
-        const mapHeight = map.height * map.tileHeight
-
-        // Añade al jugador como Sprite
-        let player = this.add.sprite(0, 0, 'angel', 0)
-        // creates the player in the middle of the screen
-        this.playerContainer = new PlayerContainer(this, mapWidth * 0.5, mapHeight * 0.5, player)
-
-        // Adds main physics
-        this.physics.add.collider(this.playerContainer, this.groundLayer)
-
-        // follow the player
-        this.cameras.main.startFollow(this.playerContainer)
-
-        // World Bounds and Camera dead zones properties
-        this.worldBoundsNCameraDeadZones(this.map)
-    }
-    
-    createEnemy(x, y)
-    {  
-        //let enemySpr = this.add.sprite(x, y, 'houndIdleSprite', 0)
-        let enemy = new Hound(this, x, y)
-        this.add.existing(enemy)
-        this.physics.add.collider(enemy, this.groundLayer)
-    }
-    /**
-     * Creates the Game Score UI for collectionable objects
-     */
-    createScoreUI() 
-    {
-        // gets the sizes of the screen
-        const{width,height} = this.scale
-        
-        // text score for fuels	
-        const style = { color: '#fff', fontSize: 8, fontFamily: 'Pixeled' }	
-        const x = width / 2;
-        const y = height / 30;
-
-        this.objectCollectedText = this.add.text(x, y, '0/' + this.objectToFinish, style)	
-            .setScrollFactor(0)	
-            .setOrigin(0.5, 0)
-        }
-        
-    /**
-     * Game Lose, the has die
-     * @param {Phaser.GameObjects.GameObject} object The object that kill the player
-     */
-    handleGameLose()
-    {
-        // kill object and play feedback
-        this.playerContainer.destroy()
-        this.sound.play('lose')
-        this.scene.stop('pvliGame')
-        this.scene.start('GameOver')
-
-        // inits the game final scene
-    }
-    
-         /**
-         * Creates a new random positioned bullet
-        //  * @param {Phaser.Tilemaps.Tilemap} map Mapa del juego ya creado
-        //  */
-        // createRandomBullet(map)
-        // {
-        //     // dimensiones del mapa
-        //     const mapWidth = map.width * map.tileWidth
-        //     const mapHeight = map.height * map.tileHeight
-    
-        //     // position
-        //     let x = Phaser.Math.Between(10, mapWidth - 10)
-        //     let y = Phaser.Math.Between(10, mapHeight * -0.15)
-            
-        //     let bullet = this.bullets.create(x, y, 'bullet')
-        //     this.physics.add.collider(bullet, this.groundLayer)
-        // }
 }
