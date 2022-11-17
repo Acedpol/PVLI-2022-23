@@ -1,3 +1,5 @@
+import Magic from "./magic.js"
+
 /** @type {Phaser.GameObjects.GameObject} */
 export default class PlayerContainer extends Phaser.GameObjects.Container
 {
@@ -132,7 +134,11 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         }
 
         // this.horizontalWrap(this);
-        this.headAnimation();        
+        this.headAnimation();
+
+        // UI
+        this.scene.UI.rewriteUI(this.scene.UI.place01, 'Allowed jumps: ' + this.allowedJumps + "/" + this.maxJumps);
+        this.scene.UI.rewriteUI(this.scene.UI.place02, 'Life: ' + this.health + "/" + this.maxHealth);
     }
 
     playerController()
@@ -281,6 +287,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             this.timeLapsed = 0;
             this.canDamage = false;
             console.log("health" + this.health)
+            this.scene.UI.rewriteUI(this.scene.UI.place02, 'Life: ' + this.health + "/" + this.maxHealth);
 
             //el jugador muere
             if(this.health < 1)
@@ -306,9 +313,9 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             this.remove(this.getAt(1), true)
 
             // creates a new one in the same position
-            let object = this.scene.createRandomObject(this.scene.map)
-            object.setPosition(posX, posY)
-            object.setOrigin(0.5,0.5)
+            let object = new Magic(this.scene, posX, posY);
+            this.scene.addToScene(object);
+            object.setOrigin(0.5,0.5);
 
             // reset physics
             this.scene.physics.world.enable(object)
