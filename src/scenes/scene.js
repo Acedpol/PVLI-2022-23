@@ -143,6 +143,7 @@ export default class blankScene extends Phaser.Scene
     }
     // --- --- --- 
 
+    // --- --- BACKGROUND --- --- 
     /**
      * Crea una imagen y la ajusta al fondo
      * @param {String} keymap Nombre dado a la imagen del fondo en boot 
@@ -163,4 +164,5 @@ export default class blankScene extends Phaser.Scene
         this.background = this.add.image(width/2, height/2, keymap)
             .setDisplaySize(width,height);
     }
+    // --- --- 
 };

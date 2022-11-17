@@ -165,60 +165,37 @@ export default class pvliGame extends blankScene
      */ 
     worldBoundsNCameraDeadZones(map)
     {
-        const{width,height} = this.scale;
+        // relación de aspecto
+        var z = 2.625;
+        let mw = 0; let mh = 0;
+        if(this.mw) mw = this.mw;
+        if(this.mh) mh = this.mh;
+        let zx = z * this.zw / this.logicWidth;
+        let zy = z * this.zh / this.logicHeight;
 
         // dimensiones del mapa
         const mapWidth = map.width * map.tileWidth
         const mapHeight = map.height * map.tileHeight
     
         // tamaño del mundo de juego
-        // this.physics.world.setBounds(0, 0, width, height)
         this.physics.world.setBounds(mapWidth * (-0.25), 0, mapWidth * 1.5, mapHeight)
-        // this.physics.world.setBounds(mapWidth * (-0.5), 0, mapWidth * 2, mapHeight)
 
-        // set the horizontal dead zone to 1.5x game width        
-        // this.cameras.main.setDeadzone(width, height) 
-        // let dw = 162 * (zw * gz) / 1080;
-        // let dh = 85.05 * (zh * gz) / 567;
-        // let dw = 0.05 * 3 / gz * zw / 1080;
-        // let dh = 0.05 * 3 / gz * zh / 567;
-        // this.cameras.main.setDeadzone(162, 85.05);
+        // set the horizontal dead zone to 1.5x game width
         this.cameras.main.setDeadzone(this.logicWidth * 0.15, this.logicHeight * 0.15);
-        // console.log("death zone: " + dw + ", " + dh);
-        // this.cameras.main.setDeadzone(mapWidth * 1.25, mapHeight * 0.655)
-
-        // let zoom = (this.game.config.zoom * 50 / 2) / 100 + 1
-        // z = gz / 2;
-        var z = 2.625;
-        // switch(gz){
-        //     case 1: z = 2.7; break;
-        //     case 2: z = 2; break;
-        //     case 3: z = 1.5; break;
-        // }
-
-        
-
+                
+        // debugger: datos del canvas y la cámara
+        const{width,height} = this.scale
         console.log("window.width: " + window.innerWidth + ", window.height: " + window.innerHeight);
         console.log("width: " + width + ", height: " + height);
         console.log("Game zoom: " + this.game.config.zoom);
         console.log("Zoom: " + z);
         console.log("margen: "+ this.mw + ", " + this.mh);
-
-        // let zx = zw * 2.7 / 1080;
-        // let zy = zh * 2.7 / 567;
-        let mw = 0; let mh = 0;
-        if(this.mw) mw = this.mw;
-        if(this.mh) mh = this.mh;
-        let zx = z * this.zw / this.logicWidth;
-        let zy = z * this.zh / this.logicHeight;
-        // let zx = 2;
-        // let zy = 2.1;
         console.log("Zoom: zx: " + zx + ", zy: " + zy);
+
+        // establece en la cámara el zoom y el viewport
         this.cameras.main
             .setZoom(zx,zy)
             .setViewport(mw,mh,this.zw,this.zh);
-            // .flash(500, 0, 0, 255, false)
-            // .setOrigin(0.5)
 
         let vec2 = this.cameras.main.getScroll(mapWidth/2, mapHeight/2);
         this.cameras.main.setScroll(vec2.x, vec2.y);
