@@ -1,34 +1,23 @@
 export default class blankScene extends Phaser.Scene
 {
     // --- TIMER --- 
-    /** @type {Number} */
-    timeLapsed
+    /** @type {Number} */   timeLapsed
 
     // --- ACTIVITY --- 
-    /** @type {boolean} */
-    active
+    /** @type {boolean} */  active
 
-    // --- ASPECT --- 
-    /** @type {Number} */
-    logicWidth
-    /** @type {Number} */
-    logicHeight
-    /** @type {Number} */
-    globalWidth
-    /** @type {Number} */
-    globalHeight    
+    // --- DIMENSIONS --- 
+    /** @type {Number} */   logicWidth
+    /** @type {Number} */   logicHeight
+    /** @type {Number} */   canvasWidth
+    /** @type {Number} */   canvasHeight    
 
-    // --- CAMERA --- 
-    /** @type {Number} */
-    zoom
-    /** @type {Number} */
-    zw
-    /** @type {Number} */
-    zh
-    /** @type {Number} */
-    mw
-    /** @type {Number} */
-    mh
+    // --- ASPECT GAME --- 
+    /** @type {Number} */   zoom
+    /** @type {Number} */   zw
+    /** @type {Number} */   zh
+    /** @type {Number} */   mw
+    /** @type {Number} */   mh
 
     constructor(keyname) 
     {
@@ -46,9 +35,10 @@ export default class blankScene extends Phaser.Scene
 
         this.logicWidth = 1080;
         this.logicHeight = 567;
+
         const{width,height} = this.scale;
-        this.globalWidth = width;
-        this.globalHeight = height;  
+        this.canvasWidth = width;
+        this.canvasHeight = height;  
 
         this.zoom = this.game.config.zoom;  
         // this.aspect_16_9();
@@ -111,15 +101,15 @@ export default class blankScene extends Phaser.Scene
     // --- --- --- 
 
     // --- --- ASPECT RATIO --- --- 
-    logicToGlobalWidth(w) {
-        return w *  this.globalWidth / (this.logicWidth * this.zoom);
+    logicToCanvasWidth(w) {
+        return w *  this.canvasWidth / (this.logicWidth * this.zoom);
     }
-    logicToGlobalHeight(h) {
-        return h * this.globalHeight / (this.logicHeight * this.zoom);
+    logicToCanvasHeight(h) {
+        return h * this.canvasHeight / (this.logicHeight * this.zoom);
     }
 
-    globalAR() {
-        return this.globalWidth / this.globalHeight;
+    canvasAR() {
+        return this.canvasWidth / this.canvasHeight;
     }
     logicAR() {
         return this.logicWidth / this.logicHeight;
@@ -129,10 +119,10 @@ export default class blankScene extends Phaser.Scene
     }
 
     excedWidth() {
-        return this.globalWidth / this.logicWidth;
+        return this.canvasWidth / this.logicWidth;
     }
     excedHeight() {
-        return this.globalHeight / this.logicHeight;
+        return this.canvasHeight / this.logicHeight;
     }
 
     aspect_ratio_W() {
@@ -142,14 +132,14 @@ export default class blankScene extends Phaser.Scene
         return this.logicHeight / this.logicWidth;
     }
     aspect_16_9() {
-        this.zw = this.globalWidth;
-        this.zh = this.globalWidth * this.aspect_ratio_H();
-        this.mh = (this.globalHeight - this.zh) / 2;
+        this.zw = this.canvasWidth;
+        this.zh = this.canvasWidth * this.aspect_ratio_H();
+        this.mh = (this.canvasHeight - this.zh) / 2;
     }
     aspect_4_3() {
-        this.zh = this.globalHeight;
-        this.zw = this.globalHeight * this.aspect_ratio_W();
-        this.mw = (this.globalWidth - this.zw) / 2;
+        this.zh = this.canvasHeight;
+        this.zw = this.canvasHeight * this.aspect_ratio_W();
+        this.mw = (this.canvasWidth - this.zw) / 2;
     }
 
     fontSize(size) {
@@ -157,36 +147,49 @@ export default class blankScene extends Phaser.Scene
         let exced = Math.abs(this.excedHeight() - this.excedWidth());
         if (exced > 0.05) {
             if (this.excedWidth() < this.excedHeight()) {
-                fs *= 3 * this.globalWidth / this.logicWidth;
+                fs *= 3 * this.canvasWidth / this.logicWidth;
             } else {
-                fs *= 3 * this.globalHeight / this.logicHeight;
+                fs *= 3 * this.canvasHeight / this.logicHeight;
             }
         } else {
-            fs *= 3 * this.globalWidth / this.logicWidth;
+            fs *= 3 * this.canvasWidth / this.logicWidth;
         }
-        return fs;
+        return fs + 'px';
     }
     scaleRatio() {
-        let zx = 3 * this.globalWidth / this.logicWidth;
-        let zy = 3 * this.globalHeight / this.logicHeight;
+        let zx = 3 * this.canvasWidth / this.logicWidth;
+        let zy = 3 * this.canvasHeight / this.logicHeight;
         return {zx,zy};
     }
     // --- --- --- 
 
     // --- --- BACKGROUND --- --- 
     /**
-     * Crea una imagen y la ajusta al fondo
+     * Crea una imagen y la ajusta al tamaño del mapa
+     * @param {String} keymap Nombre dado a la imagen del fondo en boot 
+     * @param {Phaser.Tilemaps.Tilemap} map mapa de juego
+     */
+    createMapBackground(keymap, map){
+        // dimensiones del mapa
+        const mapWidth = map.width * map.tileWidth
+        const mapHeight = map.height * map.tileHeight
+        this.background = this.add.image(mapWidth/2, mapHeight/2, keymap)
+            .setDisplaySize(mapWidth,mapHeight);
+    }
+
+    /**
+     * Crea una imagen y la ajusta al tamaño proporcionado
      * @param {String} keymap Nombre dado a la imagen del fondo en boot 
      * @param {number} width ancho del fondo
      * @param {number} height alto del fondo
      */
-    createBackgroundS(keymap, width, height){
+     createSizedBackground(keymap, width, height){
         this.background = this.add.image(width/2, height/2, keymap)
             .setDisplaySize(width,height);
     }
 
     /**
-     * Crea una imagen y la ajusta al fondo
+     * Crea una imagen y la ajusta al tamaño del canvas
      * @param {String} keymap Nombre dado a la imagen del fondo en boot 
      */
     createBackground(keymap){
@@ -195,4 +198,37 @@ export default class blankScene extends Phaser.Scene
             .setDisplaySize(width,height);
     }
     // --- --- 
+
+    // --- --- TEXT --- --- 
+    /**
+     * Crea una línea de texto
+     * @param {number} x Posición horizontal
+     * @param {number} y Posición vertical
+     * @param {String} text Lo que se va a escribir
+     * @param {number} size Tamaño de letra
+     * @param {Color} color Código hexadecimal
+     * @param {String} fuente Fuente creada en CSS
+    */
+    addText(x, y, text, size, color = '#FFFFFF', fuente = 'Greconian', style = 'normal') 
+    {
+        const _style = { fontSize: size, color: color, fontFamily: fuente, fontStyle: style }
+        return this.addTextStruct(x, y, text, _style);
+    }
+ 
+    /**
+     * Crea una línea de texto
+     * @param {number} x Posición horizontal
+     * @param {number} y Posición vertical
+     * @param {String} text Lo que se va a escribir
+     * @param {Phaser.Types.GameObjects.Text.TextStyle} style Atributos para el estilo de la fuente
+    */
+    addTextStruct(x, y, text, style) 
+    {
+       // relación de aspecto
+       style.fontSize = this.fontSize(style.fontSize);
+  
+       // crea el texto
+       return this.add.text(x, y, text, style).setOrigin(0.5);
+    }
+    // --- --- --- 
 };
