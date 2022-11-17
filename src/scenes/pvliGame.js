@@ -180,7 +180,7 @@ export default class pvliGame extends blankScene
         // tamaño del mundo de juego
         this.physics.world.setBounds(mapWidth * (-0.25), 0, mapWidth * 1.5, mapHeight)
 
-        // set the horizontal dead zone to 1.5x game width
+        // set the horizontal dead zone to 0.15x game width
         this.cameras.main.setDeadzone(this.logicWidth * 0.15, this.logicHeight * 0.15);
                 
         // debugger: datos del canvas y la cámara

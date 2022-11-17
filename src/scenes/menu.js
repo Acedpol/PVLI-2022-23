@@ -38,8 +38,7 @@ export default class blankMenu extends blankScene
     createButtonGame(x, y, texture, text, fn, scene, v)
     {
         // relación de aspecto
-        let zx = 3 * this.globalWidth / this.logicWidth;
-        let zy = 3 * this.globalHeight / this.logicHeight;
+        const {zx,zy} = this.scaleRatio();
 
         // crea el button y lo hace interactivo
         let img = this.add.image(x, y, texture)
@@ -70,21 +69,11 @@ export default class blankMenu extends blankScene
     addText(x, y, text, size, color = '#FFFFFF', fuente = 'Greconian', style = 'normal') 
     {
         // relación de aspecto
-        let zs = size;
-        let exced = Math.abs(this.excedHeight() - this.excedWidth());
-        if (exced > 0.05) {
-            if (this.excedWidth() < this.excedHeight()) {
-                zs *= 3 * this.globalWidth / this.logicWidth;
-            } else {
-                zs *= 3 * this.globalHeight / this.logicHeight;
-            }
-        } else {
-            zs *= 3 * this.globalWidth / this.logicWidth;
-        }
+        let fs = this.fontSize(size);        
 
         // crea el texto
         this.add.text(x, y, text, {
-            fontSize: zs, // <--
+            fontSize: fs, // <--
             fontStyle: style,
             fontFamily: fuente,
             color: color

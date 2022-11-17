@@ -116,6 +116,7 @@ export default class blankScene extends Phaser.Scene
     logicToGlobalHeight(h) {
         return h * this.globalHeight / (this.logicHeight * this.zoom);
     }
+
     globalAR() {
         return this.globalWidth / this.globalHeight;
     }
@@ -125,12 +126,14 @@ export default class blankScene extends Phaser.Scene
     realAR() {
         return this.zw / this.zh;
     }
+
     excedWidth() {
         return this.globalWidth / this.logicWidth;
     }
     excedHeight() {
         return this.globalHeight / this.logicHeight;
     }
+
     aspect_ratio_W() {
         return this.logicWidth / this.logicHeight;
     }
@@ -146,6 +149,26 @@ export default class blankScene extends Phaser.Scene
         this.zh = this.globalHeight;
         this.zw = this.globalHeight * this.aspect_ratio_W();
         this.mw = (this.globalWidth - this.zw) / 2;
+    }
+
+    fontSize(size) {
+        let fs = size;
+        let exced = Math.abs(this.excedHeight() - this.excedWidth());
+        if (exced > 0.05) {
+            if (this.excedWidth() < this.excedHeight()) {
+                fs *= 3 * this.globalWidth / this.logicWidth;
+            } else {
+                fs *= 3 * this.globalHeight / this.logicHeight;
+            }
+        } else {
+            fs *= 3 * this.globalWidth / this.logicWidth;
+        }
+        return fs;
+    }
+    scaleRatio() {
+        let zx = 3 * this.globalWidth / this.logicWidth;
+        let zy = 3 * this.globalHeight / this.logicHeight;
+        return {zx,zy};
     }
     // --- --- --- 
 
