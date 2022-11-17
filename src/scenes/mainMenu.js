@@ -1,6 +1,6 @@
 import blankMenu from "./menu.js";
 import { initGame } from "../utils/callbacks.js";
-import { toggleInfoBar } from '../../lib/pauseCtrl.js'
+import { onInfoBar, offInfoBar } from '../../lib/pauseCtrl.js'
 
 export default class Menu extends blankMenu
 {
@@ -11,8 +11,8 @@ export default class Menu extends blankMenu
 
     init() {
         super.init();
-        toggleInfoBar();
-        this.events.on('resume', () => { toggleInfoBar(); });
+        onInfoBar();
+        this.events.on('resume', () => { onInfoBar(); });
     }
 
     preload() 
@@ -36,14 +36,14 @@ export default class Menu extends blankMenu
         this.createButtonGame(width * 0.5, height * 0.65, 'button', 'Opciones', initGame, this);
     }
 
-    update() 
+    update(t, dt) 
     {
-        super.update();
+        super.update(t, dt);
     }
 
     /** @override */
     handlePause() {
         super.handlePause();
-        toggleInfoBar();
+        offInfoBar();
     }
 }

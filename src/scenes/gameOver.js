@@ -36,9 +36,9 @@ export default class GameOver extends blankMenu
         });
     }
 
-    update() 
+    update(t, dt) 
     {
-        super.update();
+        super.update(t, dt);
     }
 
 }

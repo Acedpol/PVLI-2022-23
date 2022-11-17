@@ -68,9 +68,10 @@ export default class blankScene extends Phaser.Scene
     {
         this.timeLapsed = this.timeLapsed + dt; // UPDATE TIMER
 
-        if (this.p.isDown) {
+        if (this.timeLapsed > 150 && this.p.isDown) {
             const evt = createEvent('pause');
             document.dispatchEvent(evt);
+            this.timeLapsed = 0;
         }
     }
 

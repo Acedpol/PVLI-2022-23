@@ -28,7 +28,7 @@ export default class blankPause extends blankScene
 
     update(t, dt) 
     {
-        super.update();
+        super.update(t, dt);
     }
 
     /** @override */
