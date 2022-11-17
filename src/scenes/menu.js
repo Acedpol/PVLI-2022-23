@@ -58,30 +58,6 @@ export default class blankMenu extends blankScene
     }
 
     /**
-     * Crea una línea de texto
-     * @param {number} x Posición horizontal
-     * @param {number} y Posición vertical
-     * @param {String} text Lo que se va a escribir
-     * @param {number} size Tamaño de letra
-     * @param {Color} color Código hexadecimal
-     * @param {String} fuente Fuente creada en CSS
-     */
-    addText(x, y, text, size, color = '#FFFFFF', fuente = 'Greconian', style = 'normal') 
-    {
-        // relación de aspecto
-        let fs = this.fontSize(size);        
-
-        // crea el texto
-        this.add.text(x, y, text, {
-            fontSize: fs, // <--
-            fontStyle: style,
-            fontFamily: fuente,
-            color: color
-        })
-        .setOrigin(0.5)
-    }
-
-    /**
      * Paleta de colores preestablecidos
      * @param {Number} N índice del color
      * @returns color seleccionado

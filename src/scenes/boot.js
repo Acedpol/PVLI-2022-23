@@ -45,9 +45,12 @@ export default class Boot extends Phaser.Scene
         // platform
         this.load.image('platform', './assets/sprites/escenario/ground.png')
 
+        // background
+        this.load.image('img_back', './assets/images/background.jpg')
+        this.load.image('img_back2', './assets/images/fondo-ladrillos.jpg')
+
         // map
         this.load.image('img_tilemap', './assets/sprites/escenario/ground.png')
-        this.load.image('img_back', './assets/images/background.jpg')
         this.load.tilemapTiledJSON('nivel', './assets/map/nivel0.json')
 
 

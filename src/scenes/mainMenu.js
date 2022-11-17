@@ -23,7 +23,7 @@ export default class Menu extends blankMenu
     create() 
     {
         // gets the sizes of the screen
-        const{width,height} = this.scale
+        const{width,height} = this.scale; // canvas size
 
         // Create background image
         this.background = this.createBackground('img_back');
