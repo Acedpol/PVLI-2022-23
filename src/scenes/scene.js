@@ -125,6 +125,12 @@ export default class blankScene extends Phaser.Scene
     realAR() {
         return this.zw / this.zh;
     }
+    excedWidth() {
+        return this.globalWidth / this.logicWidth;
+    }
+    excedHeight() {
+        return this.globalHeight / this.logicHeight;
+    }
     aspect_ratio_W() {
         return this.logicWidth / this.logicHeight;
     }
