@@ -1,5 +1,6 @@
 import blankMenu from "./menu.js";
 import { initGame } from "../utils/callbacks.js";
+import { toggleInfoBar } from '../../lib/pauseCtrl.js'
 
 export default class Menu extends blankMenu
 {
@@ -10,6 +11,8 @@ export default class Menu extends blankMenu
 
     init() {
         super.init();
+        toggleInfoBar();
+        this.events.on('resume', () => { toggleInfoBar(); });
     }
 
     preload() 
@@ -36,5 +39,11 @@ export default class Menu extends blankMenu
     update() 
     {
         super.update();
+    }
+
+    /** @override */
+    handlePause() {
+        super.handlePause();
+        toggleInfoBar();
     }
 }

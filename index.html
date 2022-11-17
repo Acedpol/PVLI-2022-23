@@ -70,7 +70,7 @@
         }
     </style>
 
-    <div id="info" class="info menu" style="display: none;">
+    <div id="info" class="info cover menu" style="display: none;">
         <div class="fondo">
             <div name="sub-menu" id="controles" style="display: block;">
                 <h1><a href="#" onclick="toggleSubMenu('controles')">Controles</a></h1>
@@ -111,13 +111,9 @@
 
             padding: 0px;
             margin: 0px;
-            /* top: 0px;
-            left: 0px;
-            width: -webkit-fill-available;
-            height: -webkit-fill-available; */
             display: none;
         }
-        .info {
+        .cover {
             background-image:url("./assets/images/santuario-helenistico-apolo-didima.jpeg");
             background-size: cover;
         }
@@ -164,6 +160,9 @@
         .ask a:hover, h1 a:hover {
             color: blue;
         }
+        #info-bar p {
+            font-size: 2vh; 
+        }
     </style>
 
     <script>
@@ -172,6 +171,10 @@
             document.dispatchEvent(evt);
         }        
     </script>
+
+    <div id="info-bar" class="info menu" style="background-color: rgba(0, 0, 0, 0.6);">
+        <p>Pulse 'P' o haz click en <i class="fa fa-question-circle" aria-hidden="true"></i> para acceder al panel de información y controles.</p>
+    </div>
     
     <script id="magia-arcana" src="./lib/responsive.js" type="module"></script>
     <script id="magia-arcana" src="./lib/pauseCtrl.js" type="module"></script>
