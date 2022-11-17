@@ -93,11 +93,15 @@ export default class pvliGame extends blankScene
 
     create() 
     {
-        // Create background image
-        this.background = this.createBackground('img_back');
-
         // Creates the Game Map
         this.map = this.createMap('nivel', 18, 21, 'platform', 'img_tilemap', 'plataformas')
+
+        // dimensiones del mapa
+        const mapWidth = this.map.width * this.map.tileWidth
+        const mapHeight = this.map.height * this.map.tileHeight
+
+        // Create background image
+        this.createBackgroundS('img_back', mapWidth, mapHeight);
 
         // Grupo de Bullets
         this.bullets = this.physics.add.group({
@@ -108,7 +112,7 @@ export default class pvliGame extends blankScene
 
         // Creates the player
         this.createPlayer(this.map)
-        // this.createEnemy(30, 100)
+        this.createEnemy(30, 100)
 
         // Crea un objeto para recoger en la escena
         this.createRandomObject(this.map)
@@ -161,27 +165,37 @@ export default class pvliGame extends blankScene
      */ 
     worldBoundsNCameraDeadZones(map)
     {
-        const{width,height} = this.scale;
+        // relación de aspecto
+        var z = 2.625;
+        let mw = 0; let mh = 0;
+        if(this.mw) mw = this.mw;
+        if(this.mh) mh = this.mh;
+        let zx = z * this.zw / this.logicWidth;
+        let zy = z * this.zh / this.logicHeight;
 
         // dimensiones del mapa
         const mapWidth = map.width * map.tileWidth
         const mapHeight = map.height * map.tileHeight
     
         // tamaño del mundo de juego
-        // this.physics.world.setBounds(0, 0, width, height)
         this.physics.world.setBounds(mapWidth * (-0.25), 0, mapWidth * 1.5, mapHeight)
-        // this.physics.world.setBounds(mapWidth * (-0.5), 0, mapWidth * 2, mapHeight)
 
-        // set the horizontal dead zone to 1.5x game width        
-        // this.cameras.main.setDeadzone(width, height) 
-        this.cameras.main.setDeadzone(mapWidth * 0.5, mapHeight * 0.5)
-        // this.cameras.main.setDeadzone(mapWidth * 1.25, mapHeight * 0.655)
+        // set the horizontal dead zone to 0.15x game width
+        this.cameras.main.setDeadzone(this.logicWidth * 0.15, this.logicHeight * 0.15);
+                
+        // debugger: datos del canvas y la cámara
+        const{width,height} = this.scale
+        console.log("window.width: " + window.innerWidth + ", window.height: " + window.innerHeight);
+        console.log("width: " + width + ", height: " + height);
+        console.log("Game zoom: " + this.game.config.zoom);
+        console.log("Zoom: " + z);
+        console.log("margen: "+ this.mw + ", " + this.mh);
+        console.log("Zoom: zx: " + zx + ", zy: " + zy);
 
-        this.cameras.main.setSize(width, height)
-            .setZoom(1.5,1.5)
-            .setViewport(0,0,width,height);
-            // .flash(500, 0, 0, 255, false)
-            // .setOrigin(0.5)
+        // establece en la cámara el zoom y el viewport
+        this.cameras.main
+            .setZoom(zx,zy)
+            .setViewport(mw,mh,this.zw,this.zh);
 
         let vec2 = this.cameras.main.getScroll(mapWidth/2, mapHeight/2);
         this.cameras.main.setScroll(vec2.x, vec2.y);

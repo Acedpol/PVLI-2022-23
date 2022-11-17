@@ -37,13 +37,18 @@ export default class blankMenu extends blankScene
      */
     createButtonGame(x, y, texture, text, fn, scene, v)
     {
+        // relación de aspecto
+        const {zx,zy} = this.scaleRatio();
+
         // crea el button y lo hace interactivo
-        this.add.image(x, y, texture)
+        let img = this.add.image(x, y, texture)
             .setInteractive()
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, ()=>{
                 fn(scene, v);
             })
-            .setScale(1.25, 0.75) // usando el placeholder actual
+            .setScale(1.25 * zx, 0.75 * zy) // <--
+
+        console.log("img: " + img.width + ", " + img.height);
  
         // selecciona el color del texto
         let _color = '#DD1111'
@@ -61,9 +66,14 @@ export default class blankMenu extends blankScene
      * @param {Color} color Código hexadecimal
      * @param {String} fuente Fuente creada en CSS
      */
-    addText(x, y, text, size, color = '#FFFFFF', fuente = 'Greconian', style = 'normal') {
+    addText(x, y, text, size, color = '#FFFFFF', fuente = 'Greconian', style = 'normal') 
+    {
+        // relación de aspecto
+        let fs = this.fontSize(size);        
+
+        // crea el texto
         this.add.text(x, y, text, {
-            fontSize: size,
+            fontSize: fs, // <--
             fontStyle: style,
             fontFamily: fuente,
             color: color
