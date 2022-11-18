@@ -21,7 +21,7 @@ export default class UI extends blankMenu
         // this.style = { color: '#fff', fontSize: 8, fontFamily: 'Greconian', fontStyle: 'normal' }
         this.size = 8;
         this.allowedJumps = 'Allowed jumps: 0/0'; 
-        this.life = 'Life: 0/0';
+        this.lives = 'Lives: 9';
     }
 
     preload() 
@@ -35,7 +35,7 @@ export default class UI extends blankMenu
         const y = this.canvasHeight;
 
         this.place01 = this.addText(x / 2, y / 30, this.allowedJumps, this.size);
-        this.place02 = this.addText(x / 2, y * 3 / 30, this.life, this.size);
+        this.place02 = this.addText(x / 2, y * 3 / 30, this.lives, this.size);
     }
 
     update(t, dt) 
