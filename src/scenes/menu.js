@@ -54,7 +54,7 @@ export default class blankMenu extends blankScene
         let _color = '#DD1111'
  
         // compone el button con un texto
-        this.addText(x, y, text, 16,  _color);
+        this.addTextR(x, y, text, 16,  _color);
     }
 
     /**

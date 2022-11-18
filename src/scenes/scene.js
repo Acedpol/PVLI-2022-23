@@ -212,7 +212,22 @@ export default class blankScene extends Phaser.Scene
     addText(x, y, text, size, color = '#FFFFFF', fuente = 'Greconian', style = 'normal') 
     {
         const _style = { fontSize: size, color: color, fontFamily: fuente, fontStyle: style }
-        return this.addTextStruct(x, y, text, _style);
+        return this.addText_s(x, y, text, _style);
+    }
+
+    /**
+     * Crea una línea de texto
+     * @param {number} x Posición horizontal
+     * @param {number} y Posición vertical
+     * @param {String} text Lo que se va a escribir
+     * @param {number} size Tamaño de letra
+     * @param {Color} color Código hexadecimal
+     * @param {String} fuente Fuente creada en CSS
+    */
+    addTextR(x, y, text, size, color = '#FFFFFF', fuente = 'Greconian', style = 'normal') 
+    {
+        const _style = { fontSize: size, color: color, fontFamily: fuente, fontStyle: style }
+        return this.addTextR_s(x, y, text, _style);
     }
  
     /**
@@ -222,13 +237,34 @@ export default class blankScene extends Phaser.Scene
      * @param {String} text Lo que se va a escribir
      * @param {Phaser.Types.GameObjects.Text.TextStyle} style Atributos para el estilo de la fuente
     */
-    addTextStruct(x, y, text, style) 
+    addText_s(x, y, text, style) 
     {
        // relación de aspecto
        style.fontSize = this.fontSize(style.fontSize);
   
        // crea el texto
        return this.add.text(x, y, text, style).setOrigin(0.5);
+    }
+
+    /**
+     * Crea una línea de texto
+     * @param {number} x Posición horizontal
+     * @param {number} y Posición vertical
+     * @param {String} text Lo que se va a escribir
+     * @param {Phaser.Types.GameObjects.Text.TextStyle} style Atributos para el estilo de la fuente
+    */
+    addTextR_s(x, y, text, style) 
+    {
+        style.fontSize *= 3;
+        let t = this.add.text(x, y, text, style).setOrigin(0.5);
+        console.log("Font size: { w: " + t.width + ", h: " + t.height + "} ");
+        console.log("font size: " + style.fontSize);
+        let w = t.width * this.canvasWidth / this.logicWidth;
+        let h = t.height * this.canvasHeight / this.logicHeight;
+        t.setDisplaySize(w,h);
+
+        // crea el texto
+        return t;
     }
     // --- --- --- 
 };

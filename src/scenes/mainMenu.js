@@ -29,7 +29,7 @@ export default class Menu extends blankMenu
         this.background = this.createBackground('img_back');
 
         // compone el titulo y subtitulo del menu principal del juego
-        this.addText(width * 0.5, height * 0.2, 'FORGOTTEN DEBRIS', 24);
+        this.addTextR(width * 0.5, height * 0.2, 'FORGOTTEN DEBRIS', 24);
 
         // three buttons, three levels on difficulty (0.35, 0.55, 0.75)
         this.createButtonGame(width * 0.5, height * 0.45, 'button', 'Jugar', initGame, this);
