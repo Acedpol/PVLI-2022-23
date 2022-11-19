@@ -17,6 +17,11 @@ export default class Boot extends Phaser.Scene
         // player spritesheet
         this.load.spritesheet('angel', "./assets/sprites/jugador/victoria.png", //cambiar el sprite para la animacion 
         { frameWidth: 122, frameHeight: 95 }) 
+        // player proyectile
+        this.load.image('object', './assets/sprites/jugador/calabaza.png')
+        // player attack
+        this.load.spritesheet('attackSpr', './assets/sprites/jugador/attack1.png',
+        { frameWidth: 32, frameHeight: 32 }) 
 
         // --- ENEMIGOS ---
         // Lobo - idle
@@ -30,9 +35,7 @@ export default class Boot extends Phaser.Scene
         { frameWidth: 42, frameHeight: 24 })
 
         // --- OBJETOS ---
-        // pocion
-        this.load.spritesheet('potiSprite', "./assets/sprites/llena.png",
-        { frameWidth: 16, frameHeight: 16 })
+
 
         // // jetpack audio
         // this.load.audio('jetpack', './assets/sounds/jetpack2.wav')//cambio mas tarde
@@ -56,10 +59,13 @@ export default class Boot extends Phaser.Scene
 
         // --- OBJECTS --- 
         // object
-        this.load.image('object', './assets/sprites/calabaza.png')//poti
         //this.load.image('object', './assets/sprites/fuel.png') // brazos
         //this.load.image('object', './assets/sprites/fuel.png') // cabeza
         //this.load.image('object', './assets/sprites/fuel.png') // alas
+
+        // pocion
+        this.load.spritesheet('potiSprite', "./assets/sprites/llena.png",
+        { frameWidth: 16, frameHeight: 16 })
 
         // pick audio
         this.load.audio('pick', './assets/sounds/pick.wav')//yo lo dejaria
@@ -112,6 +118,13 @@ export default class Boot extends Phaser.Scene
         this.anims.create({
           key: 'jump',
           frames: this.anims.generateFrameNames('angel', { start: 10, end: 18 }),
+          frameRate: 9,
+          repeat: -1
+        })
+        // creates attack animation for player
+        this.anims.create({
+          key: 'attack',
+          frames: this.anims.generateFrameNames('attackSpr', { start: 0, end: 4 }),
           frameRate: 9,
           repeat: -1
         })

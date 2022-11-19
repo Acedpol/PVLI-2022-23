@@ -47,7 +47,7 @@ export default class Magic extends Object
 
     effect()
     {
-        this.container.carryObject(this)
+        this.container.carryMagic(this)
         this.scene.sound.play('pick')
     }
 

@@ -1,4 +1,5 @@
 import Magic from "./magic.js"
+import Attack from "./attack.js"
 
 /** @type {Phaser.GameObjects.GameObject} */
 export default class PlayerContainer extends Phaser.GameObjects.Container
@@ -52,13 +53,19 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         this.nextJump = this.scene.time.now;
         this.allowedJumps = this.maxJumps;
 
-        //cada cuanto puede recibir daño
-        this.damageTimer = 2000000000000000000
+
         //booleanno para saber si puede ser dañado
         this.canDamage = true
         this.xHead = 0;
         this.yHead = 0;
-        //this.object = null
+
+        // ataque
+        this.attackcooldown = true
+        this.attack = this.scene.add.existing(new Attack(this.scene, 155, 150   ));
+        this.attack.disable();
+
+        // magia
+        this.magic = null;
 
         // // inicialización de audios fx
         // this.jetpack = this.scene.sound.add('jetpack')
@@ -148,13 +155,13 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         {
             this.body.setVelocityX(-80)
             this.player.flipX = true
-            if (this.carriesObject) this.object.flipX = true
+            if (this.carriesMagic) this.magic.flipX = true
         }
         else if (this.d.isDown || this.cursors.right.isDown)
         {
             this.body.setVelocityX(80)
             this.player.flipX = false
-            if (this.carriesObject) this.object.flipX = false
+            if (this.carriesMagic) this.magic.flipX = false
         }
         else
         {
@@ -166,7 +173,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         {
             this.allowedJumps--;
             console.log(this.allowedJumps);
-            this.body.setVelocityY(-175);
+            this.body.setVelocityY(-190);
             this.nextJump = this.scene.time.now + 500;
         }
 
@@ -174,18 +181,17 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             this.allowedJumps = this.maxJumps;
         }
 
-        if (this.j.isDown || this.scene.input.mousePointer.isDown) {
-            this.dropObject();
+        if (this.j.isDown) {
+            this.attackinput()
         }
 
         if (this.k.isDown){
-            this.changeMaxJumps(2);
-            console.log(this.maxJumps);
+            this.dropMagic();
         }
     }
 
     headAnimation() {
-        if (this.carriesObject)
+        if (this.carriesMagic)
         {
             if (!this.groundCheck)
             {
@@ -208,67 +214,65 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
                     this.xHead = 0; this.yHead = 0;
                 }
                 if (!this.player.flipX) 
-                    this.object.setPosition(0 - this.player.width * (-2 + this.xHead) / 100, 0 - this.player.height * (9 + this.yHead) / 100);
+                    this.magic.setPosition(0 - this.player.width * (-2 + this.xHead) / 100, 0 - this.player.height * (9 + this.yHead) / 100);
                 else
-                    this.object.setPosition(0 + this.player.width * (-4 + this.xHead) / 100, 0 - this.player.height * (9 + this.yHead) / 100);
+                    this.magic.setPosition(0 + this.player.width * (-4 + this.xHead) / 100, 0 - this.player.height * (9 + this.yHead) / 100);
             } else {
                 this.xHead = 0; this.yHead = 0;
                 if (!this.player.flipX)
-                    this.object.setPosition(0 + this.player.width * 0 / 100, 0 - this.player.height * 6 / 100);
+                    this.magic.setPosition(0 + this.player.width * 0 / 100, 0 - this.player.height * 6 / 100);
                 else 
-                    this.object.setPosition(0 + this.player.width * -2 / 100, 0 - this.player.height * 6 / 100);
+                    this.magic.setPosition(0 + this.player.width * -2 / 100, 0 - this.player.height * 6 / 100);
             }
         }
     }
 
     /**
-     * @param {Phaser.Physics.Arcade.Sprite} object
+     * @param {Phaser.Physics.Arcade.Sprite} magic
      */
-    horizontalWrap(object)
+    horizontalWrap(magic)
     {
-        const halfWidth = object.body.width * 0.25
+        const halfWidth = magic.body.width * 0.25
         const gameWidth = this.scene.scale.width
-        if (object.x < -halfWidth*3)
+        if (magic.x < -halfWidth*3)
         {
-            object.x = gameWidth - halfWidth
+            magic.x = gameWidth - halfWidth
         }
-        else if (object.x > gameWidth - halfWidth)
+        else if (magic.x > gameWidth - halfWidth)
         {
-            object.x = -halfWidth*3
+            magic.x = -halfWidth*3
         }
     }
 
     // /**
-    //  * Carries an object
-    //  * @param {Phaser.GameObjects.GameObject} object The object that will carry over
+    //  * Carries an magic
+    //  * @param {Phaser.GameObjects.GameObject} magic The magic that will carry over
     //  */
-    carryObject(object)
+    carryMagic(magic)
     {
-        if (!this.carriesObject)
+        if(this.magic===null)
+            this.magic = magic
+        if (!this.carriesMagic)
         {
-            // keeps save the object
+            // keeps save the magic
             /** @type {Phaser.Physics.Arcade.Image} */
-            this.object = object
-            this.object.angle = 0
-            this.object.ensureRotationActivity()
-            this.carriesObject = true
+            this.magic = magic
+            this.magic.angle = 0
+            this.magic.ensureRotationActivity()
+            this.carriesMagic = true
 
             // disable from physics world
-            this.scene.physics.world.disableBody(object.body)
+            this.scene.physics.world.disableBody(magic.body)
 
-            // Recoge el object y se lo añade a playerContainer (y lo coloca)
-            this.add(object)
-            object.setPosition(0 + this.player.width * 0 / 100, 0 - this.player.height * 5 / 100)
-            object.setOrigin(0)
+            // Recoge el magic y se lo añade a playerContainer (y lo coloca)
+            this.add(magic)
+            magic.setPosition(0 + this.player.width * 0 / 100, 0 - this.player.height * 5 / 100)
+            magic.setOrigin(0)
 
             console.log('pick')
-            // this.collectObject()
         }
     }
 
-    /**
-     * Drops an object that is being carried
-     */
     heal(power)
     {
         this.health += power;
@@ -279,15 +283,25 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         console.log("health" + this.health)
     }
 
-    hurt(power)
+    hurt()
     {
         if(this.canDamage)
         {
-            this.health -= power;
-            this.timeLapsed = 0;
+            this.health --;
             this.canDamage = false;
             console.log("health" + this.health)
             this.scene.UI.rewriteUI(this.scene.UI.place02, 'Life: ' + this.health + "/" + this.maxHealth);
+
+            this.timer = this.scene.time.addEvent({
+                delay: 1000,
+                callback: onEvent,
+                callbackScope: this,
+                loop: false
+            });
+
+            function onEvent() {
+                this.canDamage = true;
+            }
 
             //el jugador muere
             if(this.health < 1)
@@ -296,9 +310,9 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             }
         }
     }
-    dropObject()
+    dropMagic()
     {
-        if (this.carriesObject)
+        if (this.carriesMagic)
         {
             // registers the actual position relative to the player container
             let posX = this.x + this.body.width / 2;
@@ -309,47 +323,37 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
                 posX += this.body.width * 95 / 100;
             }
 
-            // removes and deletes the first object carried by the player container
+            // removes and deletes the first magic carried by the player container
             this.remove(this.getAt(1), true)
 
             // creates a new one in the same position
-            let object = new Magic(this.scene, posX, posY);
-            this.scene.addToScene(object);
-            object.setOrigin(0.5,0.5);
+            this.magic = new Magic(this.scene, posX, posY);
+            this.scene.addToScene(this.magic);
+            this.magic.setOrigin(0.5,0.5);
 
             // reset physics
-            this.scene.physics.world.enable(object)
-            object.setVelocityY(-100)
-            object.toggleRotationActivity()
+            this.scene.physics.world.enable(this.magic)
+            this.magic.setVelocityY(-100)
+            this.magic.toggleRotationActivity()
 
             if (this.player.flipX) {
-                object.setVelocityX(-75);
-                object.flipX = true;
-                object.setIncRot(5);
+                this.magic.setVelocityX(-75);
+                this.magic.flipX = true;
+                this.magic.setIncRot(5);
             } else {
-                object.setVelocityX(75);
-                object.flipX = false;
-                object.setIncRot(-5);
+                this.magic.setVelocityX(75);
+                this.magic.flipX = false;
+                this.magic.setIncRot(-5);
             }
 
             this.scene.time.delayedCall(100, () => {
-                object.toggleStopInertia()
+                this.magic.toggleStopInertia()
             })
 
             // reset values
-            this.object = null
-            this.carriesObject = false
+            this.carriesMagic = false
 
             console.log('drop')
-            // this.unCollectObject()
-        }
-    }
-    /**
-     * Throws the object that the player has in its inventory
-     */
-    throwObject(){
-        if (this.carriesObject){
-
         }
     }
 
@@ -372,4 +376,39 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     changeMaxJumps(jumps){
         this.maxJumps = jumps;
     }
+    attackinput() {
+        //si ha pasado el cooldown se llama al método para atacar
+        if (this.attackcooldown === true) {
+          let dx = 0;
+          this.attackcooldown = false;
+
+          if (this.player.flipX) {
+            this.attack.flipX = true;
+            dx = -this.player.width / 4;
+          }
+          if (!this.player.flipX) {
+            this.attack.flipX = false;
+            dx = this.player.width / 3;
+          }
+          this.attack.enableBody(true, this.x + dx, this.y + this.player.height/3, true, true)
+          this.attack.play('attack')
+
+            
+
+            //this.batSound.play(); //
+            this.timer = this.scene.time.addEvent({
+                delay: 500,
+                callback: onEvent,
+                callbackScope: this,
+                loop: false
+            });
+
+            function onEvent() {
+                this.attack.disable();
+                this.attack.anims.pause()
+                this.attackcooldown = true;
+            }
+        }
+    }
+
 }

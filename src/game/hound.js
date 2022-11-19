@@ -6,34 +6,23 @@ import Enemy from './enemy.js';
  */
 
 export default class Hound extends Enemy{
-    /**
-     * Constructor de enemigo
-     * @param {Phaser.Scene} scene Escena del enemigo
-     * @param {number} x Coordenada x
-     * @param {number} y Coordenada y
-     * @param {number} width Ancho
-     * @param {number} height Alto
-     * @param {number} power daño al jugador
-     * @param {spritesheet} spritesheet Spritesheet
-     * @param {playerContainer} player container
-     */
-
     constructor(scene, x, y){
-        super(scene, x, y,'houndIdleSprite', 0, 3);
+        super(scene, x, y,'houndIdleSprite', 0, 1, 50);
         this.play('wolf_idle');        
-        this.player = this.scene.playerContainer
-        this.dir = 1;
-        this.speed = 50;     
-        this.play('wolf_idle');
     }
 
     preUpdate(t,dt) 
     {
         super.preUpdate(t,dt) // for animation
 
-        this.move()
+       //this.move()
 
-        super.playerColide();
+        super.playerCollide();
+        
+        if(this.health <=0)
+        {
+            this.destroy()
+        }
         
     }
 
