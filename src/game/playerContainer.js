@@ -145,7 +145,6 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 
         // UI
         this.scene.UI.rewriteUI(this.scene.UI.place01, 'Allowed jumps: ' + this.allowedJumps + "/" + this.maxJumps);
-        this.scene.UI.rewriteUI(this.scene.UI.place02, 'Life: ' + this.health + "/" + this.maxHealth);
     }
 
     playerController()
@@ -290,7 +289,8 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             this.health --;
             this.canDamage = false;
             console.log("health" + this.health)
-            this.scene.UI.rewriteUI(this.scene.UI.place02, 'Life: ' + this.health + "/" + this.maxHealth);
+            
+            this.scene.UI.rewriteUI(this.scene.UI.place02, 'Lives: ' + this.health);
 
             this.timer = this.scene.time.addEvent({
                 delay: 1000,
