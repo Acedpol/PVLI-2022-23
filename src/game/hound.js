@@ -15,7 +15,7 @@ export default class Hound extends Enemy{
     {
         super.preUpdate(t,dt) // for animation
 
-       //this.move()
+       this.move()
 
         super.playerCollide();
         
