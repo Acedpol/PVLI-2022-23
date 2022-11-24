@@ -1,5 +1,25 @@
+/**
+ * @constructor Generates a constructor for a given data structure
+ * @param {string} keys separated by a comma + whitespace. struct('id, name, age')
+ * @returns {constructor} Constructor for the new struct
+ */
+function makeStruct(keys) {
+    if (!keys) return null;
+    const k = keys.split(', ');
+    const count = k.length;
+    
+    /** @constructor */
+    function constructor() {
+        for (let i = 0; i < count; i++) this[k[i]] = arguments[i];
+    }
+    return constructor;
+}
+
 export default class blankScene extends Phaser.Scene
 {
+    // --- STRUCT --- 
+    /** @type {makeStruct} */   rectStyle
+
     // --- TIMER --- 
     /** @type {Number} */   timeLapsed
 
@@ -13,6 +33,9 @@ export default class blankScene extends Phaser.Scene
     /** @type {Number} */   canvasHeight    
 
     // --- ASPECT GAME --- 
+    /** @type {Number} */   AR
+    /** @type {Number} */   coeHeight
+    /** @type {Number} */   coeWidth
     /** @type {Number} */   zoom
     /** @type {Number} */   zw
     /** @type {Number} */   zh
@@ -40,9 +63,15 @@ export default class blankScene extends Phaser.Scene
         this.canvasWidth = width;
         this.canvasHeight = height;  
 
+        this.coeWidth = this.getCoeWidth();
+        this.coeHeight = this.getCoeHeight();
+        this.AR = this.getAR();
+
         this.zoom = this.game.config.zoom;  
         // this.aspect_16_9();
         this.aspect_4_3();
+
+        this.rectStyle = new makeStruct('relleno, contorno, alphaFill, alphaLine, drawFill, drawLine');
     }
 
     preload() 
@@ -102,10 +131,10 @@ export default class blankScene extends Phaser.Scene
 
     // --- --- ASPECT RATIO --- --- 
     logicToCanvasWidth(w) {
-        return w *  this.canvasWidth / (this.logicWidth * this.zoom);
+        return w *  this.canvasWidth / this.logicWidth;
     }
     logicToCanvasHeight(h) {
-        return h * this.canvasHeight / (this.logicHeight * this.zoom);
+        return h * this.canvasHeight / this.logicHeight;
     }
 
     canvasAR() {
@@ -118,11 +147,14 @@ export default class blankScene extends Phaser.Scene
         return this.zw / this.zh;
     }
 
-    excedWidth() {
+    getCoeWidth() {
         return this.canvasWidth / this.logicWidth;
     }
-    excedHeight() {
+    getCoeHeight() {
         return this.canvasHeight / this.logicHeight;
+    }
+    getAR() {
+        return (this.coeHeight + this.coeWidth) / 2;
     }
 
     aspect_ratio_W() {
@@ -131,6 +163,7 @@ export default class blankScene extends Phaser.Scene
     aspect_ratio_H() {
         return this.logicHeight / this.logicWidth;
     }
+
     aspect_16_9() {
         this.zw = this.canvasWidth;
         this.zh = this.canvasWidth * this.aspect_ratio_H();
@@ -144,21 +177,22 @@ export default class blankScene extends Phaser.Scene
 
     fontSize(size) {
         let fs = size;
-        let exced = Math.abs(this.excedHeight() - this.excedWidth());
+        let exced = Math.abs(this.coeHeight - this.coeWidth);
         if (exced > 0.05) {
-            if (this.excedWidth() < this.excedHeight()) {
-                fs *= 3 * this.canvasWidth / this.logicWidth;
+            if (this.coeWidth < this.coeHeight) {
+                fs *= 3 * this.coeWidth;
             } else {
-                fs *= 3 * this.canvasHeight / this.logicHeight;
+                fs *= 3 * this.coeHeight;
             }
         } else {
-            fs *= 3 * this.canvasWidth / this.logicWidth;
+            fs *= 3 * this.coeWidth;
         }
         return fs + 'px';
     }
+
     scaleRatio() {
-        let zx = 3 * this.canvasWidth / this.logicWidth;
-        let zy = 3 * this.canvasHeight / this.logicHeight;
+        let zx = 3 * this.coeWidth;
+        let zy = 3 * this.coeHeight;
         return {zx,zy};
     }
     // --- --- --- 
@@ -220,51 +254,48 @@ export default class blankScene extends Phaser.Scene
      * @param {number} x Posición horizontal
      * @param {number} y Posición vertical
      * @param {String} text Lo que se va a escribir
-     * @param {number} size Tamaño de letra
-     * @param {Color} color Código hexadecimal
-     * @param {String} fuente Fuente creada en CSS
-    */
-    addTextR(x, y, text, size, color = '#FFFFFF', fuente = 'Greconian', style = 'normal') 
-    {
-        const _style = { fontSize: size, color: color, fontFamily: fuente, fontStyle: style }
-        return this.addTextR_s(x, y, text, _style);
-    }
- 
-    /**
-     * Crea una línea de texto
-     * @param {number} x Posición horizontal
-     * @param {number} y Posición vertical
-     * @param {String} text Lo que se va a escribir
      * @param {Phaser.Types.GameObjects.Text.TextStyle} style Atributos para el estilo de la fuente
     */
     addText_s(x, y, text, style) 
     {
-       // relación de aspecto
-       style.fontSize = this.fontSize(style.fontSize);
-  
-       // crea el texto
-       return this.add.text(x, y, text, style).setOrigin(0.5);
+        // tamaño original
+        let fs = style.fontSize;
+
+        // rectangulo envolvente
+        let t = this.add.text(x, y, text, style).setOrigin(0.5)
+            .setFontSize(3 * fs); 
+        const{rw,rh} = this.getTextRect(t);
+        t.destroy();
+
+        // relación de aspecto
+        t = this.add.text(x, y, text, style).setOrigin(0.5)
+            .setFontSize(3 * fs * this.AR)
+            .setDisplaySize(rw,rh);
+   
+        // crea el texto
+        return t;
     }
 
     /**
-     * Crea una línea de texto
-     * @param {number} x Posición horizontal
-     * @param {number} y Posición vertical
-     * @param {String} text Lo que se va a escribir
-     * @param {Phaser.Types.GameObjects.Text.TextStyle} style Atributos para el estilo de la fuente
-    */
-    addTextR_s(x, y, text, style) 
-    {
-        style.fontSize *= 3;
-        let t = this.add.text(x, y, text, style).setOrigin(0.5);
-        console.log("Font size: { w: " + t.width + ", h: " + t.height + "} ");
-        console.log("font size: " + style.fontSize);
-        let w = t.width * this.canvasWidth / this.logicWidth;
-        let h = t.height * this.canvasHeight / this.logicHeight;
-        t.setDisplaySize(w,h);
+     * Devuelve el tamaño del rectángulo que envuelve el texto
+     * @param {Phaser.GameObjects.Text} text text object to get rect size
+     * @param {Boolean} debug debug or not debug
+     */
+    getTextRect(text, debug = false) {
+        let rw = text.width * this.coeWidth;
+        let rh = text.height * this.coeHeight;
+        if (debug) this.debugTextRect(text);
+        return {rw,rh};
+    }
 
-        // crea el texto
-        return t;
+    /**
+     * Muestra por consola datos relevantes del texto
+     * @param {Phaser.GameObjects.Text} text text object to be debug
+     */
+    debugTextRect(text) {
+        console.log("FontRect size: { w: " + text.width + ", h: " + text.height + "} ");
+        console.log("- font size: " + text.style.fontSize);
+        console.log("Canvas size: { w: " + this.canvasWidth + ", h: " + this.canvasHeight + "} ");
     }
     // --- --- --- 
 };
