@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./css/game.css">
 
     <script id="submenus" src="./lib/submenus.js"></script>
+    <script id="submenus" src="./lib/event.js"></script>
     <script src="./lib/phaser.js"></script>
     <script src="./lib/mobile-detect.min.js"></script>
 
@@ -18,64 +19,21 @@
 
 <body>
     <h1>Forgotten Debris</h1>
-    <div id="cover" class="menu"><div id="phaserGame"></div></div>
+    <div id="cover" class="menu horizontal"><div id="phaserGame"></div></div>
     <script id="engine" src="./src/game.js" type="module"></script>
 
-    <style>
-        h1 {
-            margin: 1.25vh auto;
-            padding: 1.25vh; /* 10px == 1.25vh */
-        }
-        h2 {
-            margin: 0.75vh auto;
-            padding: 0.75vh; /* 10px == 1.25vh */
-        }
-        #phaserGame {
-            /* Canvas game */
-            /* width: fit-content; *//* 1080px; */
-            /* height: fit-content; *//* 567px; */
-            /* margin: 5px auto;
-            border: 5px solid black; */
-            background-color: rgb(0, 0, 100);
-        }
-        .game {
-            /* margin: 5px auto; */
-            border: 0.625vh solid black; /* 5px == 0.625vh */
-            background-color: rgb(0, 0, 100);
-        }
-        body {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-    </style>
-
-    <div class="menu">
+    <div class="menu horizontal">
         <a title="Contacta con nosotros" href="mailto: grupo03pvli@yopmail.com"><img src="./assets/images/icons/serius-mail.ico"></a>
         <a title="Observa como nos organizamos" href="https://www.pivotaltracker.com/n/projects/2597082"><img src="./assets/images/icons/pivotal-tracker256-blanco.png"></a>
         <a title="Disfruta de nuestros avances" href="https://www.twitter.com/StormStudio2022"><img src="./assets/images/icons/twitter-sombra256.png"></a>
         <a title="Accede a nuestro trabajo" href="https://github.com/Acedpol/PVLI-2022-23"><img src="./assets/images/icons/logo-github.png"></a>
     </div>
 
-    <style>
-        .menu {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .menu, .menu img {
-            padding: 0.625vh;
-            margin-inline: 1.25vh;
-        } 
-        .menu img {
-            width: 8vh;
-            height: 8vh;
-        }
-    </style>
-
-    <div id="info" class="info cover menu" style="display: none;">
-        <div class="fondo">
+    <div id="info" class="info img-ground horizontal" style="display: none;">
+        <div class="blackground rw-70 rh-90">
             <div name="sub-menu" id="controles" style="display: block;">
-                <h1><a href="#" onclick="toggleSubMenu('controles')">Controles</a></h1>
-                <div name="content" id="content-controles" style="display: none;">
+                <h1><a href="#" onclick="toggleSubMenu_v2('controles')">Controles</a></h1>
+                <div name="content" id="content-controles" class="content" style="display: none;">
                     <p>Se usan las teclas «WASD» para el movimiento</p>
                     <p>... la «barra espaciadora» para saltar ...</p> 
                     <p>... y «J/K» para los ataques ...</p>
@@ -85,8 +43,8 @@
                 </div>
             </div>
             <div name="sub-menu" id="about-us" style="display: block;">
-                <h1><a href="#" onclick="toggleSubMenu('about-us')">Equipo</a></h1>
-                <div name="content" id="content-about-us" style="display: none;">
+                <h1><a href="#" onclick="toggleSubMenu_v2('about-us')">Equipo</a></h1>
+                <div name="content" id="content-about-us" class="content" style="display: none;">
                     <h2>GRUPO #03 - PVLI : STORM STUDIOS</h2>
                     <p>JONATHAN ALBERTO CARRERA SANTAMARÍA <p><a href="mailto: jocarr01@ucm.es">jocarr01@ucm.es</a></p></p><br>
                     <p>PEDRO PABLO CUBELLS TALAVERA        <p><a href="mailto: pablocub@ucm.es">pablocub@ucm.es</a></p></p><br>
@@ -96,8 +54,8 @@
                 </div>
             </div>
             <div name="sub-menu" id="about-game" style="display: block;">
-                <h1><a href="#" onclick="toggleSubMenu('about-game')">Historia</a></h1>
-                <div name="content" id="content-about-game" style="display: none;">
+                <h1><a href="#" onclick="toggleSubMenu_v2('about-game')">Historia</a></h1>
+                <div name="content" id="content-about-game" class="content" style="display: none;">
                     <p>Estás en el louvre, durante una noche de tormenta en la que ocurre un apagón... lo que aprovechan unos granujas para entrar y romper algunas estatuas, entre las que se encuentra la estatua que será el jugador, Venus de Milo.</p> 
                     <p>Al cabo de un rato y debido a la extraña tormenta, sucede algo paranormal, esta estatua cobra vida y su objetivo es recomponerse para poder sanar su divinidad y ascender al cielo.</p>
                 </div>
@@ -105,77 +63,14 @@
         </div>
     </div>
 
-    <style>
-        .info {
-            flex-direction: column;
-            position: absolute;
-
-            padding: 0px;
-            margin: 0px;
-            display: none;
-        }
-        .cover {
-            background-image:url("./assets/images/santuario-helenistico-apolo-didima.jpeg");
-            background-size: cover;
-        }
-        .info img {
-            width: -webkit-fill-available;
-            height: -webkit-fill-available;
-        }
-        .info h1, .info p {
-            color: cyan;
-        }
-        .info p {
-            text-align: center;
-            font-family: 'Greconian', monospace;
-            font-size: 3.5vh; /* 32px == 4vh */            
-        }
-        .info p a {
-            color: goldenrod;
-            text-decoration: none;
-        }
-        .info p a:hover {
-            color: greenyellow;
-        }
-        .fondo {
-            background-color: rgba(0, 0, 0, 0.6);
-            overflow: hidden;
-            padding: 0.625vh 2.5vh; /* 20px == 2.5vh */
-        }
-    </style>
-
     <div id="ask" class="ask">
         <a title="Consulta la información adicional" href="#" onclick="pause()"><i class="fa fa-question-circle" style="font-size: 5.25vh;" aria-hidden="true"></i></a>
     </div>
 
-    <style>
-        .ask {
-            position: absolute;
-            top: 4.5vh;
-            left: 74vw;
-        }
-        .ask a, h1 a {
-            color: white;
-            text-decoration: none;
-        }
-        .ask a:hover, h1 a:hover {
-            color: blue;
-        }
-        #info-bar p {
-            font-size: 2vh; 
-        }
-    </style>
-
-    <script>
-        function pause() {
-            const evt = createEvent('pause');
-            document.dispatchEvent(evt);
-        }        
-    </script>
-
-    <div id="info-bar" class="info menu" style="background-color: rgba(0, 0, 0, 0.6);">
-        <p>Pulse 'P' o haz click en <i class="fa fa-question-circle" aria-hidden="true"></i> para acceder al panel de información y controles.</p>
+    <div id="info-bar" class="info" style="display: none;">
+        <p>Vuelva a pulsar 'P' o haz click en <i class="fa fa-question-circle" aria-hidden="true"></i> para salir del menú de información.</p>
     </div>
+
     
     <script id="magia-arcana" src="./lib/responsive.js" type="module"></script>
     <script id="magia-arcana" src="./lib/pauseCtrl.js" type="module"></script>

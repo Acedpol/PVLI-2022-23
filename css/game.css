@@ -1,3 +1,4 @@
+/* RECURSOS */
 @font-face {
   font-family: 'Pixeled';
   src: url('../assets/fonts/Minecraftia.ttf') format('truetype');
@@ -18,41 +19,14 @@
   src: url('../assets/fonts/roman_font_7.ttf') format('truetype');
 }
 
-h1, h2 {
-  text-align: center;
-  font-family: 'Greconian', monospace;
-  color: #fff;
-}
-
-h1 {
-  font-size: 8vh; /* 64px == 4em == 8vh */
-}
-
-h2 {
-  font-size: 3.75vh;
-}
-
-div#content-about-game p {
-  font-family: 'Canterbury', monospace;
-  font-size: 4vh;
-}
-
-div.fondo {
-  max-width: 70%;
-}
-
-div#content-about-us p {
-  line-height: 0.25vh;
-  font-size: 3vh;
-}
-
-/* ARREGLO PARA LOS INTERLINEADOS */
-#phaserGame, .menu {
+/* ARREGLO PARA LOS INTERLINEADOS: utilizado en canvas y en el menu de iconos. La clase info se asegura de conservarlo. */
+#phaserGame, .menu, .content {
   line-height: 0px;
   vertical-align: text-top;
+}
+#phaserGame, .menu {
   font-size: 0px;
 }
-
 .info {
   line-height: normal;
 }
@@ -61,3 +35,155 @@ div#content-about-us p {
 /* body {
   overflow: hidden;
 } */
+
+/* CUERPO */
+body {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* LETRA */
+h1, h2 {
+  text-align: center;
+  font-family: 'Greconian', monospace;
+  color: #fff;
+}
+
+/* TITULO */
+h1 {
+  margin: 1.25vh auto;
+  padding: 1.25vh; /* 10px == 1.25vh */
+  font-size: 8vh; /* 64px == 4em == 8vh */
+}
+
+/* subtitulo para info-bar */
+h2 {
+  margin: 0.75vh auto;
+  line-height: normal !important;
+  padding: 0.75vh; /* 10px == 1.25vh */
+  font-size: 3.75vh;
+}
+
+/* CANVAS: envoltorio. */
+#phaserGame {
+  /* Canvas game */
+  /* width: fit-content; *//* 1080px; */
+  /* height: fit-content; *//* 567px; */
+  /* margin: 5px auto;
+  border: 5px solid black; */
+  background-color: rgb(0, 0, 100);
+}
+
+/* FONDO */
+.blackground {
+  background-color: rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  padding: 0.625vh 2.5vh; /* 20px == 2.5vh */
+}
+.img-ground {
+  background-image:url("../assets/images/santuario-helenistico-apolo-didima.jpeg");
+  background-size: cover;
+}
+.rw-70 {
+  max-width: 70%;
+}
+.rh-90 {
+  max-height: 85%;
+}
+.w-70 {
+  width: 70%;
+}
+.h-90 {
+  height: 90%;
+}
+
+/* CANVAS: contorno. */
+.game {
+  /* margin: 5px auto; */
+  border: 0.625vh solid black; /* 5px == 0.625vh */
+  background-color: rgb(0, 0, 100);
+}
+
+/* INFO: contenedor dinámico vertical. */
+.info {
+  flex-direction: column;
+  position: absolute;
+
+  padding: 0px;
+  margin: 0px;
+  display: none;
+}
+
+/* MENU: contenedor dinámico centrado. */
+.horizontal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* MANU: distribución. */
+.menu, .menu img {
+  padding: 0.625vh;
+  margin-inline: 1.25vh;
+} 
+.menu img {
+  width: 8vh;
+  height: 8vh;
+}
+
+/* SUBMENUS: controles, about-us, about-game. */
+div#content-controles {
+  line-height: 1.5vh !important;
+  font-size: 4vh;
+}
+div#content-about-game p {
+  font-family: 'Canterbury', monospace !important;
+  line-height: 4.5vh !important;
+  font-size: 4vh;
+}
+div#content-about-us p {
+  font-size: 2.75vh !important;
+  line-height: 0.1vh !important;
+}
+
+/* BOTÓN ? INFORMACIÓN: botón circular junto al título. */
+.ask {
+  position: absolute;
+  top: 4.5vh;
+  left: 74vw;
+}
+.ask a, h1 a {
+  color: white;
+  text-decoration: none;
+}
+.ask a:hover, h1 a:hover {
+  color: blue;
+}
+
+/* INFO-BAR: barrita negra en la zona inferior del canvas. */
+#info-bar p {
+  font-size: 2.25vh; 
+}
+#info-bar {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+/* INFO: image background. */
+.info img {
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+}
+.info h1, .info p {
+  color: cyan;
+}
+.info p {
+  text-align: center;
+  font-family: 'Greconian', monospace;
+  font-size: 3.5vh; /* 32px == 4vh */            
+}
+.info p a {
+  color: goldenrod;
+  text-decoration: none;
+}
+.info p a:hover {
+  color: greenyellow;
+}
