@@ -4,7 +4,7 @@ import Bullet from '../game/bullet.js'
 import Hound from '../game/hound.js'
 import blankScene from './scene.js'
 import Potion from '../game/potion.js'
-import { initOver } from '../utils/callbacks.js'
+import { gameOver } from '../utils/callbacks.js'
 
 export default class blankGame extends blankScene
 {
@@ -69,7 +69,7 @@ export default class blankGame extends blankScene
     {
         // kill object and play feedback
         this.playerContainer.destroy();
-        initOver(this);
+        gameOver(this);
     }
  
     /** @override */

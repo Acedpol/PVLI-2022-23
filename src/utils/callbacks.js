@@ -1,15 +1,27 @@
 import { gameLogic } from "../game.js"
-import { offInfoBar } from '../../lib/pauseCtrl.js'
 
-export function initGame(scene, lv) {
-    // gameLogic.scene.getScene('menuGame').scene.start('pvliGame');
+// ejemplo:
+// gameLogic.scene.getScene('menuGame').scene.start('pvliGame');
+
+// recurso posible de pauseCtrl.js: offInfoBar(); onInfoBar(); toggleInfoBar();
+
+// game
+export function startGame(scene, lv) {
     scene.scene.start('pvliGame', lv);
-    offInfoBar();
 }
-
-export function initOver(scene) {
+export function gameOver(scene) {
     scene.sound.stopAll();
     scene.sound.play('lose');
     gameLogic.scene.stop('UI');
     scene.scene.start('GameOver');
+}
+
+// options
+export function swithToOptions(scene, lv) {     // --->
+    scene.scene.pause();
+    scene.scene.start('menuOptions', lv);    
+}
+export function backFromOptions(scene, lv) {    // <---
+    scene.scene.stop();
+    scene.scene.resume('menuGame', lv);    
 }
