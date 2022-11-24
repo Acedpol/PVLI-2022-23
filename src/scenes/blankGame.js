@@ -138,9 +138,9 @@ export default class blankGame extends blankScene
      * @param {Tuple} scale dimensiones a tener en cuenta
      */
     startCamera(scale) {
-        this.configCamera(true);    // zoom and viewport + follow
-        this.centerOnMap(scale);      // center midpoint
-        this.worldBounds(scale);      // limits of the world
+        this.configCamera(false);       // zoom and viewport + follow
+        this.centerOnMap(scale);        // center midpoint
+        this.worldBounds(scale);        // limits of the world
     }
 
     /**

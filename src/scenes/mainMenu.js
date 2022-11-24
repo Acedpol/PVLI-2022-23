@@ -11,8 +11,7 @@ export default class Menu extends blankMenu
 
     init() {
         super.init();
-        onInfoBar();
-        this.events.on('resume', () => { onInfoBar(); });
+        // this.events.on('resume', () => { onInfoBar(); });        
     }
 
     preload() 
@@ -21,7 +20,7 @@ export default class Menu extends blankMenu
     }
 
     create() 
-    {
+    {        
         // gets the sizes of the screen
         const{width,height} = this.scale; // canvas size
 
@@ -29,11 +28,19 @@ export default class Menu extends blankMenu
         this.background = this.createBackground('img_back');
 
         // compone el titulo y subtitulo del menu principal del juego
-        this.addTextR(width * 0.5, height * 0.2, 'FORGOTTEN DEBRIS', 24);
+        this.addText(width * 0.5, height * 0.2, 'FORGOTTEN DEBRIS', 24);
 
-        // three buttons, three levels on difficulty (0.35, 0.55, 0.75)
-        this.createButtonGame(width * 0.5, height * 0.45, 'button', 'Jugar', initGame, this);
-        this.createButtonGame(width * 0.5, height * 0.65, 'button', 'Opciones', initGame, this);
+        // play and options buttons
+        this.createGeoButtonGame(this, width * 0.5, height * 0.45, 'Jugar', initGame);
+        this.createGeoButtonGame(this, width * 0.5, height * 0.65, 'Opciones', initGame);
+        // this.createButtonGame(this, width * 0.5, height * 0.45, 'button', 'Jugar', initGame);
+        // this.createButtonGame(this, width * 0.5, height * 0.65, 'button', 'Opciones', initGame);
+ 
+        // barra informativa adicional
+        let _textStyle = { fontSize: 6, color: '#FFFFFF', fontFamily: 'Greconian', fontStyle: 'normal' };
+        let _rectStyle = new this.rectStyle(0x000000, 0x111111, 0.65, 1, true, false);
+        let _text = "Pulse 'P' o haz click en '?' para entrar o salir del panel de información y controles.";
+        this.createTextPanel_s(width * 0.5, height * 0.95, width, height * 0.1, _text, _textStyle, _rectStyle, 4);
     }
 
     update(t, dt) 

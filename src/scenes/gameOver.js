@@ -25,10 +25,10 @@ export default class GameOver extends blankMenu
         const{width,height} = this.scale
 
         // compone el titulo del final
-        this.addTextR(width * 0.5, height * 0.5, 'Game Over', 24, '#88ff88', 'Pixeled', 'bold')
+        this.addText(width * 0.5, height * 0.5, 'Game Over', 24, '#88ff88', 'Pixeled', 'bold')
 
         // play again text
-        this.addTextR(width * 0.5, height - 25, 'Press space to play again', 12, '#FFFFFF', 'Pixeled')
+        this.addText(width * 0.5, height - 25, 'Press space to play again', 12, '#FFFFFF', 'Pixeled')
 
         // click to play again
         this.input.keyboard.once('keydown-SPACE', () => {
