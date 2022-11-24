@@ -1,5 +1,5 @@
 import blankMenu from "./menu.js";
-import { initGame } from "../utils/callbacks.js";
+import { startGame, swithToOptions } from "../utils/callbacks.js";
 import { onInfoBar, offInfoBar } from '../../lib/pauseCtrl.js'
 
 export default class Menu extends blankMenu
@@ -11,7 +11,7 @@ export default class Menu extends blankMenu
 
     init() {
         super.init();
-        // this.events.on('resume', () => { onInfoBar(); });        
+        this.events.on('resume', () => { offInfoBar(); });        
     }
 
     preload() 
@@ -31,15 +31,15 @@ export default class Menu extends blankMenu
         this.addText(width * 0.5, height * 0.2, 'FORGOTTEN DEBRIS', 24);
 
         // play and options buttons
-        this.createGeoButtonGame(this, width * 0.5, height * 0.45, 'Jugar', initGame);
-        this.createGeoButtonGame(this, width * 0.5, height * 0.65, 'Opciones', initGame);
+        this.createGeoButtonGame(this, width * 0.5, height * 0.45, 'Jugar', startGame);
+        this.createGeoButtonGame(this, width * 0.5, height * 0.65, 'Opciones', swithToOptions);
         // this.createButtonGame(this, width * 0.5, height * 0.45, 'button', 'Jugar', initGame);
         // this.createButtonGame(this, width * 0.5, height * 0.65, 'button', 'Opciones', initGame);
  
         // barra informativa adicional
         let _textStyle = { fontSize: 6, color: '#FFFFFF', fontFamily: 'Greconian', fontStyle: 'normal' };
-        let _rectStyle = new this.rectStyle(0x000000, 0x111111, 0.65, 1, true, false);
-        let _text = "Pulse 'P' o haz click en '?' para entrar o salir del panel de información y controles.";
+        let _rectStyle = new this.rectStyle(0x000000, 0x111111, 0.6, 1, true, false);
+        let _text = "Pulse 'P' o haz click en ? para acceder al menú de información.";
         this.createTextPanel_s(width * 0.5, height * 0.95, width, height * 0.1, _text, _textStyle, _rectStyle, 4);
     }
 
@@ -51,6 +51,6 @@ export default class Menu extends blankMenu
     /** @override */
     handlePause() {
         super.handlePause();
-        offInfoBar();
+        onInfoBar();
     }
 }
