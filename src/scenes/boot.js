@@ -51,6 +51,7 @@ export default class Boot extends Phaser.Scene
         // background
         this.load.image('img_back', './assets/images/background.jpg')
         this.load.image('img_back2', './assets/images/fondo-ladrillos.jpg')
+        this.load.image('img_back3', './assets/images/victoria-de-samotracia__1080x567v2.png')
 
         // map
         this.load.image('img_tilemap', './assets/sprites/escenario/ground.png')
@@ -92,6 +93,9 @@ export default class Boot extends Phaser.Scene
 
         // lose audio
         this.load.audio('lose', './assets/sounds/lose.wav')
+
+        this.load.spritesheet('controls', "./assets/images/controles.png",
+          { frameWidth: 308, frameHeight: 168 })
 
     }
 
@@ -170,6 +174,6 @@ export default class Boot extends Phaser.Scene
 
         // --- START POINT --- 
         // inits the game menu scene
-        this.scene.start('menuGame')
+        this.scene.start('menuGame', 1)
     }
 }
