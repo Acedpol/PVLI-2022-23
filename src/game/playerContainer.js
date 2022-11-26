@@ -12,14 +12,13 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
      * @param {number} y Coordenada Y
      * @param {Phaser.Physics.Arcade.Sprite} aspecto Sprite que representa al jugador
      */
-    constructor(scene, x, y, aspecto)
+    constructor(scene, x, y, aspecto, optA)
     {
         // Constructor del container //
         super(scene, x, y, aspecto)
         this.scene = scene
         this.scene.add.existing(this)
         this.scene.physics.add.existing(this)
-        this.setInput()
 
         //vida
         this.health = 9;
@@ -37,12 +36,13 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         this.player.setScale(0.75, 0.75);
 
         // initial animation pause
-        this.player.play('walk')
-            this.player.anims.pause()
+        this.player.play('walk');
+        this.player.anims.pause();
 
         // eventos de teclado
-        this.cursors = scene.input.keyboard.createCursorKeys() // init cursors
-        this.action = scene.input.keyboard.addKey('SPACE')
+        this.optA = optA;
+        console.log(this.optA);
+        this.optA ? this.setInputA() : this.setInputB(); 
 
         // inicialización de variables
         this._speed = 100
@@ -78,10 +78,11 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 
         // revisar si esta en contacto con el suelgo y recargar salto
         this.groundCheck = this.body.onFloor()
+        this.checkInput();
         // this.groundCheck ? this.allowJump = true : this.allowJump = false;
 
         // walk animation
-        if (this.groundCheck && (this.a.isDown || this.d.isDown || this.cursors.left.isDown || this.cursors.right.isDown))
+        if (this.groundCheck && (this.left || this.right))
         {
             if (this.player.anims.currentAnim.key != 'walk')
             {
@@ -147,16 +148,26 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         this.scene.UI.rewriteUI(this.scene.UI.place01, 'Allowed jumps: ' + this.allowedJumps + "/" + this.maxJumps);
     }
 
+    checkInput() {
+        this.left = this.optA ? this.a.isDown : this.cursors.left.isDown;
+        this.right = this.optA ? this.d.isDown : this.cursors.right.isDown;
+        this.up = this.optA ? this.w.isDown : this.cursors.up.isDown;
+        this.down = this.optA ? this.s.isDown : this.cursors.down.isDown;
+        this.shoot_A = this.optA ? this.j.isDown : this.z.isDown;
+        this.shoot_B = this.optA ? this.k.isDown : this.cx.isDown;
+        this.action = this.space.isDown;
+    }
+
     playerController()
     {
         //movement
-        if (this.a.isDown || this.cursors.left.isDown)
+        if (this.left)
         {
             this.body.setVelocityX(-80)
             this.player.flipX = true
             if (this.carriesMagic) this.magic.flipX = true
         }
-        else if (this.d.isDown || this.cursors.right.isDown)
+        else if (this.right)
         {
             this.body.setVelocityX(80)
             this.player.flipX = false
@@ -168,7 +179,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         }
 
         // jump input logic
-        if (this.allowedJumps > 0 && (this.space.isDown || this.w.isDown || this.cursors.up.isDown) && this.nextJump < this.scene.time.now)
+        if (this.allowedJumps > 0 && this.up && this.nextJump < this.scene.time.now)
         {
             this.allowedJumps--;
             console.log(this.allowedJumps);
@@ -180,11 +191,11 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             this.allowedJumps = this.maxJumps;
         }
 
-        if (this.j.isDown) {
+        if (this.shoot_A) {
             this.attackinput()
         }
 
-        if (this.k.isDown){
+        if (this.shoot_B){
             this.dropMagic();
         }
     }
@@ -358,9 +369,9 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     }
 
     /**
-     * Sets the basic controlls for the player
+     * Sets the basic controlls for the player (WASD)
      */
-    setInput() {
+    setInputA() {
         // this.keys = this.input.keyboard.addKeys('W,S,A,D'); no funciona
         this.w = this.scene.input.keyboard.addKey('W');
         this.a = this.scene.input.keyboard.addKey('A');
@@ -368,6 +379,19 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         this.d = this.scene.input.keyboard.addKey('D');
         this.j = this.scene.input.keyboard.addKey('J');
         this.k = this.scene.input.keyboard.addKey('K');
+        this.space = this.scene.input.keyboard.addKey('SPACE');
+        // this.leftClick = this.scene.input.mousePointer.leftButtonDown;
+        // this.rightClick = this.scene.input.mousePointer.rightButtonDown;
+    }
+
+    /**
+     * Sets the basic controlls for the player (arrows)
+     */
+    setInputB() {
+        // this.keys = this.input.keyboard.addKeys('W,S,A,D'); no funciona
+        this.cursors = this.scene.input.keyboard.createCursorKeys();
+        this.z = this.scene.input.keyboard.addKey('Z');
+        this.cx = this.scene.input.keyboard.addKey('X'); // !!! cuidado con this.x !!!
         this.space = this.scene.input.keyboard.addKey('SPACE');
         // this.leftClick = this.scene.input.mousePointer.leftButtonDown;
         // this.rightClick = this.scene.input.mousePointer.rightButtonDown;

@@ -10,6 +10,7 @@ import GameOver from './scenes/gameOver.js';
 import BlankPause from './scenes/pause.js';
 import UI from './scenes/UI.js';
 import Options from './scenes/options.js';
+import Sonido from './scenes/sonido.js'
 
 window.onload = cargarJuego();
 
@@ -27,7 +28,7 @@ export function cargarJuego()
             zoom: z
         },
         pixelArt: true,
-        scene: [ Boot, GameLogic, Menu, GameOver, BlankPause, UI, Options ],
+        scene: [ Boot, GameLogic, Menu, GameOver, BlankPause, UI, Options, Sonido ],
         physics: {
             default: 'arcade',
             arcade: {

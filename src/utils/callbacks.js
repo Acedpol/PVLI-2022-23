@@ -6,22 +6,32 @@ import { gameLogic } from "../game.js"
 // recurso posible de pauseCtrl.js: offInfoBar(); onInfoBar(); toggleInfoBar();
 
 // game
-export function startGame(scene, lv) {
-    scene.scene.start('pvliGame', lv);
+export function startGame(scene) {
+    scene.scene.start('pvliGame', {optA: scene.optA, optB: scene.optB, volG: 50});
 }
 export function gameOver(scene) {
     scene.sound.stopAll();
     scene.sound.play('lose');
-    gameLogic.scene.stop('UI');
     scene.scene.start('GameOver');
+    gameLogic.scene.stop('UI');
 }
 
 // options
-export function swithToOptions(scene, lv) {     // --->
+export function swithToOptions(scene) {     // --->
+    scene.scene.launch('menuOptions', {optA: scene.optA, optB: scene.optB, volG: 50}); 
     scene.scene.pause();
-    scene.scene.start('menuOptions', lv);    
 }
-export function backFromOptions(scene, lv) {    // <---
+export function backFromOptions(scene) {    // <---
+    scene.scene.resume('menuGame', {optA: scene.optA, optB: scene.optB, volG: 50});
     scene.scene.stop();
-    scene.scene.resume('menuGame', lv);    
+}
+
+// sonido
+export function swithToSonido(scene) {     // --->
+    scene.scene.launch('menuSonido'); 
+    scene.scene.pause();
+}
+export function backFromSonido(scene) {    // <---
+    scene.scene.resume('menuOptions');   
+    scene.scene.stop();
 }

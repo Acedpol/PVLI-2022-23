@@ -24,11 +24,22 @@ export default class pvliGame extends blankGame
     {
         super('pvliGame');
     }
-
-    init(level)
+    
+    init(args)
     {
-        super.init(level);
+        super.init(1);
+        this.syncMain(args);
         this.checkCollisions(false);
+    }
+
+    syncMain(args) {
+        this.optA = args.optA; 
+        this.optB = args.optB; 
+        this.volGeneral = args.volG;
+        console.log("INITIALISING GAME...");
+        console.log(this.optA);
+        console.log(this.optB);
+        console.log(this.volGeneral);
     }
 
     preload() 
@@ -45,7 +56,7 @@ export default class pvliGame extends blankGame
         this.createMapBackground('img_back', this.map);
         
         // Creates the player
-        this.createPlayer(this.mapWidth * 0.5, this.mapHeight * 0.5, 'angel');
+        this.createPlayer(this.mapWidth * 0.5, this.mapHeight * 0.5, 'angel', this.optA);
 
         // Sets the camera view
         this.startCamera({ width: this.mapWidth, height: this.mapHeight});

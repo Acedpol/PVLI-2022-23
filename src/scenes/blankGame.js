@@ -35,8 +35,8 @@ export default class blankGame extends blankScene
         super.init();
 
         // Level select assignment
-        this.level = level
-        console.log('Level = ' + this.level)
+        // this.level = level
+        // console.log('Level = ' + this.level)
 
         // UI interface
         this.scene.launch('UI');
@@ -230,14 +230,15 @@ export default class blankGame extends blankScene
      * @param {Number} x horizontal position
      * @param {Number} y vertical position
      * @param {String} sprite name of the sprite asset
+     * @param {Number} optA opción de controles
      */
-    createPlayer(x, y, sprite)
+    createPlayer(x, y, sprite, optA)
     {
         // Añade al jugador como Sprite
         let player = this.add.sprite(0, 0, sprite, 0)
 
         // creates the player container in the middle of the screen
-        this.playerContainer = new PlayerContainer(this, x, y, player)
+        this.playerContainer = new PlayerContainer(this, x, y, player, optA)
 
         // adds it to the scene
         this.addToScene(this.playerContainer);

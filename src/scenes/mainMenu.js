@@ -11,7 +11,11 @@ export default class Menu extends blankMenu
 
     init() {
         super.init();
-        this.events.on('resume', () => { offInfoBar(); });        
+        this.events.on('resume', (scene, args) => { this.onResume(args); } );
+
+        this.optA = true;
+        this.optB = false;
+        this.volGeneral = 50;
     }
 
     preload() 
@@ -31,16 +35,16 @@ export default class Menu extends blankMenu
         this.addText(width * 0.5, height * 0.2, 'FORGOTTEN DEBRIS', 24);
 
         // play and options buttons
-        this.createGeoButtonGame(this, width * 0.5, height * 0.45, 'Jugar', startGame);
-        this.createGeoButtonGame(this, width * 0.5, height * 0.65, 'Opciones', swithToOptions);
+        this.createDefaultGeoButtonGame(this, width * 0.5, height * 0.45, 'Jugar', startGame);
+        this.createDefaultGeoButtonGame(this, width * 0.5, height * 0.65, 'Opciones', swithToOptions);
         // this.createButtonGame(this, width * 0.5, height * 0.45, 'button', 'Jugar', initGame);
         // this.createButtonGame(this, width * 0.5, height * 0.65, 'button', 'Opciones', initGame);
  
         // barra informativa adicional
-        let _textStyle = { fontSize: 6, color: '#FFFFFF', fontFamily: 'Greconian', fontStyle: 'normal' };
+        let _textStyle = { fontSize: 6.5, color: '#FFFFFF', fontFamily: 'Greconian', fontStyle: 'normal' };
         let _rectStyle = new this.rectStyle(0x000000, 0x111111, 0.6, 1, true, false);
         let _text = "Pulse 'P' o haz click en ? para acceder al menú de información.";
-        this.createTextPanel_s(width * 0.5, height * 0.95, width, height * 0.1, _text, _textStyle, _rectStyle, 4);
+        this.createTextPanel_s(width * 0.5, height * 0.95, width, height * 0.1, _text, _textStyle, _rectStyle, true, 4);
     }
 
     update(t, dt) 
@@ -52,5 +56,15 @@ export default class Menu extends blankMenu
     handlePause() {
         super.handlePause();
         onInfoBar();
+    }
+
+    onResume(args) {
+        offInfoBar(); 
+        this.optA = args.optA; 
+        this.optB = args.optB; 
+        this.volGeneral = args.volG;
+        console.log(this.optA);
+        console.log(this.optB);
+        console.log(this.volGeneral);
     }
 }
