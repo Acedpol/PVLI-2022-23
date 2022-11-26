@@ -148,13 +148,34 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     }
 
     checkInput() {
+        // Cuando en init() llega un 'false' no sé xk recibe '{}' como si fuera un objeto vacío,
+        // lo que hace que esta representación no funcione:
         this.left = this.optA ? this.a.isDown : this.cursors.left.isDown;
         this.right = this.optA ? this.d.isDown : this.cursors.right.isDown;
         this.up = this.optA ? this.w.isDown : this.cursors.up.isDown;
         this.down = this.optA ? this.s.isDown : this.cursors.down.isDown;
         this.shoot_A = this.optA ? this.j.isDown : this.z.isDown;
-        this.shoot_B = this.optA ? this.k.isDown : this.x.isDown;
+        this.shoot_B = this.optA ? this.k.isDown : this.cx.isDown;
         this.action = this.space.isDown;
+
+        // if (this.optA === true) {
+        //     this.left = this.a.isDown;
+        //     this.right = this.d.isDown;
+        //     this.up = this.w.isDown
+        //     this.down = this.s.isDown;
+        //     this.shoot_A = this.j.isDown
+        //     this.shoot_B = this.k.isDown
+        //     this.action = this.space.isDown;
+        // }
+        // else {
+        //     this.left = this.cursors.left.isDown;
+        //     this.right = this.cursors.right.isDown;
+        //     this.up = this.cursors.up.isDown;
+        //     this.down = this.cursors.down.isDown;
+        //     this.shoot_A = this.z.isDown;
+        //     this.shoot_B = this.x.isDown;
+        //     this.action = this.space.isDown;    
+        // }
     }
 
     playerController()
@@ -388,9 +409,9 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
      */
     setInputB() {
         // this.keys = this.input.keyboard.addKeys('W,S,A,D'); no funciona
-        this.cursors = this.scene.input.keyboard.createCursorKeys()
+        this.cursors = this.scene.input.keyboard.createCursorKeys();
         this.z = this.scene.input.keyboard.addKey('Z');
-        this.x = this.scene.input.keyboard.addKey('X');
+        this.cx = this.scene.input.keyboard.addKey('X'); // !!! cuidado con this.x !!!
         this.space = this.scene.input.keyboard.addKey('SPACE');
         // this.leftClick = this.scene.input.mousePointer.leftButtonDown;
         // this.rightClick = this.scene.input.mousePointer.rightButtonDown;
