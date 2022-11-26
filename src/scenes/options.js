@@ -11,9 +11,6 @@ export default class Options extends blankMenu
     init(args) {
         super.init();
         this.syncMain(args);
-        // this.optA = this.game.scene.getScene('menuGame').optA;
-        // this.optB = this.game.scene.getScene('menuGame').optB;
-        // this.volGeneral = this.game.scene.getScene('menuGame').volGeneral;
     }
 
     syncMain(args) {
@@ -120,7 +117,7 @@ export default class Options extends blankMenu
         this.optB ? this.activarB(this) : this.apagarB(this);
     }
 
-    // Para, B != 0 => !!B es igual a true;
+    // Para, B != 0 => !!B === 'true'
     colorear_v2() {
         console.log("A: " + (this.optA === 3));
         console.log("B: " + (this.optB === 3));

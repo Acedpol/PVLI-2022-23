@@ -42,9 +42,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         // eventos de teclado
         this.optA = optA;
         console.log(this.optA);
-        // this.setInputA();
-        // this.setInputB();
-        this.optA ? this.setInputA() : this.setInputB(); // init cursors
+        this.optA ? this.setInputA() : this.setInputB(); 
 
         // inicialización de variables
         this._speed = 100
@@ -151,8 +149,6 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     }
 
     checkInput() {
-        // Cuando en init() llega un 'false' no sé xk recibe '{}' como si fuera un objeto vacío,
-        // lo que hace que esta representación no funcione:
         this.left = this.optA ? this.a.isDown : this.cursors.left.isDown;
         this.right = this.optA ? this.d.isDown : this.cursors.right.isDown;
         this.up = this.optA ? this.w.isDown : this.cursors.up.isDown;
@@ -160,25 +156,6 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         this.shoot_A = this.optA ? this.j.isDown : this.z.isDown;
         this.shoot_B = this.optA ? this.k.isDown : this.cx.isDown;
         this.action = this.space.isDown;
-
-        // if (this.optA === true) {
-        //     this.left = this.a.isDown;
-        //     this.right = this.d.isDown;
-        //     this.up = this.w.isDown
-        //     this.down = this.s.isDown;
-        //     this.shoot_A = this.j.isDown
-        //     this.shoot_B = this.k.isDown
-        //     this.action = this.space.isDown;
-        // }
-        // else {
-        //     this.left = this.cursors.left.isDown;
-        //     this.right = this.cursors.right.isDown;
-        //     this.up = this.cursors.up.isDown;
-        //     this.down = this.cursors.down.isDown;
-        //     this.shoot_A = this.z.isDown;
-        //     this.shoot_B = this.x.isDown;
-        //     this.action = this.space.isDown;    
-        // }
     }
 
     playerController()
