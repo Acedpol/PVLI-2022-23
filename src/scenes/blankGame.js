@@ -230,6 +230,7 @@ export default class blankGame extends blankScene
      * @param {Number} x horizontal position
      * @param {Number} y vertical position
      * @param {String} sprite name of the sprite asset
+     * @param {Number} optA opción de controles
      */
     createPlayer(x, y, sprite, optA)
     {

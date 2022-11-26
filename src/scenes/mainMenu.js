@@ -9,10 +9,13 @@ export default class Menu extends blankMenu
         super('menuGame');
     }
 
-    init(optA) {
+    init() {
         super.init();
-        this.optA = optA;
-        this.events.on('resume', (scene, optA) => { offInfoBar(); this.optA = optA; console.log(optA); } );
+        this.events.on('resume', (scene, args) => { this.onResume(args); } );
+
+        this.optA = true;
+        this.optB = false;
+        this.volGeneral = 50;
     }
 
     preload() 
@@ -53,5 +56,15 @@ export default class Menu extends blankMenu
     handlePause() {
         super.handlePause();
         onInfoBar();
+    }
+
+    onResume(args) {
+        offInfoBar(); 
+        this.optA = args.optA; 
+        this.optB = args.optB; 
+        this.volGeneral = args.volG;
+        console.log(this.optA);
+        console.log(this.optB);
+        console.log(this.volGeneral);
     }
 }

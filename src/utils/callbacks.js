@@ -7,32 +7,31 @@ import { gameLogic } from "../game.js"
 
 // game
 export function startGame(scene) {
-    scene.scene.start('pvliGame', scene.optA);
+    scene.scene.start('pvliGame', {optA: scene.optA, optB: scene.optB, volG: 50});
 }
 export function gameOver(scene) {
     scene.sound.stopAll();
     scene.sound.play('lose');
-    gameLogic.scene.stop('UI');
     scene.scene.start('GameOver');
+    gameLogic.scene.stop('UI');
 }
 
 // options
 export function swithToOptions(scene) {     // --->
+    scene.scene.launch('menuOptions', {optA: scene.optA, optB: scene.optB, volG: 50}); 
     scene.scene.pause();
-    scene.scene.launch('menuOptions'); 
 }
 export function backFromOptions(scene) {    // <---
+    scene.scene.resume('menuGame', {optA: scene.optA, optB: scene.optB, volG: 50});
     scene.scene.stop();
-    scene.scene.resume('menuGame', scene.optA);
-    gameLogic.scene.getScene('menuGame').optA = scene.optA;
 }
 
 // sonido
 export function swithToSonido(scene) {     // --->
-    scene.scene.pause();
     scene.scene.launch('menuSonido'); 
+    scene.scene.pause();
 }
 export function backFromSonido(scene) {    // <---
-    scene.scene.stop();
     scene.scene.resume('menuOptions');   
+    scene.scene.stop();
 }

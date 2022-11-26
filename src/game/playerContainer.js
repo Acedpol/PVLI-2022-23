@@ -36,12 +36,15 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         this.player.setScale(0.75, 0.75);
 
         // initial animation pause
-        this.player.play('walk')
-            this.player.anims.pause()
+        this.player.play('walk');
+        this.player.anims.pause();
 
         // eventos de teclado
         this.optA = optA;
-        if (this.optA === 3) this.setInputA(); else this.setInputB(); // init cursors
+        console.log(this.optA);
+        // this.setInputA();
+        // this.setInputB();
+        this.optA ? this.setInputA() : this.setInputB(); // init cursors
 
         // inicialización de variables
         this._speed = 100

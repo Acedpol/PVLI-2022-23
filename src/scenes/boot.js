@@ -174,6 +174,6 @@ export default class Boot extends Phaser.Scene
 
         // --- START POINT --- 
         // inits the game menu scene
-        this.scene.start('menuGame', 1)
+        this.scene.start('menuGame');
     }
 }

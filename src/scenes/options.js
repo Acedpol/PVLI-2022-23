@@ -8,10 +8,21 @@ export default class Options extends blankMenu
         super('menuOptions');
     }
 
-    init() {
-        super.init();     
-        this.optA = 3;
-        this.optB = 1;
+    init(args) {
+        super.init();
+        this.syncMain(args);
+        // this.optA = this.game.scene.getScene('menuGame').optA;
+        // this.optB = this.game.scene.getScene('menuGame').optB;
+        // this.volGeneral = this.game.scene.getScene('menuGame').volGeneral;
+    }
+
+    syncMain(args) {
+        this.optA = args.optA; 
+        this.optB = args.optB; 
+        this.volGeneral = args.volG;
+        console.log(this.optA);
+        console.log(this.optB);
+        console.log(this.volGeneral);
     }
 
     preload() 
@@ -44,10 +55,10 @@ export default class Options extends blankMenu
         this.graphicsB = this.setRectStyle(this.selectB, this.rect_ON, 5);
         this.setInteractiveZone(this, this.selectA, this.activarA);
         this.setInteractiveZone(this, this.selectB, this.activarB);
-        this.colorear_v2();
+        this.colorear();
 
         // exit button
-        this.createExitGeoButtonGame(this, width * 0.91, height * 0.2, backFromOptions);
+        this.createExitGeoButtonGame(this, width * 0.91, height * 0.8465, backFromOptions);
 
         // barra informativa adicional
         let _textStyle = { fontSize: 6.5, color: '#FFFFFF', fontFamily: 'Greconian', fontStyle: 'normal' };
@@ -86,22 +97,22 @@ export default class Options extends blankMenu
     activarA(scene) {
         scene.graphicsA.setVisible(true);
         scene.graphicsB.setVisible(false);
-        scene.optA = 1;
-        scene.optB = 3;
+        scene.optA = true;
+        scene.optB = false;
     }
     activarB(scene) {
         scene.graphicsB.setVisible(true);
         scene.graphicsA.setVisible(false);
-        scene.optA = 3;
-        scene.optB = 1;
+        scene.optA = false;
+        scene.optB = true;
     }
     apagarA(scene) {
         scene.graphicsA.setVisible(false);
-        scene.optA = 1;
+        scene.optA = false;
     }
     apagarB(scene) {
         scene.graphicsB.setVisible(false);
-        scene.optB = 1;
+        scene.optB = false;
     }
 
     colorear() {

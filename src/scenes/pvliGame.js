@@ -25,12 +25,21 @@ export default class pvliGame extends blankGame
         super('pvliGame');
     }
     
-    init(optA)
+    init(args)
     {
-        super.init(optA);
-        this.optA = optA;
-        console.log("wasd: " + this.optA);
+        super.init(1);
+        this.syncMain(args);
         this.checkCollisions(false);
+    }
+
+    syncMain(args) {
+        this.optA = args.optA; 
+        this.optB = args.optB; 
+        this.volGeneral = args.volG;
+        console.log("INITIALISING GAME...");
+        console.log(this.optA);
+        console.log(this.optB);
+        console.log(this.volGeneral);
     }
 
     preload() 
