@@ -17,11 +17,22 @@ export function gameOver(scene) {
 }
 
 // options
-export function swithToOptions(scene, lv) {     // --->
+export function swithToOptions(scene) {     // --->
     scene.scene.pause();
-    scene.scene.start('menuOptions', lv);    
+    scene.scene.launch('menuOptions'); 
 }
-export function backFromOptions(scene, lv) {    // <---
+export function backFromOptions(scene) {    // <---
     scene.scene.stop();
-    scene.scene.resume('menuGame', lv);    
+    scene.scene.resume('menuGame', scene.optA);
+    gameLogic.scene.getScene('menuGame').optA = scene.optA;
+}
+
+// sonido
+export function swithToSonido(scene) {     // --->
+    scene.scene.pause();
+    scene.scene.launch('menuSonido'); 
+}
+export function backFromSonido(scene) {    // <---
+    scene.scene.stop();
+    scene.scene.resume('menuOptions');   
 }
