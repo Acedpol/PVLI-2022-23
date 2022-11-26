@@ -68,7 +68,7 @@ export default class blankMenu extends blankScene
     // --- --- GEO BUTTON --- --- 
 
     /**
-     * Constructor del button
+     * Constructor del button (todo en uno)
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      * @param {Phaser.Textures.Texture} texture Textura usada en el fondo del button (image)
@@ -77,13 +77,55 @@ export default class blankMenu extends blankScene
      * @param {Scene} scene Escena del ámbito de uso del botón
      * @param {any} v Variable auxiliar
      */
-    createGeoButtonGame(scene, x, y, text, fn, lv = 1)
+    createGeoButtonGame(scene, x, y, rw, rh, text, textStyle, rectStyle, fn, lv = 1)
+    {
+        rw *= this.coeWidth;
+        rh *= this.coeHeight;
+        let _textStyle = { fontSize: 14, color: '#fff', fontFamily: 'Greconian', fontStyle: 'bold' };
+        let _rectStyle = new this.rectStyle('0x000000', '0x000000', 0.75, 0.85, true, true);
+        let _rect = this.createTextPanel_s(x, y, rw, rh, text, _textStyle, _rectStyle, lv = 1);
+        this.setInteractiveZone(scene, _rect, fn, 3);
+    }
+
+    /**
+     * Constructor del button (predeterminado - mainMenu)
+     * @param {number} x Coordenada X
+     * @param {number} y Coordenada Y
+     * @param {Phaser.Textures.Texture} texture Textura usada en el fondo del button (image)
+     * @param {String} text Texto ubicado en en el button
+     * @param {Function} fn Callback a ejecutar
+     * @param {Scene} scene Escena del ámbito de uso del botón
+     * @param {any} v Variable auxiliar
+     */
+    createDefaultGeoButtonGame(scene, x, y, text, fn, setColor = true, lv = 1)
     {
         const{width,height} = this.scale
         let rw = width * 0.25;
         let rh = height * 0.12;
-        let rect = this.createDefaultTextPanel(x, y, rw, rh, text, lv);
+        let rect = this.createDefaultTextPanel(x, y, rw, rh, text, setColor, lv);
         this.setInteractiveZone(scene, rect, fn, 3);
+    }
+
+    /**
+     * Constructor del button (todo en uno)
+     * @param {number} x Coordenada X
+     * @param {number} y Coordenada Y
+     * @param {Phaser.Textures.Texture} texture Textura usada en el fondo del button (image)
+     * @param {String} text Texto ubicado en en el button
+     * @param {Function} fn Callback a ejecutar
+     * @param {Scene} scene Escena del ámbito de uso del botón
+     * @param {any} v Variable auxiliar
+     */
+    createExitGeoButtonGame(scene, x, y, fn, setColor = false, lv = 1)
+    {
+        const{width,height} = this.scale;
+        let rw = width * 0.09 * this.coeWidth;
+        let rh = height * 0.075 * this.coeHeight;
+        let text = "EXIT!!!";
+        let _textStyle = { fontSize: 8, color: '#f0f', fontFamily: 'Greconian', fontStyle: 'normal' };
+        let _rectStyle = new this.rectStyle('0x000000', '0xFF00FF', 0.9, 0.9, true, true);
+        let _rect = this.createTextPanel_s(x, y, rw, rh, text, _textStyle, _rectStyle, setColor, lv = 1);
+        this.setInteractiveZone(scene, _rect, fn, 3);
     }
 
     /**
@@ -93,7 +135,7 @@ export default class blankMenu extends blankScene
      * @param {Function} fn Callback a ejecutar
      * @param {Number} lv Nivel de dificultad
      */
-    setInteractiveZone(scene, rect, fn, lv)
+    setInteractiveZone(scene, rect, fn)
     {
         let x = rect.x + rect.width * 0.5;
         let y = rect.y + rect.height * 0.5;
@@ -105,12 +147,12 @@ export default class blankMenu extends blankScene
                 useHandCursor: true
             })
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                fn(scene, lv);
+                fn(scene);
             });
     }
 
     /**
-     * Crea un rectángulo con texto en su interior
+     * Crea un rectángulo con texto en su interior (sin rect, ni estilos)
      * @param {Number} x posición horizontal
      * @param {Number} y posición vertical
      * @param {Number} rw ancho
@@ -118,14 +160,30 @@ export default class blankMenu extends blankScene
      * @param {String} text texto ubicado en el panel
      * @param {Number} lv índice asociado
      */
-    createDefaultTextPanel(x, y, rw, rh, text, lv = 1) 
+    createDefaultTextPanel(x, y, rw, rh, text, setColor = false, lv = 1) 
     {
-        const{color, relleno, contorno} = this.btnColor(lv);
-        let _textStyle = { fontSize: 14, color: color, fontFamily: 'Greconian', fontStyle: 'bold' };
-        let _rectStyle = new this.rectStyle(relleno, contorno, 0.75, 0.85, true, true);
+        // establece unos estilos por defecto
+        let _textStyle = { fontSize: 14, color: '#fff', fontFamily: 'Greconian', fontStyle: 'bold' };
+        let _rectStyle = new this.rectStyle('0x000000', '0x000000', 0.75, 0.85, true, true);
+        let _rect = this.createTextPanel_s(x, y, rw, rh, text, _textStyle, _rectStyle, setColor, lv);
+        return _rect;
+    }
+
+    /**
+     * Crea un rectángulo con texto en su interior (sin rect dado)
+     * @param {Number} x posición horizontal
+     * @param {Number} y posición vertical
+     * @param {Number} rw ancho
+     * @param {Number} rh alto
+     * @param {String} text texto ubicado en el panel
+     * @param {Phaser.Types.GameObjects.Text.TextStyle} textStyle estilo asociado al texto
+     * @param {makeStruct} rectStyle estilo del rectángulo
+     * @param {Number} lv índice asociado
+     */
+    createTextPanel_s(x, y, rw, rh, text, textStyle, rectStyle, setColor = false, lv = 1) 
+    {
         let _rect = new Phaser.Geom.Rectangle(x - rw/2, y - rh/2, rw, rh);
-        this.addRectText(_rect, text, _textStyle);
-        this.setRectStyle(_rect, _rectStyle);
+        this.createTextPanel(_rect, text, rectStyle, textStyle, setColor, lv);
         return _rect;
     }
 
@@ -140,16 +198,18 @@ export default class blankMenu extends blankScene
      * @param {makeStruct} rectStyle estilo del rectángulo
      * @param {Number} lv índice asociado
      */
-    createTextPanel_s(x, y, rw, rh, text, textStyle, rectStyle, lv = 1) 
-    {
-        const{color, relleno, contorno} = this.btnColor(lv);    
-        textStyle.color = color;
-        rectStyle.relleno = relleno;
-        rectStyle.contorno = contorno;
-        let _rect = new Phaser.Geom.Rectangle(x - rw/2, y - rh/2, rw, rh);  
-        this.addRectText(_rect, text, textStyle);   
-        this.setRectStyle(_rect, rectStyle);
-        return _rect;
+    createTextPanel(rect, text, rectStyle, textStyle, setColor = false, lv = 1) {
+        // fija el color
+        if (setColor) { 
+            const{color, relleno, contorno} = this.btnColor(lv);   
+            textStyle.color = color;
+            rectStyle.relleno = relleno;
+            rectStyle.contorno = contorno;
+        } 
+        // crea el texto y el rectángulo
+        this.addRectText(rect, text, textStyle);   
+        this.setRectStyle(rect, rectStyle);
+        return rect;
     }
 
     /**
@@ -157,7 +217,7 @@ export default class blankMenu extends blankScene
      * @param {Phaser.Geom.Rectangle} rect rectángulo usado para el botón
      * @param {makeStruct} rectStyle estilo del rectángulo
      */
-    setRectStyle(rect, rectStyle) 
+    setRectStyle(rect, rectStyle, thick = 2) 
     {        
         /** @type {Phaser.GameObjects.Graphics} */
         let graphics = this.add.graphics({ 
@@ -165,7 +225,7 @@ export default class blankMenu extends blankScene
                 color: rectStyle.relleno, alpha: rectStyle.alphaFill 
             },
             lineStyle: {
-                width: 2 * this.AR,
+                width: thick * this.AR,
                 color: rectStyle.contorno,
                 alpha: rectStyle.alphaLine
             }            
@@ -174,6 +234,8 @@ export default class blankMenu extends blankScene
         // how to paint/fill this rectangle
         if (rectStyle.drawFill) graphics.fillRectShape(rect);       // relleno
         if (rectStyle.drawLine) graphics.strokeRectShape(rect);     // trazo
+
+        return graphics;
     }
 
     /**
@@ -251,7 +313,7 @@ export default class blankMenu extends blankScene
             case 4: 
                 _color = '#FFFFFF' //
                 _fill = 0x000000
-                _line = 0x111111
+                _line = 0xffffff
                 break;       
             default:
                 break;
