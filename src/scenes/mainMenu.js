@@ -9,9 +9,10 @@ export default class Menu extends blankMenu
         super('menuGame');
     }
 
-    init() {
+    init(optA) {
         super.init();
-        this.events.on('resume', () => { offInfoBar(); });        
+        this.optA = optA;
+        this.events.on('resume', (scene, optA) => { offInfoBar(); this.optA = optA; console.log(optA); } );
     }
 
     preload() 

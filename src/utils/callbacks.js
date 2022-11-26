@@ -6,8 +6,8 @@ import { gameLogic } from "../game.js"
 // recurso posible de pauseCtrl.js: offInfoBar(); onInfoBar(); toggleInfoBar();
 
 // game
-export function startGame(scene, lv) {
-    scene.scene.start('pvliGame', lv);
+export function startGame(scene) {
+    scene.scene.start('pvliGame', scene.optA);
 }
 export function gameOver(scene) {
     scene.sound.stopAll();

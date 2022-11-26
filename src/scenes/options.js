@@ -9,7 +9,9 @@ export default class Options extends blankMenu
     }
 
     init() {
-        super.init();       
+        super.init();     
+        this.optA = 3;
+        this.optB = 1;
     }
 
     preload() 
