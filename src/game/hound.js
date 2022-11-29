@@ -15,8 +15,8 @@ export default class Hound extends Enemy {
 
     preUpdate(t,dt) 
     {
-        super.preUpdate(t,dt) // for animation and player detection
         this.move(this.playerContainer);
+        super.preUpdate(t,dt) // for animation and player detection (¡puede ser destruido!)
     }
 
     /**
