@@ -28,10 +28,8 @@ export default class Hound extends Enemy {
 
         if(this.y-90 < target.y || this.y-20 < target.y)
         {
-            if (this.anims.currentAnim.key != 'wolf_walk')
-            {
-                this.play('wolf_walk')
-            }
+            this.play('wolf_walk', true);
+
             if(this.x < target.x + 50 && this.dir === 1)
             {
                 this.setVelocityX(this.speed);
@@ -53,11 +51,7 @@ export default class Hound extends Enemy {
         }
         else
         {
-            if (this.anims.currentAnim.key != 'wolf_idle')
-            {
-                this.play('wolf_idle')
-            }
-            
+            this.play('wolf_idle', true);
             this.setVelocityX(0);
         }   
 

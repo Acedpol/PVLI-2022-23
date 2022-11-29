@@ -13,7 +13,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite
      * @param {spritesheet} spritesheet Spritesheet
      * @param {number} n nº de frame dentro del spritesheet
      */
-    constructor(scene, x, y, spritesheet, n){
+    constructor(scene, x, y, spritesheet, n = 0){
         super(scene, x, y, spritesheet, n);
         this.setOrigin(0.5);
     }

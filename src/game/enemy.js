@@ -21,11 +21,13 @@ export default class Enemy extends Character {
     preUpdate(t,dt) 
     {
         super.preUpdate(t,dt);  // for animation and player detection
-        this.damage();
+        this.testDamages();
+
         if(this.health <= 0)
         {
+            this.disableBody(true, true);
             this.destroy();
-        }        
+        }
     }
 
     /** @override */
@@ -33,9 +35,9 @@ export default class Enemy extends Character {
         this.playerContainer.player.hurt(this.power);
     }
     
-    damage() {
-        if(this.playerContainer.player.magic !== null) this.checkDamage(this.playerContainer.player.attack, 1);
-        if(this.playerContainer.magic !== null) this.checkDamage(this.playerContainer.magic, 3);
+    testDamages() {
+        if(this.playerContainer.player.attack) this.checkDamage(this.playerContainer.player.attack, 1);
+        if(this.playerContainer.magic) this.checkDamage(this.playerContainer.magic, 3);
     }
 
     checkDamage(object, power){

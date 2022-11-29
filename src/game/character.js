@@ -16,7 +16,7 @@ export default class Character extends Entity
      * @param {spritesheet} spritesheet Spritesheet
      * @param {number} n nº de frame dentro del spritesheet
      */
-    constructor(scene, x, y, spritesheet, n){
+    constructor(scene, x, y, spritesheet, n = 0){
         super(scene, x, y, spritesheet, n);
         this.playerContainer = this.scene.playerContainer;
     }
