@@ -1,0 +1,6 @@
+// this.disable();
+// this.destroy();
+// this.disableBody();
+// this.body.destroy();
+// this.disableBody(true, true);
+// this.scene.deleteFromScene(this); // deja de pintar y de actualizar!!
