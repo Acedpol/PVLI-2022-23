@@ -35,22 +35,20 @@ export default class PlayerLogic extends Entity
         this.velocity = { x: 0, y: 0 };
 
         // variables de control de saltos
-        this.maxJumps = 1;
+        this.maxJumps = 2;
         this.nextJump = this.scene.time.now;
         this.allowedJumps = this.maxJumps;
 
         // booleanno para saber si puede ser dañado
         this.canBeDamaged = true;
 
-        // attack gameObject (mechanic: enable and disable)
-        this.attack = new Attack(this.scene, 155, 150);
     }
 
     /** @async */
     update(groundCheck, dt) {
         this.checkInput();
         this.groundDetect(groundCheck, dt);
-        this.playerController(groundCheck);
+        this.playerController();
         this.playerAnimation(groundCheck);
     }
 
@@ -134,9 +132,10 @@ export default class PlayerLogic extends Entity
         // habilities input
         if (this.shoot_A) {
             this.spell_attack();
-        }
+            console.log('attack!');
+        } 
 
-        if (this.shoot_B){
+        if (this.shoot_B) {
             if (this.container) this.container.dropMagic();
         }
     }
@@ -210,22 +209,27 @@ export default class PlayerLogic extends Entity
 
     spell_attack() {
         // si ha pasado el cooldown se llama al método para atacar
-        if (this.attack.cooldown === true) 
+        if (!this.attack.locked && this.cd_attack < this.scene.time.now - this.last_attack) // antes, 'cooldown === true'
         {
             // calcula la nueva posición
-            let dx = 0;
+            let dx = this.container.x; 
+            let dy = this.container.y;
 
             if (this.flipX) {
                 this.attack.flipX = true;
-                dx = -this.width / 4;
+                dx += -this.container.player.width / 4;
             }
             if (!this.flipX) {
                 this.attack.flipX = false;
-                dx = this.width / 3;
+                dx += this.container.player.width / 3;
             }
+            dy += this.container.player.height / 3;
 
-            // activa body y sprite 
-            this.attack.enable(this.x + dx, this.y + this.height / 3);
+            // posiciona, activa body y sprite 
+            this.attack.enable(dx, dy);
+
+            // timer
+            this.last_attack = this.scene.time.now;
         }
     }
 
