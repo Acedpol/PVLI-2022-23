@@ -6,15 +6,14 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 {
     /**
      * Constructor del container del jugador
-     * @param {Phaser.Scene} scene escena a la que pertenece
      * @param {Number} x horizontal position
      * @param {Number} y vertical position
      * @param {Phaser.GameObjects.Sprite} sprite representación principal (no es un hijo)
      */
-    constructor(scene, x, y, sprite)
+    constructor(x, y, sprite)
     {
         // Constructor del container //
-        super(scene, x, y, sprite);
+        super(x, y, sprite);
 
         // variables de animación de la cabeza
         this.xHead = 0;

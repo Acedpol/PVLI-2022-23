@@ -8,14 +8,13 @@ export default class Magic extends Character
 
     /**
      * Constructor del objeto combustible
-     * @param {Phaser.Scene} scene Escena a la que pertenece el combustible
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      * @param {Phaser.Textures.Texture} texture Textura usada para el combustible (image)
      */
-    constructor(scene, x, y) 
+    constructor(x, y) 
     {
-        super(scene, x, y, 'object', 3)
+        super(x, y, 'object', 3)
         this.stop = false;
         this.rotation = false;
         this.incRot = 0;

@@ -10,14 +10,13 @@ export default class Character extends Entity
 {
     /**
      * Constructor de enemigo
-     * @param {Phaser.Scene} scene Escena del enemigo
      * @param {number} x Coordenada x
      * @param {number} y Coordenada y
      * @param {spritesheet} spritesheet Spritesheet
      * @param {number} n nº de frame dentro del spritesheet
      */
-    constructor(scene, x, y, spritesheet, n = 0){
-        super(scene, x, y, spritesheet, n);
+    constructor(x, y, spritesheet, n = 0){
+        super(x, y, spritesheet, n);
         this.playerContainer = this.scene.playerContainer;
     }
 

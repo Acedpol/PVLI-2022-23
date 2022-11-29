@@ -7,20 +7,25 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite
 {
     /**
      * Constructor de enemigo
-     * @param {Phaser.Scene} scene Escena del enemigo
      * @param {number} x Coordenada x
      * @param {number} y Coordenada y
      * @param {spritesheet} spritesheet Spritesheet
      * @param {number} n nº de frame dentro del spritesheet
      */
-    constructor(scene, x, y, spritesheet, n = 0){
-        super(scene, x, y, spritesheet, n);
+    constructor(x, y, spritesheet, n = 0){
+        super(x, y, spritesheet, n);
         this.setOrigin(0.5);
     }
 
     preUpdate(t,dt) 
     {
         super.preUpdate(t,dt);  // for animation
+    }
+
+    /** @async */
+    setScene(scene) {
+        this.scene = scene;
+        scene.add.existing(this);
     }
 
     /**

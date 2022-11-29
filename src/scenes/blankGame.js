@@ -6,6 +6,7 @@ import blankScene from './scene.js'
 import Potion from '../game/potion.js'
 import { gameOver } from '../utils/callbacks.js'
 import PlayerLogic from '../game/player.js'
+import Entity from '../game/entity.js'
 
 export default class blankGame extends blankScene
 {
@@ -94,10 +95,10 @@ export default class blankGame extends blankScene
     createPlayer(x, y, sprite, args)
     {
         // Añade al jugador como Sprite
-        this.player = this.addToScene(new PlayerLogic(this, 0, 0, sprite, 0, args), false);
+        this.player = this.addToScene(new PlayerLogic(0, 0, sprite, 0, args), false);
 
         // creates the player container in the middle of the screen
-        let container = new PlayerContainer(this, x, y, this.player);
+        let container = new PlayerContainer(x, y, this.player);
         this.playerContainer = this.addToScene(container, true);
 
         // añade el jugador al contenedor: '1, 2, 3 ...fusión!!'
@@ -246,12 +247,12 @@ export default class blankGame extends blankScene
 
     /**
      * Adds a created GameObject to the scene and apply physics.
-     * @param {Phaser.GameObjects.GameObject} mob GameObject to add to scene
+     * @param {Entity} mob GameObject to add to scene
      * @param {Boolean} physx whether if the will apply physx
      */
     addToScene(mob, physx = false)
-    {  
-        this.add.existing(mob);
+    {
+        mob.setScene(this);
         if (physx) {
             this.physics.add.existing(mob);
             this.physics.add.collider(mob, this.groundLayer);

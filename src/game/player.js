@@ -6,16 +6,15 @@ export default class PlayerLogic extends Entity
 {
     /**
      * Constructor del container del jugador
-     * @param {Phaser.Scene} scene Escena a la que pertenece el jugador
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      * @param {spritesheet} spritesheet Spritesheet
      * @param {number} n nº de frame dentro del spritesheet
      * @param {struct} args parámetros de juego
      */
-    constructor(scene, x, y, spritesheet, n, args)
+    constructor(x, y, spritesheet, n, args)
     {
-        super(scene, x, y, spritesheet, n);
+        super(x, y, spritesheet, n);
 
         // vida
         this.health = 9;
@@ -46,7 +45,7 @@ export default class PlayerLogic extends Entity
     /** @async */
     setHabilities() {
         // - attack - (implementation: enable and disable)
-        this.attack = this.scene.addToScene(new Attack(this.scene, 155, 150), true);
+        this.attack = this.scene.addToScene(new Attack(155, 150), true);
         this.last_attack = this.scene.time.now;
         this.cd_attack = 1000;
         this.attack.init();

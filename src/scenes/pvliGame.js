@@ -65,11 +65,11 @@ export default class pvliGame extends blankGame
         this.initPlayer(true); // allow camara to follow
 
         // Creates the enemy
-        this.addToScene(new Hound(this, 30, 100), true);
+        this.addToScene(new Hound(30, 100), true);
 
         // Crea un objeto para recoger en la escena
-        this.addToScene(new Magic(this, 150, 150), true);
-        this.addToScene(new Potion(this, 300, 100), true);
+        this.addToScene(new Magic(150, 150), true);
+        this.addToScene(new Potion(300, 100), true);
 
         // Sets the camera view
         this.startCamera({ width: this.mapWidth, height: this.mapHeight});        

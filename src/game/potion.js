@@ -4,14 +4,13 @@ export default class Potion extends Character
 {
     /**
      * Constructor del objeto combustible
-     * @param {Phaser.Scene} scene Escena a la que pertenece el combustible
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
      * @param {Phaser.Textures.Texture} texture Textura usada para el combustible (image)
      */
-    constructor(scene, x, y) 
+    constructor(x, y) 
     {
-        super(scene, x, y, 'potiSprite');
+        super(x, y, 'potiSprite');
         this.setScale(1);
     }
 

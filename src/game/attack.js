@@ -4,12 +4,11 @@ export default class Attack extends Character
 {
     /**
      * Constructor de Heal
-     * @param {Scene} scene Escena en la que aparece el bate
      * @param {number} x coordenada x
      * @param {number} y coordenada y
      */
-    constructor(scene, x, y) {
-        super(scene, x, y, 'attackSpr');
+    constructor(x, y) {
+        super(x, y, 'attackSpr');
         this.setScale(0.75);
     }
 

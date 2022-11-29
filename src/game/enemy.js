@@ -9,8 +9,8 @@ import Character from './character.js';
 export default class Enemy extends Character {
 
 
-    constructor(scene, x, y, spritesheet, n, stats){
-        super(scene, x, y, spritesheet, n);     
+    constructor(x, y, spritesheet, n, stats){
+        super(x, y, spritesheet, n);     
         this.dir = 1;
         this.health = stats.health;
         this.power = stats.power;
