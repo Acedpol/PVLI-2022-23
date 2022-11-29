@@ -56,18 +56,22 @@ export default class pvliGame extends blankGame
         // Create background image
         this.createMapBackground('img_back', this.map);
         
+        // Prepares the game
+        // this.timer = this.time.addEvent(500, ()=>{
+        console.log('initializing game...');
+
         // Creates the player
         this.createPlayer(this.mapWidth * 0.5, this.mapHeight * 0.5, 'angel', this.args, true);
 
-        // Sets the camera view
-        this.startCamera({ width: this.mapWidth, height: this.mapHeight});
-
         // Creates the enemy
-        this.addToScene(new Hound(this, 30, 100));
+        this.addToScene(new Hound(this, 30, 100), true);
 
         // Crea un objeto para recoger en la escena
-        this.addToScene(new Magic(this, 150, 150));
-        this.addToScene(new Potion(this, 300, 100));
+        this.addToScene(new Magic(this, 150, 150), true);
+        this.addToScene(new Potion(this, 300, 100), true);
+
+        // Sets the camera view
+        this.startCamera({ width: this.mapWidth, height: this.mapHeight});        
     }
 
     update(t, dt) 

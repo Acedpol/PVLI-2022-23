@@ -10,6 +10,7 @@ import PlayerLogic from '../game/player.js'
 export default class blankGame extends blankScene
 {
     // --- PLAYER --- 
+    /** @type {Phaser.GameObjects.Sprite} */            player
     /** @type {Phaser.GameObjects.Container} */         playerContainer
 
     // --- SCENE --- 
@@ -81,7 +82,7 @@ export default class blankGame extends blankScene
 
     // --- --- --- 
 
-    // --- --- SCENE --- --- 
+    // --- --- WORLD --- --- 
 
     /**
      * Sets the condition for all edges in the game to avoid or not collisions
@@ -139,7 +140,7 @@ export default class blankGame extends blankScene
      * @param {Tuple} scale dimensiones a tener en cuenta
      */
     startCamera(scale) {
-        this.configCamera(false);       // zoom and viewport + follow
+        this.configCamera();       // zoom and viewport + follow
         this.centerOnMap(scale);        // center midpoint
         this.worldBounds(scale);        // limits of the world
     }
@@ -150,7 +151,7 @@ export default class blankGame extends blankScene
      * al tamaño del mapa ya creado
      * @param {Phaser.Tilemaps.Tilemap} map Mapa del juego ya creado
      */ 
-    configCamera(debug = false, follow = true)
+    configCamera(debug = false)
     {
         // relación de aspecto
         var z = 2.625;
@@ -216,7 +217,7 @@ export default class blankGame extends blankScene
      * @param {Phaser.GameObjects.GameObject} mob GameObject to add to scene
      * @param {Boolean} physx whether if the will apply physx
      */
-    addToScene(mob, physx = true)
+    addToScene(mob, physx = false)
     {  
         this.add.existing(mob);
         if (physx) {
@@ -232,33 +233,11 @@ export default class blankGame extends blankScene
      * @param {Phaser.GameObjects.GameObject} mob GameObject to add to scene
      * @param {Boolean} physx whether if the will apply physx
      */
-    deleteFromScene(mob, physx = true)
+    deleteFromScene(mob, physx = false)
     {
         mob.removedFromScene();
         if (physx) mob.disableBody(true, true);
         return mob;
-    }
-    
-    /**
-     * Creates and positions the Player, by a container
-     * @param {Number} x horizontal position
-     * @param {Number} y vertical position
-     * @param {String} sprite name of the sprite asset
-     * @param {Number} args parámetros de juego
-     * @param {Boolean} follow condition to follow or not player
-     */
-    createPlayer(x, y, sprite, args, follow = true)
-    {
-        // Añade al jugador como Sprite
-        let player = this.addToScene(new PlayerLogic(this, 0, 0, sprite, 0, args), false);
-
-        // creates the player container in the middle of the screen
-        let container = new PlayerContainer(x, y, player);
-        this.playerContainer = this.addToScene(container, true);
-        this.playerContainer.init()
-
-        // sigue al jugador
-        if (follow) this.cameras.main.startFollow(this.playerContainer);
     }
 
     /**

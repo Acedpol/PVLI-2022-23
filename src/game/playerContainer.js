@@ -6,20 +6,15 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 {
     /**
      * Constructor del container del jugador
+     * @param {Phaser.Scene} scene escena a la que pertenece
      * @param {Number} x horizontal position
      * @param {Number} y vertical position
-     * @param {PlayerLogic} playerLogic Sprite que representa al jugador
+     * @param {Phaser.GameObjects.Sprite} sprite representación principal (no es un hijo)
      */
-    constructor(x, y, playerLogic)
+    constructor(scene, x, y, sprite)
     {
         // Constructor del container //
-        super(playerLogic.scene, x, y, playerLogic);
-
-        // ajustes del jugador
-        this.player = playerLogic;
-        this.player.setOrigin(0.4275,0.3275);
-        this.player.setScale(0.75, 0.75);
-        this.player.setContainer(this);
+        super(scene, x, y, sprite);
 
         // variables de animación de la cabeza
         this.xHead = 0;
@@ -135,7 +130,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             this.remove(this.getAt(1), true);
 
             // creates a new one in the same position
-            this.magic = new Magic(this.scene, posX, posY); // --->
+            this.magic = this.scene.addToScene(new Magic(this.scene, posX, posY), true); // --->
             this.scene.addToScene(this.magic);
             this.magic.setOrigin(0.5,0.5);
 
