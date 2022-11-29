@@ -5,6 +5,7 @@ import Hound from '../game/hound.js'
 import blankScene from './scene.js'
 import Potion from '../game/potion.js'
 import { gameOver } from '../utils/callbacks.js'
+import PlayerLogic from '../game/player.js'
 
 export default class blankGame extends blankScene
 {
@@ -148,7 +149,6 @@ export default class blankGame extends blankScene
      * los parámetros de seguimiento de la cámara
      * al tamaño del mapa ya creado
      * @param {Phaser.Tilemaps.Tilemap} map Mapa del juego ya creado
-     * @param {Boolean} follow condition to follow or not player
      */ 
     configCamera(debug = false, follow = true)
     {
@@ -164,9 +164,6 @@ export default class blankGame extends blankScene
         this.cameras.main
             .setZoom(zx,zy)
             .setViewport(mw,mh,this.zw,this.zh);
-
-        // sigue al jugador
-        if (follow) this.cameras.main.startFollow(this.playerContainer);
 
         // establece el area de libertad de movimiento (sin que la cámara persiga) a 0.15x del tamaño total.
         this.cameras.main.setDeadzone(this.logicWidth * 0.15, this.logicHeight * 0.15);
@@ -217,12 +214,29 @@ export default class blankGame extends blankScene
     /**
      * Adds a created GameObject to the scene and apply physics.
      * @param {Phaser.GameObjects.GameObject} mob GameObject to add to scene
+     * @param {Boolean} physx whether if the will apply physx
      */
-    addToScene(mob)
+    addToScene(mob, physx = true)
     {  
         this.add.existing(mob);
-        this.physics.add.collider(mob, this.groundLayer);
-        this.physics.add.existing(mob);
+        if (physx) {
+            this.physics.add.existing(mob);
+            this.physics.add.collider(mob, this.groundLayer);
+            mob.body.collideWorldBounds = true;
+        }
+        return mob;
+    }
+
+    /**
+     * Adds a created GameObject to the scene and apply physics.
+     * @param {Phaser.GameObjects.GameObject} mob GameObject to add to scene
+     * @param {Boolean} physx whether if the will apply physx
+     */
+    deleteFromScene(mob, physx = true)
+    {
+        mob.removedFromScene();
+        if (physx) mob.disableBody(true, true);
+        return mob;
     }
     
     /**
@@ -230,18 +244,21 @@ export default class blankGame extends blankScene
      * @param {Number} x horizontal position
      * @param {Number} y vertical position
      * @param {String} sprite name of the sprite asset
-     * @param {Number} optA opción de controles
+     * @param {Number} args parámetros de juego
+     * @param {Boolean} follow condition to follow or not player
      */
-    createPlayer(x, y, sprite, optA)
+    createPlayer(x, y, sprite, args, follow = true)
     {
         // Añade al jugador como Sprite
-        let player = this.add.sprite(0, 0, sprite, 0)
+        let player = this.addToScene(new PlayerLogic(this, 0, 0, sprite, 0, args), false);
 
         // creates the player container in the middle of the screen
-        this.playerContainer = new PlayerContainer(this, x, y, player, optA)
+        let container = new PlayerContainer(x, y, player);
+        this.playerContainer = this.addToScene(container, true);
+        this.playerContainer.init()
 
-        // adds it to the scene
-        this.addToScene(this.playerContainer);
+        // sigue al jugador
+        if (follow) this.cameras.main.startFollow(this.playerContainer);
     }
 
     /**
