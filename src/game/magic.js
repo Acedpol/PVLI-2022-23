@@ -1,15 +1,10 @@
-import Object from './object.js'
+import Character from './character.js'
 
-export default class Magic extends Object
+export default class Magic extends Character
 {
-    /** @type {boolean} */
-    stop
-
-    /** @type {boolean} */
-    onRotation
-
-    /** @type {Number} */
-    incRot
+    /** @type {boolean} */  stop
+    /** @type {boolean} */  onRotation
+    /** @type {Number} */   incRot
 
     /**
      * Constructor del objeto combustible
@@ -21,59 +16,69 @@ export default class Magic extends Object
     constructor(scene, x, y) 
     {
         super(scene, x, y, 'object', 3)
-        this.stopMoving = false;
+        this.stop = false;
         this.rotation = false;
         this.incRot = 0;
+        this.setScale(0.5);
 
         // set active and visible
-        this.setActive(true)
-        this.setVisible(true)
- 
-        // colisiona con los limites del mundo
+        this.setActive(true);
+        this.setVisible(true);
     }
 
     preUpdate(t,dt) 
     {
         super.preUpdate(t,dt) // for animation
+        this.playerFlipDetect();
 
         if (this.stop) {
             this.stopInertia();
-            console.log(this.onRotation)
+            console.log(this.onRotation);
         }
         if (this.onRotation) {
             this.angle += this.incRot;
         }
     }
 
+    /** @override */
     effect()
     {
-        this.container.carryMagic(this)
-        this.scene.sound.play('pick')
+        this.playerContainer.carryMagic(this);
+        this.scene.sound.play('pick');
     }
+
+    playerFlipDetect() {
+        if (this.playerContainer.carriesMagic) {
+            if (this.playerContainer.player.flipX) {
+                this.flipX = true;
+            } else {
+                this.flipX = false;
+            }
+        }
+    }
+
+    /** @listens */
+    onStop() { this.stop = true; };
+    offStop() { this.stop = false; };
 
     setIncRot(inc) {
         this.incRot = inc;
     }
 
-    toggleRotationActivity() {
-        this.onRotation = !this.onRotation
+    toggleRotation() {
+        this.onRotation = !this.onRotation;
     }
-    ensureRotationActivity() {
+    stopRotation() {
         this.onRotation = false;
     }
 
-    toggleStopInertia() {
-        this.stop = !this.stop
-    }
-
     stopInertia() {
-        if (this.body.velocity.y == 0 && this.body.onFloor()) {
-            this.toggleRotationActivity();
-            this.toggleStopInertia();
+        if (this.stop && this.body.velocity.y == 0 && this.body.onFloor()) {
+            this.offStop();
+            this.stopRotation();
             this.scene.time.delayedCall(250, () => {
-                this.setVelocityX(0)
-            })
-
+                this.setVelocityX(0);
+            });
         }
     }
 

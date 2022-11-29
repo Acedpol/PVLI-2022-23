@@ -1,4 +1,7 @@
-export default class Attack extends Phaser.Physics.Arcade.Sprite {
+import Entity from "./entity.js";
+
+export default class Attack extends Entity
+{
     /**
      * Constructor de Heal
      * @param {Scene} scene Escena en la que aparece el bate
@@ -7,16 +10,43 @@ export default class Attack extends Phaser.Physics.Arcade.Sprite {
      */
     constructor(scene, x, y) {
         super(scene, x, y, 'attack');
-        this.scene.add.existing(this);
-        this.scene.physics.add.existing(this);
-        this.body.allowGravity = false;
+        // this.body.allowGravity = false;
         this.setScale(0.75);
+        this.disable(); // starts disabled!
+
+        // cooldown condition
+        this.cooldown = true;
     }
+
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
     }
 
-    disable(){
-        this.disableBody(true, true);
+    enable(x, y) {
+        // this.scene.addToScene(this);
+
+        // activa body y sprite 
+        // this.enableBody(true, x, y, true, true);
+        this.setPosition(x,y);
+        this.play('attack');
+
+        this.cooldown = false;
+        this.timer = this.scene.time.addEvent({
+            delay: 500,
+            callback: onEvent,
+            callbackScope: this,
+            loop: false
+        });
+
+        function onEvent() {
+            this.disable();            
+        }
+    }
+
+    disable() {
+        // this.anims.pause();
+        this.cooldown = true;
+        // this.disableBody(true, true);
+        // this.scene.deleteFromScene(this);
     }
 }

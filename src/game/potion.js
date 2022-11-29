@@ -1,8 +1,7 @@
-import Object from './object.js'
+import Character from './character.js';
 
-export default class Potion extends Object
+export default class Potion extends Character
 {
-
     /**
      * Constructor del objeto combustible
      * @param {Phaser.Scene} scene Escena a la que pertenece el combustible
@@ -12,21 +11,21 @@ export default class Potion extends Object
      */
     constructor(scene, x, y) 
     {
-        super(scene, x, y, 'potiSprite', 0)
+        super(scene, x, y, 'potiSprite');
         this.setScale(1);
     }
 
     preUpdate(t,dt) 
     {
-        super.preUpdate(t,dt) // for animation
-
+        super.preUpdate(t,dt); // for animation and player detection
     }
+
+    /** @override */
     effect()
     {
-        this.container.heal(3)
-        this.scene.sound.play('pick')   // sound feedback
-        this.destroy()
+        this.playerContainer.player.heal(3);
+        this.scene.sound.play('pick');   // sound feedback
+        this.destroy();
     }
-
 
 }
