@@ -13,6 +13,20 @@ export default class Attack extends Character
         this.setScale(0.75);
     }
 
+    init(debug = false) {
+        this.disable();
+        this.body.allowGravity = false;
+        this.setPosition(this.playerContainer.x, this.playerContainer.y);
+
+        if (debug) {
+            console.log('///');
+            console.log('> attack position: { x:' + this.x + ', y: ' + this.y + '} ');
+            console.log('> player position: { x:' + this.playerContainer.x + ', y: ' + this.playerContainer.y + '} ');
+            console.log(' --- ');
+            console.log('///');
+        }
+    };
+
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
     }

@@ -82,6 +82,38 @@ export default class blankGame extends blankScene
 
     // --- --- --- 
 
+    // --- --- PLAYER --- --- 
+
+    /**
+     * Creates and positions the Player, by a container
+     * @param {Number} x horizontal position
+     * @param {Number} y vertical position
+     * @param {String} sprite name of the sprite asset
+     * @param {Number} args parámetros de juego
+     */
+    createPlayer(x, y, sprite, args)
+    {
+        // Añade al jugador como Sprite
+        this.player = this.addToScene(new PlayerLogic(this, 0, 0, sprite, 0, args), false);
+
+        // creates the player container in the middle of the screen
+        let container = new PlayerContainer(this, x, y, this.player);
+        this.playerContainer = this.addToScene(container, true);
+
+        // añade el jugador al contenedor: '1, 2, 3 ...fusión!!'
+        this.playerContainer.addPlayer(this.player);
+
+        return container;
+    }
+
+    initPlayer(follow = false)
+    {        
+        // sigue al jugador
+        if (follow) this.cameras.main.startFollow(this.playerContainer);
+    }
+
+    // --- --- --- 
+
     // --- --- WORLD --- --- 
 
     /**

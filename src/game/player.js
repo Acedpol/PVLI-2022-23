@@ -41,7 +41,15 @@ export default class PlayerLogic extends Entity
 
         // booleanno para saber si puede ser dañado
         this.canBeDamaged = true;
+    }
 
+    /** @async */
+    setHabilities() {
+        // - attack - (implementation: enable and disable)
+        this.attack = this.scene.addToScene(new Attack(this.scene, 155, 150), true);
+        this.last_attack = this.scene.time.now;
+        this.cd_attack = 1000;
+        this.attack.init();
     }
 
     /** @async */

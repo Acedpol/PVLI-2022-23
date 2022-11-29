@@ -23,10 +23,28 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         // magia (hijo, se adhiere)
         this.magic = null;
         this.carriesMagic = false;
+    }    
+
+    /**
+     * Añade al jugador de forma asincrona
+     * @param {PlayerLogic} playerLogic Sprite que representa al jugador
+     */
+    addPlayer(playerLogic) {
+        
+        // ajustes del jugador
+        this.player = playerLogic;
+        this.player.setContainer(this);
+        this.player.setOrigin(0.4275,0.3275);
+        this.player.setScale(0.75, 0.75);
+
+        // ...this init!!
+        this.setPlayer();
     }
 
-    init() {
+    setPlayer() {
+        this.player.setHabilities()
         this.body.setSize(this.player.width * 11 / 100, this.player.height * 48 / 100);
+        console.log('player + container = playerContainer!');
     }
 
     preUpdate(t,dt)
