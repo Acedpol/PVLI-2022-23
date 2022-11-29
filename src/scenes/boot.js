@@ -128,9 +128,9 @@ export default class Boot extends Phaser.Scene
         // creates attack animation for player
         this.anims.create({
           key: 'attack',
-          frames: this.anims.generateFrameNames('attackSpr', { start: 0, end: 4 }),
-          frameRate: 9,
-          repeat: -1
+          frames: this.anims.generateFrameNames('attackSpr', { start: 0, end: 5 }),
+          frameRate: 5,
+          repeat: 0
         })
 
         // --- Enemigos --- cuadriplicar para cada cosa que se pilla
