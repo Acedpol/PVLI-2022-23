@@ -1,6 +1,6 @@
-import Entity from "./entity.js";
+import Character from "./character.js";
 
-export default class Attack extends Entity
+export default class Attack extends Character
 {
     /**
      * Constructor de Heal
@@ -9,13 +9,8 @@ export default class Attack extends Entity
      * @param {number} y coordenada y
      */
     constructor(scene, x, y) {
-        super(scene, x, y, 'attack');
-        // this.body.allowGravity = false;
+        super(scene, x, y, 'attackSpr');
         this.setScale(0.75);
-        this.disable(); // starts disabled!
-
-        // cooldown condition
-        this.cooldown = true;
     }
 
     preUpdate(t, dt) {
@@ -26,13 +21,12 @@ export default class Attack extends Entity
         // this.scene.addToScene(this);
 
         // activa body y sprite 
-        // this.enableBody(true, x, y, true, true);
-        this.setPosition(x,y);
-        this.play('attack');
+        this.enableBody(true, x, y, true, true); // parecido a: 'this.setPosition(x,y);'
+        this.play('attack', true);
 
-        this.cooldown = false;
+        this.locked = true;
         this.timer = this.scene.time.addEvent({
-            delay: 500,
+            delay: 1000,
             callback: onEvent,
             callbackScope: this,
             loop: false
@@ -44,9 +38,8 @@ export default class Attack extends Entity
     }
 
     disable() {
-        // this.anims.pause();
-        this.cooldown = true;
-        // this.disableBody(true, true);
-        // this.scene.deleteFromScene(this);
+        this.locked = false;
+        this.disableBody(true, true);
+        this.anims.stop();
     }
 }
