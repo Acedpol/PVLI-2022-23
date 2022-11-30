@@ -29,18 +29,20 @@ export default class UI extends blankMenu
     setPlayer(player) 
     {
         this.playerContainer = player;
+        let z = 32 * this.AR;
+        let dz = 32 / 5 * this.AR;
 
         // lives dock
-        this.lives.setArgs({x: 32, y: 32, stepX: 32 + 32/5, stepY: 0 });
         this.lives = new Dock(this);
         this.lives.classType = Life;
+        this.lives.setArgs({x: z, y: z, stepX: z + dz, stepY: 0 });
         this.lives.setPlayer();
         this.lives.reset(this.playerContainer.player.health, 'object');
 
         // jumps dock
-        this.jumps.setArgs({x: 32, y: 32 * 2, stepX: 32 + 32/5, stepY: 0 });
         this.jumps = new Dock(this);
         this.jumps.classType = Jump;
+        this.jumps.setArgs({x: z, y: z * 2, stepX: z + dz, stepY: 0 });
         this.jumps.setPlayer();
         this.jumps.reset(this.playerContainer.player.maxJumps, 'jump');
     }

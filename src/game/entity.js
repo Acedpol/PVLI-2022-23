@@ -41,4 +41,5 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite
             this.x = (-1) * halfWidth * 3;
         }
     }
+    
 }
