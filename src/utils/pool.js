@@ -9,10 +9,11 @@ export default class Pool extends Phaser.GameObjects.Group
     /**
      * Constructor de enemigo
      * @param {Phaser.Scene} scene escena a la que pertenece
+     * @param {Phaser.GameObjects.Sprite} type tipo de objeto
      */
-    constructor(scene)
+    constructor(scene, type = Phaser.GameObjects.Sprite)
     {
-        super(scene, { classType: Phaser.Physics.Arcade.Sprite });
+        super(scene, type);
     }
 
     /** @async */

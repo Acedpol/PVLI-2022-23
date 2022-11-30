@@ -9,10 +9,11 @@ export default class Dock extends Pool
     /**
      * Constructor de enemigo
      * @param {Phaser.Scene} scene escena a la que pertenece
+     * @param {Phaser.GameObjects.Sprite} type tipo de objeto
      */
-    constructor(scene)
+    constructor(scene, type = Phaser.GameObjects.Sprite)
     {
-        super(scene);
+        super(scene, type);
         this.setOrigin(0.5);
     }
 
