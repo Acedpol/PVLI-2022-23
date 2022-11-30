@@ -27,6 +27,11 @@ export default class UI extends blankMenu
         console.log('UI iniciada!');
         this.initC = true;
     }
+
+    reset() {
+        this.initC = false;
+        this.initP = false;
+    }
     
     /** @async */
     setPlayer(player) 

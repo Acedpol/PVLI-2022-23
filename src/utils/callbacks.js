@@ -12,8 +12,8 @@ export function startGame(scene) {
 export function gameOver(scene) {
     scene.sound.stopAll();
     scene.sound.play('lose');
+    scene.scene.stop('UI');
     scene.scene.start('GameOver');
-    gameLogic.scene.stop('UI');
 }
 
 // options

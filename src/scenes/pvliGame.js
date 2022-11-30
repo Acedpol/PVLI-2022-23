@@ -72,6 +72,7 @@ export default class pvliGame extends blankGame
         
         // this.time.delayedCall(250, this.UI.setPlayer(this.playerContainer));
         // if (this.UI.initC) this.UI.setPlayer(this.playerContainer);
+        if (this.UI) this.UI.reset();
     }
 
     update(t, dt) 
