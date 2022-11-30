@@ -3,23 +3,16 @@
  * Si al añadir un objeto no tiene 'body' se hace estático por defecto.
  */
 
-/** @type {Phaser.Physics.Arcade.StaticGroup} */
-export default class Pool extends Phaser.Physics.Arcade.StaticGroup
+/** @type {Phaser.GameObjects.Group} */
+export default class Pool extends Phaser.GameObjects.Group
 {
     /**
      * Constructor de enemigo
      * @param {Phaser.Scene} scene escena a la que pertenece
-     * @param {Phaser.Physics.Arcade.World} world physx simulation
-     * @param {Phaser.Physics.Arcade.Sprite} typeObj tipo de objetos anidados
      */
-    constructor(scene, world, typeObj = Phaser.Physics.Arcade.Sprite)
+    constructor(scene)
     {
-        super(world, scene, { classType: Phaser.Physics.Arcade.Sprite });
-
-        // Método alternativo sin clases:
-        // this.meteoros = this.physics.add.group({
-        //     classType: Meteor
-        // })
+        super(scene, { classType: Phaser.Physics.Arcade.Sprite });
     }
 
     /** @async */
@@ -33,7 +26,7 @@ export default class Pool extends Phaser.Physics.Arcade.StaticGroup
      * @param {String} key texture key
      */
     addToGroup(key, x = 0, y = 0) {
-        return this.create(x, y, key);
+        this.create(x, y, key);
     }
 
     /**

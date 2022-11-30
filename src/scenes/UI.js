@@ -1,3 +1,5 @@
+import Jump from "../icons/jump.js";
+import Life from "../icons/life.js";
 import Dock from "../utils/dock.js";
 import blankMenu from "./menu.js";
 
@@ -5,8 +7,8 @@ export default class UI extends blankMenu
 {
     // /** @type {Phaser.Types.GameObjects.Text.TextStyle} */      style
     /** @type {Number} */                                       size
-    /** @type {String} */                                       allowedJumps
-    /** @type {String} */                                       life
+    /** @type {String} */                                       allowedJumpsText
+    /** @type {String} */                                       lifeText
     /** @type {Phaser.GameObjects.Text} */                      place01
     /** @type {Phaser.GameObjects.Text} */                      place02
 
@@ -29,14 +31,16 @@ export default class UI extends blankMenu
         this.playerContainer = player;
 
         // lives dock
-        this.lives = new Dock(this, this.physics.world);
         this.lives.setArgs({x: 32, y: 32, stepX: 32 + 32/5, stepY: 0 });
+        this.lives = new Dock(this);
+        this.lives.classType = Life;
         this.lives.setPlayer();
         this.lives.reset(this.playerContainer.player.health, 'object');
 
         // jumps dock
-        this.jumps = new Dock(this, this.physics.world);
         this.jumps.setArgs({x: 32, y: 32 * 2, stepX: 32 + 32/5, stepY: 0 });
+        this.jumps = new Dock(this);
+        this.jumps.classType = Jump;
         this.jumps.setPlayer();
         this.jumps.reset(this.playerContainer.player.maxJumps, 'jump');
     }

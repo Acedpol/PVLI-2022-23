@@ -9,12 +9,10 @@ export default class Dock extends Pool
     /**
      * Constructor de enemigo
      * @param {Phaser.Scene} scene escena a la que pertenece
-     * @param {Phaser.Physics.Arcade.World} world physx simulation
-     * @param {Phaser.Physics.Arcade.Sprite} typeObj tipo de objetos anidados
      */
-    constructor(scene, world, typeObj = Phaser.Physics.Arcade.Sprite)
+    constructor(scene)
     {
-        super(scene, world, { classType: typeObj });
+        super(scene);
         this.setOrigin(0.5);
     }
 
