@@ -1,3 +1,4 @@
+import Dock from "../utils/dock.js";
 import blankMenu from "./menu.js";
 
 export default class UI extends blankMenu
@@ -16,12 +17,28 @@ export default class UI extends blankMenu
 
     init() {
         super.init();
-        // this.events.on('');
-
-        // this.style = { color: '#fff', fontSize: 8, fontFamily: 'Greconian', fontStyle: 'normal' }
         this.size = 8;
-        this.allowedJumps = 'Allowed jumps: 0/0'; 
-        this.lives = 'Lives: 9';
+        this.allowedJumpsText = 'Allowed jumps: 0/0'; 
+        this.livesText = 'Lives: 9';
+        console.log('UI iniciada!');
+    }
+    
+    /** @async */
+    setPlayer(player) 
+    {
+        this.playerContainer = player;
+
+        // lives dock
+        this.lives = new Dock(this, this.physics.world);
+        this.lives.setArgs({x: 32, y: 32, stepX: 32 + 32/5, stepY: 0 });
+        this.lives.setPlayer();
+        this.lives.reset(this.playerContainer.player.health, 'object');
+
+        // jumps dock
+        this.jumps = new Dock(this, this.physics.world);
+        this.jumps.setArgs({x: 32, y: 32 * 2, stepX: 32 + 32/5, stepY: 0 });
+        this.jumps.setPlayer();
+        this.jumps.reset(this.playerContainer.player.maxJumps, 'jump');
     }
 
     preload() 
@@ -31,16 +48,16 @@ export default class UI extends blankMenu
 
     create() 
     {
-        const x = this.canvasWidth;
-        const y = this.canvasHeight;
+        const width = this.canvasWidth;
+        const height = this.canvasHeight;
 
-        this.place01 = this.addText(x / 2, y / 30, this.allowedJumps, this.size);
-        this.place02 = this.addText(x / 2, y * 3 / 30, this.lives, this.size);
+        this.place01 = this.addText(width / 2, height / 30, this.allowedJumpsText, this.size);
+        this.place02 = this.addText(width / 2, height * 3 / 30, this.livesText, this.size);
     }
 
     update(t, dt) 
     {
-        // super.update(t, dt);
+        super.update(t, dt);
     }
 
     /**
