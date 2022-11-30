@@ -15,6 +15,8 @@ export default class UI extends blankMenu
     constructor() 
     {
         super('UI');
+        this.initC = false;
+        this.initP = false;
     }
 
     init() {
@@ -23,6 +25,7 @@ export default class UI extends blankMenu
         this.allowedJumpsText = 'Allowed jumps: 0/0'; 
         this.livesText = 'Lives: 9';
         console.log('UI iniciada!');
+        this.initC = true;
     }
     
     /** @async */
@@ -45,6 +48,7 @@ export default class UI extends blankMenu
         this.jumps.setArgs({x: z, y: z * 2, stepX: z + dz, stepY: 0 });
         this.jumps.setPlayer();
         this.jumps.reset(this.playerContainer.player.maxJumps, 'jump');
+        this.initP = true;
     }
 
     preload() 

@@ -70,11 +70,13 @@ export default class pvliGame extends blankGame
         // Sets the camera view
         this.startCamera({ width: this.mapWidth, height: this.mapHeight}); 
         
-        this.UI.setPlayer(this.playerContainer);
+        // this.time.delayedCall(250, this.UI.setPlayer(this.playerContainer));
+        // if (this.UI.initC) this.UI.setPlayer(this.playerContainer);
     }
 
     update(t, dt) 
     {
         super.update(t,dt);
+        if (this.UI.initC && !this.UI.initP) this.UI.setPlayer(this.playerContainer);
     }
 }
