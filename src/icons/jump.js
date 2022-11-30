@@ -11,10 +11,6 @@ export default class Jump extends Entity
     constructor(scene, x, y)
     {
         super(scene, x, y, 'jump');
-        let coeW = this.scene.coeWidth;
-        let coeH = this.scene.coeHeight;
-        this.setDisplaySize(this.width * coeW, this.height * coeH);
-        this.setOrigin(0.5);
     }
 
     preUpdate(t,dt) 

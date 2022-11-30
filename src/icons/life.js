@@ -11,10 +11,6 @@ export default class Life extends Entity
     constructor(scene, x, y)
     {
         super(scene, x, y, 'object');
-        let coeW = this.scene.coeWidth;
-        let coeH = this.scene.coeHeight;
-        this.setDisplaySize(this.width * coeW, this.height * coeH);
-        this.setOrigin(0.5);
     }
 
     preUpdate(t,dt) 

@@ -22,12 +22,21 @@ export default class Pool extends Phaser.GameObjects.Group
         this.player = this.scene.playerContainer.player;
     }
 
+    resize(obj) {
+        let coeW = this.scene.coeWidth;
+        let coeH = this.scene.coeHeight;
+        obj.setDisplaySize(obj.width * coeW, obj.height * coeH);
+        obj.setOrigin(0.5);
+    }
+
     /**
      * Adds an object to te pool.
      * @param {String} key texture key
      */
     addToGroup(key, x = 0, y = 0) {
-        this.create(x, y, key);
+        let obj = this.create(x, y, key);
+        this.resize(obj);
+        return obj;
     }
 
     /**
