@@ -1,7 +1,7 @@
 import Magic from "./magic.js"
 import PlayerLogic from "./player.js";
 
-/** @type {Phaser.GameObjects.GameObject} */
+/** @type {Phaser.GameObjects.Container} */
 export default class PlayerContainer extends Phaser.GameObjects.Container
 {
     /**
@@ -61,10 +61,6 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         let vel = this.player.velocity;
         this.body.setVelocity(vel.x, vel.y);
         this.headAnimation();
-
-        // UI
-        this.scene.UI.rewriteUI(this.scene.UI.place01, 'Allowed jumps: ' + this.player.allowedJumps + "/" + this.player.maxJumps);
-        this.scene.UI.rewriteUI(this.scene.UI.place02, 'Lives: ' + this.player.health);
     }
 
     headAnimation() {

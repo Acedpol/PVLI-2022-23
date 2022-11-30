@@ -186,7 +186,7 @@ export default class blankGame extends blankScene
     configCamera(debug = false)
     {
         // relación de aspecto
-        var z = 2.625;
+        var z = 2.625; // CTE
         let mw = 0; let mh = 0;
         if(this.mw) mw = this.mw;
         if(this.mh) mh = this.mh;
