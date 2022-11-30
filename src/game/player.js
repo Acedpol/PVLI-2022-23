@@ -37,7 +37,7 @@ export default class PlayerLogic extends Entity
         // variables de control de saltos
         this.maxJumps = 2;
         this.nextJump = this.scene.time.now;
-        this.allowedJumps = this.maxJumps;
+        this.allowedJumps = 0; // this.maxJumps;
 
         // booleanno para saber si puede ser dañado
         this.canBeDamaged = true;
@@ -58,14 +58,21 @@ export default class PlayerLogic extends Entity
         this.groundDetect(groundCheck, dt);
         this.playerController();
         this.playerAnimation(groundCheck);
+
+        // UI
+        if (this.scene.UI.initC) {
+            this.scene.UI.rewriteUI(this.scene.UI.place01, 'Allowed jumps: ' + this.allowedJumps + "/" + this.maxJumps);
+            this.scene.UI.rewriteUI(this.scene.UI.place02, 'Lives: ' + this.health);
+        }
     }
 
     setContainer(container) { this.container = container; }
 
     groundDetect(groundCheck, dt) {
         // ground detection logic
-        if (groundCheck){
+        if (groundCheck) {
             this.allowedJumps = this.maxJumps;
+            if (this.scene.UI.initP) this.scene.UI.jumps.reset(this.allowedJumps, 'jump'); // UI
             this.velocity.y = 0;
         } else {
             this.velocity.y = this.velocity.y + this.scene.physics.config.gravity.y * dt / 1000;
@@ -131,7 +138,8 @@ export default class PlayerLogic extends Entity
         if (this.allowedJumps > 0 && this.up && this.nextJump < this.scene.time.now)
         {
             this.allowedJumps--;
-            console.log(this.allowedJumps);
+            if (this.scene.UI.initP) this.scene.UI.jumps.deleteLast(); // UI
+            // console.log('allowed jumps: ' + this.allowedJumps);
             // this.setVelocityY(-190);
             this.velocity.y = -190;
             this.nextJump = this.scene.time.now + 500;
@@ -183,6 +191,10 @@ export default class PlayerLogic extends Entity
         if(this.health > this.maxHealth)
         {
             this.health = this.maxHealth
+            if (this.scene.UI.initP) this.scene.UI.lives.reset(this.health, 'object'); // UI
+        }
+        else {
+            if (this.scene.UI.initP) this.scene.UI.lives.addObjects(power, 'object'); // UI
         }
         console.log("health" + this.health)
     }
@@ -192,8 +204,9 @@ export default class PlayerLogic extends Entity
         if (this.canBeDamaged)
         {
             this.health -= power;
+            if (this.scene.UI.initP) this.scene.UI.lives.deleteObjects(power); // UI
             this.canBeDamaged = false;
-            console.log("health" + this.health)
+            console.log("health: " + this.health)
 
             this.timer = this.scene.time.addEvent({
                 delay: 1000,
