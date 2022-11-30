@@ -1,7 +1,7 @@
-import Jump from "../icons/jump.js";
-import Life from "../icons/life.js";
+import { Jump, Life } from "../utils/icons.js";
 import Dock from "../utils/dock.js";
 import blankMenu from "./menu.js";
+import volumeCtrl from "../utils/volumeCtrl.js";
 
 export default class UI extends blankMenu
 {
@@ -64,6 +64,8 @@ export default class UI extends blankMenu
 
         this.place01 = this.addText(width / 2, height / 30, this.allowedJumpsText, this.size);
         this.place02 = this.addText(width / 2, height * 3 / 30, this.livesText, this.size);
+
+        this.modulador = new volumeCtrl(this);
     }
 
     update(t, dt) 

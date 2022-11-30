@@ -133,7 +133,6 @@ export default class blankMenu extends blankScene
      * @param {Scene} scene Escena del ámbito de uso del botón
      * @param {Phaser.Geom.Rectangle} rect Rectangulo usado en el fondo del button
      * @param {Function} fn Callback a ejecutar
-     * @param {Number} lv Nivel de dificultad
      */
     setInteractiveZone(scene, rect, fn)
     {
@@ -228,14 +227,18 @@ export default class blankMenu extends blankScene
                 width: thick * this.AR,
                 color: rectStyle.contorno,
                 alpha: rectStyle.alphaLine
-            }            
+            }
         });
- 
+
+        this.resetRectDisplay(graphics, rect, rectStyle);
+
+        return graphics;
+    }
+
+    resetRectDisplay(graphics, rect, rectStyle) {
         // how to paint/fill this rectangle
         if (rectStyle.drawFill) graphics.fillRectShape(rect);       // relleno
         if (rectStyle.drawLine) graphics.strokeRectShape(rect);     // trazo
-
-        return graphics;
     }
 
     /**
