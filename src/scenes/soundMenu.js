@@ -1,7 +1,8 @@
 import blankMenu from "./menu.js";
 import { startGame, backFromSonido } from "../utils/callbacks.js";
+import volumeCtrl from "../utils/volumeCtrl.js";
 
-export default class Sonido extends blankMenu
+export default class SoundMenu extends blankMenu
 {
     constructor() 
     {
@@ -31,6 +32,8 @@ export default class Sonido extends blankMenu
 
         // play and options buttons
         this.createDefaultGeoButtonGame(this, width * 0.15, height * 0.1, 'Sonido', backFromSonido, true, 4);
+
+        this.modulador = new volumeCtrl(this, height * 0.25, height * 0.75);
     }
 
     update(t, dt) 
