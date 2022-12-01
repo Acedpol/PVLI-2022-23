@@ -18,13 +18,27 @@ export default class Modulador
 
     }
 
+    getPos() {
+        if (this.vertical) { return this.rect.y; } else { return this.rect.x; };
+    }
+
+    getValue() {
+        let sol = 0;
+        if (this.vertical) {
+            let total = this.max - this.min;
+            let lleno = this.max - this.rect.y;
+            sol = (lleno / total * 100) + '%';
+        }
+        return sol;
+    }
+
     modulador() {
         
         const{width,height} = this.scene.scale;
         let rw = 100 * 0.75;
         let rh = 25 * 0.75;
         this.max -= rh;
-        
+
         let _rectStyle = { relleno: '0xffffff', contorno: '0x000000', alphaFill:  1, alphaLine:  0.85, drawFill: true, drawLine: true };
         this.rect = new Phaser.Geom.Rectangle(width/2 - rw * 0.1, height/2, rw * 1.2, rh);
         let x = this.rect.x;
@@ -50,7 +64,6 @@ export default class Modulador
                         this.rect.x = this.newPosition(this.zone.x, this.min);
                     }
                     
-                    this.graphics.clear();
                     this.scene.resetRectDisplay(this.graphics, this.rect, _rectStyle);
                 }
             })

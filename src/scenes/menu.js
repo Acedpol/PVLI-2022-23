@@ -237,6 +237,7 @@ export default class blankMenu extends blankScene
 
     resetRectDisplay(graphics, rect, rectStyle) {
         // how to paint/fill this rectangle
+        graphics.clear();
         if (rectStyle.drawFill) graphics.fillRectShape(rect);       // relleno
         if (rectStyle.drawLine) graphics.strokeRectShape(rect);     // trazo
     }

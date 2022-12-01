@@ -23,7 +23,18 @@ export default class volumeCtrl
     }
 
     update(t, dt) {
+        this.updateRelleno();
+    }
 
+    updateRelleno() {
+        if (this.vertical) {
+            this.relleno.y = this.mod.getPos();
+            this.relleno.height = this.max - this.relleno.y;
+        } else {
+            this.relleno.x = this.mod.getPos();
+            this.relleno.width = this.max - this.relleno.x;
+        }
+        this.scene.resetRectDisplay(this.graphics2, this.relleno, this.rectStyle2);
     }
 
     bar() {
@@ -40,14 +51,14 @@ export default class volumeCtrl
             rh = 100 * 0.75;
         }
 
-        let _rectStyle1 = { relleno: '0x000033', contorno: '0xffffff', alphaFill:  0.85, alphaLine:  0.85, drawFill: true, drawLine: true };
+        let _rectStyle1 = { relleno: '0x000033', contorno: '0xffffff', alphaFill:  0.85, alphaLine:  0.75, drawFill: true, drawLine: true };
         let _fondo = new Phaser.Geom.Rectangle(width/2 + rw * 0.1, height/2  - rh * 0.5, rw * 0.8, rh);
 
-        let _rectStyle2 = { relleno: '0x0000ff', contorno: '0xffffff', alphaFill:  0.85, alphaLine:  0.85, drawFill: true, drawLine: true };
-        let _relleno = new Phaser.Geom.Rectangle(width/2 + rw * 0.1, height/2 + _fondo.height - rh * 0.3 - rh * 0.5, rw * 0.8, rh * 0.3);
+        this.rectStyle2 = { relleno: '0x0000ff', contorno: '0xffffff', alphaFill:  0.85, alphaLine:  0.75, drawFill: true, drawLine: true };
+        this.relleno = new Phaser.Geom.Rectangle(width/2 + rw * 0.1, height/2, rw * 0.8, rh * 0.5);
 
         this.graphics1 = this.scene.setRectStyle(_fondo, _rectStyle1, 2);
-        this.graphics2 = this.scene.setRectStyle(_relleno, _rectStyle2, 2);
+        this.graphics2 = this.scene.setRectStyle(this.relleno, this.rectStyle2, 2);
     }
 
 }
