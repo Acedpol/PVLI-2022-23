@@ -33,7 +33,8 @@ export default class SoundMenu extends blankMenu
         // play and options buttons
         this.createDefaultGeoButtonGame(this, width * 0.15, height * 0.1, 'Sonido', backFromSonido, true, 4);
 
-        this.slider = new volumeCtrl(this, height * 0.25, height * 0.75);
+
+        this.slider = new volumeCtrl(this, width/2, height * 0.4, height * 0.8, true);
     }
 
     update(t, dt) 
