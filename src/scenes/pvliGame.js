@@ -4,6 +4,7 @@ import Bullet from '../game/bullet.js'
 import Hound from '../game/hound.js'
 import blankGame from './blankGame.js'
 import Potion from '../game/potion.js'
+import Wings from '../game/wings.js'
 
 export default class pvliGame extends blankGame
 {
@@ -64,8 +65,14 @@ export default class pvliGame extends blankGame
         this.addToScene(new Hound(this, 30, 100), true);
 
         // Crea un objeto para recoger en la escena
+<<<<<<< Updated upstream
         this.addToScene(new Magic(this, 150, 150), true);
         this.addToScene(new Potion(this, 300, 100), true);
+=======
+        this.addToScene(new Magic(150, 150), true);
+        this.addToScene(new Potion(300, 100), true);
+		this.addToScene(new Wings(this, 300, 100));
+>>>>>>> Stashed changes
 
         // Sets the camera view
         this.startCamera({ width: this.mapWidth, height: this.mapHeight}); 

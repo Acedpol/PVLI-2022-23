@@ -6,6 +6,11 @@ import blankScene from './scene.js'
 import Potion from '../game/potion.js'
 import { gameOver } from '../utils/callbacks.js'
 import PlayerLogic from '../game/player.js'
+<<<<<<< Updated upstream
+=======
+import Entity from '../game/entity.js'
+import Wings from '../game/wings.js'
+>>>>>>> Stashed changes
 
 export default class blankGame extends blankScene
 {

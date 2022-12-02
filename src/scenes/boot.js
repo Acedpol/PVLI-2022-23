@@ -69,6 +69,7 @@ export default class Boot extends Phaser.Scene
         // pocion
         this.load.spritesheet('potiSprite', "./assets/sprites/llena.png",
         { frameWidth: 16, frameHeight: 16 })
+		this.load.image('object', './assets/sprites/wings.png') // alas
 
         // pick audio
         this.load.audio('pick', './assets/sounds/pick.wav')//yo lo dejaria
