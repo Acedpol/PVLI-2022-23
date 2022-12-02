@@ -12,7 +12,7 @@ export default class Wings extends Object
      */
     constructor(scene, x, y) 
     {
-        super(scene, x, y, 'wingSprite', 0)
+        super(scene, x, y, 'alasSprite', 0)
         this.setScale(1);
     }
 
