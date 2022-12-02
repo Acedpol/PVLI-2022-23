@@ -1,6 +1,6 @@
-import Object from './object.js'
+import Character from './character.js';
 
-export default class Wings extends Object
+export default class Wings extends Character
 {
 
     /**
