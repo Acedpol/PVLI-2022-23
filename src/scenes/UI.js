@@ -22,9 +22,6 @@ export default class UI extends blankMenu
     init() {
         super.init();
         this.size = 8;
-        this.allowedJumpsText = 'Allowed jumps: 0/0'; 
-        this.livesText = 'Lives: 9';
-        console.log('UI iniciada!');
         this.initC = true;
     }
 

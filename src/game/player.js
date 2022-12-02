@@ -58,12 +58,6 @@ export default class PlayerLogic extends Entity
         this.groundDetect(groundCheck, dt);
         this.playerController();
         this.playerAnimation(groundCheck);
-
-        // UI
-        if (this.scene.UI.initC) {
-            this.scene.UI.rewriteUI(this.scene.UI.place01, 'Allowed jumps: ' + this.allowedJumps + "/" + this.maxJumps);
-            this.scene.UI.rewriteUI(this.scene.UI.place02, 'Lives: ' + this.health);
-        }
     }
 
     setContainer(container) { this.container = container; }
