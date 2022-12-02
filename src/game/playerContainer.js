@@ -23,6 +23,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         // magia (hijo, se adhiere)
         this.magic = null;
         this.carriesMagic = false;
+		this.canAtack = false
     }    
 
     /**
