@@ -27,7 +27,7 @@ export default class Modulador
         if (this.vertical) {
             let total = this.max - this.min;
             let lleno = this.max - this.rect.y;
-            sol = (lleno / total * 100) + '%';
+            sol = (lleno / total * 100);
         }
         return sol;
     }
