@@ -15,7 +15,9 @@ export default class Menu extends blankMenu
 
         this.optA = true;
         this.optB = false;
-        this.volGeneral = 50;
+        this.volGen = 45;
+        this.volAmb = 45;
+        this.volSFX = 45;
     }
 
     preload() 
@@ -62,9 +64,13 @@ export default class Menu extends blankMenu
         offInfoBar(); 
         this.optA = args.optA; 
         this.optB = args.optB; 
-        this.volGeneral = args.volG;
+        this.volGen = args.volGen;
+        this.volAmb = args.volAmb;
+        this.volSFX = args.volSFX;
         console.log(this.optA);
         console.log(this.optB);
-        console.log(this.volGeneral);
+        console.log(this.volGen);
+        console.log(this.volAmb);
+        console.log(this.volSFX);
     }
 }

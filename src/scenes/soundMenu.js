@@ -10,8 +10,22 @@ export default class SoundMenu extends blankMenu
         super('menuSonido');
     }
 
-    init() {
-        super.init();       
+    init(args) {
+        super.init();
+        this.syncOpts(args);
+    }
+
+    syncOpts(args) {
+        this.optA = args.optA; 
+        this.optB = args.optB; 
+        this.volGen = args.volGen;
+        this.volAmb = args.volAmb;
+        this.volSFX = args.volSFX;
+        console.log(this.optA);
+        console.log(this.optB);
+        console.log(this.volGen);
+        console.log(this.volAmb);
+        console.log(this.volSFX);
     }
 
     preload() 
@@ -45,6 +59,10 @@ export default class SoundMenu extends blankMenu
         this.initMainMark();
         this.initMainLine(this.general.vertical);
 
+        this.general.mod.setValue(this.volGen);
+        this.ambience.mod.setValue(this.volAmb);
+        this.sfx.mod.setValue(this.volSFX);
+
         // speaker icon
         this.speaker = new Speaker(this, width * 0.845, height * 0.115, 0);
         this.add.existing(this.speaker);
@@ -72,6 +90,10 @@ export default class SoundMenu extends blankMenu
 
         this.updateMainMark();
         this.updateMainline(this.general.vertical);
+
+        this.volGen = this.general.getValue();
+        this.volAmb = this.ambience.getValue();
+        this.volSFX = this.sfx.getValue();
     }
 
     colorBackGround(x, y, rw, rh, fill = true, stroke = false, setColor = false, lv = 1) {

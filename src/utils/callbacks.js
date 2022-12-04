@@ -18,21 +18,21 @@ export function gameOver(scene) {
 
 // options
 export function swithToOptions(scene) {     // --->
-    scene.scene.launch('menuOptions', {optA: scene.optA, optB: scene.optB, volG: 50}); 
+    scene.scene.launch('menuOptions', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX}); 
     scene.scene.pause();
 }
 export function backFromOptions(scene) {    // <---
-    scene.scene.resume('menuGame', {optA: scene.optA, optB: scene.optB, volG: 50});
+    scene.scene.resume('menuGame', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX});
     scene.scene.stop();
 }
 
 // sonido
 export function swithToSonido(scene) {     // --->
-    scene.scene.launch('menuSonido'); 
+    scene.scene.launch('menuSonido', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX}); 
     scene.scene.pause();
 }
 export function backFromSonido(scene) {    // <---
-    scene.scene.resume('menuOptions');   
+    scene.scene.resume('menuOptions', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX});   
     scene.scene.stop();
 }
 

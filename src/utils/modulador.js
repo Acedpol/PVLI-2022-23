@@ -106,6 +106,7 @@ export default class Modulador
     }
 
     setValue(value) {
+        this.lastValue = value;
         let newPos = this.min +  (100 - value) * (this.max - this.min) / 100;
         if (this.vertical) {
             this.rect.y = newPos;
