@@ -11,19 +11,37 @@ export default class volumeCtrl
      * Constructor de enemigo
      * @param {Phaser.Scene} scene escena a la que pertenece
      */
-    constructor(scene, pos, min, max, vertical = true)
+    constructor(scene, title, pos, min, max, vertical = true)
     {
         this.scene = scene;
+        this.title = title;
         this.pos = pos;
         this.vertical = vertical;
         this.min = min;
         this.max = max;
 
+        let _rw, _rh;
+        if (this.vertical) {
+            _rw = 100 * 0.75;
+            _rh = this.max - this.min;
+            this.pos -= _rw/2;
+        } 
+        else {
+            _rw = this.max - this.min;
+            _rh = 100 * 0.75;
+            this.pos -= _rh/2;
+        }
+        this.dims = { rw: _rw, rh: _rh};
+
         this.bar();
-        this.mod = new modulador(scene, min, max, vertical);
+        this.mod = new modulador(scene, this.pos, this.dims, min, max, vertical);
     }
 
-    update(t, dt) {
+    update(t, dt, min) {
+        this.mod.min = min;
+        this.mod.dom = this.max - min;
+        this.mod.dom = this.mod.max - this.mod.min;
+        this.mod.update(t,dt);
         this.updateRelleno();
         this.getValue();
     }
@@ -41,17 +59,7 @@ export default class volumeCtrl
 
     bar() {
         const{width,height} = this.scene.scale;
-        let rw = 100 * 0.75;
-        let rh = 25 * 0.75;
-
-        if (this.vertical) {
-            rw = 100 * 0.75;
-            rh = this.max - this.min;
-        } 
-        else {
-            rw = this.max - this.min;
-            rh = 100 * 0.75;
-        }
+        const{rw,rh} = this.dims;
 
         let _rectStyle1 = { relleno: '0x000033', contorno: '0xffffff', alphaFill:  0.85, alphaLine:  0.75, drawFill: true, drawLine: true };
         this.rectStyle2 = { relleno: '0x0000ff', contorno: '0xffffff', alphaFill:  0.85, alphaLine:  0.75, drawFill: true, drawLine: true };
@@ -70,18 +78,22 @@ export default class volumeCtrl
 
         if (this.vertical) {
             this.valText = this.scene.addText(this.pos + rw/2, this.min - width / 40, '0.00%', 8, '#ffffff', 'Greconian', 'bold');
-            this.typeText = this.scene.addText(this.pos + rw/2, this.max + width / 40, 'General', 8, '#ffffff', 'Greconian', 'normal');
+            this.typeText = this.scene.addText(this.pos + rw/2, this.max + width / 40, this.title, 8, '#ffffff', 'Greconian', 'normal');
         }
         else {
             this.valText = this.scene.addText(this.max - width / 40, this.pos + rh/2, '0.00%', 8, '#ffffff', 'Greconian', 'bold');
-            this.typeText = this.scene.addText(this.max + width / 40, this.pos + rh/2, 'General', 8, '#ffffff', 'Greconian', 'normal');
+            this.typeText = this.scene.addText(this.max + width / 40, this.pos + rh/2, this.title, 8, '#ffffff', 'Greconian', 'normal');
         }
     }
 
     getValue() {
-        let val = this.mod.getValue().toFixed(2);
+        let val = this.mod.getValue().toFixed(0);
         this.valText.text = val;
-        return val;
+        return this.mod.getValue();
+    }
+
+    getPos() {
+        return this.mod.getPos();
     }
 
 }

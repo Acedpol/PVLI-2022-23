@@ -36,13 +36,35 @@ export default class SoundMenu extends blankMenu
         
         
         this.limitsLines(height * 0.4, height * 0.8, true);
-        this.slider = new volumeCtrl(this, width/2, height * 0.4, height * 0.8, true);
+        this.general = new volumeCtrl(this, 'General', width * 0.25, height * 0.4, height * 0.8, true);
+        this.ambience = new volumeCtrl(this, 'Ambience', width * 0.5, height * 0.4, height * 0.8, true);
+        this.sfx = new volumeCtrl(this, 'SFX', width * 0.75, height * 0.4, height * 0.8, true);
+        this.ambience.lastValue = 100;
+        this.sfx.lastValue = 100;
+        this.initMainMark();
+        this.initMainLine(this.general.vertical);
     }
 
     update(t, dt) 
     {
         super.update(t, dt);
-        this.slider.update(t, dt);
+
+        this.general.update(t, dt, this.general.min);
+        let min = this.general.getPos();
+
+        this.ambience.update(t, dt, min);
+        this.sfx.update(t, dt, min);
+
+        let pos = this.general.getPos();
+        this.ambience.mod.setPos(pos);
+        this.sfx.mod.setPos(pos);
+
+        if (this.ambience.mod.getPos() === this.general.mod.getPos()) this.ambience.mod.lastValue = 100;
+        if (this.sfx.mod.getPos() === this.general.mod.getPos()) this.sfx.mod.lastValue = 100;
+
+
+        this.updateMainMark();
+        this.updateMainline(this.general.vertical);
     }
 
     colorBackGround(x, y, rw, rh, fill = true, stroke = false, setColor = false, lv = 1) {
@@ -82,6 +104,45 @@ export default class SoundMenu extends blankMenu
 
         this.graphics3 = this.setRectStyle(_minLine, _rectStyle, 2);
         this.graphics4 = this.setRectStyle(_maxLine, _rectStyle, 2);
+    }
+
+    initMainMark() {
+        const{width,height} = this.scale;
+        this.genVol = this.addText(width/2, height * 0.15, this.general.getValue(), 32, '#ffffff', 'Greconian', 'bold');
+    }
+    updateMainMark() {
+        let vol = this.general.getValue().toFixed(0);
+        this.genVol.text = vol;
+    }
+
+    initMainLine(vertical) {
+        const{width,height} = this.scale;
+        const{rw,rh} = this.general.mod.dims;
+        let pos = this.general.getPos();
+
+        this.rectStyle = { relleno: '0xaaaaaa', contorno: '0x000000', alphaFill:  0.25, alphaLine: 0.25, drawFill: true, drawLine: true };
+        this.mainLine;
+
+        if (vertical) {
+            this.mainLine = new Phaser.Geom.Rectangle(width * 0.1, pos - 1, width * 0.8, rh);
+        }
+        else {
+            this.mainLine = new Phaser.Geom.Rectangle(pos - 1, height * 0.1, rw, height * 0.8);
+        }
+
+        this.graphics5 = this.setRectStyle(this.mainLine, this.rectStyle, 1);
+    }
+    updateMainline(vertical) {
+        let pos = this.general.getPos();
+
+        if (vertical) {
+            this.mainLine.setPosition(this.mainLine.x, pos);
+        }
+        else {
+            this.mainLine.setPosition(pos, this.mainLine.y);
+        }
+
+        this.resetRectDisplay(this.graphics5, this.mainLine, this.rectStyle);
     }
 
 }

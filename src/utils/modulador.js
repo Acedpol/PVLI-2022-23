@@ -4,18 +4,50 @@ export default class Modulador
      * Constructor de enemigo
      * @param {Phaser.Scene} scene escena a la que pertenece
      */
-    constructor(scene, min, max, vertical = true)
+    constructor(scene, pos, dims, min, max, vertical = true)
     {
         this.scene = scene;
+        this.pos = pos;
         this.vertical = vertical;
         this.min = min;
         this.max = max;
 
+        let _rw, _rh;
+        if (this.vertical) {
+            _rw = dims.rw;
+            _rh = 25 * 0.75;
+            this.max -= _rh;
+        } 
+        else {
+            _rw = 25 * 0.75;
+            _rh = dims.rh;
+            this.max -= _rw;
+        }
+        this.dims = { rw: _rw, rh: _rh};
+        this.dom = this.max - this.min;
+
         this.modulador();
+        this.dist = 0;
+        this.point = this.getPos();
+
+        this.lastValue = 100;
     }
 
     update(t, dt) {
-
+        if (Phaser.Input.Events.POINTER_MOVE) {
+            if (this.drag) {
+                if (this.vertical) {
+                    this.zone.y = this.scene.input.activePointer.y;
+                    this.rect.y = this.newPosition(this.zone.y, this.min, this.max);                        
+                } else {
+                    this.zone.x = this.scene.input.activePointer.x;
+                    this.rect.x = this.newPosition(this.zone.x, this.min, this.max);
+                }
+                
+                this.scene.resetRectDisplay(this.graphics, this.rect, this.rectStyle);
+                this.lastValue = this.getValue();
+            }
+        }
     }
 
     getPos() {
@@ -35,12 +67,10 @@ export default class Modulador
     modulador() {
         
         const{width,height} = this.scene.scale;
-        let rw = 100 * 0.75;
-        let rh = 25 * 0.75;
-        this.max -= rh;
+        const{rw,rh} = this.dims;
 
-        let _rectStyle = { relleno: '0xffffff', contorno: '0x000000', alphaFill:  1, alphaLine:  0.85, drawFill: true, drawLine: true };
-        this.rect = new Phaser.Geom.Rectangle(width/2 - rw * 0.1, height/2, rw * 1.2, rh);
+        this.rectStyle = { relleno: '0xffffff', contorno: '0x000000', alphaFill:  1, alphaLine:  0.85, drawFill: true, drawLine: true };
+        this.rect = new Phaser.Geom.Rectangle(this.pos - rw * 0.1, height * 0.6, rw * 1.2, rh);
         let x = this.rect.x;
         let y = this.rect.y;
 
@@ -51,34 +81,31 @@ export default class Modulador
                 useHandCursor: true
             })
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-                this.drag = true;;
+                this.drag = true;
             });
 
-        this.scene.input.on(Phaser.Input.Events.POINTER_MOVE, () => {
-                if (this.drag) {
-                    if (this.vertical) {
-                        this.zone.y = this.scene.input.activePointer.y;
-                        this.rect.y = this.newPosition(this.zone.y, this.min, this.max);                        
-                    } else {
-                        this.zone.x = this.scene.input.activePointer.x;
-                        this.rect.x = this.newPosition(this.zone.x, this.min);
-                    }
-                    
-                    this.scene.resetRectDisplay(this.graphics, this.rect, _rectStyle);
-                }
-            })
-            .on(Phaser.Input.Events.POINTER_UP, () => {
+        this.scene.input.on(Phaser.Input.Events.POINTER_UP, () => {
                 this.drag = false;
                 this.zone.x = this.rect.x;
                 this.zone.y = this.rect.y;
             });
         
-        this.graphics = this.scene.setRectStyle(this.rect, _rectStyle);
+        this.graphics = this.scene.setRectStyle(this.rect, this.rectStyle);
+    }
+
+    setPos(pos) {
+        let newPos = pos +  (100 - this.lastValue) * (this.max - this.min) / 100;
+        if (this.vertical) {
+            this.rect.y = newPos;
+        } else {
+            this.rect.x = newPos;
+        }
+        this.scene.resetRectDisplay(this.graphics, this.rect, this.rectStyle);
     }
 
     newPosition(pos, min, max) {
         let limit = this.inLimits(pos, min, max);
-        let newPos, step;
+        let newPos;
         
         switch(limit) {
             case -1:
