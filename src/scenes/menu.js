@@ -249,7 +249,7 @@ export default class blankMenu extends blankScene
      * @param {Phaser.Types.GameObjects.Text.TextStyle} textStyle estilo del texto
      */
     addRectText(rect, text, textStyle) {
-        this.addText_s(rect.x + rect.width * 0.5, rect.y + rect.height * 0.5, text, textStyle)
+        return this.addText_s(rect.x + rect.width * 0.5, rect.y + rect.height * 0.5, text, textStyle)
             .setDepth(1);
     }
 

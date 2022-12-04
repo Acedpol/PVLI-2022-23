@@ -29,7 +29,7 @@ export default class SoundMenu extends blankMenu
         this.colorBackGround(width * 0.5, height * 0.5, width * 0.975, height * 0.95, true, false, true, 4);
         
         // compone el titulo y subtitulo del menu principal del juego
-        this.addText(width * 0.8, height * 0.1, 'Configuración', 14, '#000');
+        // this.addText(width * 0.8, height * 0.1, 'Configuración', 14, '#000');
         
         // play and options buttons
         this.createDefaultGeoButtonGame(this, width * 0.15, height * 0.1, 'Sonido', backFromSonido, true, 4);
@@ -61,7 +61,6 @@ export default class SoundMenu extends blankMenu
 
         if (this.ambience.mod.getPos() === this.general.mod.getPos()) this.ambience.mod.lastValue = 100;
         if (this.sfx.mod.getPos() === this.general.mod.getPos()) this.sfx.mod.lastValue = 100;
-
 
         this.updateMainMark();
         this.updateMainline(this.general.vertical);
@@ -108,7 +107,9 @@ export default class SoundMenu extends blankMenu
 
     initMainMark() {
         const{width,height} = this.scale;
-        this.genVol = this.addText(width/2, height * 0.15, this.general.getValue(), 32, '#ffffff', 'Greconian', 'bold');
+        let _textStyle = { fontSize: 24, color: '#fff', fontFamily: 'Greconian', fontStyle: 'bold' };
+        this.genVol = this.addText_s(width * 0.92, height * 0.105, this.general.getValue(), _textStyle)
+            .setDisplaySize(width * 0.5, height * 0.12);
     }
     updateMainMark() {
         let vol = this.general.getValue().toFixed(0);
