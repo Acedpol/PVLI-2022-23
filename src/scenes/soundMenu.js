@@ -64,10 +64,9 @@ export default class SoundMenu extends blankMenu
         this.ambience.mod.setPos(pos);
         this.sfx.mod.setPos(pos);
 
-        if (this.ambience.mod.getPos() === this.general.mod.getPos()) this.ambience.mod.lastValue = 100;
-        if (this.sfx.mod.getPos() === this.general.mod.getPos()) this.sfx.mod.lastValue = 100;
-
         if (!this.speaker.mute) {
+            if (this.ambience.mod.getPos() === this.general.mod.getPos()) this.ambience.mod.lastValue = 100;
+            if (this.sfx.mod.getPos() === this.general.mod.getPos()) this.sfx.mod.lastValue = 100;
             this.speaker.update(this.general.getValue());
         }
 

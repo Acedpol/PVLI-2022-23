@@ -97,8 +97,10 @@ export default class Modulador
         let newPos = pos +  (100 - this.lastValue) * (this.max - this.min) / 100;
         if (this.vertical) {
             this.rect.y = newPos;
+            this.zone.y = this.rect.y;
         } else {
             this.rect.x = newPos;
+            this.zone.x = this.rect.x;
         }
         this.scene.resetRectDisplay(this.graphics, this.rect, this.rectStyle);
     }
