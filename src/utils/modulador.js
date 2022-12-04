@@ -103,6 +103,24 @@ export default class Modulador
         this.scene.resetRectDisplay(this.graphics, this.rect, this.rectStyle);
     }
 
+    setValue(value) {
+        let newPos = this.min +  (100 - value) * (this.max - this.min) / 100;
+        if (this.vertical) {
+            this.rect.y = newPos;
+        } else {
+            this.rect.x = newPos;
+        }
+        this.scene.resetRectDisplay(this.graphics, this.rect, this.rectStyle);
+    }
+
+    toggleMute(mute) {
+        if (mute) {
+            this.lastValue = this.getValue();
+            this.setValue(0);
+        }
+        else this.setValue(this.lastValue);
+    }
+
     newPosition(pos, min, max) {
         let limit = this.inLimits(pos, min, max);
         let newPos;

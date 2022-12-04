@@ -35,3 +35,10 @@ export function backFromSonido(scene) {    // <---
     scene.scene.resume('menuOptions');   
     scene.scene.stop();
 }
+
+export function toggleMute(scene) {
+    let isMute = scene.speaker.mute;
+    scene.general.mod.toggleMute(isMute);
+    if (isMute) scene.speaker.setFrame(4);
+    return isMute;
+}

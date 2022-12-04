@@ -43,6 +43,8 @@ export default class volumeCtrl
         this.mod.dom = this.mod.max - this.mod.min;
         this.mod.update(t,dt);
         this.updateRelleno();
+        if (this.mod.drag) this.valText.setVisible(true);
+        else this.valText.setVisible(false);
         this.getValue();
     }
 

@@ -1,6 +1,7 @@
 import blankMenu from "./menu.js";
 import { startGame, backFromSonido } from "../utils/callbacks.js";
 import volumeCtrl from "../utils/volumeCtrl.js";
+import { Speaker } from "../utils/icons.js";
 
 export default class SoundMenu extends blankMenu
 {
@@ -34,7 +35,7 @@ export default class SoundMenu extends blankMenu
         // play and options buttons
         this.createDefaultGeoButtonGame(this, width * 0.15, height * 0.1, 'Sonido', backFromSonido, true, 4);
         
-        
+        // volume control
         this.limitsLines(height * 0.4, height * 0.8, true);
         this.general = new volumeCtrl(this, 'General', width * 0.25, height * 0.4, height * 0.8, true);
         this.ambience = new volumeCtrl(this, 'Ambience', width * 0.5, height * 0.4, height * 0.8, true);
@@ -43,6 +44,10 @@ export default class SoundMenu extends blankMenu
         this.sfx.lastValue = 100;
         this.initMainMark();
         this.initMainLine(this.general.vertical);
+
+        // speaker icon
+        this.speaker = new Speaker(this, width * 0.845, height * 0.115, 0);
+        this.add.existing(this.speaker);
     }
 
     update(t, dt) 
@@ -61,6 +66,10 @@ export default class SoundMenu extends blankMenu
 
         if (this.ambience.mod.getPos() === this.general.mod.getPos()) this.ambience.mod.lastValue = 100;
         if (this.sfx.mod.getPos() === this.general.mod.getPos()) this.sfx.mod.lastValue = 100;
+
+        if (!this.speaker.mute) {
+            this.speaker.update(this.general.getValue());
+        }
 
         this.updateMainMark();
         this.updateMainline(this.general.vertical);
@@ -108,7 +117,7 @@ export default class SoundMenu extends blankMenu
     initMainMark() {
         const{width,height} = this.scale;
         let _textStyle = { fontSize: 24, color: '#fff', fontFamily: 'Greconian', fontStyle: 'bold' };
-        this.genVol = this.addText_s(width * 0.92, height * 0.105, this.general.getValue(), _textStyle)
+        this.genVol = this.addText_s(width * 0.9275, height * 0.115, this.general.getValue(), _textStyle)
             .setDisplaySize(width * 0.5, height * 0.12);
     }
     updateMainMark() {
