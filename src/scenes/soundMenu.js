@@ -56,7 +56,7 @@ export default class SoundMenu extends blankMenu
         }
 
         // speaker icon
-        this.speaker = new Speaker(this, width * 0.845, height * 0.115, 0, this.mute);
+        this.speaker = new Speaker(this, width * 0.81, height * 0.115, 0, this.mute);
         this.add.existing(this.speaker);
     }
 
@@ -130,8 +130,10 @@ export default class SoundMenu extends blankMenu
     initMainMark() {
         const{width,height} = this.scale;
         let _textStyle = { fontSize: 24, color: '#fff', fontFamily: 'Greconian', fontStyle: 'bold' };
-        this.genVol = this.addText_s(width * 0.9275, height * 0.115, this.general.mod.getValue(), _textStyle)
-            .setDisplaySize(width * 0.5, height * 0.12);
+        let _rectStyle = new this.rectStyle(0x000000, 0x000000, 1, 1, false, false);
+        let _rect = new Phaser.Geom.Rectangle(width * 0.91, height * 0.115, width * 0.5, height * 0.12);
+        let _text = this.general.mod.getValue();
+        this.genVol = this.createTextPanel_rc(_rect, _text, _textStyle, _rectStyle);
     }
     updateMainMark() {
         let vol = this.general.mod.getValue().toFixed(0);

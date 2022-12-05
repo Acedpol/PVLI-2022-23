@@ -221,7 +221,7 @@ export default class blankMenu extends blankScene
         // console.log("- dims: { w: " + t.width + ", h: " + t.height + "} ");
         // console.log("- rect dims: { w: " + _rect.width + ", h: " + _rect.height + "} ");
 
-        return _rect;
+        return t;
     }
 
     /**
