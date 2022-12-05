@@ -47,6 +47,7 @@ export default class Modulador
                 
                 this.scene.resetRectDisplay(this.graphics, this.rect, this.rectStyle);
                 this.lastValue = this.getValue();
+                if (this.scene.speaker.mute) this.scene.speaker.mute = false;
             }
         }
     }
@@ -120,6 +121,7 @@ export default class Modulador
     toggleMute(mute) {
         if (mute) {
             this.saveValue = this.getValue();
+            this.lastValue = this.saveValue;
             this.setValue(0);
         }
         else this.setValue(this.saveValue);

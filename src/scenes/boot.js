@@ -101,7 +101,7 @@ export default class Boot extends Phaser.Scene
         this.load.spritesheet('controls', "./assets/images/controles.png",
           { frameWidth: 308, frameHeight: 168 })
 
-        this.load.spritesheet('speaker', "./assets/images/speaker2.png",
+        this.load.spritesheet('speaker', "./assets/images/speaker3.png",
           { frameWidth: 256, frameHeight: 235 })
 
     }
