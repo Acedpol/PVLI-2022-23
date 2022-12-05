@@ -47,7 +47,10 @@ export default class Modulador
                 
                 this.scene.resetRectDisplay(this.graphics, this.rect, this.rectStyle);
                 this.lastValue = this.getValue();
-                if (this.scene.speaker.mute) this.scene.speaker.mute = false;
+                if (this.scene.speaker.mute) {
+                    this.scene.speaker.mute = false;
+                    this.scene.mute = false;
+                }
             }
         }
     }
@@ -57,12 +60,20 @@ export default class Modulador
     }
 
     getValue() {
-        let sol = 0;
+        let sol = 0; let pos = 0;
+
         if (this.vertical) {
-            let total = this.max - this.min;
-            let lleno = this.max - this.rect.y;
-            sol = (lleno / total * 100);
+            pos = this.rect.y;
+        } else {
+            pos = this.rect.x;
         }
+
+        let total = this.max - this.min;
+        let lleno = this.max - pos;
+
+        if (total > 0 && !this.scene.mute) sol = (lleno / total * 100);
+        else sol = -1;
+
         return sol;
     }
 
@@ -112,16 +123,17 @@ export default class Modulador
         let newPos = this.min +  (100 - value) * (this.max - this.min) / 100;
         if (this.vertical) {
             this.rect.y = newPos;
+            this.zone.y = this.rect.y;
         } else {
             this.rect.x = newPos;
+            this.zone.x = this.rect.x;
         }
         this.scene.resetRectDisplay(this.graphics, this.rect, this.rectStyle);
     }
 
     toggleMute(mute) {
         if (mute) {
-            this.saveValue = this.getValue();
-            this.lastValue = this.saveValue;
+            this.saveValue = this.lastValue;
             this.setValue(0);
         }
         else this.setValue(this.saveValue);

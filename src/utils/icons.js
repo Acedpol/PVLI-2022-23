@@ -48,13 +48,16 @@ export class Speaker extends Entity
      * @param {number} y Coordenada y
      * @param {number} n frame
      */
-    constructor(scene, x, y, n)
+    constructor(scene, x, y, n, isMuted)
     {
         super(scene, x, y, 'speaker', n);
         const{width,height} = this.scene.scale;
         this.setDisplaySize(height * 0.12, height * 0.12);
 
-        this.mute = false;
+        this.mute = isMuted;
+        if (isMuted) this.setFrame(4);
+        else this.setFrame(3);
+
         this.setInteractive({
             hitArea: this,
             useHandCursor: true

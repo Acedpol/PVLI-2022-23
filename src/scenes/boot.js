@@ -186,6 +186,7 @@ export default class Boot extends Phaser.Scene
         this.volGen = 20;
         this.volAmb = 80;
         this.volSFX = 80;
+        this.mute = false;
         startMain(this);
     }
 }

@@ -95,9 +95,10 @@ export default class blankScene extends Phaser.Scene
         this.volGen = args.volGen;
         this.volAmb = args.volAmb;
         this.volSFX = args.volSFX;
+        this.mute = args.mute;
 
         this.genConfig = {
-            mute: false,
+            mute: args.mute,
             volume: this.volGen / 100,
             rate: 1,
             detune: 0,
@@ -106,7 +107,7 @@ export default class blankScene extends Phaser.Scene
             delay: 0
         };
         this.ambConfig = {
-            mute: false,
+            mute: args.mute,
             volume: this.volAmb / 100 * this.volGen / 100,
             rate: 1,
             detune: 0,
@@ -115,7 +116,7 @@ export default class blankScene extends Phaser.Scene
             delay: 0
         };
         this.sfxConfig = {
-            mute: false,
+            mute: args.mute,
             volume: this.volSFX / 100 * this.volGen / 100,
             rate: 1,
             detune: 0,

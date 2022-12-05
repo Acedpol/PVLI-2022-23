@@ -28,9 +28,6 @@ export default class SoundMenu extends blankMenu
         this.background = this.createBackground('img_back3');
         this.colorBackGround(width * 0.5, height * 0.5, width * 0.975, height * 0.95, true, false, true, 4);
         
-        // compone el titulo y subtitulo del menu principal del juego
-        // this.addText(width * 0.8, height * 0.1, 'Configuración', 14, '#000');
-        
         // play and options buttons
         this.createDefaultGeoButtonGame(this, width * 0.15, height * 0.1, 'Sonido', backFromSonido, true, 4);
         
@@ -39,17 +36,27 @@ export default class SoundMenu extends blankMenu
         this.general = new volumeCtrl(this, 'General', width * 0.25, height * 0.4, height * 0.8, true);
         this.ambience = new volumeCtrl(this, 'Ambience', width * 0.5, height * 0.4, height * 0.8, true);
         this.sfx = new volumeCtrl(this, 'SFX', width * 0.75, height * 0.4, height * 0.8, true);
-        this.ambience.lastValue = 100;
-        this.sfx.lastValue = 100;
         this.initMainMark();
-        this.initMainLine(this.general.vertical);
+        this.initMainLine(this.general.vertical);        
 
-        this.general.mod.setValue(this.volGen);
-        this.ambience.mod.setValue(this.volAmb);
-        this.sfx.mod.setValue(this.volSFX);
+        // inicialización
+        if (this.mute) {
+            this.general.mod.saveValue = this.volGen;
+            this.ambience.mod.saveValue = this.volAmb;
+            this.sfx.mod.saveValue = this.volSFX;
+
+            this.general.mod.setValue(0);
+            this.ambience.mod.setValue(0);
+            this.sfx.mod.setValue(0);
+        }
+        else {
+            this.general.mod.setValue(this.volGen);
+            this.ambience.mod.setValue(this.volAmb);
+            this.sfx.mod.setValue(this.volSFX);
+        }
 
         // speaker icon
-        this.speaker = new Speaker(this, width * 0.845, height * 0.115, 0);
+        this.speaker = new Speaker(this, width * 0.845, height * 0.115, 0, this.mute);
         this.add.existing(this.speaker);
     }
 
@@ -123,11 +130,11 @@ export default class SoundMenu extends blankMenu
     initMainMark() {
         const{width,height} = this.scale;
         let _textStyle = { fontSize: 24, color: '#fff', fontFamily: 'Greconian', fontStyle: 'bold' };
-        this.genVol = this.addText_s(width * 0.9275, height * 0.115, this.general.getValue(), _textStyle)
+        this.genVol = this.addText_s(width * 0.9275, height * 0.115, this.general.mod.getValue(), _textStyle)
             .setDisplaySize(width * 0.5, height * 0.12);
     }
     updateMainMark() {
-        let vol = this.general.getValue().toFixed(0);
+        let vol = this.general.mod.getValue().toFixed(0);
         this.genVol.text = vol;
     }
 

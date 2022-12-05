@@ -45,7 +45,6 @@ export default class volumeCtrl
         this.updateRelleno();
         if (this.mod.drag) this.valText.setVisible(true);
         else this.valText.setVisible(false);
-        this.getValue();
     }
 
     updateRelleno() {
@@ -89,9 +88,18 @@ export default class volumeCtrl
     }
 
     getValue() {
-        let val = this.mod.getValue().toFixed(0);
+        let val = this.mod.getValue();
+        if (val === -1) {
+            if (this.scene.mute) {
+                val = this.mod.saveValue;
+            } else {
+                val = 0;
+            }
+        } else {
+            val = val.toFixed(0);
+        }
         this.valText.text = val;
-        return this.mod.getValue();
+        return val;
     }
 
     getPos() {
