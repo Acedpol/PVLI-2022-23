@@ -16,9 +16,9 @@ export default class blankMenu extends blankScene
         super(keyname);
     }
 
-    init()
+    init(args)
     {
-        super.init();
+        super.init(args);
     }
 
     preload() 

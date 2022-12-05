@@ -5,15 +5,20 @@ import { gameLogic } from "../game.js"
 
 // recurso posible de pauseCtrl.js: offInfoBar(); onInfoBar(); toggleInfoBar();
 
+// main menu
+export function startMain(scene) {
+    scene.scene.start('menuGame', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX});
+}
+
 // game
 export function startGame(scene) {
-    scene.scene.start('pvliGame', {optA: scene.optA, optB: scene.optB, volG: 50});
+    scene.scene.start('pvliGame', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX});
 }
 export function gameOver(scene) {
     scene.sound.stopAll();
     scene.sound.play('lose');
     scene.scene.stop('UI');
-    scene.scene.start('GameOver');
+    scene.scene.start('GameOver', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX});
 }
 
 // options
@@ -42,3 +47,5 @@ export function toggleMute(scene) {
     if (isMute) scene.speaker.setFrame(4);
     return isMute;
 }
+
+

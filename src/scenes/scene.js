@@ -49,8 +49,11 @@ export default class blankScene extends Phaser.Scene
         });
     }
 
-    init()
+    init(args)
     {
+        this.args = args;
+        this.onResume(args);
+
         this.timeLapsed = 0;
         this.active = false;
         this.p = this.input.keyboard.addKey('P');
@@ -72,6 +75,20 @@ export default class blankScene extends Phaser.Scene
         this.aspect_4_3();
 
         this.rectStyle = new makeStruct('relleno, contorno, alphaFill, alphaLine, drawFill, drawLine');
+    }
+
+    onResume(args) {  
+        console.log(":::" + this.key + " scene :::");
+        this.optA = args.optA; 
+        this.optB = args.optB; 
+        this.volGen = args.volGen;
+        this.volAmb = args.volAmb;
+        this.volSFX = args.volSFX;
+        console.log(this.optA);
+        console.log(this.optB);
+        console.log(this.volGen);
+        console.log(this.volAmb);
+        console.log(this.volSFX);
     }
 
     preload() 

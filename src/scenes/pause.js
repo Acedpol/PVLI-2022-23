@@ -11,9 +11,9 @@ export default class blankPause extends blankScene
         super('blankPause');
     }
 
-    init()
+    init(args)
     {
-        super.init();
+        super.init(args);
         toggleInfo();
     }
 

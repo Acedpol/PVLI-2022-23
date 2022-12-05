@@ -18,8 +18,8 @@ export default class UI extends blankMenu
         this.initP = false;
     }
 
-    init() {
-        super.init();
+    init(args) {
+        super.init(args);
         this.size = 8;
         this.allowedJumpsText = 'Allowed jumps: 0/0'; 
         this.livesText = 'Lives: 9';

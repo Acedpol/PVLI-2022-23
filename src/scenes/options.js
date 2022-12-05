@@ -9,35 +9,8 @@ export default class Options extends blankMenu
     }
 
     init(args) {
-        super.init();
-        this.syncOpts(args);
-    }
-
-    syncOpts(args) {
+        super.init(args);
         this.events.on('resume', (scene, args) => { this.onResume(args); } );
-        this.optA = args.optA; 
-        this.optB = args.optB; 
-        this.volGen = args.volGen;
-        this.volAmb = args.volAmb;
-        this.volSFX = args.volSFX;
-        console.log(this.optA);
-        console.log(this.optB);
-        console.log(this.volGen);
-        console.log(this.volAmb);
-        console.log(this.volSFX);
-    }
-
-    onResume(args) {
-        this.optA = args.optA; 
-        this.optB = args.optB; 
-        this.volGen = args.volGen;
-        this.volAmb = args.volAmb;
-        this.volSFX = args.volSFX;
-        console.log(this.optA);
-        console.log(this.optB);
-        console.log(this.volGen);
-        console.log(this.volAmb);
-        console.log(this.volSFX);
     }
 
     preload() 

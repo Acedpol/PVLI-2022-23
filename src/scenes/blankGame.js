@@ -32,17 +32,17 @@ export default class blankGame extends blankScene
         super(keyname);
     }
 
-    init(level)
+    init(args)
     {
-        super.init();
+        super.init(args);
 
         // Level select assignment
         // this.level = level
         // console.log('Level = ' + this.level)
 
         // UI interface
-        this.scene.launch('UI');
-        this.events.on('resume', () => { this.scene.resume('UI'); });
+        this.scene.launch('UI', args);
+        this.events.on('resume', (scene, args) => { this.scene.resume('UI', args); });
         this.UI = this.game.scene.getScene('UI');
     }
 

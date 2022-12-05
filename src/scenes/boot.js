@@ -1,3 +1,5 @@
+import { startMain } from "../utils/callbacks.js";
+
 export default class Boot extends Phaser.Scene 
 {
     /**
@@ -179,6 +181,11 @@ export default class Boot extends Phaser.Scene
 
         // --- START POINT --- 
         // inits the game menu scene
-        this.scene.start('menuGame');
+        this.optA = true; 
+        this.optB = false; 
+        this.volGen = 45;
+        this.volAmb = 45;
+        this.volSFX = 45;
+        startMain(this);
     }
 }
