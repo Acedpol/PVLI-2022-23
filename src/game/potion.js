@@ -24,7 +24,7 @@ export default class Potion extends Character
     effect()
     {
         this.playerContainer.player.heal(3);
-        this.scene.sound.play('pick');   // sound feedback
+        this.scene.sound.play('pick', this.scene.sfxConfig);   // sound feedback
         this.destroy();
     }
 

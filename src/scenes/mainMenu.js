@@ -9,13 +9,8 @@ export default class Menu extends blankMenu
         super('menuGame');
     }
 
-    init() {
-        super.init();
-        this.events.on('resume', (scene, args) => { this.onResume(args); } );
-
-        this.optA = true;
-        this.optB = false;
-        this.volGeneral = 50;
+    init(args) {
+        super.init(args);
     }
 
     preload() 
@@ -41,10 +36,11 @@ export default class Menu extends blankMenu
         // this.createButtonGame(this, width * 0.5, height * 0.65, 'button', 'Opciones', initGame);
  
         // barra informativa adicional
-        let _textStyle = { fontSize: 6.5, color: '#FFFFFF', fontFamily: 'Greconian', fontStyle: 'normal' };
+        let _textStyle = { fontSize: 6, color: '#FFFFFF', fontFamily: 'Greconian', fontStyle: 'normal' };
         let _rectStyle = new this.rectStyle(0x000000, 0x111111, 0.6, 1, true, false);
+        let _rect = new Phaser.Geom.Rectangle(width * 0.5, height * 0.95, width, height * 0.1);
         let _text = "Pulse 'P' o haz click en ? para acceder al menú de información.";
-        this.createTextPanel_s(width * 0.5, height * 0.95, width, height * 0.1, _text, _textStyle, _rectStyle, true, 4);
+        this.createTextPanel_rc(_rect, _text, _textStyle, _rectStyle, true, 4);
     }
 
     update(t, dt) 
@@ -52,19 +48,4 @@ export default class Menu extends blankMenu
         super.update(t, dt);
     }
 
-    /** @override */
-    handlePause() {
-        super.handlePause();
-        onInfoBar();
-    }
-
-    onResume(args) {
-        offInfoBar(); 
-        this.optA = args.optA; 
-        this.optB = args.optB; 
-        this.volGeneral = args.volG;
-        console.log(this.optA);
-        console.log(this.optB);
-        console.log(this.volGeneral);
-    }
 }

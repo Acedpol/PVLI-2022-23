@@ -7,10 +7,10 @@ import Boot from './scenes/boot.js';
 import GameLogic from './scenes/pvliGame.js';
 import Menu from './scenes/mainMenu.js';
 import GameOver from './scenes/gameOver.js';
-import BlankPause from './scenes/pause.js';
+import Pause from './scenes/pause.js';
 import UI from './scenes/UI.js';
 import Options from './scenes/options.js';
-import Sonido from './scenes/sonido.js'
+import SoundMenu from './scenes/soundMenu.js'
 
 window.onload = cargarJuego();
 
@@ -28,7 +28,7 @@ export function cargarJuego()
             zoom: z
         },
         pixelArt: true,
-        scene: [ Boot, GameLogic, Menu, GameOver, BlankPause, UI, Options, Sonido ],
+        scene: [ Boot, Menu, GameLogic, GameOver, Pause, UI, Options, SoundMenu ],
         physics: {
             default: 'arcade',
             arcade: {
@@ -37,6 +37,9 @@ export function cargarJuego()
                 },
                 debug: true // use this to show box-colliders
             }
+        },
+        audio: {
+            disableWebAudio: true
         }
         
     };

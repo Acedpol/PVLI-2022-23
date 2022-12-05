@@ -1,3 +1,4 @@
+import { startMain } from "../utils/callbacks.js";
 import blankMenu from "./menu.js";
 
 export default class GameOver extends blankMenu
@@ -10,8 +11,8 @@ export default class GameOver extends blankMenu
         super('GameOver');
     }
 
-    init() {
-        super.init();
+    init(args) {
+        super.init(args);
     }
 
     preload() 
@@ -32,7 +33,7 @@ export default class GameOver extends blankMenu
 
         // click to play again
         this.input.keyboard.once('keydown-SPACE', () => {
-            this.scene.start('menuGame')
+            startMain(this);
         });
     }
 

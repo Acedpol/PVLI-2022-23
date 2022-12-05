@@ -1,5 +1,4 @@
-import Jump from "../icons/jump.js";
-import Life from "../icons/life.js";
+import { Jump, Life } from "../utils/icons.js";
 import Dock from "../utils/dock.js";
 import blankMenu from "./menu.js";
 
@@ -19,9 +18,12 @@ export default class UI extends blankMenu
         this.initP = false;
     }
 
-    init() {
-        super.init();
+    init(args) {
+        super.init(args);
         this.size = 8;
+        this.allowedJumpsText = 'Allowed jumps: 0/0'; 
+        this.livesText = 'Lives: 9';
+        console.log('UI iniciada!');
         this.initC = true;
     }
 

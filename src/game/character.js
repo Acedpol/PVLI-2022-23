@@ -13,7 +13,7 @@ export default class Character extends Entity
      * @param {Phaser.Scene} scene Escena del enemigo
      * @param {number} x Coordenada x
      * @param {number} y Coordenada y
-     * @param {spritesheet} spritesheet Spritesheet
+     * @param {String} spritesheet Spritesheet key at boot
      * @param {number} n nº de frame dentro del spritesheet
      */
     constructor(scene, x, y, spritesheet, n = 0){

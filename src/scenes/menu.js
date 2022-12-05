@@ -16,9 +16,9 @@ export default class blankMenu extends blankScene
         super(keyname);
     }
 
-    init()
+    init(args)
     {
-        super.init();
+        super.init(args);
     }
 
     preload() 
@@ -119,12 +119,13 @@ export default class blankMenu extends blankScene
     createExitGeoButtonGame(scene, x, y, fn, setColor = false, lv = 1)
     {
         const{width,height} = this.scale;
-        let rw = width * 0.09 * this.coeWidth;
-        let rh = height * 0.075 * this.coeHeight;
-        let text = "EXIT!!!";
+        let rw = width * 0.09;
+        let rh = height * 0.075;
+        let _text = "EXIT!!!";
         let _textStyle = { fontSize: 8, color: '#f0f', fontFamily: 'Greconian', fontStyle: 'normal' };
         let _rectStyle = new this.rectStyle('0x000000', '0xFF00FF', 0.9, 0.9, true, true);
-        let _rect = this.createTextPanel_s(x, y, rw, rh, text, _textStyle, _rectStyle, setColor, lv = 1);
+        let _rect = new Phaser.Geom.Rectangle(x, y, rw, rh);
+        _rect = this.createTextPanel_rc(_rect, _text, _textStyle, _rectStyle, setColor, lv = 1);
         this.setInteractiveZone(scene, _rect, fn, 3);
     }
 
@@ -133,7 +134,6 @@ export default class blankMenu extends blankScene
      * @param {Scene} scene Escena del ámbito de uso del botón
      * @param {Phaser.Geom.Rectangle} rect Rectangulo usado en el fondo del button
      * @param {Function} fn Callback a ejecutar
-     * @param {Number} lv Nivel de dificultad
      */
     setInteractiveZone(scene, rect, fn)
     {
@@ -183,22 +183,56 @@ export default class blankMenu extends blankScene
     createTextPanel_s(x, y, rw, rh, text, textStyle, rectStyle, setColor = false, lv = 1) 
     {
         let _rect = new Phaser.Geom.Rectangle(x - rw/2, y - rh/2, rw, rh);
-        this.createTextPanel(_rect, text, rectStyle, textStyle, setColor, lv);
+        this.createTextPanel(_rect, text, textStyle, rectStyle, setColor, lv);
         return _rect;
     }
 
     /**
-     * Crea un rectángulo con texto en su interior
-     * @param {Number} x posición horizontal
-     * @param {Number} y posición vertical
-     * @param {Number} rw ancho
-     * @param {Number} rh alto
+     * Crea un rectángulo con texto en su interior (sin rect dado)
+     * @param {Phaser.Geom.Rectangle} rect rectángulo usado para el panel
      * @param {String} text texto ubicado en el panel
      * @param {Phaser.Types.GameObjects.Text.TextStyle} textStyle estilo asociado al texto
      * @param {makeStruct} rectStyle estilo del rectángulo
      * @param {Number} lv índice asociado
      */
-    createTextPanel(rect, text, rectStyle, textStyle, setColor = false, lv = 1) {
+    createTextPanel_rc(rect, text, textStyle, rectStyle, setColor = false, lv = 1) 
+    {
+        let _rect = new Phaser.Geom.Rectangle(rect.x - rect.width/2, rect.y - rect.height/2, rect.width, rect.height);
+
+        // fija el color
+        if (setColor) { 
+            const{color, relleno, contorno} = this.btnColor(lv);   
+            textStyle.color = color;
+            rectStyle.relleno = relleno;
+            rectStyle.contorno = contorno;
+        } 
+        // crea el texto y el rectángulo
+        let a = this.addRectText(_rect, text, textStyle); 
+        const{rw,rh} = this.getTextRect(a);
+        textStyle.fontSize = parseFloat(textStyle.fontSize.slice(0, textStyle.fontSize.length - 2)) * 3;
+
+        let t = this.addRectText(_rect, text, textStyle); 
+        t.setDisplaySize(rw / this.coeWidth, rh / this.coeHeight);
+        a.destroy();
+
+        this.setRectStyle(_rect, rectStyle);
+        
+        // console.log(t.text);
+        // console.log("- dims: { w: " + t.width + ", h: " + t.height + "} ");
+        // console.log("- rect dims: { w: " + _rect.width + ", h: " + _rect.height + "} ");
+
+        return t;
+    }
+
+    /**
+     * Crea un rectángulo con texto en su interior
+     * @param {Phaser.Geom.Rectangle} rect rectángulo usado para el panel
+     * @param {String} text texto ubicado en el panel
+     * @param {Phaser.Types.GameObjects.Text.TextStyle} textStyle estilo asociado al texto
+     * @param {makeStruct} rectStyle estilo del rectángulo
+     * @param {Number} lv índice asociado
+     */
+    createTextPanel(rect, text, textStyle, rectStyle, setColor = false, lv = 1) {
         // fija el color
         if (setColor) { 
             const{color, relleno, contorno} = this.btnColor(lv);   
@@ -228,25 +262,35 @@ export default class blankMenu extends blankScene
                 width: thick * this.AR,
                 color: rectStyle.contorno,
                 alpha: rectStyle.alphaLine
-            }            
+            }
         });
- 
-        // how to paint/fill this rectangle
-        if (rectStyle.drawFill) graphics.fillRectShape(rect);       // relleno
-        if (rectStyle.drawLine) graphics.strokeRectShape(rect);     // trazo
+
+        this.resetRectDisplay(graphics, rect, rectStyle);
 
         return graphics;
     }
 
+    resetRectDisplay(graphics, rect, rectStyle) {
+        // how to paint/fill this rectangle
+        graphics.clear();
+        if (rectStyle.drawFill) graphics.fillRectShape(rect);       // relleno
+        if (rectStyle.drawLine) graphics.strokeRectShape(rect);     // trazo
+    }
+
     /**
-     * Crea un texto incrustado en un rectángulo
+     * Crea un texto incrustado en un rectángulo (responsive)
      * @param {Phaser.Geom.Rectangle} rect rectángulo contenedor
      * @param {String} text texto que se escribe
      * @param {Phaser.Types.GameObjects.Text.TextStyle} textStyle estilo del texto
      */
     addRectText(rect, text, textStyle) {
-        this.addText_s(rect.x + rect.width * 0.5, rect.y + rect.height * 0.5, text, textStyle)
+        let t = this.addText_s(rect.x + rect.width * 0.5, rect.y + rect.height * 0.5, text, textStyle)
             .setDepth(1);
+
+        // console.log(t.text);
+        // console.log("- dims: { w: " + t.width + ", h: " + t.height + "} ");
+
+        return t;
     }
 
     // --- --- --- 

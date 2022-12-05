@@ -28,22 +28,16 @@ export default class pvliGame extends blankGame
     
     init(args)
     {
-        super.init(1);
-        this.syncMain(args);
-        this.checkCollisions(false);
-    }
+        super.init(args);
 
-    syncMain(args) {
-        this.args  = args;
-        this.optA = args.optA; 
-        this.optB = args.optB; 
-        this.volGeneral = args.volG;
         console.log("INITIALISING GAME...");
         console.log('- wasd: ' + (this.optA ? 'encendido' : 'apagado'));
         console.log('- cursores: ' + (this.optB ? 'encendido' : 'apagado'));
         console.log('- vol. general: ' + this.volGeneral + '%');
-    }
 
+        this.checkCollisions(false);
+    }
+    
     preload() 
     {
         console.log(" - pvliGame scene - ")

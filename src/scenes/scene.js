@@ -47,10 +47,24 @@ export default class blankScene extends Phaser.Scene
         super({
             key: keyname
         });
+
+        this.audioConfig = {
+            mute: false,
+            volume: 0.2,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0
+        };
     }
 
-    init()
+    init(args)
     {
+        this.args = args;
+        this.onResume(args);
+        this.events.on('resume', (scene, args) => { this.onResume(args); } );
+
         this.timeLapsed = 0;
         this.active = false;
         this.p = this.input.keyboard.addKey('P');
@@ -74,6 +88,50 @@ export default class blankScene extends Phaser.Scene
         this.rectStyle = new makeStruct('relleno, contorno, alphaFill, alphaLine, drawFill, drawLine');
     }
 
+    onResume(args) {  
+        console.log(":::" + this.key + " scene :::");
+        this.optA = args.optA; 
+        this.optB = args.optB; 
+        this.volGen = args.volGen;
+        this.volAmb = args.volAmb;
+        this.volSFX = args.volSFX;
+        this.mute = args.mute;
+
+        this.genConfig = {
+            mute: args.mute,
+            volume: this.volGen / 100,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0
+        };
+        this.ambConfig = {
+            mute: args.mute,
+            volume: this.volAmb / 100 * this.volGen / 100,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay: 0
+        };
+        this.sfxConfig = {
+            mute: args.mute,
+            volume: this.volSFX / 100 * this.volGen / 100,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0
+        };
+
+        console.log(this.optA);
+        console.log(this.optB);
+        console.log(this.volGen);
+        console.log(this.volAmb);
+        console.log(this.volSFX);
+    }
+
     preload() 
     {
         console.log(key + " scene")
@@ -94,7 +152,8 @@ export default class blankScene extends Phaser.Scene
         }
     }
 
-    // --- --- TIMER SYSTEM --- --- 
+    // --- --- TIMER --- --- 
+
     cooldown(keyTime, fn) {
         if (this.timeLapsed > keyTime)
         {
@@ -102,9 +161,11 @@ export default class blankScene extends Phaser.Scene
             this.timeLapsed = 0;
         }
     }
+
     // --- --- --- 
 
-    // --- --- PAUSE SYSTEM --- --- 
+    // --- --- SYSTEM ACTIVITY --- --- 
+
     setSceneEvents() {             
         this.events.on('start', () => { this.active = true; });
         this.events.on('create', () => { this.active = true; });
@@ -115,18 +176,9 @@ export default class blankScene extends Phaser.Scene
 
     isActive() { return this.active; }
     toggleActive() { this.active = !this.active; }
+    enable() { this.active = true; }
+    disable() { this.active= false; }
 
-    handlePause() {
-        this.scene.pause();
-        this.scene.launch('blankPause');
-        // this.scene.start('blankPause');
-    }
-
-    handleResume(scene) {
-        this.scene.resume(scene);
-        this.scene.stop();
-        // this.scene.start(scene);
-    }
     // --- --- --- 
 
     // --- --- ASPECT RATIO --- --- 
@@ -250,7 +302,7 @@ export default class blankScene extends Phaser.Scene
     }
 
     /**
-     * Crea una línea de texto
+     * Crea una línea de texto (responsive)
      * @param {number} x Posición horizontal
      * @param {number} y Posición vertical
      * @param {String} text Lo que se va a escribir

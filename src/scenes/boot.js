@@ -1,3 +1,5 @@
+import { startMain } from "../utils/callbacks.js";
+
 export default class Boot extends Phaser.Scene 
 {
     /**
@@ -101,6 +103,9 @@ export default class Boot extends Phaser.Scene
         this.load.spritesheet('controls', "./assets/images/controles.png",
           { frameWidth: 308, frameHeight: 168 })
 
+        this.load.spritesheet('speaker', "./assets/images/speaker3.png",
+          { frameWidth: 256, frameHeight: 235 })
+
     }
 
     create() 
@@ -178,6 +183,12 @@ export default class Boot extends Phaser.Scene
 
         // --- START POINT --- 
         // inits the game menu scene
-        this.scene.start('menuGame');
+        this.optA = true; 
+        this.optB = false; 
+        this.volGen = 20;
+        this.volAmb = 80;
+        this.volSFX = 80;
+        this.mute = false;
+        startMain(this);
     }
 }
