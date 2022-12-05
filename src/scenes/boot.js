@@ -183,9 +183,9 @@ export default class Boot extends Phaser.Scene
         // inits the game menu scene
         this.optA = true; 
         this.optB = false; 
-        this.volGen = 45;
-        this.volAmb = 45;
-        this.volSFX = 45;
+        this.volGen = 20;
+        this.volAmb = 80;
+        this.volSFX = 80;
         startMain(this);
     }
 }

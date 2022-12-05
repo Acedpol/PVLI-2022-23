@@ -47,6 +47,16 @@ export default class blankScene extends Phaser.Scene
         super({
             key: keyname
         });
+
+        this.audioConfig = {
+            mute: false,
+            volume: 0.2,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0
+        };
     }
 
     init(args)
@@ -85,6 +95,35 @@ export default class blankScene extends Phaser.Scene
         this.volGen = args.volGen;
         this.volAmb = args.volAmb;
         this.volSFX = args.volSFX;
+
+        this.genConfig = {
+            mute: false,
+            volume: this.volGen / 100,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0
+        };
+        this.ambConfig = {
+            mute: false,
+            volume: this.volAmb / 100 * this.volGen / 100,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: true,
+            delay: 0
+        };
+        this.sfxConfig = {
+            mute: false,
+            volume: this.volSFX / 100 * this.volGen / 100,
+            rate: 1,
+            detune: 0,
+            seek: 0,
+            loop: false,
+            delay: 0
+        };
+
         console.log(this.optA);
         console.log(this.optB);
         console.log(this.volGen);

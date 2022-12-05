@@ -37,6 +37,9 @@ export function cargarJuego()
                 },
                 debug: true // use this to show box-colliders
             }
+        },
+        audio: {
+            disableWebAudio: true
         }
         
     };
