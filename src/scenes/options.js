@@ -10,7 +10,6 @@ export default class Options extends blankMenu
 
     init(args) {
         super.init(args);
-        this.events.on('resume', (scene, args) => { this.onResume(args); } );
     }
 
     preload() 

@@ -1,3 +1,4 @@
+import { offInfoBar, onInfoBar } from "../../lib/pauseCtrl.js";
 import { gameLogic } from "../game.js"
 
 // ejemplo:
@@ -45,7 +46,19 @@ export function toggleMute(scene) {
     let isMute = scene.speaker.mute;
     scene.general.mod.toggleMute(isMute);
     if (isMute) scene.speaker.setFrame(4);
-    return isMute;
+    // else scene.speaker.setFrame(0);
+}
+
+export function setPause(scene) {
+    onInfoBar();
+    scene.scene.pause();
+    scene.scene.launch('blankPause', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX});
+}
+
+export function resume(scene, dest) {
+    offInfoBar();
+    scene.scene.resume(dest, {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX});
+    scene.scene.stop();
 }
 
 

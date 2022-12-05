@@ -53,6 +53,7 @@ export default class blankScene extends Phaser.Scene
     {
         this.args = args;
         this.onResume(args);
+        this.events.on('resume', (scene, args) => { this.onResume(args); } );
 
         this.timeLapsed = 0;
         this.active = false;
@@ -111,7 +112,8 @@ export default class blankScene extends Phaser.Scene
         }
     }
 
-    // --- --- TIMER SYSTEM --- --- 
+    // --- --- TIMER --- --- 
+
     cooldown(keyTime, fn) {
         if (this.timeLapsed > keyTime)
         {
@@ -119,9 +121,11 @@ export default class blankScene extends Phaser.Scene
             this.timeLapsed = 0;
         }
     }
+
     // --- --- --- 
 
-    // --- --- PAUSE SYSTEM --- --- 
+    // --- --- SYSTEM ACTIVITY --- --- 
+
     setSceneEvents() {             
         this.events.on('start', () => { this.active = true; });
         this.events.on('create', () => { this.active = true; });
@@ -133,17 +137,6 @@ export default class blankScene extends Phaser.Scene
     isActive() { return this.active; }
     toggleActive() { this.active = !this.active; }
 
-    handlePause() {
-        this.scene.pause();
-        this.scene.launch('blankPause');
-        // this.scene.start('blankPause');
-    }
-
-    handleResume(scene) {
-        this.scene.resume(scene);
-        this.scene.stop();
-        // this.scene.start(scene);
-    }
     // --- --- --- 
 
     // --- --- ASPECT RATIO --- --- 

@@ -11,8 +11,6 @@ export default class Menu extends blankMenu
 
     init(args) {
         super.init(args);
-        offInfoBar(); 
-        this.events.on('resume', (scene, args) => { offInfoBar(); this.onResume(args); } );
     }
 
     preload() 
@@ -47,12 +45,6 @@ export default class Menu extends blankMenu
     update(t, dt) 
     {
         super.update(t, dt);
-    }
-
-    /** @override */
-    handlePause() {
-        super.handlePause();
-        onInfoBar();
     }
 
 }

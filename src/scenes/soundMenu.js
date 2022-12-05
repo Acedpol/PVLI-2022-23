@@ -24,7 +24,6 @@ export default class SoundMenu extends blankMenu
         // gets the sizes of the screen
         const{width,height} = this.scale; // canvas size
 
-        
         // Create background image
         this.background = this.createBackground('img_back3');
         this.colorBackGround(width * 0.5, height * 0.5, width * 0.975, height * 0.95, true, false, true, 4);
