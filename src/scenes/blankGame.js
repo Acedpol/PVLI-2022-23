@@ -6,6 +6,7 @@ import blankScene from './scene.js'
 import Potion from '../game/potion.js'
 import { gameOver } from '../utils/callbacks.js'
 import PlayerLogic from '../game/player.js'
+import Wings from '../game/wings.js'
 
 export default class blankGame extends blankScene
 {

@@ -42,7 +42,9 @@ export default class Enemy extends Character {
 
     checkDamage(object, power){
         if (this.canDamage && this.scene.physics.overlap(object, this))  {
-            console.log("enemigo dañado")
+            let x = this.playerContainer.player.flipX; // booleano de si está girado o no
+            this.setVelocity(x, -100);
+            console.log("enemigo dañado");
             this.health -= power;
             this.canDamage = false;
             if (this.active) {
