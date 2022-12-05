@@ -15,11 +15,11 @@ export default class Modulador
         let _rw, _rh;
         if (this.vertical) {
             _rw = dims.rw;
-            _rh = 25 * 0.75;
+            _rh = 25 * 0.75 * scene.coeWidth;
             this.max -= _rh;
         } 
         else {
-            _rw = 25 * 0.75;
+            _rw = 25 * 0.75 * scene.coeHeight;
             _rh = dims.rh;
             this.max -= _rw;
         }

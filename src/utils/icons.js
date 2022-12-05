@@ -81,3 +81,36 @@ export class Speaker extends Entity
             this.setFrame(0);
     }
 }
+
+export class Controls extends Entity
+{
+    /**
+     * Constructor de enemigo
+     * @param {Phaser.Scene} scene Escena del enemigo
+     * @param {number} n opción elegida
+     */
+    constructor(scene, n)
+    {
+        let x, y;
+        const{width,height} = scene.scale;
+
+        if (n === 0) {
+            x = width * 0.2; 
+            y = height/2;
+        } else {
+            x = width * 0.8; 
+            y = height/2;
+        }
+
+        super(scene, x, y, 'controls', n);
+        this.setDepth(2);
+        this.setDisplaySize(this.width * scene.coeWidth, this.height * scene.coeHeight);
+
+        console.log("- icon dims: { w: " + this.width + ", h: " + this.height + "} ");
+    }
+
+    preUpdate(t,dt) 
+    {
+        super.preUpdate(t,dt);  // for animation
+    }
+}

@@ -7,7 +7,7 @@ import Boot from './scenes/boot.js';
 import GameLogic from './scenes/pvliGame.js';
 import Menu from './scenes/mainMenu.js';
 import GameOver from './scenes/gameOver.js';
-import BlankPause from './scenes/pause.js';
+import Pause from './scenes/pause.js';
 import UI from './scenes/UI.js';
 import Options from './scenes/options.js';
 import SoundMenu from './scenes/soundMenu.js'
@@ -28,7 +28,7 @@ export function cargarJuego()
             zoom: z
         },
         pixelArt: true,
-        scene: [ Boot, GameLogic, Menu, GameOver, BlankPause, UI, Options, SoundMenu ],
+        scene: [ Boot, Menu, GameLogic, GameOver, Pause, UI, Options, SoundMenu ],
         physics: {
             default: 'arcade',
             arcade: {

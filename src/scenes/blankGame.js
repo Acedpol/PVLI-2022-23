@@ -73,12 +73,6 @@ export default class blankGame extends blankScene
         this.playerContainer.destroy();
         gameOver(this);
     }
- 
-    /** @override */
-    handlePause() {
-        super.handlePause();
-        this.scene.pause('UI');
-    }
 
     // --- --- --- 
 

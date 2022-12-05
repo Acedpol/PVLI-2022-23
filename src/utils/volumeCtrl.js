@@ -22,13 +22,13 @@ export default class volumeCtrl
 
         let _rw, _rh;
         if (this.vertical) {
-            _rw = 100 * 0.75;
+            _rw = 100 * 0.75 * scene.coeWidth;
             _rh = this.max - this.min;
             this.pos -= _rw/2;
         } 
         else {
             _rw = this.max - this.min;
-            _rh = 100 * 0.75;
+            _rh = 100 * 0.75 * scene.coeHeight;
             this.pos -= _rh/2;
         }
         this.dims = { rw: _rw, rh: _rh};

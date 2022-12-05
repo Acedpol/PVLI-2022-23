@@ -136,6 +136,8 @@ export default class blankScene extends Phaser.Scene
 
     isActive() { return this.active; }
     toggleActive() { this.active = !this.active; }
+    enable() { this.active = true; }
+    disable() { this.active= false; }
 
     // --- --- --- 
 
@@ -260,7 +262,7 @@ export default class blankScene extends Phaser.Scene
     }
 
     /**
-     * Crea una línea de texto
+     * Crea una línea de texto (responsive)
      * @param {number} x Posición horizontal
      * @param {number} y Posición vertical
      * @param {String} text Lo que se va a escribir
