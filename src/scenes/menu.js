@@ -124,8 +124,7 @@ export default class blankMenu extends blankScene
         let _text = "EXIT!!!";
         let _textStyle = { fontSize: 8, color: '#f0f', fontFamily: 'Greconian', fontStyle: 'normal' };
         let _rectStyle = new this.rectStyle('0x000000', '0xFF00FF', 0.9, 0.9, true, true);
-        let _rect = new Phaser.Geom.Rectangle(x, y, rw, rh);
-        _rect = this.createTextPanel_rc(_rect, _text, _textStyle, _rectStyle, setColor, lv = 1);
+        let _rect = this.createTextPanel_s(x, y, rw, rh, _text, _textStyle, _rectStyle, false, lv = 2);
         this.setInteractiveZone(scene, _rect, fn, 3);
     }
 
