@@ -59,7 +59,7 @@ export class Speaker extends Entity
             hitArea: this,
             useHandCursor: true
         })
-        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+        .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.mute ? this.mute = false : this.mute = true;
             toggleMute(this.scene);
         });

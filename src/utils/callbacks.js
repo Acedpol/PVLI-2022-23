@@ -42,13 +42,16 @@ export function backFromSonido(scene) {    // <---
     scene.scene.stop();
 }
 
+// soundMenu: speaker
 export function toggleMute(scene) {
     let isMute = scene.speaker.mute;
+    scene.sfx.mod.toggleMute(isMute);
+    scene.ambience.mod.toggleMute(isMute);
     scene.general.mod.toggleMute(isMute);
     if (isMute) scene.speaker.setFrame(4);
-    // else scene.speaker.setFrame(0);
 }
 
+// pause / play any scene
 export function setPause(scene) {
     onInfo(); onInfoBar();
     scene.disable();

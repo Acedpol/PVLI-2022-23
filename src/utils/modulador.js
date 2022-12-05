@@ -31,6 +31,7 @@ export default class Modulador
         this.point = this.getPos();
 
         this.lastValue = 100;
+        this.saveValue = 100;
     }
 
     update(t, dt) {
@@ -118,10 +119,10 @@ export default class Modulador
 
     toggleMute(mute) {
         if (mute) {
-            this.lastValue = this.getValue();
+            this.saveValue = this.getValue();
             this.setValue(0);
         }
-        else this.setValue(this.lastValue);
+        else this.setValue(this.saveValue);
     }
 
     newPosition(pos, min, max) {
