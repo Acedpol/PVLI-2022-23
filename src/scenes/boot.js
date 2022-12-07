@@ -16,8 +16,14 @@ export default class Boot extends Phaser.Scene
         console.log("Boot scene")
 
         // --- PLAYER --- 
-        // player spritesheet
-        this.load.spritesheet('angel', "./assets/sprites/jugador/victoria.png", //cambiar el sprite para la animacion 
+        // player spritesheets
+        this.load.spritesheet('angelF', "./assets/sprites/jugador/victoria.png", //Final 
+        { frameWidth: 122, frameHeight: 95 }) 
+        this.load.spritesheet('angel0', "./assets/sprites/jugador/victoriaSinBrazos.png", //con nada 
+        { frameWidth: 122, frameHeight: 95 }) 
+        this.load.spritesheet('angel1', "./assets/sprites/jugador/victoriaSinAlas.png", //sin Alas
+        { frameWidth: 122, frameHeight: 95 }) 
+        this.load.spritesheet('angel2', "./assets/sprites/jugador/victoriaSinCabeza.png", //sin Cabeza 
         { frameWidth: 122, frameHeight: 95 }) 
         // player proyectile
         this.load.image('object', './assets/sprites/jugador/calabaza.png')
@@ -113,27 +119,100 @@ export default class Boot extends Phaser.Scene
         // --- PLAYER --- 
         // creates walk animation for player
         this.anims.create({
-            key: 'idle',
-            frames: this.anims.generateFrameNames('angel', { start: 0, end: 0 }),
+            key: 'idleF',
+            frames: this.anims.generateFrameNames('angelF', { start: 0, end: 0 }),
             frameRate: 2,
             repeat: -1
         })
 
         // creates walk animation for player
         this.anims.create({
-            key: 'walk',
-            frames: this.anims.generateFrameNames('angel', { start: 20, end: 27 }),
+            key: 'walkF',
+            frames: this.anims.generateFrameNames('angelF', { start: 20, end: 27 }),
             frameRate: 8,
             repeat: -1
         })
 
         // creates jump animation for player
         this.anims.create({
-          key: 'jump',
-          frames: this.anims.generateFrameNames('angel', { start: 10, end: 18 }),
+          key: 'jumpF',
+          frames: this.anims.generateFrameNames('angelF', { start: 10, end: 18 }),
           frameRate: 9,
           repeat: -1
         })
+
+        // creates walk animation for player
+        this.anims.create({
+          key: 'idle0',
+          frames: this.anims.generateFrameNames('angel0', { start: 0, end: 0 }),
+          frameRate: 2,
+          repeat: -1
+      })
+
+      // creates walk animation for player
+      this.anims.create({
+          key: 'walk0',
+          frames: this.anims.generateFrameNames('angel0', { start: 20, end: 27 }),
+          frameRate: 8,
+          repeat: -1
+      })
+
+      // creates jump animation for player
+      this.anims.create({
+        key: 'jump0',
+        frames: this.anims.generateFrameNames('angel0', { start: 10, end: 18 }),
+        frameRate: 9,
+        repeat: -1
+      })
+
+      // creates walk animation for player
+      this.anims.create({
+        key: 'idle1',
+        frames: this.anims.generateFrameNames('angel1', { start: 0, end: 0 }),
+        frameRate: 2,
+        repeat: -1
+    })
+
+    // creates walk animation for player
+    this.anims.create({
+        key: 'walk1',
+        frames: this.anims.generateFrameNames('angel1', { start: 20, end: 27 }),
+        frameRate: 8,
+        repeat: -1
+    })
+
+    // creates jump animation for player
+    this.anims.create({
+      key: 'jump1',
+      frames: this.anims.generateFrameNames('angel1', { start: 10, end: 18 }),
+      frameRate: 9,
+      repeat: -1
+    })
+
+    // creates walk animation for player
+    this.anims.create({
+      key: 'idle2',
+      frames: this.anims.generateFrameNames('angel2', { start: 0, end: 0 }),
+      frameRate: 2,
+      repeat: -1
+  })
+
+  // creates walk animation for player
+  this.anims.create({
+      key: 'walk2',
+      frames: this.anims.generateFrameNames('angel2', { start: 20, end: 27 }),
+      frameRate: 8,
+      repeat: -1
+  })
+
+  // creates jump animation for player
+  this.anims.create({
+    key: 'jump2',
+    frames: this.anims.generateFrameNames('angel2', { start: 10, end: 18 }),
+    frameRate: 9,
+    repeat: -1
+  })
+
         // creates attack animation for player
         this.anims.create({
           key: 'attack',

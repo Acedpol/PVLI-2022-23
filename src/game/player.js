@@ -22,7 +22,7 @@ export default class PlayerLogic extends Entity
         this.maxHealth = 9;
 
         // animación inicial pausada
-        this.play('walk');
+        this.play('walk0');
         this.anims.pause();
 
         // eventos de teclado
@@ -66,7 +66,7 @@ export default class PlayerLogic extends Entity
         // ground detection logic
         if (groundCheck) {
             this.allowedJumps = this.maxJumps;
-            if (this.scene.UI.initP) this.scene.UI.jumps.reset(this.allowedJumps, 'jump'); // UI
+            if (this.scene.UI.initP) this.scene.UI.jumps.reset(this.allowedJumps, 'jump0'); // UI
             this.velocity.y = 0;
         } else {
             this.velocity.y = this.velocity.y + this.scene.physics.config.gravity.y * dt / 1000;
@@ -79,12 +79,12 @@ export default class PlayerLogic extends Entity
         {
             if (this.left || this.right) {
                 // resume animation
-                this.play('walk', true);
+                this.play('walk0', true);
                 this.anims.resume();
             }
             else {
                 // initial animation pause
-                this.play('walk', true);
+                this.play('walk0', true);
                 this.anims.pause();
             }            
         }
@@ -93,7 +93,7 @@ export default class PlayerLogic extends Entity
         if (!groundCheck)
         {
             // start animation
-            this.play('jump', true);
+            this.play('jump0', true);
         }
     }
 
