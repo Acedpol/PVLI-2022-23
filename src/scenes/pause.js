@@ -1,20 +1,19 @@
 import { toggleInfo } from '../../lib/pauseCtrl.js'
 import blankScene from './scene.js';
 
-export default class blankPause extends blankScene
+export default class Pause extends blankScene
 {
     /**
      * Constructor de la escena
      */
     constructor() 
     {
-        super('blankPause');
+        super('pauseScene');
     }
 
-    init()
+    init(args)
     {
-        super.init();
-        toggleInfo();
+        super.init(args);
     }
 
     preload() 
@@ -29,11 +28,5 @@ export default class blankPause extends blankScene
     update(t, dt) 
     {
         super.update(t, dt);
-    }
-
-    /** @override */
-    handleResume(scene) {
-        super.handleResume(scene);
-        toggleInfo();
     }
 };

@@ -1,17 +1,9 @@
-import Jump from "../icons/jump.js";
-import Life from "../icons/life.js";
+import { Jump, Life } from "../utils/icons.js";
 import Dock from "../utils/dock.js";
 import blankMenu from "./menu.js";
 
 export default class UI extends blankMenu
 {
-    // /** @type {Phaser.Types.GameObjects.Text.TextStyle} */      style
-    /** @type {Number} */                                       size
-    /** @type {String} */                                       allowedJumpsText
-    /** @type {String} */                                       lifeText
-    /** @type {Phaser.GameObjects.Text} */                      place01
-    /** @type {Phaser.GameObjects.Text} */                      place02
-
     constructor() 
     {
         super('UI');
@@ -19,9 +11,9 @@ export default class UI extends blankMenu
         this.initP = false;
     }
 
-    init() {
-        super.init();
-        this.size = 8;
+    init(args) {
+        super.init(args);
+        console.log('UI iniciada!');
         this.initC = true;
     }
 
@@ -56,25 +48,12 @@ export default class UI extends blankMenu
 
     create() 
     {
-        const width = this.canvasWidth;
-        const height = this.canvasHeight;
 
-        this.place01 = this.addText(width / 2, height / 30, this.allowedJumpsText, this.size);
-        this.place02 = this.addText(width / 2, height * 3 / 30, this.livesText, this.size);
     }
 
     update(t, dt) 
     {
         super.update(t, dt);
-    }
-
-    /**
-     * Reescribe un texto del UI.
-     * @param {Phaser.GameObjects.Text} place placeholder donde escribir
-     * @param {String} text texto a escribir
-     */
-    rewriteUI(place, text) {
-        place.text = text;
     }
 }
  
