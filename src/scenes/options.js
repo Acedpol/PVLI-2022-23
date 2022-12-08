@@ -52,7 +52,7 @@ export default class Options extends blankMenu
         let _textStyle = { fontSize: 6, color: '#FFFFFF', fontFamily: 'Greconian', fontStyle: 'normal' };
         let _rectStyle = new this.rectStyle(0x000000, 0x111111, 0.6, 1, true, false);
         let _rect = new Phaser.Geom.Rectangle(width * 0.5, height * 0.95, width, height * 0.1);
-        let _text = "Pulse 'P' o haz click en ? para acceder al menú de información.";
+        let _text = "Pulse 'P' o haz click en '?' para acceder al menú de información.";
         this.createTextPanel_rc(_rect, _text, _textStyle, _rectStyle, true, 4);
     }
 

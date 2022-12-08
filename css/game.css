@@ -149,7 +149,7 @@ div#content-about-us p {
 .ask {
   position: absolute;
   top: 15vh;
-  left: 83.25vw;
+  left: 83.6vw;
 }
 .ask a, h1 a {
   color: white;
@@ -162,13 +162,14 @@ div#content-about-us p {
   color: blue;
 }
 .ask2 a {
-  color: blue !important;
+  color: white !important;
+  text-decoration: none;
 }
 .ask2 a:hover {
   color: cornflowerblue !important;
 }
 .ask2 a:active {
-  color: white !important;
+  color: blue !important;
 }
 
 /* INFO-BAR: barrita negra en la zona inferior del canvas. */
