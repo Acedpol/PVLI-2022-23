@@ -80,6 +80,10 @@ h2 {
   padding: 0.625vh 2.5vh; /* 20px == 2.5vh */
 }
 .img-ground {
+  background-image:url("../assets/images/background-web.jpg");
+  background-size: cover;
+}
+.img-ground-info {
   background-image:url("../assets/images/santuario-helenistico-apolo-didima.jpeg");
   background-size: cover;
 }
