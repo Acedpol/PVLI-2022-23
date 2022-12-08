@@ -37,7 +37,7 @@ export function backFromOptions(scene) {    // <---
         scene.scene.stop();
     }
     else {
-        scene.scene.start('mainMenu', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
+        scene.scene.start('menuGame', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
     }
 }
 
