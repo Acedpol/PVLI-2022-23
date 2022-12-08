@@ -43,7 +43,8 @@ export default class blankGame extends blankScene
 
         // UI interface
         this.scene.launch('UI', args);
-        this.events.on('resume', (scene, args) => { this.scene.resume('UI', args); });
+        // console.log('-- new UI --');
+        this.events.on('resume', (scene, args) => { this.scene.resume('UI', args); console.log('--> resume UI!'); });
         this.UI = this.game.scene.getScene('UI');
     }
 

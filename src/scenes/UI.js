@@ -13,7 +13,7 @@ export default class UI extends blankMenu
 
     init(args) {
         super.init(args);
-        console.log('UI iniciada!');
+        // console.log('UI iniciada!');
         this.initC = true;
     }
 

@@ -30,10 +30,10 @@ export default class pvliGame extends blankGame
     {
         super.init(args);
 
-        console.log("INITIALISING GAME...");
-        console.log('- wasd: ' + (this.optA ? 'encendido' : 'apagado'));
-        console.log('- cursores: ' + (this.optB ? 'encendido' : 'apagado'));
-        console.log('- vol. general: ' + this.volGeneral + '%');
+        // console.log("INITIALISING GAME...");
+        // console.log('> wasd: ' + (this.optA ? 'encendido' : 'apagado'));
+        // console.log('> cursores: ' + (this.optB ? 'encendido' : 'apagado'));
+        // console.log('> vol. general: ' + this.volGen + '%');
 
         this.checkCollisions(false);
     }

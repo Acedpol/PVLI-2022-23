@@ -6,6 +6,8 @@ import { gameLogic } from "../game.js"
 
 // recurso posible de pauseCtrl.js: offInfoBar(); onInfoBar(); toggleInfoBar();
 
+var gameActive = false;
+
 // main menu
 export function startMain(scene) {
     scene.scene.start('menuGame', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
@@ -13,9 +15,11 @@ export function startMain(scene) {
 
 // game
 export function startGame(scene) {
+    gameActive = true;
     scene.scene.start('pvliGame', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
 }
 export function gameOver(scene) {
+    gameActive = false;
     scene.sound.stopAll();
     scene.sound.play('lose');
     scene.scene.stop('UI');
@@ -24,22 +28,25 @@ export function gameOver(scene) {
 
 // options
 export function swithToOptions(scene) {     // --->
-    scene.scene.launch('menuOptions', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute}); 
-    scene.scene.pause();
+    scene.scene.start('menuOptions', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute}); 
 }
 export function backFromOptions(scene) {    // <---
-    scene.scene.resume('menuGame', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
-    scene.scene.stop();
+    let dest = '';
+    if (gameActive) {
+        scene.scene.resume('pvliGame', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
+        scene.scene.stop();
+    }
+    else {
+        scene.scene.start(dest, {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
+    }
 }
 
 // sonido
 export function swithToSonido(scene) {     // --->
-    scene.scene.launch('menuSonido', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute}); 
-    scene.scene.pause();
+    scene.scene.start('menuSonido', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute}); 
 }
 export function backFromSonido(scene) {    // <---
-    scene.scene.resume('menuOptions', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});   
-    scene.scene.stop();
+    scene.scene.start('menuOptions', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
 }
 
 // soundMenu: speaker
@@ -55,16 +62,47 @@ export function toggleMute(scene) {
 // pause / play any scene
 export function setPause(scene) {
     onInfo(); onInfoBar();
-    scene.disable();
-    scene.scene.launch('pauseScene', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
-    scene.scene.pause();
+    // console.log('key: ' + scene.scene.key);
+
+    if (gameActive) 
+    {
+        scene.scene.launch('pauseScene', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
+
+        if (scene.scene.key === 'menuOptions' || scene.scene.key === 'menuSonido') {
+            // ya ha comenzado el juego, se ha pausado una vez y se ha navegado a opciones
+            scene.disable();
+            scene.scene.stop();
+        }
+        else {
+            // siempre, es la primera vez cuando el juego ha iniciado
+            scene.scene.pause('UI');
+            scene.scene.pause('pvliGame');
+        }
+    }
+    else {
+        scene.disable();
+        scene.scene.start('pauseScene', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
+    }
+     
 }
 
 export function resume(scene, dest) {
     offInfo(); offInfoBar(); 
-    scene.enable();
-    scene.scene.resume(dest, {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
-    scene.scene.stop();
+    
+    if (gameActive) {
+        if (dest === 'menuOptions' || dest === 'menuSonido') {
+            scene.enable();
+            scene.scene.start(dest, {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
+        }
+        else {
+            scene.scene.resume('pvliGame', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
+        }
+        scene.scene.stop('pauseScene');
+    }
+    else {
+        scene.enable();
+        scene.scene.start(dest, {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
+    }
 }
 
 

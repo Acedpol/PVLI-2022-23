@@ -13,7 +13,7 @@ export default class Boot extends Phaser.Scene
 
     preload() 
     {
-        console.log("Boot scene")
+        console.log("- boot scene -")
 
         // --- PLAYER --- 
         // player spritesheets

@@ -48,6 +48,8 @@ export default class blankScene extends Phaser.Scene
             key: keyname
         });
 
+        // console.log("::: creando " + keyname + " :::");
+
         this.audioConfig = {
             mute: false,
             volume: 0.2,
@@ -61,6 +63,7 @@ export default class blankScene extends Phaser.Scene
 
     init(args)
     {
+        // console.log("::: initialising scene :::");
         this.args = args;
         this.onResume(args);
         this.events.on('resume', (scene, args) => { this.onResume(args); } );
@@ -88,8 +91,7 @@ export default class blankScene extends Phaser.Scene
         this.rectStyle = new makeStruct('relleno, contorno, alphaFill, alphaLine, drawFill, drawLine');
     }
 
-    onResume(args) {  
-        console.log(":::" + this.key + " scene :::");
+    onResume(args) {
         this.optA = args.optA; 
         this.optB = args.optB; 
         this.volGen = args.volGen;
@@ -125,11 +127,12 @@ export default class blankScene extends Phaser.Scene
             delay: 0
         };
 
-        console.log(this.optA);
-        console.log(this.optB);
-        console.log(this.volGen);
-        console.log(this.volAmb);
-        console.log(this.volSFX);
+        // console.log("args <<< ");
+        // console.log(this.optA);
+        // console.log(this.optB);
+        // console.log(this.volGen);
+        // console.log(this.volAmb);
+        // console.log(this.volSFX);
     }
 
     preload() 

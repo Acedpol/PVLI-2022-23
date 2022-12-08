@@ -33,7 +33,6 @@ export default class Magic extends Character
 
         if (this.stop) {
             this.stopInertia();
-            console.log(this.onRotation);
         }
         if (this.onRotation) {
             this.angle += this.incRot;

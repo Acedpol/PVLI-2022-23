@@ -45,7 +45,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     setPlayer() {
         this.player.setHabilities()
         this.body.setSize(this.player.width * 11 / 100, this.player.height * 48 / 100);
-        console.log('player + container = playerContainer!');
+        // console.log('player + container = playerContainer!');
     }
 
     preUpdate(t,dt)
