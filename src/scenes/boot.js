@@ -26,12 +26,12 @@ export default class Boot extends Phaser.Scene
         this.load.spritesheet('angel2', "./assets/sprites/jugador/victoriaSinCabeza.png", //sin Cabeza 
         { frameWidth: 122, frameHeight: 95 }) 
         // player proyectile
-        this.load.image('object', './assets/sprites/jugador/calabaza.png')
+        this.load.image('object', './assets/sprites/jugador/potion.png')
         // player attack
         this.load.spritesheet('attackSpr', './assets/sprites/jugador/attack1.png',
         { frameWidth: 32, frameHeight: 32 }) 
         // player jump power
-        this.load.image('jump', './assets/sprites/jugador/barrita.png');
+        this.load.image('jump', './assets/sprites/jugador/wings.png');
 
         // --- ENEMIGOS ---
         // Lobo - idle
@@ -80,7 +80,7 @@ export default class Boot extends Phaser.Scene
         { frameWidth: 16, frameHeight: 16 })
 		//alas
         this.load.spritesheet('alasSprite', "./assets/sprites/jugador/alas.png", 
-            { frameWidth: 16, frameHeight: 16 })
+            { frameWidth: 32, frameHeight: 32 })
         //aureola
         this.load.spritesheet('aureolaSprite', "./assets/sprites/jugador/aureola.png", 
             { frameWidth: 16, frameHeight: 16 })

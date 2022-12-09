@@ -35,7 +35,7 @@ export default class PlayerLogic extends Entity
         this.velocity = { x: 0, y: 0 };
 
         // variables de control de saltos
-        this.maxJumps = 2;
+        this.maxJumps = 1;
         this.nextJump = this.scene.time.now;
         this.allowedJumps = 0; // this.maxJumps;
 
