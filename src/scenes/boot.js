@@ -79,7 +79,7 @@ export default class Boot extends Phaser.Scene
         { frameWidth: 16, frameHeight: 16 })
 		//alas
         this.load.spritesheet('alasSprite', "./assets/sprites/jugador/alas.png", 
-            { frameWidth: 16, frameHeight: 16 })
+            { frameWidth: 32, frameHeight: 32 })
         //aureola
         this.load.spritesheet('aureolaSprite', "./assets/sprites/jugador/aureola.png", 
             { frameWidth: 16, frameHeight: 16 })
