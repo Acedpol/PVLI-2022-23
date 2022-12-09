@@ -80,6 +80,9 @@ export default class Boot extends Phaser.Scene
 		//alas
         this.load.spritesheet('alasSprite', "./assets/sprites/jugador/alas.png", //sin Cabeza 
             { frameWidth: 122, frameHeight: 95 })
+        //aureola
+        this.load.spritesheet('aureolaSprite', "./assets/sprites/jugador/aureola.png", //sin Cabeza
+            { frameWidth: 122, frameHeight: 95 })
         // pick audio
         this.load.audio('pick', './assets/sounds/pick.wav')//yo lo dejaria
 
