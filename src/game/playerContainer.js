@@ -1,7 +1,7 @@
-import Magic from "./magic.js"
-import Wings from "./wings.js"
-import Aura from "./aura.js"
-import PlayerLogic from "./player.js";
+import Magic from './magic.js'
+import Wings from './wings.js'
+import Aura from './aura.js'
+import PlayerLogic from './player.js'
 
 /** @type {Phaser.GameObjects.Container} */
 export default class PlayerContainer extends Phaser.GameObjects.Container
