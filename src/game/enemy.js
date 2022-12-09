@@ -37,7 +37,8 @@ export default class Enemy extends Character {
     
     testDamages() {
         if(this.playerContainer.player.attack) this.checkDamage(this.playerContainer.player.attack, 1);
-        if(this.playerContainer.magic) this.checkDamage(this.playerContainer.magic, 3);
+        if(this.playerContainer.magic && this.playerContainer.magic.damage) 
+            this.checkDamage(this.playerContainer.magic, 3);
     }
 
     checkDamage(object, power){

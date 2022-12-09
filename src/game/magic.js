@@ -21,6 +21,9 @@ export default class Magic extends Character
         this.incRot = 0;
         this.setScale(0.5);
 
+        //variable de daño
+        this.damage = false;
+
         // set active and visible
         this.setActive(true);
         this.setVisible(true);
@@ -74,11 +77,17 @@ export default class Magic extends Character
     stopInertia() {
         if (this.stop && this.body.velocity.y == 0 && this.body.onFloor()) {
             this.offStop();
+            this.damage = false;
             this.stopRotation();
             this.scene.time.delayedCall(250, () => {
                 this.setVelocityX(0);
             });
         }
+    }
+    
+    canDamage()
+    {
+        return this.damage;
     }
 
 }

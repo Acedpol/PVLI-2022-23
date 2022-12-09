@@ -146,6 +146,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 
             // creates a new one in the same position
             this.magic = this.scene.addToScene(new Magic(this.scene, posX, posY), true); // --->
+            this.magic.damage = true;
             this.scene.addToScene(this.magic);
             this.magic.setOrigin(0.5,0.5);
 
