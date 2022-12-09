@@ -26,7 +26,7 @@ export default class Boot extends Phaser.Scene
         this.load.spritesheet('angel2', "./assets/sprites/jugador/victoriaSinCabeza.png", //sin Cabeza 
         { frameWidth: 122, frameHeight: 95 }) 
         // player proyectile
-        this.load.image('object', './assets/sprites/jugador/calabaza.png')
+        this.load.image('object', './assets/sprites/jugador/potion.png')
         // player attack
         this.load.spritesheet('attackSpr', './assets/sprites/jugador/attack1.png',
         { frameWidth: 32, frameHeight: 32 }) 
