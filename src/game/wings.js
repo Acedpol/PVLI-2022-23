@@ -12,8 +12,8 @@ export default class Wings extends Character
      */
     constructor(scene, x, y) 
     {
-        super(scene, x, y, 'object', 3)
-        this.setScale(0.5);
+        super(scene, x, y, 'alasSprite');
+        this.setScale(1);
     }
 
     preUpdate(t,dt) 
