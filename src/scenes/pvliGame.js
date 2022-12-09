@@ -63,7 +63,7 @@ export default class pvliGame extends blankGame
         this.addToScene(new Magic(this, 150, 150), true);
         this.addToScene(new Potion(this, 300, 100), true);
         this.addToScene(new Wings(this, 300, 150), true);
-        this.addToScene(new Wings(this, 150, 200), true);
+        this.addToScene(new Aura(this, 150, 200), true);
 
         // Sets the camera view
         this.startCamera({ width: this.mapWidth, height: this.mapHeight}); 
