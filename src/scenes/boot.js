@@ -31,7 +31,7 @@ export default class Boot extends Phaser.Scene
         this.load.spritesheet('attackSpr', './assets/sprites/jugador/attack1.png',
         { frameWidth: 32, frameHeight: 32 }) 
         // player jump power
-        this.load.image('jump', './assets/sprites/jugador/barrita.png');
+        this.load.image('jump', './assets/sprites/jugador/wings.png');
 
         // --- ENEMIGOS ---
         // Lobo - idle
