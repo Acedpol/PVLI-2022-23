@@ -92,12 +92,30 @@
          "tilewidth":18
         }, 
         {
+         "columns":52,
          "firstgid":7,
-         "source":"..\/mapa_y_fondo.tsx"
+         "image":"..\/sprites\/escenario\/old-dark-castle-interior-tileset.png",
+         "imageheight":240,
+         "imagewidth":832,
+         "margin":0,
+         "name":"mapa",
+         "spacing":0,
+         "tilecount":780,
+         "tileheight":16,
+         "tilewidth":16
         }, 
         {
+         "columns":52,
          "firstgid":787,
-         "source":"..\/mapa.tsx"
+         "image":"..\/sprites\/escenario\/old-dark-castle-interior-tileset.png",
+         "imageheight":240,
+         "imagewidth":832,
+         "margin":0,
+         "name":"mapa",
+         "spacing":0,
+         "tilecount":780,
+         "tileheight":16,
+         "tilewidth":16
         }],
  "tilewidth":16,
  "type":"map",

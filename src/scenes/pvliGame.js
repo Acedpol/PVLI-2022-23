@@ -47,7 +47,7 @@ export default class pvliGame extends blankGame
     create() 
     {
         // Creates the Game Map
-        this.createMap('nivel', 18, 21, 'platform', 'img_tilemap', 'plataformas');
+        this.createMap('nivel', 16, 16, 'mapa', 'img_tilemap2', 'plataformas');//esto esta 28 21
         
         // Create background image
         this.createMapBackground('img_back', this.map);
