@@ -1,6 +1,6 @@
 import Character from './character.js';
 
-export default class Wings extends Character
+export default class Arm extends Character
 {
 
     /**
