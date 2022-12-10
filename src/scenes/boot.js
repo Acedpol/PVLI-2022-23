@@ -31,7 +31,7 @@ export default class Boot extends Phaser.Scene
         this.load.spritesheet('attackSpr', './assets/sprites/jugador/attack1.png',
         { frameWidth: 32, frameHeight: 32 }) 
         // player jump power
-        this.load.image('jump', './assets/sprites/jugador/wings.png');
+        this.load.image('jump', './assets/sprites/jugador/alas.png');
 
         // --- ENEMIGOS ---
         // Lobo - idle
@@ -83,6 +83,9 @@ export default class Boot extends Phaser.Scene
             { frameWidth: 32, frameHeight: 32 })
         //aureola
         this.load.spritesheet('aureolaSprite', "./assets/sprites/jugador/aureola.png", 
+            { frameWidth: 32, frameHeight: 32 })
+        //aureola
+        this.load.spritesheet('brazoSprite', "./assets/sprites/jugador/brazo.png",
             { frameWidth: 16, frameHeight: 16 })
         // pick audio
         this.load.audio('pick', './assets/sounds/pick.wav')//yo lo dejaria
