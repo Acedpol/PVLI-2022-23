@@ -6,7 +6,7 @@ import blankGame from './blankGame.js'
 import Potion from '../game/potion.js'
 import Wings from '../game/wings.js'
 import Aura from '../game/aura.js'
-import Aura from '../game/arm.js'
+import Arm from '../game/arm.js'
 
 export default class pvliGame extends blankGame
 {

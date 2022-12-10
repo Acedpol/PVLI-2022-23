@@ -1,7 +1,7 @@
 import Magic from './magic.js'
 import Wings from './wings.js'
 import Aura from './aura.js'
-import Aura from './arm.js'
+import Arm from './arm.js'
 import PlayerLogic from './player.js'
 
 /** @type {Phaser.GameObjects.Container} */
