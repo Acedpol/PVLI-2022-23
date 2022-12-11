@@ -66,7 +66,7 @@ export default class Boot extends Phaser.Scene
         // map
         this.load.image('img_tilemap', './assets/sprites/escenario/ground.png')
         this.load.image('img_tilemap2', './assets/sprites/escenario/old-dark-castle-interior-tileset.png')
-        this.load.tilemapTiledJSON('nivel', './assets/map/nivel31.json')
+        this.load.tilemapTiledJSON('nivel', './assets/map/nivel2.json')
 
 
         // --- OBJECTS --- 
