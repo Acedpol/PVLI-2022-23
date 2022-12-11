@@ -162,6 +162,43 @@ export default class blankGame extends blankScene
         this.map = map; // <--
     }
 
+    /**
+     * Constructor del mapa, cada capa usa un único tileset
+     * @param {String} clave Nombre dado al 'mapa.json' en 'boot.js'
+     * @param {number} tileWidth Tamaño horizontal en pixeles de cada tile
+     * @param {number} tileHeight Tamaño vertical en pixeles de cada tile
+     * @param {number} N Número de layers que definen el mapa
+     * @param {String} tileset Nombre dado al 'tileset' en 'mapa.json'
+     * @param {String} tilesetIMG Nombre dado a la imagen asociada al 'tileset' en 'boot.js'
+     * @param {String} layer Nombre dado a la capa de tiles (tilemap) en 'mapa.json'
+     */
+    createMap2(clave, tileWidth, tileHeight, N, tileset, tilesetIMG, layer) 
+    {
+        // creación del mapa:
+        const map = this.make.tilemap({
+            key: clave,
+            tileWidth: tileWidth,
+            tileHeight: tileHeight
+        });
+     
+        // imagen -> tileset -> layer = map
+        let _tileset = {};
+        let _layers = {};
+        for (let i = 0; i < N; i++) {
+            _tileset[i] =  map.addTilesetImage(tileset[i], tilesetIMG[i]);
+            _layers[i] = map.createLayer(layer[i], [_tileset[i]]).setDepth(1);
+        }    
+     
+        // definición de colisiones: -> con propiedad en TILED
+        this.groundLayer = _layers[0];
+        this.groundLayer.setCollisionByProperty({ suelo: true });
+         
+        // guarda las dimensiones del mapa
+        this.mapWidth = map.width * map.tileWidth;
+        this.mapHeight = map.height * map.tileHeight;
+        this.map = map; // <--
+    }
+
     // --- --- --- 
 
     // --- --- CAMERA --- --- 
