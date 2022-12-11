@@ -22,7 +22,8 @@ export default class Arm extends Character
 
     }
     effect()
-    {        
+    {
+        this.playerContainer.player.canDamaged(true);
         this.scene.sound.play('pick')   // sound feedback
         this.destroy()
     }

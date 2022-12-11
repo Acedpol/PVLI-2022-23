@@ -84,7 +84,7 @@ export default class Boot extends Phaser.Scene
         //aureola
         this.load.spritesheet('aureolaSprite', "./assets/sprites/jugador/aureola.png", 
             { frameWidth: 32, frameHeight: 32 })
-        //aureola
+        //brazo
         this.load.spritesheet('brazoSprite', "./assets/sprites/jugador/brazo.png",
             { frameWidth: 16, frameHeight: 16 })
         // pick audio
