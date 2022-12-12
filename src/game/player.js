@@ -40,7 +40,7 @@ export default class PlayerLogic extends Entity
         this.allowedJumps = 0; // this.maxJumps;
 
         // booleanno para saber si puede ser dañado
-        this.canBeDamaged = true;
+        this.canBeDamaged = false;
     }
 
     /** @async */
@@ -252,5 +252,7 @@ export default class PlayerLogic extends Entity
         this.maxJumps = jumps;
     }
 
-
+    canDamaged(damaged) {
+        this.canBeDamaged = damaged;
+    }
 }
