@@ -19,6 +19,7 @@ export default class Character extends Entity
     constructor(scene, x, y, spritesheet, n = 0){
         super(scene, x, y, spritesheet, n);
         this.playerContainer = this.scene.playerContainer;
+        this.setDepth(3);
     }
 
     preUpdate(t,dt) 
