@@ -101,7 +101,7 @@ export default class blankGame extends blankScene
 
         // añade el jugador al contenedor: '1, 2, 3 ...fusión!!'
         this.playerContainer.addPlayer(this.player);
-
+        this.playerContainer.setDepth(3);
         return container;
     }
 
@@ -135,10 +135,13 @@ export default class blankGame extends blankScene
      * @param {number} tileWidth Tamaño horizontal en pixeles de cada tile
      * @param {number} tileHeight Tamaño vertical en pixeles de cada tile
      * @param {String} tileset Nombre dado al 'tileset' en 'mapa.json'
+     * @param {String} tileset2 Nombre dado al 'tileset' en 'mapa.json'
      * @param {String} tilesetImg Nombre dado a la imagen asociada al 'tileset' en 'boot.js'
+     * @param {String} tilesetImg2 Nombre dado a la imagen asociada al 'tileset' en 'boot.js'
      * @param {String} layer Nombre dado a la capa de tiles (tilemap) en 'mapa.json'
+     * @param {String} layer2 Nombre dado a la capa de tiles (tilemap) en 'mapa.json'
      */
-    createMap(clave, tileWidth, tileHeight, tileset, tilesetImg, layer) 
+    createMap(clave, tileWidth, tileHeight, tileset,tileset2, tilesetImg,tilesetImg2, layer, layer2) 
     {
         // creación del mapa:
         const map = this.make.tilemap({
@@ -149,13 +152,16 @@ export default class blankGame extends blankScene
     
         // asignación de imagenes
         const _tileset = map.addTilesetImage(tileset, tilesetImg);
+        const _tileset2 = map.addTilesetImage(tileset2, tilesetImg2);
     
         // creación de layers: 3 principales (fondo, fore y colliders)
-        this.groundLayer = map.createLayer(layer, [_tileset]).setDepth(1);  // 'GroundLayer'        
+        this.groundLayer = map.createLayer(layer2, [_tileset2]).setDepth(1);    //fondo
+        this.groundLayer = map.createLayer(layer, [_tileset]).setDepth(2);  // 'GroundLayer'          
     
         // definición de colisiones: -> con propiedad en TILED
         this.groundLayer.setCollisionByProperty({ suelo: true });
-        
+
+
         // guarda las dimensiones del mapa
         this.mapWidth = map.width * map.tileWidth;
         this.mapHeight = map.height * map.tileHeight;
