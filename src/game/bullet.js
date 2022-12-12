@@ -28,7 +28,7 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite
         this.scene = scene
         this.scene.add.existing(this)
         this.scene.physics.add.existing(this)
-
+        this.setDepth(3);
         // set active and visible
         this.setActive(true)
         this.setVisible(true)

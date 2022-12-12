@@ -104,7 +104,7 @@ export default class Boot extends Phaser.Scene
 
         // --- SCENE --- 
         // platform
-        this.load.image('platform', './assets/sprites/escenario/ground.png')
+        //this.load.image('platform', './assets/sprites/escenario/ground.png')
 
         // background
         this.load.image('img_back', './assets/images/background.jpg')
@@ -112,9 +112,10 @@ export default class Boot extends Phaser.Scene
         this.load.image('img_back3', './assets/images/victoria-de-samotracia__1080x567v2.png')
 
         // map
-        this.load.image('img_tilemap', './assets/sprites/escenario/ground.png')
-        this.load.image('img_tilemap2', './assets/sprites/escenario/old-dark-castle-interior-tileset.png')
-        this.load.tilemapTiledJSON('nivel', './assets/map/nivel31.json')
+        this.load.image('img_tilemap', './assets/sprites/escenario/old-dark-castle-interior-tileset.png')
+        this.load.image('img_tilemap2', './assets/sprites/escenario/gothic-castle-background.png')
+
+        this.load.tilemapTiledJSON('nivel', './assets/map/nivel00.json')
 
 
         // --- OBJECTS --- 

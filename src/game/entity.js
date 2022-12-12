@@ -16,6 +16,7 @@ export default class Entity extends Phaser.Physics.Arcade.Sprite
     constructor(scene, x, y, spritesheet, n = 0){
         super(scene, x, y, spritesheet, n);
         this.setOrigin(0.5);
+        this.setDepth(3);
     }
 
     preUpdate(t,dt) 
