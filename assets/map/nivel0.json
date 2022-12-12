@@ -7140,8 +7140,17 @@
          "tilewidth":16
         }, 
         {
+         "columns":52,
          "firstgid":787,
-         "source":"..\/Fondo.tsx"
+         "image":"..\/sprites\/escenario\/gothic-castle-background.png",
+         "imageheight":336,
+         "imagewidth":480,
+         "margin":0,
+         "name":"Fondo",
+         "spacing":0,
+         "tilecount":780,
+         "tileheight":16,
+         "tilewidth":16
         }],
  "tilewidth":16,
  "type":"map",
