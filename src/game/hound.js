@@ -1,9 +1,3 @@
-/**
- * Clase del enemigo. En principio para la demo sólo va a atacar al jugador con el
- * contacto físico, pero el futuro se podrá dejar con los parámetros básicos y heredar 
- * los diferentes enemigos con distintos ataques y estadísticas.
- */
-
 import Enemy from './enemy.js';
 
 export default class Hound extends Enemy {

@@ -2,11 +2,13 @@ import Magic from '../game/magic.js'
 import PlayerContainer from '../game/playerContainer.js'
 import Bullet from '../game/bullet.js'
 import Hound from '../game/hound.js'
+import Guard from '../game/guard.js'
 import blankGame from './blankGame.js'
 import Potion from '../game/potion.js'
 import Wings from '../game/wings.js'
 import Aura from '../game/aura.js'
 import Arm from '../game/arm.js'
+//import Trigger from '../game/trigger.js'
 
 export default class pvliGame extends blankGame
 {
@@ -54,11 +56,14 @@ export default class pvliGame extends blankGame
         this.createMapBackground('img_back', this.map);
 
         // Creates the player
-        this.createPlayer(this.mapWidth * 0.5, this.mapHeight * 0.5, 'angel', this.args, true);
+        this.createPlayer(this.mapWidth * 0.5, this.mapHeight - 10, 'angel', this.args, true);
         this.initPlayer(true); // allow camara to follow
 
         // Creates the enemy
-        this.addToScene(new Hound(this, 30, 100), true);
+        //this.addToScene(new Hound(this, 30, 100), true);
+        this.addToScene(new Guard(this, 500, this.mapHeight - 10), true);
+        //this.addToScene(new Trigger(this, 50, 50), true);
+
 
         // Crea un objeto para recoger en la escena
         this.addToScene(new Magic(this, 150, 150), true);
