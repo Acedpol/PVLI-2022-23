@@ -224,7 +224,7 @@ export default class PlayerLogic extends Entity
         }
         else {
             if (this.scene.UI.initP) this.scene.UI.lives.addObjects(power, 'object'); // UI
-        }Damage
+        }
         console.log("health" + this.health)
     }
 
