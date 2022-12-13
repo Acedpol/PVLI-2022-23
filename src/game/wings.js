@@ -23,7 +23,7 @@ export default class Wings extends Character
     }
     effect()
     {
-        this.playerContainer.player.changeMaxJumps(2);
+        this.playerContainer.player.changeMaxJumps();
         this.scene.sound.play('pick')   // sound feedback
         this.destroy()
     }

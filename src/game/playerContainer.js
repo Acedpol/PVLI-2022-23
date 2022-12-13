@@ -46,7 +46,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     }
 
     setPlayer() {
-        this.player.setHabilities()
+        //this.player.setHabilities()
         this.body.setSize(this.player.width * 11 / 100, this.player.height * 48 / 100);
         // console.log('player + container = playerContainer!');
     }
@@ -110,6 +110,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     //  */
     carryMagic(magic)
     {
+        this.player.setMagic();
         if (!this.carriesMagic)
         {
             // keeps save the magic

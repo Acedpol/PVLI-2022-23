@@ -19,7 +19,10 @@ export default class Guard extends Enemy {
     {
         this.checkPlayer(this.playerContainer);
         super.preUpdate(t,dt) // for animation and player detection (¡puede ser destruido!)
-        this.shoot();
+        if(this.shooting && this.canBeDamaged)
+        { 
+            this.shoot();
+        }
     }
 
     /**
@@ -27,128 +30,118 @@ export default class Guard extends Enemy {
      * @param {GameObject} target lo que persigue
      */
 
-    checkPlayer(target){
+    rangeCheck(target)
+    {
+        if(this.y + 50 > target.y  && this.y - 100 < target.y)
+        {
+            if((this.x+150 > target.x && this.x < target.x)||(this.x-150 < target.x && this.x > target.x))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    checkPlayer(target)
+    {
 
-        if(this.y + 50 > target.y  && this.y - 100 < target.y && this.canDamage)
+        if(this.rangeCheck(target))
         { 
-            if(this.x+150 > target.x && this.x < target.x)
+            if(!this.targeted  && this.canBeDamaged)
             {
-
-                if(!this.targeted)
-                {
-                    this.sleep = false;
-                    this.play('guard_wake');
-                    this.targeted = true;
-                    this.flipX = false
-                    this.dir = 1;
-                    
-                    this.timer = this.scene.time.addEvent({
-                        delay: 1000,
-                        callback: onEvent,
-                        callbackScope: this,
-                        loop: false
-                    });
-                    
-                    function onEvent() {
-                        this.shooting = true;
-                    }
-                }
+                this.sleep = false;
+                this.play('guard_wake');
+                this.targeted = true;
+                this.flipX = false
+                this.dir = 1;
                 
-            }
-            else if(this.x-150 < target.x && this.x > target.x)
-            {
-
-                if(!this.targeted)
-                {
-                    this.play('guard_wake');
-                    this.targeted = true;
-                    this.flipX = true
-                    this.dir = -1;
-                    
-                    this.timer = this.scene.time.addEvent({
-                        delay: 1000,
-                        callback: onEvent,
-                        callbackScope: this,
-                        loop: false
-                    });
+                this.timer = this.scene.time.addEvent({
+                    delay: 1000,
+                    callback: onEvent,
+                    callbackScope: this,
+                    loop: false
+                });
                 
-                    function onEvent() {
-                        this.shooting = true;
-                    }
-                }
-            }
-            else 
-            {
-                this.shooting = false;
-                this.targeted = false;
-                if(!this.sleep)
-                {
-                    this.play('guard_sleep');
-                    this.sleep = true;
+                function onEvent() {
+                    this.shooting = true;
                 }
             }
         }
-        else if(this.targeted)
-            this.targeted = false
+        else 
+        {
+            this.shooting = false;
+            this.targeted = false;
+            if(!this.sleep)
+            {
+                this.play('guard_sleep');
+                this.sleep = true;
+            }
+        }
+
+
+
+            // if(this.x+150 > target.x && this.x < target.x)
+            // {
+
+                
+            // }
+            // else if(this.x-150 < target.x && this.x > target.x)
+            // {
+
+            //     if(!this.targeted)
+            //     {
+            //         this.play('guard_wake');
+            //         this.targeted = true;
+            //         this.flipX = true
+            //         this.dir = -1;
+                    
+            //         this.timer = this.scene.time.addEvent({
+            //             delay: 1000,
+            //             callback: onEvent,
+            //             callbackScope: this,
+            //             loop: false
+            //         });
+                
+            //         function onEvent() {
+            //             this.shooting = true;
+            //         }
+            //     }
+            // }
     }
     shoot()
     {
-        if(this.shooting && this.canDamage)
-        {        
-            this.shooting = false
-            this.play('guard_charge')
-            this.timer = this.scene.time.addEvent({
+        this.shooting = false
+        this.play('guard_charge')
+        this.timer = this.scene.time.addEvent({
+            delay: 800,
+            callback: onEvent,
+            callbackScope: this,
+            loop: false
+        });
+
+        function onEvent() {
+            if(this.canBeDamaged)
+            {
+                this.play('guard_shoot')
+                this.scene.addToScene(new Proyectile(this.scene, this.x+20*this.dir, this.y-5, this.dir), true);
+                
+                this.timer = this.scene.time.addEvent({
                 delay: 800,
                 callback: onEvent,
                 callbackScope: this,
                 loop: false
-            });
-
-            function onEvent() {
-                if(this.canDamage)
-                {
-                    this.play('guard_shoot')
-                    this.scene.addToScene(new Proyectile(this.scene, this.x+20*this.dir, this.y-5, this.dir), true);
-                    
-                    this.timer = this.scene.time.addEvent({
-                    delay: 800,
-                    callback: onEvent,
-                    callbackScope: this,
-                    loop: false
-                    });
-                    
-                    function onEvent() {
-                        //shoot
-                        this.shooting = true;
-                    }
-                }
-            }
-        }
-    }
-    checkDamage(object, power){
-        if (this.canDamage && this.scene.physics.overlap(object, this))  {
-            let x = this.playerContainer.player.flipX; // booleano de si está girado o no
-            if(x)
-            x = -50;
-            else x = 50;
-            this.setVelocity(x, -100);
-            console.log("enemigo dañado");
-            this.health -= power;
-            this.play('guard_damaged')
-            this.canDamage = false;
-            if (this.active) {
-                this.timer = this.scene.time.addEvent({
-                    delay: 1000,
-                    callback: damageTimer,
-                    callbackScope: this
                 });
-
-                function damageTimer() {
-                    this.canDamage = true;
-                    this.setVelocity(0, 0);
+                
+                function onEvent() {
+                    //shoot
+                    this.shooting = true;
                 }
             }
         }
     }
-
+    damageAnimation(){
+        this.play('guard_damaged')
+    }
+    normalAnimation(){
+        this.play('guard_wake')
+    }
 }

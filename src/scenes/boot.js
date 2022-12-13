@@ -179,7 +179,7 @@ export default class Boot extends Phaser.Scene
         // --- PLAYER --- 
         // creates walk animation for player
         this.anims.create({
-            key: 'idleF',
+            key: 'idle3',
             frames: this.anims.generateFrameNames('angelF', { start: 0, end: 0 }),
             frameRate: 2,
             repeat: -1
@@ -187,7 +187,7 @@ export default class Boot extends Phaser.Scene
 
         // creates walk animation for player
         this.anims.create({
-            key: 'walkF',
+            key: 'walk3',
             frames: this.anims.generateFrameNames('angelF', { start: 20, end: 27 }),
             frameRate: 8,
             repeat: -1
@@ -195,7 +195,7 @@ export default class Boot extends Phaser.Scene
 
         // creates jump animation for player
         this.anims.create({
-          key: 'jumpF',
+          key: 'jump3',
           frames: this.anims.generateFrameNames('angelF', { start: 10, end: 18 }),
           frameRate: 9,
           repeat: -1
@@ -277,7 +277,7 @@ export default class Boot extends Phaser.Scene
   this.anims.create({
     key: 'attack',
     frames: this.anims.generateFrameNames('attackSpr', { start: 0, end: 5 }),
-    frameRate: 5,
+    frameRate: 7,
     repeat: 0
   })
 

@@ -15,7 +15,7 @@ export default class Enemy extends Character {
         this.health = stats.health;
         this.power = stats.power;
         this.speed = stats.speed;
-        this.canDamage = true;
+        this.canBeDamaged = true;
     }
 
     preUpdate(t,dt) 
@@ -32,36 +32,42 @@ export default class Enemy extends Character {
 
     /** @override */
     effect() {
-        this.playerContainer.player.hurt(this.power);
+        this.playerContainer.player.hurt();
     }
     
     testDamages() {
-        if(this.playerContainer.player.attack) this.checkDamage(this.playerContainer.player.attack, 1);
+        if(this.playerContainer.player.attack)
+         this.checkDamage(this.playerContainer.player.attack);
         if(this.playerContainer.magic && this.playerContainer.magic.damage) 
-            this.checkDamage(this.playerContainer.magic, 3);
+            this.checkDamage(this.playerContainer.magic);
     }
 
-    checkDamage(object, power){
-        if (this.canDamage && this.scene.physics.overlap(object, this))  {
-            let x = this.playerContainer.player.flipX; // booleano de si está girado o no
-            if(x)
-            x = -50;
-            else x = 50;
-            this.setVelocity(x, -100);
+    checkDamage(object){
+        if (this.canBeDamaged && this.scene.physics.overlap(object, this))  {
+            let x;
+            if(this.playerContainer.player.flipX)
+            x = -35;
+            else x = 35;
+            this.setVelocity(x, -75);
             console.log("enemigo dañado");
-            this.health -= power;
-            this.canDamage = false;
+            this.health --;
+            this.damageAnimation();
+            this.canBeDamaged = false;
             if (this.active) {
                 this.timer = this.scene.time.addEvent({
-                    delay: 500,
+                    delay: 750,
                     callback: damageTimer,
                     callbackScope: this
                 });
 
                 function damageTimer() {
-                    this.canDamage = true;
+                    this.canBeDamaged = true;
+                    this.normalAnimation();
+                    this.setVelocity(0, 0);
                 }
             }
         }
     }
+    damageAnimation(){};
+    normalAnimation(){};
 }
