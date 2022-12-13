@@ -17,7 +17,7 @@ export default class Boot extends Phaser.Scene
 
         // --- PLAYER --- 
         // player spritesheets
-        this.load.spritesheet('angelF', "./assets/sprites/jugador/victoriaCompleta.png", //Final 
+        this.load.spritesheet('angelF', "./assets/sprites/jugador/victoriaSinCorona.png", //Final 
         { frameWidth: 122, frameHeight: 95 }) 
        
         this.load.spritesheet('angel0', "./assets/sprites/jugador/victoriaSinBrazos.png", //con nada 
