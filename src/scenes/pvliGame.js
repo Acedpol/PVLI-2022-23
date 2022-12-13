@@ -53,10 +53,15 @@ export default class pvliGame extends blankGame
         this.createMap('nivel', 16, 16, 'mapa', 'Fondo','img_tilemap', 'img_tilemap2', 'plataformas','fondo' );//esto esta 28 21
         // Create background image
         //this.createMapBackground('img_back', this.map);
-
+        this.backgroundLayer.forEachTile(tile => {
+            if (tile.properties.permise) {
+                boxTiles.push(tile)
+            }
+        })
         // Creates the player
         this.createPlayer(this.mapWidth * 0.5, this.mapHeight - 10, 'angel', this.args, true);
         this.initPlayer(true); // allow camara to follow
+        this.createObjects()
 
         // Creates the enemy
         //this.addToScene(new Hound(this, 30, 100), true);
@@ -83,5 +88,49 @@ export default class pvliGame extends blankGame
     {
         super.update(t,dt);
         if (this.UI.initC && !this.UI.initP) this.UI.setPlayer(this.playerContainer);
+    }
+
+    createObjects() {
+        // el tag del ObjectLayer('...') es el mismo que TILED
+        for (const objeto of this.map.getObjectLayer('entidades').objects) {
+            if (objeto.properties) {
+                // console.log("tiene properties");
+                // console.log(objeto.properties);
+                for (const { name, value } of objeto.properties) {
+                    if (name === 'type')
+                        switch (value) {
+                            case 'hound':
+                                this.addToScene(new Hound(this, objeto.x, objeto.y), true);
+                                break;
+                            case 'Guard':
+                                this.addToScene(new Guard(this, objeto.x, objeto.y), true);
+                                break;
+                            /*case 'Meter enemigo armadura':
+                                this.goal = new Goal(this, objeto.x, objeto.y).setDepth(3)
+                                break;*/
+                            case 'Potion':
+                                this.addToScene(new Potion(this, objeto.x, objeto.y), true);
+                                break;
+                            case 'Halo':
+                                this.addToScene(new Magic(this, objeto.x, objeto.y), true);
+                                break;
+                            case 'Wings':
+                                this.addToScene(new Wings(this, objeto.x, objeto.y), true);
+                                break;
+                            case 'Arms':
+                                this.addToScene(new Arm(this, objeto.x, objeto.y), true);
+                                break;
+                            case 'Aura':
+                                this.addToScene(new Aura(this, objeto.x, objeto.y), true);
+                                break;
+                            case 'player':
+                                // this.addToScene(new Player(this, objeto.x, objeto.y), true);
+                                break;
+                            default:
+                                break;
+                        }
+                }
+            }
+        }
     }
 }
