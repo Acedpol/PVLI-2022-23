@@ -28,16 +28,16 @@ export default class Boot extends Phaser.Scene
         
         this.load.spritesheet('angel2', "./assets/sprites/jugador/victoriaSinCabeza.png", //sin Cabeza 
         { frameWidth: 122, frameHeight: 95 }) 
-        
-        // player proyectile
-        this.load.image('object', './assets/sprites/jugador/potion.png')
-        
+              
         // player attack
         this.load.spritesheet('attackSpr', './assets/sprites/jugador/attack1.png',
         { frameWidth: 32, frameHeight: 32 }) 
-        
+
+        // player lives 
+        this.load.image('lifeSpr', './assets/sprites/jugador/stoneHeart.png');
+
         // player jump power
-        this.load.image('jump', './assets/sprites/jugador/alas.png');
+        this.load.image('jumpBar', './assets/sprites/jugador/barrita.png');
 
         // --- ENEMIGOS ---
 
@@ -82,41 +82,13 @@ export default class Boot extends Phaser.Scene
         this.load.spritesheet('guardDeathSprite', "./assets/sprites/guardSprites/death.png",
         { frameWidth: 44, frameHeight: 39 })
 
-        // guard - death
+        // guard - proyectile
         this.load.spritesheet('guardProyectile', "./assets/sprites/guardSprites/proyectile.png",
         { frameWidth: 23, frameHeight: 13 })
 
         // // guard - walk
         // this.load.spritesheet('guardMoveSprite', "./assets/sprites/guardSprites/move.png",
         // { frameWidth: 41, frameHeight: 39 })
-
-        
-        
-        // --- OBJETOS ---
-
-
-        // // jetpack audio
-        // this.load.audio('jetpack', './assets/sounds/jetpack2.wav')//cambio mas tarde
-    
-        // // walking audio
-        // this.load.audio('walk-audio', './assets/sounds/soldier-walk.wav')//cambio mas tarde
-        
-
-        // --- SCENE --- 
-        // platform
-        //this.load.image('platform', './assets/sprites/escenario/ground.png')
-
-        // background
-        this.load.image('img_back', './assets/images/background.jpg')
-        this.load.image('img_back2', './assets/images/fondo-ladrillos.jpg')
-        this.load.image('img_back3', './assets/images/victoria-de-samotracia__1080x567v2.png')
-
-        // map
-        this.load.image('img_tilemap', './assets/sprites/escenario/old-dark-castle-interior-tileset.png')
-        this.load.image('img_tilemap2', './assets/sprites/escenario/gothic-castle-background.png')
-
-        this.load.tilemapTiledJSON('nivel', './assets/map/nivel00.json')
-
 
         // --- OBJECTS --- 
         // object
@@ -139,6 +111,21 @@ export default class Boot extends Phaser.Scene
         //aureola
         this.load.spritesheet('brazoSprite', "./assets/sprites/jugador/brazo.png",
         { frameWidth: 16, frameHeight: 16 })
+        
+        // --- SCENE --- 
+
+        // background
+        this.load.image('img_back', './assets/images/background.jpg')
+        this.load.image('img_back2', './assets/images/fondo-ladrillos.jpg')
+        this.load.image('img_back3', './assets/images/victoria-de-samotracia__1080x567v2.png')
+
+        // map
+        this.load.image('img_tilemap', './assets/sprites/escenario/old-dark-castle-interior-tileset.png')
+        this.load.image('img_tilemap2', './assets/sprites/escenario/gothic-castle-background.png')
+
+        this.load.tilemapTiledJSON('nivel', './assets/map/nivel00.json')
+
+
         
         // pick audio
         this.load.audio('pick', './assets/sounds/pick.wav')//yo lo dejaria

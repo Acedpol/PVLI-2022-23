@@ -32,12 +32,13 @@ export default class UI extends blankMenu
         // lives dock
         this.lives = new Dock(this, {x: z, y: z, stepX: z + dz, stepY: 0 }, Life.prototype);
         this.lives.setPlayer();
-        this.lives.reset(this.playerContainer.player.health, 'object');
+        this.lives.reset(this.playerContainer.player.health, 'lifeSpr');
 
         // jumps dock
         this.jumps = new Dock(this, {x: z, y: z * 2, stepX: z + dz, stepY: 0 }, Jump.prototype);
         this.jumps.setPlayer();
-        this.jumps.reset(this.playerContainer.player.maxJumps, 'jump');
+        this.jumps.reset(this.playerContainer.player.maxJumps, 'jumpBar');
+        //this.jumps.scaleXY(0.5)
         this.initP = true;
     }
 

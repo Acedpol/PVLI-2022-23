@@ -13,11 +13,12 @@ export default class Guard extends Enemy {
         this.shooting = false;
         this.sleep = false;
         this.targeted = false;
+        this.target = this.playerContainer;
     }
 
     preUpdate(t,dt) 
     {
-        this.checkPlayer(this.playerContainer);
+        this.checkPlayer();
         super.preUpdate(t,dt) // for animation and player detection (¡puede ser destruido!)
         if(this.shooting && this.canBeDamaged)
         { 
@@ -30,23 +31,33 @@ export default class Guard extends Enemy {
      * @param {GameObject} target lo que persigue
      */
 
-    rangeCheck(target)
+    rangeCheck()
     {
-        if(this.y + 50 > target.y  && this.y - 100 < target.y)
+        if(this.y + 75 > this.target.y  && this.y - 125 < this.target.y)
         {
-            if((this.x+150 > target.x && this.x < target.x)||(this.x-150 < target.x && this.x > target.x))
+            if((this.x+175 > this.target.x && this.x < this.target.x)||(this.x-175 < this.target.x && this.x > this.target.x))
             {
+                if(this.x < this.target.x)
+                {
+                    this.flipX = false
+                    this.dir = 1
+                }
+                else
+                {
+                    this.flipX = true;                
+                    this.dir = -1
+                } 
                 return true;
             }
         }
         return false;
     }
-    checkPlayer(target)
+    checkPlayer()
     {
 
-        if(this.rangeCheck(target))
+        if(this.rangeCheck())
         { 
-            if(!this.targeted  && this.canBeDamaged)
+            if(!this.targeted  && this.canBeDamaged && !this.shooting)
             {
                 this.sleep = false;
                 this.play('guard_wake');
@@ -55,7 +66,7 @@ export default class Guard extends Enemy {
                 this.dir = 1;
                 
                 this.timer = this.scene.time.addEvent({
-                    delay: 1000,
+                    delay: 800,
                     callback: onEvent,
                     callbackScope: this,
                     loop: false
@@ -68,7 +79,6 @@ export default class Guard extends Enemy {
         }
         else 
         {
-            this.shooting = false;
             this.targeted = false;
             if(!this.sleep)
             {
@@ -77,35 +87,6 @@ export default class Guard extends Enemy {
             }
         }
 
-
-
-            // if(this.x+150 > target.x && this.x < target.x)
-            // {
-
-                
-            // }
-            // else if(this.x-150 < target.x && this.x > target.x)
-            // {
-
-            //     if(!this.targeted)
-            //     {
-            //         this.play('guard_wake');
-            //         this.targeted = true;
-            //         this.flipX = true
-            //         this.dir = -1;
-                    
-            //         this.timer = this.scene.time.addEvent({
-            //             delay: 1000,
-            //             callback: onEvent,
-            //             callbackScope: this,
-            //             loop: false
-            //         });
-                
-            //         function onEvent() {
-            //             this.shooting = true;
-            //         }
-            //     }
-            // }
     }
     shoot()
     {
@@ -133,7 +114,13 @@ export default class Guard extends Enemy {
                 
                 function onEvent() {
                     //shoot
-                    this.shooting = true;
+                    if(this.rangeCheck())
+                        this.shooting = true;
+                    else  
+                    {
+                        this.play('guard_sleep');
+                        this.sleep = true;
+                    }
                 }
             }
         }

@@ -101,7 +101,7 @@ export default class PlayerLogic extends Entity
         // ground detection logic
         if (groundCheck) {
             this.allowedJumps = this.maxJumps;
-            if (this.scene.UI.initP) this.scene.UI.jumps.reset(this.allowedJumps, 'jump0'); // UI
+            if (this.scene.UI.initP) this.scene.UI.jumps.reset(this.allowedJumps, 'jumpBar'); // UI
             this.velocity.y = 0;
         } else {
             this.velocity.y = this.velocity.y + this.scene.physics.config.gravity.y * dt / 1000;
@@ -220,10 +220,10 @@ export default class PlayerLogic extends Entity
         if(this.health > this.maxHealth)
         {
             this.health = this.maxHealth
-            if (this.scene.UI.initP) this.scene.UI.lives.reset(this.health, 'object'); // UI
+            if (this.scene.UI.initP) this.scene.UI.lives.reset(this.health, 'lifeSpr'); // UI
         }
         else {
-            if (this.scene.UI.initP) this.scene.UI.lives.addObjects(power, 'object'); // UI
+            if (this.scene.UI.initP) this.scene.UI.lives.addObjects(power, 'lifeSpr'); // UI
         }
         console.log("health" + this.health)
     }
