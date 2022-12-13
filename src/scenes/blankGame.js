@@ -155,8 +155,8 @@ export default class blankGame extends blankScene
         const _tileset2 = map.addTilesetImage(tileset2, tilesetImg2);
     
         // creación de layers: 3 principales (fondo, fore y colliders)
-        this.groundLayer = map.createLayer(layer2, [_tileset2]).setDepth(1);    //fondo
-        this.groundLayer = map.createLayer(layer, [_tileset]).setDepth(2);  // 'GroundLayer'          
+        this.backgroundLayer = map.createLayer(layer2, [_tileset2]).setDepth(1);    //fondo
+        this.groundLayer = map.createLayer(layer, [_tileset]).setDepth(2);  // Suelo,paredes        
     
         // definición de colisiones: -> con propiedad en TILED
         this.groundLayer.setCollisionByProperty({ suelo: true });
