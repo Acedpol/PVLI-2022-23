@@ -2,7 +2,7 @@ import Enemy from './enemy.js';
 
 export default class Hound extends Enemy {
     constructor(scene, x, y) {
-        let stats = { health: 100, power: 1, speed: 50 };
+        let stats = { health: 1, power: 1, speed: 50 };
         super(scene, x, y,'houndIdleSprite', 0, stats);
         this.play('wolf_idle');
     }

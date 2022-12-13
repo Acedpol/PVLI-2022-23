@@ -35,7 +35,7 @@ export function cargarJuego()
                 gravity: {
                     y: 200
                 },
-                debug: false // use this to show box-colliders
+                debug: true // use this to show box-colliders
             }
         },
         audio: {

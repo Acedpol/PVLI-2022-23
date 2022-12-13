@@ -40,7 +40,7 @@ export default class Attack extends Character
 
         this.locked = true;
         this.timer = this.scene.time.addEvent({
-            delay: 1000,
+            delay: 600,
             callback: onEvent,
             callbackScope: this,
             loop: false

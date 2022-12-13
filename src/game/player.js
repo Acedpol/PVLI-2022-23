@@ -40,24 +40,59 @@ export default class PlayerLogic extends Entity
         this.allowedJumps = 0; // this.maxJumps;
 
         // booleanno para saber si puede ser dañado
-        this.canBeDamaged = false;
+        this.canBeDamaged = true;
+
+        //booleanos de contol de powerUps
+        this.attackPowerUp = false;
+        this.wingPoweUp = false;
+        this.crownPowerUp = false;
+
+
     }
 
-    /** @async */
-    setHabilities() {
-        // - attack - (implementation: enable and disable)
-        this.attack = this.scene.addToScene(new Attack(this.scene, 155, 150), true);
-        this.last_attack = this.scene.time.now;
-        this.cd_attack = 1000;
-        this.attack.init();
-    }
-
+    
     /** @async */
     update(groundCheck, dt) {
         this.checkInput();
         this.groundDetect(groundCheck, dt);
         this.playerController();
         this.playerAnimation(groundCheck);
+    }
+    
+    /** @async */
+    setAttack() {
+        // - attack - (implementation: enable and disable)
+        this.attack = this.scene.addToScene(new Attack(this.scene, 155, 150), true);
+        this.last_attack = this.scene.time.now;
+        this.cd_attack = 600;
+        this.attack.init();
+        this.attackPowerUp = true;
+    }
+
+    changeMaxJumps(){
+        this.setAttack();
+        this.maxJumps = 2;
+        this.wingPoweUp = true;
+
+    }
+
+    setMagic() {
+        if(!this.crownPowerUp)
+        this.crownPowerUp = true;
+    }
+
+    checkPowerUps()
+    {
+        let p = 0;
+
+        if(this.attackPowerUp)
+        p++;
+        if(this.wingPoweUp)
+        p++
+        if(this.crownPowerUp)
+        p++
+
+        return p;
     }
 
     setContainer(container) { this.container = container; }
@@ -79,12 +114,12 @@ export default class PlayerLogic extends Entity
         {
             if (this.left || this.right) {
                 // resume animation
-                this.play('walk0', true);
+                this.play('walk'+this.checkPowerUps(), true);
                 this.anims.resume();
             }
             else {
                 // initial animation pause
-                this.play('walk0', true);
+                this.play('walk'+this.checkPowerUps(), true);
                 this.anims.pause();
             }            
         }
@@ -93,7 +128,7 @@ export default class PlayerLogic extends Entity
         if (!groundCheck)
         {
             // start animation
-            this.play('jump0', true);
+            this.play('jump'+this.checkPowerUps(), true);
         }
     }
 
@@ -140,7 +175,7 @@ export default class PlayerLogic extends Entity
         }
 
         // habilities input
-        if (this.shoot_A) {
+        if (this.shoot_A && this.attackPowerUp) {
             this.spell_attack();
             console.log('attack!');
         } 
@@ -189,16 +224,16 @@ export default class PlayerLogic extends Entity
         }
         else {
             if (this.scene.UI.initP) this.scene.UI.lives.addObjects(power, 'object'); // UI
-        }
+        }Damage
         console.log("health" + this.health)
     }
 
-    hurt(power)
+    hurt()
     {
         if (this.canBeDamaged)
         {
-            this.health -= power;
-            if (this.scene.UI.initP) this.scene.UI.lives.deleteObjects(power); // UI
+            this.health --;
+            if (this.scene.UI.initP) this.scene.UI.lives.deleteObjects(1); // UI
             this.canBeDamaged = false;
             console.log("health: " + this.health)
 
@@ -248,11 +283,4 @@ export default class PlayerLogic extends Entity
         }
     }
 
-    changeMaxJumps(jumps){
-        this.maxJumps = jumps;
-    }
-
-    canDamaged(damaged) {
-        this.canBeDamaged = damaged;
-    }
 }

@@ -23,7 +23,7 @@ export default class Aura extends Character
     }
     effect()
     {
-        //this.container.willFly(true);
+        this.playerContainer.player.setMagic();
         this.scene.sound.play('pick')   // sound feedback
         this.destroy()
     }

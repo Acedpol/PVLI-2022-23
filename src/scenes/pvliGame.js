@@ -60,7 +60,7 @@ export default class pvliGame extends blankGame
 
         // Creates the enemy
         //this.addToScene(new Hound(this, 30, 100), true);
-        this.addToScene(new Guard(this, 500, this.mapHeight - 10), true);
+        this.addToScene(new Guard(this, 800, this.mapHeight - 50), true);
         //this.addToScene(new Trigger(this, 50, 50), true);
 
 
