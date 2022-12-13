@@ -6,7 +6,7 @@ export default class Guard extends Enemy {
     constructor(scene, x, y) {
         let stats = { health: 50, power: 1, speed: 40 };
         super(scene, x, y,'guardIdleSprite', 3, stats);
-        this.play('guard_move');
+        this.play('guard_sleep');
         //this.play('guard_idle');
        // this.setOrigin(1);
         this.dir = 1;
@@ -14,14 +14,16 @@ export default class Guard extends Enemy {
         this.sleep = false;
         this.targeted = false;
         this.target = this.playerContainer;
+        this.lastAttack = 0;
+        this.shootTime = 1000;
     }
 
     preUpdate(t,dt) 
     {
         this.checkPlayer();
         super.preUpdate(t,dt) // for animation and player detection (¡puede ser destruido!)
-        if(this.shooting && this.canBeDamaged)
-        { 
+        if(this.shooting && this.canBeDamaged &&(this.shootTime <= this.scene.time.now - this.lastAttack))
+        {
             this.shoot();
         }
     }
@@ -104,7 +106,7 @@ export default class Guard extends Enemy {
             {
                 this.play('guard_shoot')
                 this.scene.addToScene(new Proyectile(this.scene, this.x+20*this.dir, this.y-5, this.dir), true);
-                
+                this.shooting = false;
                 this.timer = this.scene.time.addEvent({
                 delay: 800,
                 callback: onEvent,
@@ -121,6 +123,7 @@ export default class Guard extends Enemy {
                         this.play('guard_sleep');
                         this.sleep = true;
                     }
+                    this.lastAttack = this.scene.time.now;
                 }
             }
         }

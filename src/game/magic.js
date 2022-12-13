@@ -15,7 +15,7 @@ export default class Magic extends Character
      */
     constructor(scene, x, y) 
     {
-        super(scene, x, y, 'object', 3)
+        super(scene, x, y, 'aureolaSprite', 3)
         this.stop = false;
         this.rotation = false;
         this.incRot = 0;

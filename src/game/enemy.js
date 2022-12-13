@@ -23,11 +23,6 @@ export default class Enemy extends Character {
         super.preUpdate(t,dt);  // for animation and player detection
         this.testDamages();
 
-        if(this.health <= 0)
-        {
-            this.disableBody(true, true);
-            this.destroy();
-        }
     }
 
     /** @override */
@@ -64,6 +59,12 @@ export default class Enemy extends Character {
                     this.canBeDamaged = true;
                     this.normalAnimation();
                     this.setVelocity(0, 0);
+                    
+                    if(this.health <= 0)
+                    {
+                        this.disableBody(true, true);
+                        this.destroy();
+                    }
                 }
             }
         }

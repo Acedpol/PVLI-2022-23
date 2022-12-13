@@ -59,13 +59,13 @@ export default class pvliGame extends blankGame
             }
         })
         // Creates the player
-        this.createPlayer(this.mapWidth * 0.5, this.mapHeight - 10, 'angel', this.args, true);
+        this.createPlayer(850, this.mapHeight - 10, 'angel', this.args, true);
         this.initPlayer(true); // allow camara to follow
         this.createObjects()
 
         // Creates the enemy
         //this.addToScene(new Hound(this, 30, 100), true);
-        this.addToScene(new Guard(this, 800, this.mapHeight - 50), true);
+        this.addToScene(new Guard(this, 650, this.mapHeight - 50), true);
         //this.addToScene(new Trigger(this, 50, 50), true);
 
 
