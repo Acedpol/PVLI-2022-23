@@ -16,6 +16,11 @@ export default class Enemy extends Character {
         this.health = stats.health;
         this.speed = stats.speed;
         this.canBeDamaged = true;
+
+
+        this.target = this.playerContainer;
+        this.magic_ = this.playerContainer.magic
+        this.enemy
     }
 
     preUpdate(t,dt) 
@@ -27,7 +32,8 @@ export default class Enemy extends Character {
 
     /** @override */
     effect() {
-        this.target.player.hurt();
+        if(this.canBeDamaged)
+            this.target.player.hurt();
     }
     
     testDamages() {

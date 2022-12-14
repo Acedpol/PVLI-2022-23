@@ -1,12 +1,12 @@
 import Enemy from './enemy.js';
 
 export default class Skeleton extends Enemy {
-    constructor(scene, x, y) {
+    constructor(scene, x, y, p) {
         let stats = { health: 3, speed: 35 };
         super(scene, x, y,'skeletonWalkSprite', 0, stats);
         this.play('skeleton_walk', true);
         this.setOrigin(0,0.5)
-        this.patrolRange = 20;
+        this.patrolRange = p/2;
         this.range = 30;
         this.startingPos = x;
         this.canMove = true;
