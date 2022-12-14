@@ -7,6 +7,7 @@ export default class Menu extends blankMenu
     constructor() 
     {
         super('menuGame');
+
     }
 
     init(args) {
@@ -41,11 +42,13 @@ export default class Menu extends blankMenu
         let _rect = new Phaser.Geom.Rectangle(width * 0.5, height * 0.95, width, height * 0.1);
         let _text = "Pulse 'P' o haz click en '?' para acceder al menú de información.";
         this.createTextPanel_rc(_rect, _text, _textStyle, _rectStyle, true, 4);
+
     }
+
+
 
     update(t, dt) 
     {
         super.update(t, dt);
     }
-
 }

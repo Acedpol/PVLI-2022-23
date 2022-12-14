@@ -151,7 +151,8 @@ export default class Boot extends Phaser.Scene
         
         // pick audio
         this.load.audio('pick', './assets/sounds/pick.wav')//yo lo dejaria
-
+        // pick audio
+        this.load.audio('musica_menu', './assets/sounds/musicafondocastelvania.mp3')//yo lo dejaria
         /*Todo esto para ataques a distancia*/
         // bullet spritesheet
         // this.load.spritesheet('bullet', "./assets/sprites/meteor.png", 
