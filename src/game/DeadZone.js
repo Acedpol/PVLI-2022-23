@@ -1,24 +1,19 @@
-import PlayerLogic from "./player.js";
-import Enemy from './enemy.js';
-import Proyectile from './proyectile.js';
-
 /** @type {Phaser.GameObjects.GameObject} */
-export default class DeadZone
+export default class DeadZone extends Phaser.Physics.Arcade.Sprite
 {
-    constructor(scene, x, y) 
-    {
-        super(scene, x, y);
-
-    }   
+    constructor(scene, x, y){
+        super(scene, x, y,'');
+        this.setDepth(3);
+        this._player = this.playerContainer;
+        this._magic = this.playerContainer;
+        this._enemy = this.playerContainer;
+    }
 
     preUpdate(t,dt) 
     {
         this.checkPlayer();
         super.preUpdate(t,dt) // for animation and player detection (¡puede ser destruido!)
-        if(this.shooting && this.canBeDamaged &&(this.shootTime <= this.scene.time.now - this.lastAttack))
-        {
-            this.scene.handleGameLose(); // <<<
-        }
+        
     }
 
     /**
@@ -40,10 +35,10 @@ export default class DeadZone
     checkPlayer()
     {
 
-        if(this.rangeCheck())
-        { 
-            this.scene.handleGameLose(); // <<<
-        }
+        //if(this.rangeCheck())
+        //{ 
+            //this.scene.handleGameLose(); // <<<
+        //}
 
     }
 
