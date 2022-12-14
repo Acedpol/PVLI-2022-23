@@ -136,7 +136,7 @@ export default class pvliGame extends blankGame
                                 this.initPlayer(true); // allow camara to follow                                
                                 break;
                             case 'Dead':
-                                this.addToScene(new DeadZone(this, objeto.x, objeto.y), true);
+                                this.addToScene(new DeadZone(this, objeto.x, objeto.y, objeto.width, objeto.height), true);
                                 break;
                             default:
                                 break;
