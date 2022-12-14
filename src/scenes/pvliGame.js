@@ -1,6 +1,5 @@
 import Magic from '../game/magic.js'
 import PlayerContainer from '../game/playerContainer.js'
-import Bullet from '../game/bullet.js'
 import Hound from '../game/hound.js'
 import Guard from '../game/guard.js'
 import Skeleton from '../game/skeleton.js'
@@ -9,7 +8,7 @@ import Potion from '../game/potion.js'
 import Wings from '../game/wings.js'
 import Aura from '../game/aura.js'
 import Arm from '../game/arm.js'
-import DeadZone from '../game/DeadZone.js'
+import DeathZone from '../game/deathZone.js'
 //import Trigger from '../game/trigger.js'
 
 export default class pvliGame extends blankGame
@@ -113,7 +112,7 @@ export default class pvliGame extends blankGame
                                 this.addToScene(new Guard(this, objeto.x, objeto.y), true);
                                 break;
                             case 'Skeleton':
-                                this.goal = new Skeleton(this, objeto.x, objeto.y).setDepth(3)
+                                this.addToScene(new Skeleton(this, objeto.x, objeto.y), true);
                                 break;
                             case 'Potion':
                                 this.addToScene(new Potion(this, objeto.x, objeto.y), true);
@@ -136,7 +135,7 @@ export default class pvliGame extends blankGame
                                 this.initPlayer(true); // allow camara to follow                                
                                 break;
                             case 'Dead':
-                                this.addToScene(new DeadZone(this, objeto.x, objeto.y), true);
+                                this.addToScene(new DeathZone(this, objeto.x, objeto.y, objeto.width, objeto.height), true);
                                 break;
                             default:
                                 break;

@@ -46,8 +46,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":647.666666666667,
-                 "y":620.666666666667
+                 "x":46.666666666667,
+                 "y":583.666666666667
                 }, 
                 {
                  "height":0,
@@ -100,8 +100,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":158.666666666667,
-                 "y":540
+                 "x":148,
+                 "y":536.666666666667
                 }, 
                 {
                  "height":0,
@@ -118,8 +118,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":196,
-                 "y":542.666666666667
+                 "x":189,
+                 "y":536.333333333334
                 }, 
                 {
                  "height":0,
@@ -136,8 +136,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":118.666666666667,
-                 "y":540
+                 "x":107.333333333334,
+                 "y":538
                 }, 
                 {
                  "height":0,
@@ -194,7 +194,7 @@
                  "y":538.666666666667
                 }, 
                 {
-                 "height":15,
+                 "height":8,
                  "id":16,
                  "name":"",
                  "properties":[
@@ -206,9 +206,27 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":583,
-                 "x":695.625,
-                 "y":624.666666666667
+                 "width":565.5,
+                 "x":704.875,
+                 "y":631.666666666667
+                }, 
+                {
+                 "height":0,
+                 "id":17,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"Skeleton"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":552,
+                 "y":523
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -217,7 +235,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":17,
+ "nextobjectid":18,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2021.03.23",

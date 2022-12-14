@@ -18,8 +18,8 @@ export default class PlayerLogic extends Entity
         super(scene, x, y, spritesheet, n);
 
         // vida
-        this.health = 100;
-        this.maxHealth = 100;
+        this.health = 9;
+        this.maxHealth = 9;
 
         // animación inicial pausada
         this.play('walk0');
