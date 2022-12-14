@@ -46,8 +46,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1114.66666666667,
-                 "y":426.333333333334
+                 "x":44.0000000000005,
+                 "y":594.333333333334
                 }, 
                 {
                  "height":0,
@@ -217,6 +217,11 @@
                  "point":true,
                  "properties":[
                         {
+                         "name":"patrol",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
                          "name":"type",
                          "type":"string",
                          "value":"Skeleton"
@@ -225,8 +230,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":946.666666666667,
-                 "y":473.666666666667
+                 "x":556,
+                 "y":527
                 }],
          "opacity":1,
          "type":"objectgroup",
