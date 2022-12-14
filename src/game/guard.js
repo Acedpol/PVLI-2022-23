@@ -128,7 +128,7 @@ export default class Guard extends Enemy {
     }
     
     damageAnimation(){
-        this.play('guard_damaged', tru)
+        this.play('guard_damaged', true)
     }
     normalAnimation(){
         this.play('guard_wake', true)

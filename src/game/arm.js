@@ -13,7 +13,7 @@ export default class Arm extends Character
     constructor(scene, x, y) 
     {
         super(scene, x, y, 'brazoSprite');
-        this.setScale(1);
+        this.setDepth(3);
     }
 
     preUpdate(t,dt) 

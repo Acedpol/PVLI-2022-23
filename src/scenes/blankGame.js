@@ -178,7 +178,7 @@ export default class blankGame extends blankScene
      * @param {String} tilesetIMG Nombre dado a la imagen asociada al 'tileset' en 'boot.js'
      * @param {String} layer Nombre dado a la capa de tiles (tilemap) en 'mapa.json'
      */
-    createMap2(clave, tileWidth, tileHeight, N, tileset, tilesetIMG, layer) 
+    /*createMap2(clave, tileWidth, tileHeight, N, tileset, tilesetIMG, layer) 
     {
         // creación del mapa:
         const map = this.make.tilemap({
@@ -203,7 +203,7 @@ export default class blankGame extends blankScene
         this.mapWidth = map.width * map.tileWidth;
         this.mapHeight = map.height * map.tileHeight;
         this.map = map; // <--
-    }
+    }*/
 
     // --- --- --- 
 
