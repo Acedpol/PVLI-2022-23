@@ -88,7 +88,7 @@ export default class Boot extends Phaser.Scene
 
         // skeleton - idle
         this.load.spritesheet('skeletonIdleSprite', "./assets/sprites/Skeleton/skeletonIdle.png",
-        { frameWidth: 24, frameHeight: 32 })
+        { frameWidth: 24, frameHeight: 37 })
 
         // skeleton - walk
         this.load.spritesheet('skeletonWalkSprite', "./assets/sprites/Skeleton/skeletonWalk.png",

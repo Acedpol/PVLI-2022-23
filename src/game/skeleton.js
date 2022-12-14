@@ -7,8 +7,11 @@ export default class Skeleton extends Enemy {
         this.play('skeleton_walk', true);
         this.setOrigin(0,0.5)
         this.patrolRange = 20;
+        this.range = 30;
         this.startingPos = x;
         this.canMove = true;
+        this.canAttack = true;
+        this.attackOffset = 22;
     }
 
     preUpdate(t,dt) 
@@ -23,32 +26,79 @@ export default class Skeleton extends Enemy {
         {           
             if(this.checkRange())
             {
-                this.play('skeleton_attack', true);
-                this.setVelocityX(0);
-                this.body.width = 43;
+                if(this.canAttack)
+                    this.attack();
             }
             else
             {
-                this.play('skeleton_walk', true);
-                this.checkPatrol();
-                this.setVelocityX(this.speed*this.dir);
-                this.body.width = 22;
+                if(this.canAttack)
+                {
+
+                    this.play('skeleton_idle', true);
+                    this.checkPatrol();
+                    this.setVelocityX(this.speed*this.dir);
+                    this.body.width = 22;
+                }
             }  
         }
     }
+    attack()
+    {
+        this.canAttack = false;
+        this.play('skeleton_attack', true);
+        this.setVelocityX(0);
+        this.body.width = 43;
+        if(this.flipX == true && this.checkRange())
+        this.x-=this.attackOffset;
+
+        this.timer = this.scene.time.addEvent({
+            delay: 700,
+            callback: attackTimer,
+            callbackScope: this
+        });
+        
+        function attackTimer() {
+            this.body.width = 24;
+            this.play('skeleton_idle', true);
+            if(this.flipX == true)
+            {
+                this.x+=this.attackOffset;
+            }
+
+
+            this.timer = this.scene.time.addEvent({
+                delay: 2000,
+                callback: attackDelayTimer,
+                callbackScope: this
+            });
+
+            function attackDelayTimer() {
+                this.canAttack = true;
+
+            }
+        }
+
+        
+
+
+    }
     checkRange(){
 
-        if((this.y-90 < this.target.y && this.y+20 > this.target.y) && (this.x-90 < this.target.x && this.x+90 > this.target.x))
+        if((this.y-90 < this.target.y && this.y+20 > this.target.y) && (this.x-this.range < this.target.x && this.x+this.range+40 > this.target.x))
         {
-            if(this.target.x < this.x)
+            if(this.canAttack)
             {
-                this.dir = -1;
-                this.flipX = true;
-            }
-            else 
-            {
-                this.dir = 1;
-                this.flipX = false;
+
+                if(this.target.x < this.x)
+                {
+                    this.dir = -1;
+                    this.flipX = true;
+                }
+                else 
+                {
+                    this.dir = 1;
+                    this.flipX = false;
+                }
             }
             return true
         }
@@ -85,22 +135,25 @@ export default class Skeleton extends Enemy {
                 else x = 25;
                 this.setVelocity(x, -50);
                 if (this.active) {
+
                     this.timer = this.scene.time.addEvent({
                         delay: 500,
                         callback: knockbackTimer,
                         callbackScope: this
                     });
+
+                    function knockbackTimer() {
+                        this.canMove = true;
+                        this.normalAnimation();
+                        this.setVelocity(0, 0);
+                    }
+
                     this.timer = this.scene.time.addEvent({
                         delay: 700,
                         callback: damageTimer,
                         callbackScope: this
                     });
                     
-                    function knockbackTimer() {
-                        this.canMove = true;
-                        this.normalAnimation();
-                        this.setVelocity(0, 0);
-                    }
                     function damageTimer() {
                         this.canBeDamaged = true;
                     }
