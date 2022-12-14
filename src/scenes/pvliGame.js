@@ -8,6 +8,7 @@ import Potion from '../game/potion.js'
 import Wings from '../game/wings.js'
 import Aura from '../game/aura.js'
 import Arm from '../game/arm.js'
+import DeadZone from '../game/DeadZone.js'
 //import Trigger from '../game/trigger.js'
 
 export default class pvliGame extends blankGame
@@ -58,23 +59,21 @@ export default class pvliGame extends blankGame
                 boxTiles.push(tile)
             }
         })
-        // Creates the player
-        this.createPlayer(500, this.mapHeight - 10, 'angel', this.args, true);
-        this.initPlayer(true); // allow camara to follow
+
         this.createObjects()
 
         // Creates the enemy
         //this.addToScene(new Hound(this, 30, 100), true);
-        this.addToScene(new Guard(this, 650, this.mapHeight - 50), true);
+        //this.addToScene(new Guard(this, 650, this.mapHeight - 50), true);
         //this.addToScene(new Trigger(this, 50, 50), true);
 
 
         // Crea un objeto para recoger en la escena
-        this.addToScene(new Magic(this, 150, 150), true);
-        this.addToScene(new Potion(this, 300, 100), true);
-        this.addToScene(new Wings(this, 500, 200), true);
-        this.addToScene(new Aura(this, 700, 150), true);
-        this.addToScene(new Arm(this, 800, 150), true);
+        //this.addToScene(new Magic(this, 150, 150), true);
+        //this.addToScene(new Potion(this, 300, 100), true);
+        //this.addToScene(new Wings(this, 500, 200), true);
+        //this.addToScene(new Aura(this, 700, 150), true);
+        //this.addToScene(new Arm(this, 800, 150), true);
 
         // Sets the camera view
         this.startCamera({ width: this.mapWidth, height: this.mapHeight}); 
@@ -102,6 +101,12 @@ export default class pvliGame extends blankGame
                             case 'hound':
                                 this.addToScene(new Hound(this, objeto.x, objeto.y), true);
                                 break;
+                            case 'Magic':
+                                this.addToScene(new Magic(this, objeto.x, objeto.y), true);
+                                break;
+                            case 'Potion':
+                                this.addToScene(new Potion(this, objeto.x, objeto.y), true);
+                                break;
                             case 'Guard':
                                 this.addToScene(new Guard(this, objeto.x, objeto.y), true);
                                 break;
@@ -124,7 +129,12 @@ export default class pvliGame extends blankGame
                                 this.addToScene(new Aura(this, objeto.x, objeto.y), true);
                                 break;
                             case 'player':
-                                // this.addToScene(new Player(this, objeto.x, objeto.y), true);
+                                // Creates the player
+                                this.createPlayer( objeto.x, objeto.y, 'angel', this.args, true);
+                                this.initPlayer(true); // allow camara to follow                                
+                                break;
+                            case 'Dead':
+                                this.addToScene(new DeadZone(this, objeto.x, objeto.y), true);
                                 break;
                             default:
                                 break;

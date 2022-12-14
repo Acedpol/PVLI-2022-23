@@ -110,7 +110,7 @@ export default class Boot extends Phaser.Scene
         
         //aureola
         this.load.spritesheet('brazoSprite', "./assets/sprites/jugador/brazo.png",
-        { frameWidth: 16, frameHeight: 16 })
+        { frameWidth: 32, frameHeight: 31 })
         
         // --- SCENE --- 
 
