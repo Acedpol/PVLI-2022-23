@@ -12,8 +12,8 @@ export default class Enemy extends Character {
     constructor(scene, x, y, spritesheet, n, stats){
         super(scene, x, y, spritesheet, n);     
         this.dir = 1;
+        this.target = this.playerContainer;
         this.health = stats.health;
-        this.power = stats.power;
         this.speed = stats.speed;
         this.canBeDamaged = true;
     }
@@ -27,24 +27,33 @@ export default class Enemy extends Character {
 
     /** @override */
     effect() {
-        this.playerContainer.player.hurt();
+        this.target.player.hurt();
     }
     
     testDamages() {
-        if(this.playerContainer.player.attack)
-         this.checkDamage(this.playerContainer.player.attack);
-        if(this.playerContainer.magic && this.playerContainer.magic.damage) 
-            this.checkDamage(this.playerContainer.magic);
+        if(this.target.player.attack)
+        {
+            this.checkDamage(this.target.player.attack);
+            this.power = 1;
+        }
+        if(this.target.magic && this.target.magic.damage) 
+        {
+            this.checkDamage(this.target.magic);
+            this.power = 2;
+        }
     }
 
     checkDamage(object){
         if (this.canBeDamaged && this.scene.physics.overlap(object, this))  {
             console.log("enemigo dañado");
-            this.health --;
+            if(object === this.target.player.attack)
+                this.health --;
+            else if(object === this.target.magic)
+                this.health -=  2;            
             this.canBeDamaged = false;
             this.damageAnimation();
             let x;
-            if(this.playerContainer.player.flipX)
+            if(this.target.player.flipX)
             x = -35;
             else x = 35;
             this.setVelocity(x, -75);

@@ -86,6 +86,28 @@ export default class Boot extends Phaser.Scene
         this.load.spritesheet('guardProyectile', "./assets/sprites/guardSprites/proyectile.png",
         { frameWidth: 23, frameHeight: 13 })
 
+        // skeleton - idle
+        this.load.spritesheet('skeletonIdleSprite', "./assets/sprites/Skeleton/skeletonIdle.png",
+        { frameWidth: 24, frameHeight: 32 })
+
+        // skeleton - walk
+        this.load.spritesheet('skeletonWalkSprite', "./assets/sprites/Skeleton/skeletonWalk.png",
+        { frameWidth: 22, frameHeight: 37 })
+
+        // skeleton - attack
+        this.load.spritesheet('skeletonAttackSprite', "./assets/sprites/Skeleton/SkeletonAttack.png",
+        { frameWidth: 43, frameHeight: 37 })
+
+        // skeleton - hit
+        this.load.spritesheet('skeletonHitSprite', "./assets/sprites/Skeleton/SkeletonHit.png",
+        { frameWidth: 30, frameHeight: 32 })
+
+        // skeleton - dead
+        this.load.spritesheet('skeletonDeadSprite', "./assets/sprites/Skeleton/SkeletonDead.png",
+        { frameWidth: 33, frameHeight: 32 })
+        
+
+
         // // guard - walk
         // this.load.spritesheet('guardMoveSprite', "./assets/sprites/guardSprites/move.png",
         // { frameWidth: 41, frameHeight: 39 })
@@ -263,7 +285,7 @@ export default class Boot extends Phaser.Scene
   // creates attack animation for player
   this.anims.create({
     key: 'attack',
-    frames: this.anims.generateFrameNames('attackSpr', { start: 0, end: 5 }),
+    frames: this.anims.generateFrameNames('attackSpr', { start: 0, end: 4 }),
     frameRate: 7,
     repeat: 0
   })
@@ -309,29 +331,29 @@ export default class Boot extends Phaser.Scene
     repeat: 0
   });
 
-  // creates shoot animation
+  // creates charge animation
   this.anims.create({
     key : 'guard_charge',
     frames : this.anims.generateFrameNumbers('guardChargeSprite', {start: 0, end : 3}),
     frameRate : 5,
-    repeat: 0
+    repeat: -1
   });
 
-  // creates shoot animation
+  // creates wake animation
   this.anims.create({
     key : 'guard_wake',
     frames : this.anims.generateFrameNumbers('guardWakeSprite', {start: 0, end : 4}),
     frameRate : 5,
     repeat: 0
   });
-  // creates shoot animation
+  // creates sleep animation
   this.anims.create({
     key : 'guard_sleep',
     frames : this.anims.generateFrameNumbers('guardSleepSprite', {start: 0, end : 4}),
     frameRate : 5,
     repeat: 0
   });
-  // creates death animation
+  // creates damaged animation
   this.anims.create({
     key : 'guard_damaged',
     frames : this.anims.generateFrameNumbers('guardDamagedSprite', {start: 0, end : 1}),
@@ -346,21 +368,47 @@ export default class Boot extends Phaser.Scene
     repeat: 0
   });
 
-  // // creates walk animation
-  // this.anims.create({
-  //   key : 'guard_move',
-  //   frames : this.anims.generateFrameNumbers('guardMoveSprite', {start: 0, end: 7}),
-  //   frameRate: 10,
-  //   repeat: -1 // Bucle de animación
-  // });
-  // --- BULLET --- duplicar esto disparo enemigo y disparo player
-  // creates bullet animation 
-  // this.anims.create({
-  //   key: 'fly-bullet',//cambio para decir que es municion
-  //   frames: this.anims.generateFrameNames('bullet', { start: 0, end: 3 }),
-  //   frameRate: 6,
-  //   repeat: -1
-  // })
+  //Skeleton
+  // creates idle animation
+  this.anims.create({
+    key : 'skeleton_idle',
+    frames : this.anims.generateFrameNumbers('skeletonIdleSprite', {start: 0, end : 10}),
+    frameRate : 15,
+    repeat: -1
+  });
+
+  // creates walk animation
+  this.anims.create({
+    key : 'skeleton_walk',
+    frames : this.anims.generateFrameNumbers('skeletonWalkSprite', {start: 0, end : 12}),
+    frameRate : 15,
+    repeat: -1
+  });
+
+  // creates attack animation
+  this.anims.create({
+    key : 'skeleton_attack',
+    frames : this.anims.generateFrameNumbers('skeletonAttackSprite', {start: 0, end : 17}),
+    frameRate : 15,
+    repeat: 0
+  });
+
+  // creates hit animation
+  this.anims.create({
+    key : 'skeleton_hit',
+    frames : this.anims.generateFrameNumbers('skeletonHitSprite', {start: 0, end : 7}),
+    frameRate : 10,
+    repeat: 0
+  });
+
+  // creates dead animation
+  this.anims.create({
+    key : 'skeleton_dead',
+    frames : this.anims.generateFrameNumbers('skeletonDeadSprite', {start: 0, end : 14}),
+    frameRate : 15,
+    repeat: 0
+  });
+
 
   // creates bullet-explosion animation 
   // this.anims.create({

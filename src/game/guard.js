@@ -4,7 +4,7 @@ import Proyectile from './proyectile.js';
 
 export default class Guard extends Enemy {
     constructor(scene, x, y) {
-        let stats = { health: 2, power: 1, speed: 40 };
+        let stats = { health: 2, speed: 40 };
         super(scene, x, y,'guardIdleSprite', 3, stats);
         this.play('guard_sleep');
         //this.play('guard_idle');
@@ -13,9 +13,8 @@ export default class Guard extends Enemy {
         this.shooting = false;
         this.sleep = false;
         this.targeted = false;
-        this.target = this.playerContainer;
         this.lastAttack = 0;
-        this.shootTime = 1000;
+        this.shootTime = 400;
     }
 
     preUpdate(t,dt) 
@@ -62,7 +61,7 @@ export default class Guard extends Enemy {
             if(!this.targeted  && this.canBeDamaged && !this.shooting)
             {
                 this.sleep = false;
-                this.play('guard_wake');
+                this.play('guard_wake', true);
                 this.targeted = true;
                 this.flipX = false
                 this.dir = 1;
@@ -83,19 +82,18 @@ export default class Guard extends Enemy {
         {
             this.targeted = false;
             if(!this.sleep)
-            {
-                this.play('guard_sleep');
-                this.sleep = true;
-            }
+                this.play('guard_sleep', true);
+            this.sleep = true;
+
         }
 
     }
     shoot()
     {
         this.shooting = false
-        this.play('guard_charge')
+        this.play('guard_charge', true)
         this.timer = this.scene.time.addEvent({
-            delay: 800,
+            delay: 1000,
             callback: onEvent,
             callbackScope: this,
             loop: false
@@ -104,11 +102,11 @@ export default class Guard extends Enemy {
         function onEvent() {
             if(this.canBeDamaged)
             {
-                this.play('guard_shoot')
+                this.play('guard_shoot', true)
                 this.scene.addToScene(new Proyectile(this.scene, this.x+20*this.dir, this.y-5, this.dir), true);
                 this.shooting = false;
                 this.timer = this.scene.time.addEvent({
-                delay: 800,
+                delay: 400,
                 callback: onEvent,
                 callbackScope: this,
                 loop: false
@@ -120,7 +118,7 @@ export default class Guard extends Enemy {
                         this.shooting = true;
                     else  
                     {
-                        this.play('guard_sleep');
+                        this.play('guard_sleep', true);
                         this.sleep = true;
                     }
                     this.lastAttack = this.scene.time.now;
@@ -128,10 +126,11 @@ export default class Guard extends Enemy {
             }
         }
     }
+    
     damageAnimation(){
-        this.play('guard_damaged')
+        this.play('guard_damaged', tru)
     }
     normalAnimation(){
-        this.play('guard_wake')
+        this.play('guard_wake', true)
     }
 }
