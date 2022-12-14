@@ -46,8 +46,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":647.666666666667,
-                 "y":620.666666666667
+                 "x":46.666666666667,
+                 "y":583.666666666667
                 }, 
                 {
                  "height":0,
@@ -209,6 +209,24 @@
                  "width":565.5,
                  "x":704.875,
                  "y":631.666666666667
+                }, 
+                {
+                 "height":0,
+                 "id":17,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"Skeleton"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":552,
+                 "y":523
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -217,7 +235,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":17,
+ "nextobjectid":18,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"2021.03.23",

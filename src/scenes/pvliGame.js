@@ -112,7 +112,7 @@ export default class pvliGame extends blankGame
                                 this.addToScene(new Guard(this, objeto.x, objeto.y), true);
                                 break;
                             case 'Skeleton':
-                                this.goal = new Skeleton(this, objeto.x, objeto.y).setDepth(3)
+                                this.addToScene(new Skeleton(this, objeto.x, objeto.y), true);
                                 break;
                             case 'Potion':
                                 this.addToScene(new Potion(this, objeto.x, objeto.y), true);
