@@ -4,7 +4,7 @@ export default class DeadZone extends Character
 {
     constructor(scene, x, y, wh, ht){
         super(scene, x, y,'');
-        this.setDepth(0);
+        this.setVisible(false);
         //this.body.setSize(wh,ht,true);
         this._player = this.scene.playerContainer;
         this._magic = this.scene.playerContainer.magic;
