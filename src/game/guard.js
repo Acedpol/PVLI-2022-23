@@ -4,7 +4,7 @@ import Proyectile from './proyectile.js';
 
 export default class Guard extends Enemy {
     constructor(scene, x, y) {
-        let stats = { health: 50, power: 1, speed: 40 };
+        let stats = { health: 2, power: 1, speed: 40 };
         super(scene, x, y,'guardIdleSprite', 3, stats);
         this.play('guard_sleep');
         //this.play('guard_idle');

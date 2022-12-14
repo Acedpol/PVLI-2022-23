@@ -59,7 +59,7 @@ export default class pvliGame extends blankGame
             }
         })
         // Creates the player
-        this.createPlayer(850, this.mapHeight - 10, 'angel', this.args, true);
+        this.createPlayer(500, this.mapHeight - 10, 'angel', this.args, true);
         this.initPlayer(true); // allow camara to follow
         this.createObjects()
 

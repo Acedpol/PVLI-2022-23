@@ -39,18 +39,18 @@ export default class Enemy extends Character {
 
     checkDamage(object){
         if (this.canBeDamaged && this.scene.physics.overlap(object, this))  {
+            console.log("enemigo dañado");
+            this.health --;
+            this.canBeDamaged = false;
+            this.damageAnimation();
             let x;
             if(this.playerContainer.player.flipX)
             x = -35;
             else x = 35;
             this.setVelocity(x, -75);
-            console.log("enemigo dañado");
-            this.health --;
-            this.damageAnimation();
-            this.canBeDamaged = false;
             if (this.active) {
                 this.timer = this.scene.time.addEvent({
-                    delay: 750,
+                    delay: 700,
                     callback: damageTimer,
                     callbackScope: this
                 });

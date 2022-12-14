@@ -20,10 +20,13 @@ export default class Hound extends Enemy {
 
     move(target){
 
-        if(this.y-90 < target.y || this.y-20 < target.y)
+        if(this.canBeDamaged)
         {
-            this.play('wolf_walk', true);
 
+            if((this.y-90 < target.y || this.y-20 < target.y))
+            {
+            this.play('wolf_walk', true);
+            
             if(this.x < target.x + 50 && this.dir === 1)
             {
                 this.setVelocityX(this.speed);
@@ -42,12 +45,13 @@ export default class Hound extends Enemy {
             {
                 this.dir = 1
             }
+            }
+            else
+            {
+                this.play('wolf_idle', true);
+                this.setVelocityX(0);
+            }   
         }
-        else
-        {
-            this.play('wolf_idle', true);
-            this.setVelocityX(0);
-        }   
 
     }
 
