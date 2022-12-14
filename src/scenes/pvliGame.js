@@ -3,6 +3,7 @@ import PlayerContainer from '../game/playerContainer.js'
 import Bullet from '../game/bullet.js'
 import Hound from '../game/hound.js'
 import Guard from '../game/guard.js'
+import Skeleton from '../game/skeleton.js'
 import blankGame from './blankGame.js'
 import Potion from '../game/potion.js'
 import Wings from '../game/wings.js'
@@ -65,7 +66,8 @@ export default class pvliGame extends blankGame
 
         // Creates the enemy
         //this.addToScene(new Hound(this, 30, 100), true);
-        this.addToScene(new Guard(this, 650, this.mapHeight - 50), true);
+        //this.addToScene(new Guard(this, 650, this.mapHeight - 50), true);
+        this.addToScene(new Skeleton(this, 620, this.mapHeight - 50), true);
         //this.addToScene(new Trigger(this, 50, 50), true);
 
 
