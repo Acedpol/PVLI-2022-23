@@ -43,6 +43,8 @@ export default class pvliGame extends blankGame
         this.checkCollisions(false);
         this.sound.stopAll();
         this.sound.play('musica_game', this.ambConfig);
+
+        this.events.on('resume', (scene, args) => { this.player.resetInput(args.optA); } );
     }
 
     debugSettings(){

@@ -147,12 +147,19 @@ export default class PlayerLogic extends Entity
         }
     }
 
+    resetInput(optA) {
+        if (this.a) this.deleteInputA();
+        if (this.cz) this.deleteInputB(); 
+        optA ? this.setInputA() : this.setInputB(); 
+        this.optA = optA;
+    }
+
     checkInput() {
         this.left = this.optA ? this.a.isDown : this.cursors.left.isDown;
         this.right = this.optA ? this.d.isDown : this.cursors.right.isDown;
-        this.up = this.optA ? this.w.isDown : this.cursors.up.isDown;
+        this.up = this.optA ? this.cw.isDown : this.cursors.up.isDown;
         this.down = this.optA ? this.s.isDown : this.cursors.down.isDown;
-        this.shoot_A = this.optA ? this.j.isDown : this.z.isDown;
+        this.shoot_A = this.optA ? this.j.isDown : this.cz.isDown;
         this.shoot_B = this.optA ? this.k.isDown : this.cx.isDown;
         this.action = this.space.isDown;
     }
@@ -208,7 +215,7 @@ export default class PlayerLogic extends Entity
      */
     setInputA() {
         // this.keys = this.input.keyboard.addKeys('W,S,A,D'); no funciona
-        this.w = this.scene.input.keyboard.addKey('W');
+        this.cw = this.scene.input.keyboard.addKey('W');
         this.a = this.scene.input.keyboard.addKey('A');
         this.s = this.scene.input.keyboard.addKey('S');
         this.d = this.scene.input.keyboard.addKey('D');
@@ -225,11 +232,31 @@ export default class PlayerLogic extends Entity
     setInputB() {
         // this.keys = this.input.keyboard.addKeys('W,S,A,D'); no funciona
         this.cursors = this.scene.input.keyboard.createCursorKeys();
-        this.z = this.scene.input.keyboard.addKey('Z');
+        this.cz = this.scene.input.keyboard.addKey('Z');
         this.cx = this.scene.input.keyboard.addKey('X'); // !!! cuidado con this.x !!!
         this.space = this.scene.input.keyboard.addKey('SPACE');
         // this.leftClick = this.scene.input.mousePointer.leftButtonDown;
         // this.rightClick = this.scene.input.mousePointer.rightButtonDown;
+    }
+
+    deleteInputA() {
+        this.cw.destroy(); 
+        this.a.destroy(); 
+        this.s.destroy();
+        this.d.destroy();
+        this.j.destroy();
+        this.k.destroy();
+        this.space.destroy();
+    }
+
+    deleteInputB() {
+        this.cursors.left.destroy();
+        this.cursors.right.destroy();
+        this.cursors.up.destroy();
+        this.cursors.down.destroy();
+        this.cz.destroy();
+        this.cx.destroy();
+        this.space.destroy();
     }
 
     heal(power)
