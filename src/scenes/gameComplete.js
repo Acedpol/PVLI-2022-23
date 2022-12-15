@@ -1,14 +1,14 @@
 import { startMain } from "../utils/callbacks.js";
 import blankMenu from "./menu.js";
 
-export default class GameOver extends blankMenu
+export default class GameComplete extends blankMenu
 {
     /**
      * Constructor de la escena
      */
     constructor() 
     {
-        super('GameOver');
+        super('GameComplete');
     }
 
     init(args) {
@@ -27,7 +27,7 @@ export default class GameOver extends blankMenu
         const{width,height} = this.scale
 
         // compone el titulo del final
-        this.addText(width * 0.5, height * 0.5, '', 24, '#88ff88', 'Pixeled', 'bold')
+        this.addText(width * 0.5, height * 0.5, 'Completed!!', 24, '#88ff88', 'Pixeled', 'bold')
 
         // play again text
         this.addText(width * 0.5, height - 25, 'Press space to play again', 12, '#FFFFFF', 'Pixeled')
