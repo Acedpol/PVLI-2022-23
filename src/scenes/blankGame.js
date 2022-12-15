@@ -21,6 +21,9 @@ export default class blankGame extends blankScene
     // --- GAME LOGIC --- 
     /** @type {Number} */                               level
 
+    // --- GAME OBJECTS --- 
+    /** @type {Array} */                                objects
+
     /**
      * Constructor de la escena
      */
@@ -32,6 +35,7 @@ export default class blankGame extends blankScene
     init(args)
     {
         super.init(args);
+        this.objects = [];
 
         // Level select assignment
         // this.level = level
@@ -86,11 +90,11 @@ export default class blankGame extends blankScene
     createPlayer(x, y, sprite, args)
     {
         // Añade al jugador como Sprite
-        this.player = this.addToScene(new PlayerLogic(this, 0, 0, sprite, 0, args), false);
+        this.player = this.add.existing(new PlayerLogic(this, 0, 0, sprite, 0, args), false);
 
         // creates the player container in the middle of the screen
         let container = new PlayerContainer(this, x, y, this.player);
-        this.playerContainer = this.addToScene(container, true);
+        this.playerContainer = this.add.existing(container, false);
 
         // añade el jugador al contenedor: '1, 2, 3 ...fusión!!'
         this.playerContainer.addPlayer(this.player);
@@ -100,8 +104,15 @@ export default class blankGame extends blankScene
 
     initPlayer(follow = false)
     {        
-        // sigue al jugador
+        // main camera sigue al jugador
         if (follow) this.cameras.main.startFollow(this.playerContainer);
+
+        // se le añaden las físicas
+        this.addToPhysx(this.playerContainer);
+        this.resetGroundCollider(this.playerContainer);
+
+        // establece el tamaño del body
+        this.playerContainer.setPlayerSize();
     }
 
     // --- --- --- 
@@ -153,7 +164,6 @@ export default class blankGame extends blankScene
     
         // definición de colisiones: -> con propiedad en TILED
         this.groundLayer.setCollisionByProperty({ suelo: true });
-
 
         // guarda las dimensiones del mapa
         this.mapWidth = map.width * map.tileWidth;
@@ -207,7 +217,7 @@ export default class blankGame extends blankScene
      * @param {Tuple} scale dimensiones a tener en cuenta
      */
     startCamera(scale) {
-        this.configCamera();       // zoom and viewport + follow
+        this.configCamera();            // zoom and viewport
         this.centerOnMap(scale);        // center midpoint
         this.worldBounds(scale);        // limits of the world
     }
@@ -286,6 +296,7 @@ export default class blankGame extends blankScene
      */
     addToScene(mob, physx = false)
     {  
+        this.objects.push(mob);
         this.add.existing(mob);
         if (physx) {
             this.physics.add.existing(mob);
@@ -293,6 +304,17 @@ export default class blankGame extends blankScene
             mob.body.collideWorldBounds = true;
         }
         return mob;
+    }
+
+    addToPhysx(mob){
+        this.physics.add.existing(mob);
+        mob.body.collideWorldBounds = true;
+        return mob;
+    }
+
+    resetGroundCollider(mob) {
+        if (this.playerGroundCollider) this.playerGroundCollider.destroy();
+        this.playerGroundCollider = this.physics.add.collider(mob, this.groundLayer);
     }
 
     /**

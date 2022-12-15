@@ -18,7 +18,7 @@ export default class UI extends blankMenu
     }
 
     reset() {
-        this.initC = false;
+        this.initC = true;
         this.initP = false;
     }
     
