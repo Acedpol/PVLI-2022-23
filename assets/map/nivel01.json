@@ -344,24 +344,6 @@
                  "width":0,
                  "x":468,
                  "y":602.666666666667
-                }, 
-                {
-                 "height":0,
-                 "id":20,
-                 "name":"",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"Wings"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":328,
-                 "y":252
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -373,7 +355,7 @@
  "nextobjectid":21,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"2021.03.23",
  "tileheight":16,
  "tilesets":[
         {
@@ -7444,6 +7426,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.6",
+ "version":1.5,
  "width":100
 }
