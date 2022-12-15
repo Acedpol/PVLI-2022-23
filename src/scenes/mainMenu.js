@@ -7,16 +7,16 @@ export default class Menu extends blankMenu
     constructor() 
     {
         super('menuGame');
-
     }
 
     init(args) {
         super.init(args);
+        this.sound.play('musica_menu', this.ambConfig);
     }
 
     preload() 
     {
-        console.log(" - mainMenu scene - ")
+        console.log(" - mainMenu scene - ");
     }
 
     create() 

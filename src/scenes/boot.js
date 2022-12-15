@@ -104,8 +104,7 @@ export default class Boot extends Phaser.Scene
 
         // skeleton - dead
         this.load.spritesheet('skeletonDeadSprite', "./assets/sprites/Skeleton/SkeletonDead.png",
-        { frameWidth: 33, frameHeight: 32 })
-        
+        { frameWidth: 33, frameHeight: 32 })       
 
 
         // // guard - walk
@@ -113,10 +112,6 @@ export default class Boot extends Phaser.Scene
         // { frameWidth: 41, frameHeight: 39 })
 
         // --- OBJECTS --- 
-        // object
-        //this.load.image('object', './assets/sprites/fuel.png') // brazos
-        //this.load.image('object', './assets/sprites/fuel.png') // cabeza
-        //this.load.image('object', './assets/sprites/fuel.png') // alas
 
         // pocion
         this.load.spritesheet('potiSprite', "./assets/sprites/llena.png",
@@ -163,8 +158,14 @@ export default class Boot extends Phaser.Scene
         // pick audio
         this.load.audio('pick', './assets/sounds/pick.wav')//yo lo dejaria
 
-        // pick audio
-        this.load.audio('musica_menu', './assets/sounds/musicafondocastelvania.mp3')//yo lo dejaria
+        // musica - in game
+        this.load.audio('musica_game', './assets/sounds/musicafondocastelvania.mp3')
+
+        // musica - menu principal
+        this.load.audio('musica_menu', './assets/sounds/EkaterinaShelehova-EarthMelodies.mp3')
+
+        // musica - end game
+        this.load.audio('musica_end', './assets/sounds/EkaterinaShelehova-endgame.mp3')
 
         // explode audio
         this.load.audio('explode', './assets/sounds/explosion.wav')
@@ -518,22 +519,13 @@ this.anims.create({
   });
 
 
-  // creates bullet-explosion animation 
-  // this.anims.create({
-  //   key: 'explote',
-  //   frames: this.anims.generateFrameNames('explosion', { start: 0, end: 2 }),
-  //   frameRate: 5,
-  //   repeat: -1
-  // })
-
-
   // --- START POINT --- 
   // inits the game menu scene
   this.optA = true; 
   this.optB = false; 
-  this.volGen = 20;
-  this.volAmb = 80;
-  this.volSFX = 80;
+  this.volGen = 25;
+  this.volAmb = 50;
+  this.volSFX = 25;
   this.mute = false;
   startMain(this);
 }

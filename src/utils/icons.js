@@ -74,13 +74,13 @@ export class Speaker extends Entity
     }
 
     update(value) {
-        if (value > 0 && value <= 25)
+        if (value > 0 && value < 25)
             this.setFrame(3);
-        else if (value > 25 && value <= 50)
+        else if (value >= 25 && value < 50)
             this.setFrame(2);
-        else if (value > 50 && value <= 75)
+        else if (value >= 50 && value < 75)
             this.setFrame(1);
-        else if (value > 75 && value <= 100)
+        else if (value >= 75 && value < 100)
             this.setFrame(0);
     }
 }
