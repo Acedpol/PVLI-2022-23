@@ -206,8 +206,8 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":565.5,
-                 "x":704.875,
+                 "width":579.5,
+                 "x":690.875,
                  "y":631.666666666667
                 }, 
                 {
@@ -230,8 +230,74 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":556,
-                 "y":527
+                 "x":550.5,
+                 "y":536
+                }, 
+                {
+                 "height":39.6363636363636,
+                 "id":18,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enlace",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"puerta"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":17.6363636363637,
+                 "x":1231.09090909091,
+                 "y":183.636363636364
+                }, 
+                {
+                 "height":16.5,
+                 "id":19,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enlace",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"portal"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":191.5,
+                 "x":896,
+                 "y":0
+                }, 
+                {
+                 "height":39.6364,
+                 "id":20,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enlace",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"puerta"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":17.6364,
+                 "x":181.848466666667,
+                 "y":571.515133333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -240,10 +306,10 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":18,
+ "nextobjectid":21,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2021.03.23",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {
@@ -7314,6 +7380,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":1.5,
+ "version":"1.6",
  "width":80
 }
