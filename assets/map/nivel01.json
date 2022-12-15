@@ -46,44 +46,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":269,
-                 "y":253.75
-                }, 
-                {
-                 "height":0,
-                 "id":2,
-                 "name":"",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"Aura"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":324.454545454545,
-                 "y":286.568181818182
-                }, 
-                {
-                 "height":0,
-                 "id":3,
-                 "name":"",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"Wings"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":350.863636363636,
-                 "y":285.159090909091
+                 "x":282.5,
+                 "y":251.75
                 }, 
                 {
                  "height":0,
@@ -136,8 +100,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1274,
-                 "y":526
+                 "x":1251.33333333333,
+                 "y":532.666666666667
                 }, 
                 {
                  "height":0,
@@ -148,7 +112,7 @@
                         {
                          "name":"patrol",
                          "type":"int",
-                         "value":0
+                         "value":30
                         }, 
                         {
                          "name":"type",
@@ -159,8 +123,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":789,
-                 "y":421
+                 "x":774.333333333333,
+                 "y":435.666666666667
                 }, 
                 {
                  "height":0,
@@ -207,7 +171,7 @@
                         {
                          "name":"patrol",
                          "type":"int",
-                         "value":0
+                         "value":50
                         }, 
                         {
                          "name":"type",
@@ -218,26 +182,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1156,
+                 "x":1274.66666666667,
                  "y":277
-                }, 
-                {
-                 "height":0,
-                 "id":11,
-                 "name":"",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"Arms"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":299,
-                 "y":287
                 }, 
                 {
                  "height":0,
@@ -272,8 +218,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":481,
-                 "y":585
+                 "x":335.666666666667,
+                 "y":598.333333333333
                 }, 
                 {
                  "height":0,
@@ -307,8 +253,8 @@
                  "type":"",
                  "visible":true,
                  "width":565.5,
-                 "x":220.583333333333,
-                 "y":768
+                 "x":219.25,
+                 "y":776
                 }, 
                 {
                  "height":26.5,
@@ -329,8 +275,8 @@
                  "type":"",
                  "visible":true,
                  "width":209,
-                 "x":1184,
-                 "y":165
+                 "x":1182.66666666667,
+                 "y":119.666666666667
                 }, 
                 {
                  "height":54.5,
@@ -360,6 +306,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"bloqueado",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
                          "name":"enlace",
                          "type":"int",
                          "value":13
@@ -375,6 +326,42 @@
                  "width":27.75,
                  "x":1450.5,
                  "y":585
+                }, 
+                {
+                 "height":0,
+                 "id":19,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"hound"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":468,
+                 "y":602.666666666667
+                }, 
+                {
+                 "height":0,
+                 "id":20,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"Wings"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":328,
+                 "y":252
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -383,7 +370,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":19,
+ "nextobjectid":21,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

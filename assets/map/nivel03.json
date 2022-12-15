@@ -100,8 +100,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":753.213910677284,
-                 "y":370.24139316964
+                 "x":515.654741159545,
+                 "y":664.190870603206
                 }, 
                 {
                  "height":0,
@@ -148,7 +148,7 @@
                         {
                          "name":"patrol",
                          "type":"int",
-                         "value":0
+                         "value":20
                         }, 
                         {
                          "name":"type",
@@ -159,8 +159,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":299.880577343951,
-                 "y":560.908059836307
+                 "x":292.681814631292,
+                 "y":564.507441192636
                 }, 
                 {
                  "height":0,
@@ -171,7 +171,7 @@
                         {
                          "name":"patrol",
                          "type":"int",
-                         "value":0
+                         "value":10
                         }, 
                         {
                          "name":"type",
@@ -248,7 +248,7 @@
                         {
                          "name":"patrol",
                          "type":"int",
-                         "value":0
+                         "value":20
                         }, 
                         {
                          "name":"type",
@@ -259,8 +259,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":349.213910677285,
-                 "y":338.24139316964
+                 "x":339.61556039374,
+                 "y":363.437062663946
                 }, 
                 {
                  "height":60.953,
@@ -322,6 +322,88 @@
                  "width":26.75,
                  "x":203.607850071224,
                  "y":219.718665896913
+                }, 
+                {
+                 "height":0,
+                 "id":17,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"patrol",
+                         "type":"int",
+                         "value":40
+                        }, 
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"Skeleton"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":432.53361283075,
+                 "y":649.657516250758
+                }, 
+                {
+                 "height":0,
+                 "id":18,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"hound"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":755.278141114951,
+                 "y":376.104533169725
+                }, 
+                {
+                 "height":0,
+                 "id":19,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"Guard"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1437.96080503209,
+                 "y":809.230089714694
+                }, 
+                {
+                 "height":0,
+                 "id":20,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"patrol",
+                         "type":"int",
+                         "value":10
+                        }, 
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"Skeleton"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1423.56327960677,
+                 "y":413.298140518462
                 }],
          "offsetx":-0.607850071223879,
          "offsety":-2.96866589691264,
@@ -332,7 +414,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":17,
+ "nextobjectid":21,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

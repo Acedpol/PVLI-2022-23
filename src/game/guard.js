@@ -58,7 +58,7 @@ export default class Guard extends Enemy {
 
         if(this.rangeCheck())
         { 
-            if(!this.targeted  && this.canBeDamaged && !this.shooting)
+            if(!this.targeted  && this.canBeDamaged)
             {
                 this.sleep = false;
                 this.play('guard_wake', true);
@@ -100,7 +100,7 @@ export default class Guard extends Enemy {
         });
 
         function onEvent() {
-            if(this.canBeDamaged)
+            if(this.canBeDamaged && !this.dead)
             {
                 this.play('guard_shoot', true)
                 this.scene.sound.play('blaster', this.scene.sfxConfig);
@@ -127,10 +127,14 @@ export default class Guard extends Enemy {
             }
         }
     }
-    
+    checkDamage(object){
+        super.checkDamage(object);
+        
+    }
     damageAnimation(){
         this.play('guard_damaged', true)
         this.scene.sound.play('metal', this.scene.sfxConfig);
+        this.targeted = false;
 
     }
     normalAnimation(){

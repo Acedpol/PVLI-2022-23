@@ -5,7 +5,7 @@ export default class Hound extends Enemy {
         let stats = { health: 1, speed: 50 };
         super(scene, x, y,'houndIdleSprite', 0, stats);
         this.play('wolf_idle');
-        this.patrolRange = 45;
+        this.patrolRange = 35;
     }
 
     preUpdate(t,dt) 

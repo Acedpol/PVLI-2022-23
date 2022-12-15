@@ -19,8 +19,8 @@ export default class Enemy extends Character {
 
 
         this.target = this.playerContainer;
-        this.magic_ = this.playerContainer.magic
-        this.enemy
+        this.magic_ = this.playerContainer.magic;
+        this.dead = false;
     }
 
     preUpdate(t,dt) 
@@ -63,6 +63,10 @@ export default class Enemy extends Character {
             x = -35;
             else x = 35;
             this.setVelocity(x, -75);
+            if(this.health <= 0)
+            {
+                this.dead = true;
+            }
             if (this.active) {
                 this.timer = this.scene.time.addEvent({
                     delay: 700,
@@ -75,7 +79,7 @@ export default class Enemy extends Character {
                     this.normalAnimation();
                     this.setVelocity(0, 0);
                     
-                    if(this.health <= 0)
+                    if(this.dead)
                     {
                         this.disableBody(true, true);
                         this.destroy();

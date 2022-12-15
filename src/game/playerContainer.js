@@ -176,4 +176,11 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             console.log('drop')
         }
     }
+    changeLevel()
+    {
+        if(this.player.attackPowerUp)
+        this.player.setAttack();
+        if(this.player.crownPowerUp)
+        this.carryMagic();
+    }
 }

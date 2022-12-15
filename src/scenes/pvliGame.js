@@ -135,7 +135,7 @@ export default class pvliGame extends blankGame
                                 this.addToScene(new Guard(this, objeto.x, objeto.y), true);
                                 break;
                             case 'Skeleton':
-                                this.addToScene(new Skeleton(this, objeto.x, objeto.y, objeto.patrol), true);
+                                this.addToScene(new Skeleton(this, objeto.x, objeto.y, objeto.properties), true);
                                 break;
                             case 'Potion':
                                 this.addToScene(new Potion(this, objeto.x, objeto.y), true);
@@ -153,7 +153,8 @@ export default class pvliGame extends blankGame
                                 this.addToScene(new Aura(this, objeto.x, objeto.y), true);
                                 break;
                             case 'player':
-                                this.playerContainer.setPosition(objeto.x, objeto.y);     
+                                this.playerContainer.setPosition(objeto.x, objeto.y);  
+                                this.playerContainer.changeLevel();   
                                 break;
                             case 'Dead':
                                 this.objects.push(new DeathZone(this, objeto.x, objeto.y, objeto.width, objeto.height));

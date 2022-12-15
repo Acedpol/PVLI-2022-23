@@ -7,12 +7,15 @@ export default class Puerta extends Character {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this, true);
         this.setVisible(false);
+        this.bloqueado = false;
 
         for (const { name, value } of properties) {
             if (name === 'enlace') {
                 this.origen = parseInt(value / 10);
                 this.destino = value % 10;
             }
+            if(name === 'bloqueado')
+                this.bloqueado = true;
         }
 
         this.setSize(w,h);
@@ -25,7 +28,10 @@ export default class Puerta extends Character {
 
     /** @override */
     effect() {
-        console.log('origen: ' + this.origen + ', destino: ' + this.destino);
-        this.scene.switchMap(this.destino);
+        if(!this.bloqueado || this.scene.playerContainer.magic!=null)
+        {
+            console.log('origen: ' + this.origen + ', destino: ' + this.destino);
+            this.scene.switchMap(this.destino);
+        }
     }
 }

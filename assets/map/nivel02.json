@@ -51,42 +51,6 @@
                 }, 
                 {
                  "height":0,
-                 "id":2,
-                 "name":"",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"Aura"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":877.69709893612,
-                 "y":788.878067832091
-                }, 
-                {
-                 "height":0,
-                 "id":3,
-                 "name":"",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"Wings"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":876.849197794129,
-                 "y":788.407070659731
-                }, 
-                {
-                 "height":0,
                  "id":4,
                  "name":"",
                  "point":true,
@@ -154,8 +118,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":608.894033837934,
-                 "y":789.997937854431
+                 "x":564.894033837934,
+                 "y":711.997937854431
                 }, 
                 {
                  "height":0,
@@ -184,7 +148,7 @@
                         {
                          "name":"patrol",
                          "type":"int",
-                         "value":0
+                         "value":100
                         }, 
                         {
                          "name":"type",
@@ -195,8 +159,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":556.894033837934,
-                 "y":693.997937854431
+                 "x":784.894033837934,
+                 "y":763.997937854431
                 }, 
                 {
                  "height":0,
@@ -207,7 +171,7 @@
                         {
                          "name":"patrol",
                          "type":"int",
-                         "value":0
+                         "value":40
                         }, 
                         {
                          "name":"type",
@@ -218,7 +182,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":600.894033837934,
+                 "x":651.894033837934,
                  "y":337.997937854431
                 }, 
                 {
@@ -230,7 +194,7 @@
                         {
                          "name":"patrol",
                          "type":"int",
-                         "value":0
+                         "value":40
                         }, 
                         {
                          "name":"type",
@@ -241,8 +205,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1100.89403383793,
-                 "y":327.997937854431
+                 "x":1043.89403383793,
+                 "y":341.997937854431
                 }, 
                 {
                  "height":0,
@@ -282,42 +246,6 @@
                 }, 
                 {
                  "height":0,
-                 "id":15,
-                 "name":"",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"Magic"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":889.560700504601,
-                 "y":351.997937854431
-                }, 
-                {
-                 "height":0,
-                 "id":16,
-                 "name":"",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"Potion"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":1041.5607005046,
-                 "y":483.997937854431
-                }, 
-                {
-                 "height":0,
                  "id":17,
                  "name":"",
                  "point":true,
@@ -331,8 +259,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":1230.89403383793,
-                 "y":529.331271187765
+                 "x":1408.89403383793,
+                 "y":530.331271187765
                 }, 
                 {
                  "height":0,
@@ -349,8 +277,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":897.560700504601,
-                 "y":567.997937854431
+                 "x":768.560700504601,
+                 "y":579.997937854431
                 }, 
                 {
                  "height":0,
@@ -385,8 +313,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":866.894033837934,
-                 "y":351.997937854431
+                 "x":865.560700504601,
+                 "y":349.331271187764
                 }, 
                 {
                  "height":8.5,
@@ -431,6 +359,83 @@
                  "width":303,
                  "x":211.378882322782,
                  "y":815.202483308977
+                }, 
+                {
+                 "height":0,
+                 "id":24,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"Guard"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1034.89403383793,
+                 "y":500.997937854431
+                }, 
+                {
+                 "height":0,
+                 "id":25,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"patrol",
+                         "type":"int",
+                         "value":80
+                        }, 
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"Skeleton"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":753.560700504601,
+                 "y":583.997937854431
+                }, 
+                {
+                 "height":0,
+                 "id":26,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"hound"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1341.5607005046,
+                 "y":533.331271187765
+                }, 
+                {
+                 "height":0,
+                 "id":27,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"Guard"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":890.894033837934,
+                 "y":349.331271187765
                 }],
          "offsetx":-2.89403383793399,
          "offsety":4.0020621455687,
@@ -441,7 +446,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":24,
+ "nextobjectid":28,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

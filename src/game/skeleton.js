@@ -1,17 +1,26 @@
 import Enemy from './enemy.js';
 
 export default class Skeleton extends Enemy {
-    constructor(scene, x, y, p) {
+    constructor(scene, x, y, properties) {
         let stats = { health: 3, speed: 35 };
         super(scene, x, y,'skeletonWalkSprite', 0, stats);
         this.play('skeleton_walk', true);
         this.setOrigin(0,0.5)
-        this.patrolRange = p/2;
         this.range = 30;
         this.startingPos = x;
         this.canMove = true;
         this.canAttack = true;
-        this.attackOffset = 22;
+        this.attackOffset = 10;
+        for (const { name, value } of properties) {
+            if (name === 'patrol') {
+                this.patrolRange = parseInt(value);
+
+
+            }
+            if(name === 'bloqueado')
+                this.bloqueado = true;
+        }
+        
     }
 
     preUpdate(t,dt) 
@@ -34,7 +43,7 @@ export default class Skeleton extends Enemy {
                 if(this.canAttack)
                 {
 
-                    this.play('skeleton_idle', true);
+                    this.play('skeleton_walk', true);
                     this.checkPatrol();
                     this.setVelocityX(this.speed*this.dir);
                     this.body.width = 22;
@@ -67,7 +76,7 @@ export default class Skeleton extends Enemy {
 
 
             this.timer = this.scene.time.addEvent({
-                delay: 2000,
+                delay: 1000,
                 callback: attackDelayTimer,
                 callbackScope: this
             });
@@ -84,7 +93,7 @@ export default class Skeleton extends Enemy {
     }
     checkRange(){
 
-        if((this.y-90 < this.target.y && this.y+20 > this.target.y) && (this.x-this.range < this.target.x && this.x+this.range+40 > this.target.x))
+        if((this.y-90 < this.target.y && this.y+20 > this.target.y) && (this.x-this.range < this.target.x && this.x+this.range + this.attackOffset > this.target.x))
         {
             if(this.canAttack)
             {
@@ -162,6 +171,7 @@ export default class Skeleton extends Enemy {
             }
             else 
             {
+                this.setVelocityX(0);
                 this.play('skeleton_dead')
                 this.scene.sound.play('bone', this.scene.sfxConfig);
                 this.timer = this.scene.time.addEvent({

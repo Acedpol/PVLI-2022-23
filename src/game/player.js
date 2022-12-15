@@ -78,12 +78,18 @@ export default class PlayerLogic extends Entity
         this.setAttack();
         this.maxJumps = 2;
         this.wingPoweUp = true;
+        if(!this.attackPowerUp)
+        this.setAttack();
 
     }
 
     setMagic() {
         if(!this.crownPowerUp)
         this.crownPowerUp = true;
+        if(!this.attackPowerUp)
+        this.setAttack()
+        if(!this.wingPoweUp)
+        this.changeMaxJumps();
     }
 
     checkPowerUps()
@@ -284,6 +290,8 @@ export default class PlayerLogic extends Entity
             else 
             {
                 this.velocity.x = 0;
+                if(this.velocity.y < 0)
+                this.velocity.y = -this.velocity.y;
                 this.scene.sound.play('player_dead', this.scene.sfxConfig);
                 this.play('death'+this.checkPowerUps(), true)
                 this.timer = this.scene.time.addEvent({
