@@ -2,36 +2,24 @@
 import Character from './character.js';
 export default class DeadZone extends Character
 {
-    constructor(scene, x, y, wh, ht){
-        super(scene, x, y,'');
+    constructor(scene, x, y, w, h){
+        super(scene, x + w * 0.5, y + h * 0.5,'');
+        this.scene.add.existing(this);
+        this.scene.physics.add.existing(this, true);
         this.setVisible(false);
-        //this.body.setSize(wh,ht,true);
-        this._player = this.scene.playerContainer;
-        this._magic = this.scene.playerContainer.magic;
-        //this._enemy = this.playerContainer;
-        this.init(wh,ht)
+
+        this.setSize(w,h);
     }
-
-    init(wh,ht)
-    {
-        this.timer = this.scene.time.addEvent({
-            delay: 200,
-            callback: sizeChange,
-            callbackScope: this
-        });
-
-        function sizeChange() {            
-            this.body.width = wh;
-            this.body.height = ht;
-        }
-
-
-    }
+     
     preUpdate(t,dt) 
     {
-        this.checkPlayer();
+        this.checkMagic();
         super.preUpdate(t,dt) // for animation and player detection (¡puede ser destruido!)
+    }
 
+    /** @override */
+    effect() {
+        this.scene.handleGameLose(this);
     }
 
     /*
@@ -50,19 +38,13 @@ export default class DeadZone extends Character
         }
         return false;
     }
-    checkPlayer()
-    {
 
-        if(this.scene.physics.overlap(this, this.scene.playerContainer))
-        {
-            this.scene.handleGameLose(this)
-        }
-        else if(this.scene.physics.overlap(this, this.scene.playerContainer.magic))
+    checkMagic()
+    {
+        if(this.scene.physics.overlap(this, this.scene.playerContainer.magic))
         {
             this.playerContainer.carryMagic(this.scene.playerContainer.magic);
         }
-
-
     }
 
 
