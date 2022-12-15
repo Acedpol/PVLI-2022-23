@@ -69,9 +69,10 @@ Si node.js no está instalado, descargar e instalar: https://nodejs.org/dist/v16
 
 | **Cantidades** |  |
 | :--- | ---: |
-| **Escenarios** | 4-5 |
+| **Escenarios** | 4 |
 | **Objetos** | Pociones |
-| **Armas** | Extremidades |
+| **Armas** | Extremidades, Halo |
+| **Mejoras** | Alas |
 | **Personajes** | Debris (player) y Jefe (boss) |
 | **Palabras** | Estatua, extremidades. |
 
@@ -139,7 +140,7 @@ Comienza con un menú donde se selecciona “iniciar partida”. Nada más empez
     ● Plataformas
 	● Enemigos: Tanto enemigos  a melé como enemigos que lanzan proyectiles.
 	● Puerta: Antes del nivel final hay una puerta que tiene que ser activada.
-	● Pinchos: Trampas en las que si entras en contacto con ellas recibes daño.
+	● Teleport: igual que las puertas pero sin un sprite reconocible.
    #### 3. Controles
     ● WASD para el movimiento 
 	● J / Botón izq ratón para ataque normal
@@ -198,7 +199,7 @@ Todo comienza en un museo, donde unos críos le quitan unas extremidades a una e
 	####  Nivel 4:
       ● Una vez pasado en nivel tres, podrás volver al 2 y abrir un pasadizo subterrane o que confuce al nivel final, el 4.
 	Aquí aparecerán los perros, enemigos que te podrán perseguir, acompañados de el resto de enemigos antes vistos.
-	También habrá trampas de pinchos. En este nivel el jugador tendrá que superar el mayor reto,
+	En este nivel el jugador tendrá que superar el mayor reto,
 	formado por todos los obstaculos vistos anteriormente, para poder completar el juego.
 
 ### 3. Personaje y enemigos
@@ -224,10 +225,6 @@ Todo comienza en un museo, donde unos críos le quitan unas extremidades a una e
     
    ##### Consumibles
     Hasta el moomento el único consumible que queremos implementar son las pociones de vida, las cuales curarán al jugador un corazón.
-    
-   ##### Trampas
-    Las trampas son objetos en el nivel, en forma de pinchos, que al entrar en contacto con ellos, dañarán al jugador.
-	Son indestructibles y lo unico que se puede hacer ante ellos es evitarlos.
 
 [Go back to index -->][indice]  
 
