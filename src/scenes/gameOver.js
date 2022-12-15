@@ -13,6 +13,7 @@ export default class GameOver extends blankMenu
 
     init(args) {
         super.init(args);
+        this.sound.play('musica_end', this.ambConfig);
     }
 
     preload() 

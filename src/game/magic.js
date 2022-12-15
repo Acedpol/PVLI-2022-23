@@ -46,7 +46,7 @@ export default class Magic extends Character
     effect()
     {
         this.playerContainer.carryMagic(this);
-        //this.scene.sound.play('pick', this.scene.sfxConfig);
+        this.scene.sound.play('pick', this.scene.sfxConfig);
     }
 
     playerFlipDetect() {

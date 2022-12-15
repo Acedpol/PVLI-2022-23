@@ -11,6 +11,7 @@ import Arm from '../game/arm.js'
 import DeathZone from '../game/deathZone.js'
 import Puerta from '../game/puerta.js'
 import Portal from '../game/portal.js'
+import { gameComplete } from '../utils/callbacks.js'
 //import Trigger from '../game/trigger.js'
 
 export default class pvliGame extends blankGame
@@ -40,6 +41,7 @@ export default class pvliGame extends blankGame
         // debugSettings();
 
         this.checkCollisions(false);
+        this.sound.play('musica_game', this.ambConfig);
     }
 
     debugSettings(){
@@ -85,16 +87,21 @@ export default class pvliGame extends blankGame
     }
 
     puerta_switchMap(ori, dest) {
-        this.switchMap(ori, dest);
-        
-        // busca la puerta destino y reubica al jugador
-        this.objects.forEach(obj => {
-            if (obj.name === 'puerta') {
-                if (obj.origen === dest && obj.destino === ori) {
-                    this.playerContainer.setPosition(obj.x, obj.y - obj.height * 0.5);
+        if (dest === 4) {
+            gameComplete(this); // pùerta de salida final!!
+        }
+        else { 
+            this.switchMap(ori, dest);
+            
+            // busca la puerta destino y reubica al jugador
+            this.objects.forEach(obj => {
+                if (obj.name === 'puerta') {
+                    if (obj.origen === dest && obj.destino === ori) {
+                        this.playerContainer.setPosition(obj.x, obj.y - obj.height * 0.5);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     portal_switchMap(ori, dest, dist) {

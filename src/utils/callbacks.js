@@ -21,9 +21,15 @@ export function startGame(scene) {
 export function gameOver(scene) {
     gameActive = false;
     scene.sound.stopAll();
-    scene.sound.play('lose');
+    scene.sound.play('lose', this.scene.sfxConfig);
     scene.scene.stop('UI');
     scene.scene.start('GameOver', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
+}
+export function gameComplete(scene) {
+    gameActive = false;
+    scene.sound.stopAll();
+    scene.scene.stop('UI');
+    scene.scene.start('GameComplete', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
 }
 
 // options
