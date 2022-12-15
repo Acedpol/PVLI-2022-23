@@ -241,7 +241,7 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":841.560700504601,
+                 "x":840.060700504601,
                  "y":350.664604521098
                 }, 
                 {
@@ -384,7 +384,7 @@
                         {
                          "name":"type",
                          "type":"string",
-                         "value":"Guard"
+                         "value":"Halo"
                         }],
                  "rotation":0,
                  "type":"",
@@ -449,7 +449,7 @@
  "nextobjectid":30,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"2021.03.23",
  "tileheight":16,
  "tilesets":[
         {
@@ -7520,6 +7520,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.6",
+ "version":1.5,
  "width":100
 }
