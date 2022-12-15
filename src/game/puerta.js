@@ -18,7 +18,10 @@ export default class Puerta extends Character {
                 this.bloqueado = true;
         }
 
+        this.overlapping = true;
+        
         this.setSize(w,h);
+        this.name = 'puerta';
     }
 
     preUpdate(t,dt) 
@@ -28,10 +31,14 @@ export default class Puerta extends Character {
 
     /** @override */
     effect() {
-        if(!this.bloqueado || this.scene.playerContainer.magic!=null)
-        {
+        if (!this.overlapping && (!this.bloqueado || this.scene.playerContainer.magic!=null)) {
             console.log('origen: ' + this.origen + ', destino: ' + this.destino);
-            this.scene.switchMap(this.destino);
+            this.scene.switchMap(this.origen, this.destino);
         }
+    }
+
+    /** @override */
+    anti_effect() {
+        this.overlapping = false;
     }
 }

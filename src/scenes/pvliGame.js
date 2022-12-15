@@ -62,7 +62,7 @@ export default class pvliGame extends blankGame
         this.createPlayer( width * 0.5, height * 0.5, 'angel', this.args);
         
         // Creates the Game Map
-        this.switchMap(0);
+        this.switchMap(-1, 0);
 
         // Sets the camera view
         this.startCamera({ width: this.mapWidth, height: this.mapHeight});
@@ -77,14 +77,22 @@ export default class pvliGame extends blankGame
         if (this.UI.initC && !this.UI.initP) this.UI.setPlayer(this.playerContainer);
     }
 
-    switchMap(id) {
+    switchMap(ori, dest, isDoor = true) {
         if (this.map) this.clearMap();
-        this.loadMap(id);
+        this.loadMap(dest);
         this.initPlayer(true);  // camera follow + groundLayer + player size
         this.createObjects();   // create objects of the actual map
-        this.objects.forEach(obj => {
-            console.log(obj);
-        });
+
+        if (isDoor) {
+            // busca la puerta destino y reubica al jugador
+            this.objects.forEach(obj => {
+                if (obj.name === 'puerta') {
+                    if (obj.origen === dest && obj.destino === ori) {
+                        this.playerContainer.setPosition(obj.x, obj.y - obj.height * 0.5);
+                    }
+                }
+            });
+        } 
     }
 
     clearMap() {
