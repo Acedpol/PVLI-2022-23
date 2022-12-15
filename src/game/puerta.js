@@ -15,7 +15,10 @@ export default class Puerta extends Character {
             }
         }
 
+        this.overlapping = true;
+        
         this.setSize(w,h);
+        this.name = 'puerta';
     }
 
     preUpdate(t,dt) 
@@ -25,7 +28,14 @@ export default class Puerta extends Character {
 
     /** @override */
     effect() {
-        console.log('origen: ' + this.origen + ', destino: ' + this.destino);
-        this.scene.switchMap(this.destino);
+        if (!this.overlapping) {
+            console.log('origen: ' + this.origen + ', destino: ' + this.destino);
+            this.scene.switchMap(this.origen, this.destino);
+        }
+    }
+
+    /** @override */
+    anti_effect() {
+        this.overlapping = false;
     }
 }

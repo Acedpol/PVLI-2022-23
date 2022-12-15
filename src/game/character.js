@@ -30,6 +30,9 @@ export default class Character extends Entity
     /** @template */
     effect() {};
 
+    /** @template */
+    anti_effect() {};
+
     /**
      * Detecta al jugador y si colisiona con él.
      * Si colisiona ejecuta un método modificable.
@@ -39,6 +42,10 @@ export default class Character extends Entity
         if (this.scene.physics.overlap(this, this.playerContainer))
         {
             this.effect();
+        }
+        else if (!this.scene.physics.overlap(this, this.playerContainer))
+        {
+            this.anti_effect();
         }
     }
 }
