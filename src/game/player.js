@@ -41,6 +41,8 @@ export default class PlayerLogic extends Entity
 
         // booleanno para saber si puede ser dañado
         this.canBeDamaged = true;
+        this.canMove = true;
+        this.canAttack = true;
 
         //booleanos de contol de powerUps
         this.attackPowerUp = false;
@@ -53,10 +55,13 @@ export default class PlayerLogic extends Entity
     
     /** @async */
     update(groundCheck, dt) {
-        this.checkInput();
-        this.groundDetect(groundCheck, dt);
-        this.playerController();
-        this.playerAnimation(groundCheck);
+        if(this.canMove)
+        {
+            this.groundDetect(groundCheck, dt);
+            this.checkInput();
+            this.playerController();
+            this.playerAnimation(groundCheck);
+        }
     }
     
     /** @async */
@@ -110,25 +115,29 @@ export default class PlayerLogic extends Entity
 
     playerAnimation(groundCheck) {
         // walk animation
-        if (groundCheck)
+        if(this.canAttack)
         {
-            if (this.left || this.right) {
-                // resume animation
-                this.play('walk'+this.checkPowerUps(), true);
-                this.anims.resume();
-            }
-            else {
-                // initial animation pause
-                this.play('walk'+this.checkPowerUps(), true);
-                this.anims.pause();
-            }            
-        }
 
-        // flying animation
-        if (!groundCheck)
-        {
-            // start animation
-            this.play('jump'+this.checkPowerUps(), true);
+            if (groundCheck)
+            {
+                if (this.left || this.right) {
+                    // resume animation
+                    this.play('walk'+this.checkPowerUps(), true);
+                    this.anims.resume();
+                }
+                else {
+                    // initial animation pause
+                    this.play('walk'+this.checkPowerUps(), true);
+                    this.anims.pause();
+                }            
+            }
+            
+            // flying animation
+            if (!groundCheck)
+            {
+                // start animation
+                this.play('jump'+this.checkPowerUps(), true);
+            }
         }
     }
 
@@ -183,6 +192,9 @@ export default class PlayerLogic extends Entity
         if (this.shoot_B) {
             if (this.container) this.container.dropMagic();
         }
+
+        if(this.cd_attack < this.scene.time.now - this.last_attack && this.canAttack === false)
+            this.canAttack = true;
     }
 
     /**
@@ -233,26 +245,57 @@ export default class PlayerLogic extends Entity
         if (this.canBeDamaged)
         {
             this.health --;
-            if (this.scene.UI.initP) this.scene.UI.lives.deleteObjects(1); // UI
             this.canBeDamaged = false;
-            console.log("health: " + this.health)
-
-            this.timer = this.scene.time.addEvent({
-                delay: 1000,
-                callback: onEvent,
-                callbackScope: this,
-                loop: false
-            });
-
-            function onEvent() {
-                this.canBeDamaged = true;
-                console.log("now player can be damage again!");
-            }
-
-            // el jugador muere
-            if (this.health < 1)
+            this.canMove = false;
+            if (this.scene.UI.initP) this.scene.UI.lives.deleteObjects(1);
+            this.velocity.x = 0;
+            if(this.health > 0)
             {
-                this.scene.handleGameLose(); // <<<
+                this.play('hit'+this.checkPowerUps(), true)
+                this.scene.sound.play('player_hit', this.scene.sfxConfig);
+                let x;
+                if(this.flipX)
+                x = 35;
+                else x = -35;
+
+                this.velocity.y = -45;
+                this.velocity.x = x;
+                this.timer = this.scene.time.addEvent({
+                    delay: 200,
+                    callback: knockbackTimer,
+                    callbackScope: this
+                });
+
+                function knockbackTimer() {
+                    this.canMove = true;
+                }
+
+                this.timer = this.scene.time.addEvent({
+                    delay: 1000,
+                    callback: damageTimer,
+                    callbackScope: this
+                });
+                
+                function damageTimer() {
+                    this.canBeDamaged = true;
+    
+                }
+            }
+            else 
+            {
+                this.velocity.x = 0;
+                this.scene.sound.play('player_dead', this.scene.sfxConfig);
+                this.play('death'+this.checkPowerUps(), true)
+                this.timer = this.scene.time.addEvent({
+                    delay: 2000,
+                    callback: damageTimer1,
+                    callbackScope: this
+                });
+                
+                function damageTimer1() {
+                    this.scene.handleGameLose();
+                }
+
             }
         }
     }
@@ -261,6 +304,9 @@ export default class PlayerLogic extends Entity
         // si ha pasado el cooldown se llama al método para atacar
         if (!this.attack.locked && this.cd_attack < this.scene.time.now - this.last_attack) // antes, 'cooldown === true'
         {
+            this.scene.sound.play('player_attack', this.scene.sfxConfig);
+            this.canAttack = false;
+            this.play('attack'+this.checkPowerUps(), true)
             // calcula la nueva posición
             let dx = this.container.x; 
             let dy = this.container.y;
@@ -282,5 +328,4 @@ export default class PlayerLogic extends Entity
             this.last_attack = this.scene.time.now;
         }
     }
-
 }

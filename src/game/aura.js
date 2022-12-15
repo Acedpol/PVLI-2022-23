@@ -1,4 +1,5 @@
 import Character from './character.js';
+import Magic from './magic.js';
 
 export default class Aura extends Character
 {
@@ -23,6 +24,7 @@ export default class Aura extends Character
     }
     effect()
     {
+        this.playerContainer.carryMagic(new Magic(this.scene, this.playerContainer.x, this.playerContainer.y));
         this.playerContainer.player.setMagic();
         this.scene.sound.play('pick')   // sound feedback
         this.destroy()

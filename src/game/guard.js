@@ -103,6 +103,7 @@ export default class Guard extends Enemy {
             if(this.canBeDamaged)
             {
                 this.play('guard_shoot', true)
+                this.scene.sound.play('blaster', this.scene.sfxConfig);
                 this.scene.addToScene(new Proyectile(this.scene, this.x+20*this.dir, this.y-5, this.dir), true);
                 this.shooting = false;
                 this.timer = this.scene.time.addEvent({
@@ -129,6 +130,8 @@ export default class Guard extends Enemy {
     
     damageAnimation(){
         this.play('guard_damaged', true)
+        this.scene.sound.play('metal', this.scene.sfxConfig);
+
     }
     normalAnimation(){
         this.play('guard_wake', true)

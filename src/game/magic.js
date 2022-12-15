@@ -46,7 +46,7 @@ export default class Magic extends Character
     effect()
     {
         this.playerContainer.carryMagic(this);
-        this.scene.sound.play('pick', this.scene.sfxConfig);
+        //this.scene.sound.play('pick', this.scene.sfxConfig);
     }
 
     playerFlipDetect() {
@@ -78,6 +78,7 @@ export default class Magic extends Character
         if (this.stop && this.body.velocity.y == 0 && this.body.onFloor()) {
             this.offStop();
             this.damage = false;
+            this.scene.sound.play('player_magic', this.scene.sfxConfig);
             this.stopRotation();
             this.scene.time.delayedCall(250, () => {
                 this.setVelocityX(0);

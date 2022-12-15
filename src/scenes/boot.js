@@ -145,72 +145,64 @@ export default class Boot extends Phaser.Scene
         this.load.image('img_tilemap', './assets/sprites/escenario/old-dark-castle-interior-tileset.png')
         this.load.image('img_tilemap2', './assets/sprites/escenario/gothic-castle-background.png')
 
-        this.load.tilemapTiledJSON('nivel', './assets/map/nivel00.json')
-
-
-        
-        // pick audio
-        this.load.audio('pick', './assets/sounds/pick.wav')//yo lo dejaria
-        // pick audio
-        this.load.audio('musica_menu', './assets/sounds/musicafondocastelvania.mp3')//yo lo dejaria
-        /*Todo esto para ataques a distancia*/
-        // bullet spritesheet
-        // this.load.spritesheet('bullet', "./assets/sprites/meteor.png", 
-        //     { frameWidth: 16, frameHeight: 14 }) 
-        
-        // explosion spritesheet
-        // this.load.spritesheet('explosion', "./assets/sprites/explosion.png", 
-        //     { frameWidth: 24, frameHeight: 17 }) 
-
-        // explode audio
-        this.load.audio('explode', './assets/sounds/explosion.wav')
-        /*------------------------------------------------------------------------*/
+        this.load.tilemapTiledJSON('nivel', './assets/map/nivel03.json')
 
         // --- UI --- 
         // button background
         this.load.image('button', './assets/images/btn-piedra.png')//Esto igual cambiar texto y resultado
+        this.load.spritesheet('controls', "./assets/images/controles.png",
+        { frameWidth: 308, frameHeight: 168 })
+        
+        this.load.spritesheet('speaker', "./assets/images/speaker3.png",
+        { frameWidth: 256, frameHeight: 235 })
 
+        //Audios
+        // pick audio
+        this.load.audio('pick', './assets/sounds/pick.wav')//yo lo dejaria
+
+        // pick audio
+        this.load.audio('musica_menu', './assets/sounds/musicafondocastelvania.mp3')//yo lo dejaria
+
+        // explode audio
+        this.load.audio('explode', './assets/sounds/explosion.wav')
+
+        // player attack audio
+        this.load.audio('player_attack', './assets/sounds/attack.wav')//
+
+        // player magic audio
+        this.load.audio('player_magic', './assets/sounds/magic.wav')//
+        
+        // player hit audio
+        this.load.audio('player_hit', './assets/sounds/hit.wav')//
+
+        // player death audio
+        this.load.audio('player_dead', './assets/sounds/death.wav')//
+
+        // wolf audio 
+        this.load.audio('bark', './assets/sounds/barking.wav') //
+
+        // bone audio
+        this.load.audio('bone', './assets/sounds/bone.wav')   //
+        
+        // blaster audio
+        this.load.audio('blaster', './assets/sounds/blaster.wav')
+
+        // metal audio
+        this.load.audio('metal', './assets/sounds/metal.wav')
+        
         // win audio
         this.load.audio('win', './assets/sounds/win.wav')
-
+        
         // lose audio
         this.load.audio('lose', './assets/sounds/lose.wav')
-
-        this.load.spritesheet('controls', "./assets/images/controles.png",
-          { frameWidth: 308, frameHeight: 168 })
-
-        this.load.spritesheet('speaker', "./assets/images/speaker3.png",
-          { frameWidth: 256, frameHeight: 235 })
-
+        
+        /*------------------------------------------------------------------------*/
+        
     }
 
     create() 
     {      
         // --- PLAYER --- 
-        // creates walk animation for player
-        this.anims.create({
-            key: 'idle3',
-            frames: this.anims.generateFrameNames('angelF', { start: 0, end: 0 }),
-            frameRate: 2,
-            repeat: -1
-        })
-
-        // creates walk animation for player
-        this.anims.create({
-            key: 'walk3',
-            frames: this.anims.generateFrameNames('angelF', { start: 20, end: 27 }),
-            frameRate: 8,
-            repeat: -1
-        })
-
-        // creates jump animation for player
-        this.anims.create({
-          key: 'jump3',
-          frames: this.anims.generateFrameNames('angelF', { start: 10, end: 18 }),
-          frameRate: 9,
-          repeat: -1
-        })
-
         // creates walk animation for player
         this.anims.create({
           key: 'idle0',
@@ -235,13 +227,29 @@ export default class Boot extends Phaser.Scene
         repeat: -1
       })
 
+      // creates hit animation
+      this.anims.create({
+        key: 'hit0',
+        frames: this.anims.generateFrameNames('angel0', { start: 50, end: 51 }),
+        frameRate: 6,
+        repeat: 1
+      })
+
+      // creates death animation
+      this.anims.create({
+        key: 'death0',
+        frames: this.anims.generateFrameNames('angel0', { start: 60, end: 65 }),
+        frameRate: 4,
+        repeat: 0
+      })
+
       // creates walk animation for player
       this.anims.create({
         key: 'idle1',
         frames: this.anims.generateFrameNames('angel1', { start: 0, end: 0 }),
         frameRate: 2,
         repeat: -1
-    })
+      })
 
     // creates walk animation for player
     this.anims.create({
@@ -257,6 +265,30 @@ export default class Boot extends Phaser.Scene
       frames: this.anims.generateFrameNames('angel1', { start: 10, end: 18 }),
       frameRate: 9,
       repeat: -1
+    })
+
+    // creates attack animation
+    this.anims.create({
+      key: 'attack1',
+      frames: this.anims.generateFrameNames('angel1', { start: 40, end: 43 }),
+      frameRate: 8,
+      repeat: 0
+    })
+
+    // creates hit animation
+    this.anims.create({
+      key: 'hit1',
+      frames: this.anims.generateFrameNames('angel1', { start: 50, end: 51 }),
+      frameRate: 6,
+      repeat: 1
+    })
+
+    // creates death animation
+    this.anims.create({
+      key: 'death1',
+      frames: this.anims.generateFrameNames('angel1', { start: 60, end: 65 }),
+      frameRate: 4,
+      repeat: 0
     })
 
     // creates walk animation for player
@@ -283,7 +315,79 @@ export default class Boot extends Phaser.Scene
     repeat: -1
   })
 
-  // creates attack animation for player
+  // creates attack animation
+  this.anims.create({
+    key: 'attack2',
+    frames: this.anims.generateFrameNames('angel2', { start: 40, end: 43 }),
+    frameRate: 8,
+    repeat: 0
+  })
+
+  // creates hit animation
+  this.anims.create({
+    key: 'hit2',
+    frames: this.anims.generateFrameNames('angel2', { start: 50, end: 51 }),
+    frameRate: 6,
+    repeat: 1
+  })
+
+  // creates death animation
+  this.anims.create({
+    key: 'death2',
+    frames: this.anims.generateFrameNames('angel2', { start: 60, end: 65 }),
+    frameRate: 4,
+    repeat: 0
+  })
+
+  // creates walk animation for player
+  this.anims.create({
+    key: 'idle3',
+    frames: this.anims.generateFrameNames('angelF', { start: 0, end: 0 }),
+    frameRate: 2,
+    repeat: -1
+  })
+
+// creates walk animation for player
+this.anims.create({
+    key: 'walk3',
+    frames: this.anims.generateFrameNames('angelF', { start: 20, end: 27 }),
+    frameRate: 8,
+    repeat: -1
+})
+
+// creates jump animation for player
+this.anims.create({
+  key: 'jump3',
+  frames: this.anims.generateFrameNames('angelF', { start: 10, end: 18 }),
+  frameRate: 9,
+  repeat: -1
+})
+
+// creates attack animation
+this.anims.create({
+  key: 'attack3',
+  frames: this.anims.generateFrameNames('angelF', { start: 40, end: 43 }),
+  frameRate: 8,
+  repeat: 0
+})
+
+// creates hit animation
+this.anims.create({
+  key: 'hit3',
+  frames: this.anims.generateFrameNames('angelF', { start: 50, end: 51 }),
+  frameRate: 6,
+  repeat: 1
+})
+
+// creates death animation
+this.anims.create({
+  key: 'death3',
+  frames: this.anims.generateFrameNames('angelF', { start: 60, end: 65 }),
+  frameRate: 4,
+  repeat: 0
+})
+
+  // creates animation of players spell
   this.anims.create({
     key: 'attack',
     frames: this.anims.generateFrameNames('attackSpr', { start: 0, end: 4 }),

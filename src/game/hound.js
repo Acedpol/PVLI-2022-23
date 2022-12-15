@@ -51,5 +51,8 @@ export default class Hound extends Enemy {
         }
 
     }
+    damageAnimation(){
+        this.scene.sound.play('bark', this.scene.sfxConfig);
+    }
 
 }

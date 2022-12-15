@@ -53,9 +53,13 @@ export default class DeadZone extends Character
     checkPlayer()
     {
 
-        if (this.scene.physics.overlap(this, this.scene.playerContainer))
+        if(this.scene.physics.overlap(this, this.scene.playerContainer))
         {
             this.scene.handleGameLose(this)
+        }
+        else if(this.scene.physics.overlap(this, this.scene.playerContainer.magic))
+        {
+            this.playerContainer.carryMagic(this.scene.playerContainer.magic);
         }
 
 

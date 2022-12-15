@@ -110,7 +110,6 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     //  */
     carryMagic(magic)
     {
-        this.player.setMagic();
         if (!this.carriesMagic)
         {
             // keeps save the magic
@@ -121,6 +120,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             this.carriesMagic = true;
 
             // disable from physics world
+            if(this.player.crownPowerUp)
             this.scene.physics.world.disableBody(magic.body)
 
             // Recoge el magic y se lo añade a playerContainer (y lo coloca)

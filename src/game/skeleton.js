@@ -163,6 +163,7 @@ export default class Skeleton extends Enemy {
             else 
             {
                 this.play('skeleton_dead')
+                this.scene.sound.play('bone', this.scene.sfxConfig);
                 this.timer = this.scene.time.addEvent({
                     delay: 1500,
                     callback: damageTimer1,
@@ -181,6 +182,7 @@ export default class Skeleton extends Enemy {
 
     damageAnimation(){
         this.play('skeleton_hit', true)
+        this.scene.sound.play('bone', this.scene.sfxConfig);
     }
     normalAnimation(){
         this.play('skeleton_move', true)
