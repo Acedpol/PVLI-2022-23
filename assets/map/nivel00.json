@@ -46,8 +46,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":476.000000000001,
-                 "y":294.333333333334
+                 "x":240.000000000001,
+                 "y":774.333333333334
                 }, 
                 {
                  "height":0,
@@ -122,24 +122,6 @@
                  "y":815.333333333334
                 }, 
                 {
-                 "height":0,
-                 "id":12,
-                 "name":"",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"Guard"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":936,
-                 "y":728.666666666667
-                }, 
-                {
                  "height":92,
                  "id":16,
                  "name":"",
@@ -155,29 +137,6 @@
                  "width":565.5,
                  "x":884.875,
                  "y":833.666666666667
-                }, 
-                {
-                 "height":0,
-                 "id":17,
-                 "name":"",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"patrol",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"Skeleton"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":746.666666666667,
-                 "y":721
                 }, 
                 {
                  "height":0,
