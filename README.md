@@ -52,12 +52,12 @@ Si node.js no está instalado, descargar e instalar: https://nodejs.org/dist/v16
 - JOSE EDUARDO ROBLES ROCA		> joseer01@ucm.es  
 ---  
 
-## Resumen  
+<!-- ## Resumen  
 
 | **Introducción** |  |
 | :--- | ---: |
 | **Descripción** | Se trata de un juego plataformas estilo metroidvania con scroll lateral donde el personaje es una estatua que debe recuperar sus extremidades perdidas. El objetivo principal es acabar con Jefe,para ello debemos ir avanzando a lo largo del museo y recuperando nuevas piezas para  acceder a sitios que anteriormente estaban bloqueados. A lo largo del juego nos encontraremos con enemigos y consumibles que podremos usar. |
-| **Versión** | ( v-1.0 ) –-> 24 de octubre de 2022 |
+| **Versión** | ( v-1.0 ) –-> 24 de octubre de 2022 | -->
 
 | **Detalles generales** |  |
 | :--- | ---: |
@@ -206,16 +206,22 @@ Todo comienza en un museo, donde unos críos le quitan unas extremidades a una e
 
 #### **Todos los enemigos del juego causan daño por contacto**
    ##### ![Pantalla inicio][esqueleto] Esqueleto   
-    Enemigo a melé, se mueve de un lado a otro dentro de su área y si ve a un enemigo ataca.
-	Puede aguantar más de un golpe normal del personaje, y más de un proyectil mágico.
+    ● Enemigo a melé, se mueve de un lado a otro dentro de su área y si ve a un enemigo ataca.
+	● vida: 3
+	● velocidad: baja
+	● característica: resistente al knockback del ataque, golpea con su hacha.
     
    ##### Guarda de seguridad
-    Enemigo a distancia, se mueve de un lado a otro hasta que el jugador entra en el rango de ataque empieza a atacar.
-	Puede aguantar un golpe normal, pero no un proyectil mágico.
+    ● Enemigo a distancia, espera dormido que el jugador entra en el rango de ataque empieza a atacar.
+	● vida: 2
+	● velocidad: estática
+	● característica: carga su rifle y te dispara.
     
    ##### ![Pantalla inicio][perro] Perro
-    No ataca pero hace daño por contacto, es más rápido que el esqueleto y persigue al jugador si esste entra en su rango de visión.
-	Muere de un golpe, sea cual sea, pero se verá en mayores números.
+    ● No ataca pero hace daño por contacto, es más rápido que el esqueleto y persigue al jugador si esste entra en su rango de visión.
+	● vida: 1
+	● velocidad: alta
+	● característica: solo daña al contacto, pero se le suele ver acompañado.
 
 ### 4. Objetos  
 #### **Tanto los powerUps como las pociones se recogen al contacto, y desaparecen al instante**
@@ -223,8 +229,8 @@ Todo comienza en un museo, donde unos críos le quitan unas extremidades a una e
     Las partes de la victoria que estás intentando recomponer y que proporcionan las abilidades de juego.
 	Estas están explicadas en el apartado de mecánicas, pero están compuestas por los brazos, las alas y la cabeza.
     
-   ##### Consumibles
-    Hasta el moomento el único consumible que queremos implementar son las pociones de vida, las cuales curarán al jugador un corazón.
+   ##### Pociones
+    Poción que cura al jugador un corazon al cogerla.
 
 [Go back to index -->][indice]  
 

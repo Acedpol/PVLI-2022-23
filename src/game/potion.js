@@ -23,7 +23,7 @@ export default class Potion extends Character
     /** @override */
     effect()
     {
-        this.playerContainer.player.heal(3);
+        this.playerContainer.player.heal(1);
         this.scene.sound.play('pick', this.scene.sfxConfig);   // sound feedback
         this.destroy();
     }
