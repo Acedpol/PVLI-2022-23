@@ -14,7 +14,7 @@ export default class Puerta extends Character {
                 this.origen = parseInt(value / 10);
                 this.destino = value % 10;
             }
-            if(name === 'bloqueado')
+            if (name === 'bloqueado')
                 this.bloqueado = true;
         }
 
@@ -31,9 +31,9 @@ export default class Puerta extends Character {
 
     /** @override */
     effect() {
-        if (!this.overlapping && (!this.bloqueado || this.scene.playerContainer.magic!=null)) {
+        if (!this.overlapping && (!this.bloqueado || this.playerContainer.magic!=null)) {
             console.log('origen: ' + this.origen + ', destino: ' + this.destino);
-            this.scene.switchMap(this.origen, this.destino);
+            this.scene.puerta_switchMap(this.origen, this.destino);
         }
     }
 

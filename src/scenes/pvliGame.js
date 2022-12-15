@@ -77,22 +77,40 @@ export default class pvliGame extends blankGame
         if (this.UI.initC && !this.UI.initP) this.UI.setPlayer(this.playerContainer);
     }
 
-    switchMap(ori, dest, isDoor = true) {
+    switchMap(ori, dest) {
         if (this.map) this.clearMap();
         this.loadMap(dest);
         this.initPlayer(true);  // camera follow + groundLayer + player size
         this.createObjects();   // create objects of the actual map
+    }
 
-        if (isDoor) {
-            // busca la puerta destino y reubica al jugador
-            this.objects.forEach(obj => {
-                if (obj.name === 'puerta') {
-                    if (obj.origen === dest && obj.destino === ori) {
-                        this.playerContainer.setPosition(obj.x, obj.y - obj.height * 0.5);
-                    }
+    puerta_switchMap(ori, dest) {
+        this.switchMap(ori, dest);
+        
+        // busca la puerta destino y reubica al jugador
+        this.objects.forEach(obj => {
+            if (obj.name === 'puerta') {
+                if (obj.origen === dest && obj.destino === ori) {
+                    this.playerContainer.setPosition(obj.x, obj.y - obj.height * 0.5);
                 }
-            });
-        } 
+            }
+        });
+    }
+
+    portal_switchMap(ori, dest, dist) {
+        this.switchMap(ori, dest);
+
+        // busca el portal destino y reubica al jugador
+        this.objects.forEach(obj => {
+            if (obj.name === 'portal') {
+                if (obj.origen === dest && obj.destino === ori) {
+                    let diff = 0;
+                    if (this.player.velocity.y > 0) diff = this.player.height;
+                    if (this.player.velocity.y < 0) diff = -this.player.height;
+                    this.playerContainer.setPosition(obj.x + dist.X, obj.y + dist.Y + diff * 0.5);
+                }
+            }
+        });
     }
 
     clearMap() {

@@ -7,15 +7,21 @@ export default class Portal extends Character {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this, true);
         this.setVisible(false);
-                
+        this.bloqueado = false;
+
         for (const { name, value } of properties) {
             if (name === 'enlace') {
                 this.origen = parseInt(value / 10);
                 this.destino = value % 10;
             }
+            if (name === 'bloqueado')
+                this.bloqueado = true;
         }
+
+        this.overlapping = true;
         
         this.setSize(w,h);
+        this.name = 'portal';
     }
 
     preUpdate(t,dt) 
@@ -25,7 +31,15 @@ export default class Portal extends Character {
 
     /** @override */
     effect() {
-        console.log('origen: ' + this.origen + ', destino: ' + this.destino);
-        this.scene.switchMap(this.destino);
+        if (!this.overlapping && (!this.bloqueado || this.playerContainer.magic!=null)) {
+            console.log('origen: ' + this.origen + ', destino: ' + this.destino);
+            let dist = {X: this.playerContainer.x - this.x, Y: this.playerContainer.y - this.y}; 
+            this.scene.portal_switchMap(this.origen, this.destino, dist);
+        }
+    }
+
+    /** @override */
+    anti_effect() {
+        this.overlapping = false;
     }
 }
