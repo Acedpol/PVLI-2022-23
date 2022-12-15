@@ -3,7 +3,7 @@ Proyecto final de PVLI curso 22/23 para el grado GDV-UCM.
 > Pivotal: https://www.pivotaltracker.com/n/projects/2597082  
 > Twitter: https://www.twitter.com/StormSudio  
 > Videojuego: https://www.acedpol.github.io/PVLI-2022-23/  
-> Arquitectura: [visualizar UML][Nueva Arquitectura]  
+> Arquitectura: [visualizar UML][img-final]  
 > Video-demo final: [demo][video]  
 
 ---  
@@ -238,9 +238,17 @@ Todo comienza en un museo, donde unos críos le quitan unas extremidades a una e
 
 ## V - Arquitectura y Gestión  
 
-#### [Componentes básicas][Diagrama componentes básicas]  
+#### [Diagrama de introducción a Phaser][img-intro-phaser]  
 
-![IMG - componentes básicas][img-comp-basicas]  
+![IMG - Diagrama de introducción a Phaser][img-intro-phaser]  
+
+#### [Diagrama inicial][img-inicio]  
+
+![IMG - Diagrama inicial][img-inicio]  
+
+#### [Diagrama final][img-final]  
+
+![IMG - Diagrama final][img-final]  
 
 [Go back to index -->][indice]  
 
@@ -270,4 +278,6 @@ Todo comienza en un museo, donde unos críos le quitan unas extremidades a una e
 [5]: #v---arquitectura-y-gesti%C3%B3n  
 [6]: #vi---referencias  
 
-[img-comp-basicas]: ./docs/UML/DiagramaClases.png "Diagrama componentes básicas"  
+[img-intro-phaser]: ./docs/UML/UML-Intro.jpg "Diagrama de introducción a Phaser"  
+[img-inicio]: ./docs/UML/DiagramaClases.png "Diagrama inicial"  
+[img-final]: ./docs/UML/uml-final.png "Diagrama final"  
