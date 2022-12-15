@@ -13,7 +13,8 @@ export default class GameComplete extends blankMenu
 
     init(args) {
         super.init(args);
-        this.sound.play('musica_end', this.ambConfig);
+        this.sound.stopAll();
+        this.sound.play('musica_end_complete', this.ambConfig);
     }
 
     preload() 

@@ -11,6 +11,7 @@ export default class Menu extends blankMenu
 
     init(args) {
         super.init(args);
+        this.sound.stopAll();
         this.sound.play('musica_menu', this.ambConfig);
     }
 

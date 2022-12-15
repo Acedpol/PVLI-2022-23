@@ -41,6 +41,7 @@ export default class pvliGame extends blankGame
         // debugSettings();
 
         this.checkCollisions(false);
+        this.sound.stopAll();
         this.sound.play('musica_game', this.ambConfig);
     }
 

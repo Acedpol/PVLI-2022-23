@@ -164,8 +164,11 @@ export default class Boot extends Phaser.Scene
         // musica - menu principal
         this.load.audio('musica_menu', './assets/sounds/EkaterinaShelehova-EarthMelodies.mp3')
 
-        // musica - end game
-        this.load.audio('musica_end', './assets/sounds/EkaterinaShelehova-endgame.mp3')
+        // musica - end game (complete)
+        this.load.audio('musica_end_complete', './assets/sounds/EkaterinaShelehova-endgame.mp3')
+
+        // musica - end game (lose)
+        this.load.audio('musica_end_lose', './assets/sounds/VicenteFernández-LaDerrota.mp3')
 
         // explode audio
         this.load.audio('explode', './assets/sounds/explosion.wav')
@@ -525,7 +528,7 @@ this.anims.create({
   this.optB = false; 
   this.volGen = 25;
   this.volAmb = 50;
-  this.volSFX = 25;
+  this.volSFX = 40;
   this.mute = false;
   startMain(this);
 }
