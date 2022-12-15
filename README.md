@@ -73,7 +73,7 @@ Si node.js no está instalado, descargar e instalar: https://nodejs.org/dist/v16
 | **Objetos** | Pociones |
 | **Armas** | Extremidades, Halo |
 | **Mejoras** | Alas |
-| **Personajes** | Debris (player) y Jefe (boss) |
+| **Personajes** | Debris (player) |
 | **Palabras** | Estatua, extremidades. |
 
 | **Versiones del documento** | 2022 |
