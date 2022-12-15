@@ -153,10 +153,10 @@ export default class pvliGame extends blankGame
                                 this.addToScene(new Aura(this, objeto.x, objeto.y), true);
                                 break;
                             case 'player':
-                                this.playerContainer.setPosition(objeto.x, objeto.y);               
+                                this.playerContainer.setPosition(objeto.x, objeto.y);     
                                 break;
                             case 'Dead':
-                                this.addToScene(new DeathZone(this, objeto.x, objeto.y, objeto.width, objeto.height), true);
+                                this.objects.push(new DeathZone(this, objeto.x, objeto.y, objeto.width, objeto.height));
                                 break;
                             case 'puerta':
                                 this.objects.push(new Puerta(this, objeto.x, objeto.y, objeto.width, objeto.height, objeto.properties));
