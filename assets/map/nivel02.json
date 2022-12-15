@@ -389,21 +389,48 @@
                  "y":351.997937854431
                 }, 
                 {
-                 "height":60.9530127142067,
-                 "id":21,
+                 "height":26.5,
+                 "id":22,
                  "name":"",
                  "properties":[
                         {
+                         "name":"enlace",
+                         "type":"int",
+                         "value":21
+                        }, 
+                        {
                          "name":"type",
                          "type":"string",
-                         "value":"Dead"
+                         "value":"portal"
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1256.16666666667,
-                 "x":213.477367171267,
-                 "y":885.521431497328
+                 "width":209,
+                 "x":1249.18191262581,
+                 "y":929.172180278674
+                }, 
+                {
+                 "height":16.5,
+                 "id":23,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enlace",
+                         "type":"int",
+                         "value":20
+                        }, 
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"portal"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":192,
+                 "x":212.045548989449,
+                 "y":939.202483308977
                 }],
          "offsetx":-2.89403383793399,
          "offsety":4.0020621455687,
@@ -414,10 +441,10 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":22,
+ "nextobjectid":24,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2021.03.23",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {
@@ -2243,7 +2270,7 @@
                         {
                          "name":"suelo",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -2252,7 +2279,7 @@
                         {
                          "name":"suelo",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -2261,7 +2288,7 @@
                         {
                          "name":"suelo",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -2711,7 +2738,7 @@
                         {
                          "name":"suelo",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -2720,7 +2747,7 @@
                         {
                          "name":"suelo",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -2729,7 +2756,7 @@
                         {
                          "name":"suelo",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -3179,7 +3206,7 @@
                         {
                          "name":"suelo",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -3188,7 +3215,7 @@
                         {
                          "name":"suelo",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -3197,7 +3224,7 @@
                         {
                          "name":"suelo",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -3647,7 +3674,7 @@
                         {
                          "name":"suelo",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -3656,7 +3683,7 @@
                         {
                          "name":"suelo",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -3665,7 +3692,7 @@
                         {
                          "name":"suelo",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -7488,6 +7515,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":1.5,
+ "version":"1.6",
  "width":100
 }

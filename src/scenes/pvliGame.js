@@ -9,6 +9,8 @@ import Wings from '../game/wings.js'
 import Aura from '../game/aura.js'
 import Arm from '../game/arm.js'
 import DeathZone from '../game/deathZone.js'
+import Puerta from '../game/puerta.js'
+import Portal from '../game/portal.js'
 //import Trigger from '../game/trigger.js'
 
 export default class pvliGame extends blankGame
@@ -35,12 +37,16 @@ export default class pvliGame extends blankGame
     {
         super.init(args);
 
-        // console.log("INITIALISING GAME...");
-        // console.log('> wasd: ' + (this.optA ? 'encendido' : 'apagado'));
-        // console.log('> cursores: ' + (this.optB ? 'encendido' : 'apagado'));
-        // console.log('> vol. general: ' + this.volGen + '%');
+        // debugSettings();
 
         this.checkCollisions(false);
+    }
+
+    debugSettings(){
+        console.log("INITIALISING GAME...");
+        console.log('> wasd: ' + (this.optA ? 'encendido' : 'apagado'));
+        console.log('> cursores: ' + (this.optB ? 'encendido' : 'apagado'));
+        console.log('> vol. general: ' + this.volGen + '%');
     }
     
     preload() 
@@ -50,38 +56,18 @@ export default class pvliGame extends blankGame
 
     create() 
     {
+        const{width,height} = this.scale;
+
+        // Creates the player
+        this.createPlayer( width * 0.5, height * 0.5, 'angel', this.args);
+        
         // Creates the Game Map
-        this.createMap('nivel', 16, 16, 'mapa', 'Fondo','img_tilemap', 'img_tilemap2', 'plataformas','fondo' );//esto esta 28 21
-        // Create background image
-        //this.createMapBackground('img_back', this.map);
-        this.backgroundLayer.forEachTile(tile => {
-            if (tile.properties.permise) {
-                boxTiles.push(tile)
-            }
-        })
-
-        this.createObjects()
-
-        // Creates the enemy
-        //this.addToScene(new Hound(this, 30, 100), true);
-        //this.addToScene(new Guard(this, 650, this.mapHeight - 50), true);
-        //this.addToScene(new Skeleton(this, 620, this.mapHeight - 50), true);
-        //this.addToScene(new Trigger(this, 50, 50), true);
-
-
-        // Crea un objeto para recoger en la escena
-        //this.addToScene(new Magic(this, 150, 150), true);
-        //this.addToScene(new Potion(this, 300, 100), true);
-        //this.addToScene(new Wings(this, 500, 200), true);
-        //this.addToScene(new Aura(this, 700, 150), true);
-        //this.addToScene(new Arm(this, 800, 150), true);
+        this.switchMap(0);
 
         // Sets the camera view
-        this.startCamera({ width: this.mapWidth, height: this.mapHeight}); 
+        this.startCamera({ width: this.mapWidth, height: this.mapHeight});
 
-
-        // this.time.delayedCall(250, this.UI.setPlayer(this.playerContainer));
-        // if (this.UI.initC) this.UI.setPlayer(this.playerContainer);
+        // resetea la interfaz de usuario
         if (this.UI) this.UI.reset();
     }
 
@@ -89,6 +75,42 @@ export default class pvliGame extends blankGame
     {
         super.update(t,dt);
         if (this.UI.initC && !this.UI.initP) this.UI.setPlayer(this.playerContainer);
+    }
+
+    switchMap(id) {
+        if (this.map) this.clearMap();
+        this.loadMap(id);
+        this.initPlayer(true);  // camera follow + groundLayer + player size
+        this.createObjects();   // create objects of the actual map
+        this.objects.forEach(obj => {
+            console.log(obj);
+        });
+    }
+
+    clearMap() {
+        this.objects.forEach(obj => {
+            obj.destroy();
+        });
+        this.map.destroy();
+    }
+
+    loadMap(id) {    
+        switch (id) {
+            case 0:
+                this.createMap('nivel00', 16, 16, 'mapa', 'Fondo','img_tilemap', 'img_tilemap2', 'plataformas','fondo' );
+                break;  
+            case 1:
+                this.createMap('nivel01', 16, 16, 'mapa', 'Fondo','img_tilemap', 'img_tilemap2', 'plataformas','fondo' );
+                break; 
+            case 2:
+                this.createMap('nivel02', 16, 16, 'mapa', 'Fondo','img_tilemap', 'img_tilemap2', 'plataformas','fondo' );
+                break; 
+            case 3:
+                this.createMap('nivel03', 16, 16, 'mapa', 'Fondo','img_tilemap', 'img_tilemap2', 'plataformas','fondo' );
+                break;
+            default:
+                break;
+        }        
     }
 
     createObjects() {
@@ -131,12 +153,16 @@ export default class pvliGame extends blankGame
                                 this.addToScene(new Aura(this, objeto.x, objeto.y), true);
                                 break;
                             case 'player':
-                                // Creates the player
-                                this.createPlayer( objeto.x, objeto.y, 'angel', this.args, true);
-                                this.initPlayer(true); // allow camara to follow                                
+                                this.playerContainer.setPosition(objeto.x, objeto.y);               
                                 break;
                             case 'Dead':
                                 this.addToScene(new DeathZone(this, objeto.x, objeto.y, objeto.width, objeto.height), true);
+                                break;
+                            case 'puerta':
+                                this.objects.push(new Puerta(this, objeto.x, objeto.y, objeto.width, objeto.height, objeto.properties));
+                                break;
+                            case 'portal':
+                                this.objects.push(new Portal(this, objeto.x, objeto.y, objeto.width, objeto.height, objeto.properties));
                                 break;
                             default:
                                 break;
