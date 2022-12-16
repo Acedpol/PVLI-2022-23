@@ -100,11 +100,11 @@ export default class Boot extends Phaser.Scene
 
         // skeleton - hit
         this.load.spritesheet('skeletonHitSprite', "./assets/sprites/Skeleton/SkeletonHit.png",
-        { frameWidth: 30, frameHeight: 32 })
+        { frameWidth: 30, frameHeight: 37 })
 
         // skeleton - dead
         this.load.spritesheet('skeletonDeadSprite', "./assets/sprites/Skeleton/SkeletonDead.png",
-        { frameWidth: 33, frameHeight: 32 })       
+        { frameWidth: 33, frameHeight: 37 })       
 
 
         // // guard - walk
