@@ -11,7 +11,7 @@ import Arm from '../game/arm.js'
 import DeathZone from '../game/deathZone.js'
 import Puerta from '../game/puerta.js'
 import Portal from '../game/portal.js'
-import { gameComplete } from '../utils/callbacks.js'
+import { gameComplete, turnOnGameMusic } from '../utils/callbacks.js'
 //import Trigger from '../game/trigger.js'
 
 export default class pvliGame extends blankGame
@@ -32,17 +32,25 @@ export default class pvliGame extends blankGame
     constructor() 
     {
         super('pvliGame');
+        this.sonando = false;
     }
     
     init(args)
     {
         super.init(args);
 
+        // solucion para la musica nada mas empezar
+        this.input.once('pointermove', () => {
+            if (!this.sonando) {
+                if (this.ambConfig.volume === 0.60) this.ambConfig.volume -= 0.35;
+                turnOnGameMusic(this);
+                this.sonando = true;
+            }
+        });
+
         // debugSettings();
 
         this.checkCollisions(false);
-        this.sound.stopAll();
-        this.sound.play('musica_game', this.ambConfig);
 
         this.events.on('resume', (scene, args) => { this.player.resetInput(args.optA); } );
     }

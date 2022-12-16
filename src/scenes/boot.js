@@ -527,7 +527,7 @@ this.anims.create({
   this.optA = true; 
   this.optB = false; 
   this.volGen = 25;
-  this.volAmb = 50;
+  this.volAmb = 60;
   this.volSFX = 40;
   this.mute = false;
   startMain(this);

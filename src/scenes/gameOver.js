@@ -14,6 +14,10 @@ export default class GameOver extends blankMenu
     init(args) {
         super.init(args);
         this.sound.stopAll();
+        if (this.ambConfig.volume + 0.25 < 1) { 
+            this.ambConfig.volume += 0.25;
+            this.plus = true;
+        }
         this.sound.play('musica_end_lose', this.ambConfig);
     }
 
@@ -35,6 +39,7 @@ export default class GameOver extends blankMenu
 
         // click to play again
         this.input.keyboard.once('keydown-SPACE', () => {
+            if (this.plus) this.ambConfig.volume -= 0.25;
             startMain(this);
         });
     }

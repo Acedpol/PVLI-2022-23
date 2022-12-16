@@ -20,14 +20,16 @@ export function startGame(scene) {
 }
 export function gameOver(scene) {
     gameActive = false;
-    scene.sound.play('lose', scene.sfxConfig);
-    scene.scene.stop('UI');
+    // scene.sound.play('lose', scene.sfxConfig);
     scene.scene.start('GameOver', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
+    scene.scene.stop('UI');
+    scene.scene.stop('pvliGame');
 }
 export function gameComplete(scene) {
     gameActive = false;
-    scene.scene.stop('UI');
     scene.scene.start('GameComplete', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
+    scene.scene.stop('UI');
+    scene.scene.stop('pvliGame');
 }
 
 // options
@@ -51,6 +53,21 @@ export function swithToSonido(scene) {     // --->
 }
 export function backFromSonido(scene) {    // <---
     scene.scene.start('menuOptions', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
+}
+
+export function turnOnMainMenuMusic(scene) {
+    // console.log(' - pointer move!! ');
+    console.log(scene.active);
+    if (scene.active) {
+        scene.sound.stopAll();
+        scene.sound.play('musica_menu', scene.ambConfig);
+    }
+}
+export function turnOnGameMusic(scene) {
+    if (scene.active) {
+        scene.sound.stopAll();
+        scene.sound.play('musica_game', scene.ambConfig);
+    }
 }
 
 // soundMenu: speaker

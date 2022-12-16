@@ -319,7 +319,9 @@ export default class PlayerLogic extends Entity
                 this.velocity.x = 0;
                 if(this.velocity.y < 0)
                 this.velocity.y = -this.velocity.y;
+                this.scene.sfxConfig.volume *= 0.25;
                 this.scene.sound.play('player_dead', this.scene.sfxConfig);
+                this.scene.sfxConfig.volume /= 0.25;
                 this.play('death'+this.checkPowerUps(), true)
                 this.timer = this.scene.time.addEvent({
                     delay: 2000,
