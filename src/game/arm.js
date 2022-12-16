@@ -24,7 +24,7 @@ export default class Arm extends Character
     effect()
     {
         this.playerContainer.player.setAttack();
-        this.scene.sound.play('pick')   // sound feedback
+        this.scene.sound.play('pick', this.scene.sfxConfig)   // sound feedback
         this.destroy()
     }
 }

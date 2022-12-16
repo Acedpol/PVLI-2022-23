@@ -26,7 +26,7 @@ export default class Aura extends Character
     {
         this.playerContainer.carryMagic(new Magic(this.scene, this.playerContainer.x, this.playerContainer.y));
         this.playerContainer.player.setMagic();
-        this.scene.sound.play('pick')   // sound feedback
+        this.scene.sound.play('pick', this.scene.sfxConfig)   // sound feedback
         this.destroy()
     }
 }
