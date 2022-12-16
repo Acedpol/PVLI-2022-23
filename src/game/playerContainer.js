@@ -105,7 +105,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     //  * Carries an magic
     //  * @param {Phaser.GameObjects.GameObject} magic The magic that will carry over
     //  */
-    carryMagic(magic)
+    carryMagic(magic, newScene)
     {
         if (!this.carriesMagic)
         {
@@ -114,11 +114,12 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
             this.magic = magic; // <---
             this.magic.angle = 0;
             this.magic.stopRotation();
-            this.carriesMagic = true;
-
+            
             // disable from physics world
-            if(this.player.crownPowerUp)
+            if(this.player.crownPowerUp && !newScene)
             this.scene.physics.world.disableBody(magic.body)
+            
+            this.carriesMagic = true;
 
             // Recoge el magic y se lo añade a playerContainer (y lo coloca)
             this.add(magic)
@@ -181,6 +182,6 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         if(this.player.attackPowerUp)
         this.player.setAttack();
         if(this.player.crownPowerUp)
-        this.carryMagic();
+        this.carryMagic(new Magic(this.scene, this.x, this.y), true);
     }
 }

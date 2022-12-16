@@ -45,7 +45,7 @@ export default class Magic extends Character
     /** @override */
     effect()
     {
-        this.playerContainer.carryMagic(this);
+        this.playerContainer.carryMagic(this, false);
         this.scene.sound.play('pick', this.scene.sfxConfig);
     }
 

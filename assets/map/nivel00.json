@@ -217,6 +217,46 @@
                  "width":25.1666666666665,
                  "x":1420.5,
                  "y":361.916666666667
+                }, 
+                {
+                 "height":0,
+                 "id":29,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"Aura"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":415,
+                 "y":747
+                }, 
+                {
+                 "height":53.0833,
+                 "id":30,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"enlace",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"puerta"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":25.1667,
+                 "x":436.749983333333,
+                 "y":697.45835
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -225,7 +265,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":28,
+ "nextobjectid":31,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.2",

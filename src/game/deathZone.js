@@ -19,6 +19,7 @@ export default class DeadZone extends Character
 
     /** @override */
     effect() {
+        this.scene.sound.play('player_fall', this.scene.sfxConfig);
         this.scene.handleGameLose(this);
     }
 
@@ -43,7 +44,7 @@ export default class DeadZone extends Character
     {
         if (this.scene.physics.overlap(this, this.scene.playerContainer.magic))
         {
-            this.playerContainer.carryMagic(this.scene.playerContainer.magic);
+            this.playerContainer.carryMagic(this.scene.playerContainer.magic, false);
         }
     }
 

@@ -185,6 +185,9 @@ export default class Boot extends Phaser.Scene
         // player death audio
         this.load.audio('player_dead', './assets/sounds/death.wav')//
 
+        // player fall audio
+        this.load.audio('player_fall', './assets/sounds/fall.wav')//
+
         // wolf audio 
         this.load.audio('bark', './assets/sounds/barking.wav') //
 

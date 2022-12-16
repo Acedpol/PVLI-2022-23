@@ -376,24 +376,6 @@
                  "y":533.331271187765
                 }, 
                 {
-                 "height":0,
-                 "id":27,
-                 "name":"",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"Halo"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":890.894033837934,
-                 "y":349.331271187765
-                }, 
-                {
                  "height":11.1666666666666,
                  "id":28,
                  "name":"",
@@ -411,9 +393,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":192,
-                 "x":218.894033837934,
-                 "y":857.081271187765
+                 "width":209,
+                 "x":210.394033837934,
+                 "y":810.081271187765
                 }, 
                 {
                  "height":9.16666666666674,
@@ -433,9 +415,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":209,
-                 "x":1234.39403383793,
-                 "y":857.414604521098
+                 "width":242.5,
+                 "x":1218.0607005046,
+                 "y":812.081271187765
                 }],
          "offsetx":-2.89403383793399,
          "offsety":4.0020621455687,
@@ -449,7 +431,7 @@
  "nextobjectid":30,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2021.03.23",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {
@@ -7520,6 +7502,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":1.5,
+ "version":"1.6",
  "width":100
 }
