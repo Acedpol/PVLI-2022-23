@@ -50,7 +50,7 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
 
     preUpdate(t,dt)
     {
-        this.iterate( (child) => child.preUpdate(t,dt) ) // for animations
+        //this.iterate( (child) => child.preUpdate(t,dt) ) // for animations
 
         // revisar si esta en contacto con el suelo y recargar salto
         this.groundCheck = this.body.onFloor();

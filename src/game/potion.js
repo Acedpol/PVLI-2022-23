@@ -3,11 +3,11 @@ import Character from './character.js';
 export default class Potion extends Character
 {
     /**
-     * Constructor del objeto combustible
-     * @param {Phaser.Scene} scene Escena a la que pertenece el combustible
+     * Constructor del objeto
+     * @param {Phaser.Scene} scene Escena a la que pertenece
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
-     * @param {Phaser.Textures.Texture} texture Textura usada para el combustible (image)
+     * @param {Phaser.Textures.Texture} texture Textura usada (image)
      */
     constructor(scene, x, y) 
     {

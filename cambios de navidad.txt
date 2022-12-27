@@ -1,0 +1,15 @@
+	no ha desaparecido la referencia de assets y licencia sigue en \PVLI-2022-23\assets\posibles assets.txt
+
+	inicio de comentarios antiguos quitado (x ahora combustible)
+
+	no entiendo que el comentario de que esto no es lo que hace
+
+    /**
+     * Método ir hacia el jugador (si lo toca le disminuye la vida)
+     * @param {GameObject} target lo que persigue
+     */
+
+Problemas con las librerías/scripts utilizados en la web después de un rato de interacciones.
+	esto tiene pinta de ser la conexion con twitter en el https ni idea
+
+	Arreglado el problema del cambio de nivel del 3 al 2

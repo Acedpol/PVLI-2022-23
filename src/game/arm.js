@@ -4,11 +4,11 @@ export default class Arm extends Character
 {
 
     /**
-     * Constructor del objeto combustible
+     * Constructor del objeto
      * @param {Phaser.Scene} scene Escena a la que pertenece el objeto
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
-     * @param {Phaser.Textures.Texture} texture Textura usada para el combustible (image)
+     * @param {Phaser.Textures.Texture} texture Textura usada para (image)
      */
     constructor(scene, x, y) 
     {

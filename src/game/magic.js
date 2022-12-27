@@ -7,11 +7,11 @@ export default class Magic extends Character
     /** @type {Number} */   incRot
 
     /**
-     * Constructor del objeto combustible
-     * @param {Phaser.Scene} scene Escena a la que pertenece el combustible
+     * Constructor del objeto
+     * @param {Phaser.Scene} scene Escena a la que pertenece
      * @param {number} x Coordenada X
      * @param {number} y Coordenada Y
-     * @param {Phaser.Textures.Texture} texture Textura usada para el combustible (image)
+     * @param {Phaser.Textures.Texture} texture Textura usada para (image)
      */
     constructor(scene, x, y) 
     {
