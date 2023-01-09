@@ -1,3 +1,5 @@
+// Conjunto de métodos para crear el menu superpuesto que pertenece a HTML
+
 import { gameLogic } from '../src/game.js'
 import { resume, setPause, swithToOptions } from '../src/utils/callbacks.js';
 

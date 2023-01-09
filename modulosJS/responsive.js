@@ -1,3 +1,5 @@
+// Conjunto de métodos para reescalar el canvas según el navegador
+
 import { gameLogic, cargarJuego } from '../src/game.js';
 import { addNewStyle, submitNewStyle } from './dynamicCSS.js';
 import { offInfoBar, offInfo, offAsk, onAsk } from './pauseCtrl.js';
