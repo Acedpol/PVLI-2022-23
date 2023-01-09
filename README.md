@@ -268,7 +268,7 @@ Todo comienza en un museo, donde unos críos le quitan unas extremidades a una e
 ---  
 
 [WEB]: https://acedpol.github.io/Proyecto_PVLI---AVES/ "Web del Proyecto"
-[portada]: ./assets/images/donde_sin_ed_menu.jpg
+[portada]: ./assets/images/mainMenu.jpg
 [niveles]: ./assets/images/Niveles.PNG
 [esqueleto]: ./assets/sprites/Skeleton%20Sprite%20Pack/Skeleton/GIFS/Skeleton%20Walk.gif
 [perro]: ./assets/sprites/gothicvania%20patreon%20collection/gothicvania%20patreon%20collection/Hell-Hound-Files/GIFS/hell-hound-walk.gif
