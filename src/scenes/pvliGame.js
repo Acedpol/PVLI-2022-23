@@ -139,7 +139,7 @@ export default class pvliGame extends blankGame
     }
 
     loadMap(id) {    
-        switch (3) {
+        switch (2) {
             case 0:
                 this.createMap('nivel00', 16, 16, 'mapa', 'Fondo','img_tilemap', 'img_tilemap2', 'plataformas','fondo' );
                 break;  
