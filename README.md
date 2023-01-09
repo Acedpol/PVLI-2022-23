@@ -253,6 +253,10 @@ Todo comienza en un museo, donde unos críos le quitan unas extremidades a una e
 
 ![IMG - Diagrama final][img-final]  
 
+#### [Diagrama escenas][img-escenas]  
+
+![IMG - Diagrama escenas][img-escenas]  
+
 [Go back to index -->][indice]  
 
 ---  
@@ -284,3 +288,4 @@ Todo comienza en un museo, donde unos críos le quitan unas extremidades a una e
 [img-intro-phaser]: ./docs/UML/UML-Intro.jpg "Diagrama de introducción a Phaser"  
 [img-inicio]: ./docs/UML/DiagramaClases.png "Diagrama inicial"  
 [img-final]: ./docs/UML/uml-final.png "Diagrama final"  
+[img-escenas]: ./docs/UML/escenas.png "Diagrama escenas"  
