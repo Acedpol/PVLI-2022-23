@@ -1,5 +1,5 @@
-import Character from './character.js';
-export default class Proyectile extends Character {
+import GameObject from './gameObject.js';
+export default class Proyectile extends GameObject {
     /**
      * Constructor de Heal
      * @param {Scene} scene Escena en la que aparece el bate

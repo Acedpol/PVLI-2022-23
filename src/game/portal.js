@@ -1,6 +1,6 @@
-import Character from './character.js';
+import GameObject from './gameObject.js';
 
-export default class Portal extends Character {
+export default class Portal extends GameObject {
 
     constructor(scene, x, y, w, h, properties){
         super(scene, x + w * 0.5, y + h * 0.5, '');
@@ -32,7 +32,7 @@ export default class Portal extends Character {
     /** @override */
     effect() {
         if (!this.overlapping && (!this.bloqueado || this.playerContainer.magic!=null)) {
-            console.log('origen: ' + this.origen + ', destino: ' + this.destino);
+            // console.log('origen: ' + this.origen + ', destino: ' + this.destino);
             let dist = {X: this.playerContainer.x - this.x, Y: this.playerContainer.y - this.y}; 
             this.scene.portal_switchMap(this.origen, this.destino, dist);
         }

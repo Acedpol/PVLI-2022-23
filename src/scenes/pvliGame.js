@@ -125,7 +125,7 @@ export default class pvliGame extends blankGame
                     let diff = 0;
                     if (this.player.velocity.y > 0) diff = this.player.height;
                     if (this.player.velocity.y < 0) diff = -this.player.height;
-                    this.playerContainer.setPosition(obj.x + dist.X, obj.y + dist.Y + diff * 0.5);
+                    this.playerContainer.setPosition(obj.x + dist.X, obj.y + dist.Y + diff * 1.25);
                 }
             }
         });

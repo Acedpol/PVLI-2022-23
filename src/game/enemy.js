@@ -4,9 +4,9 @@
  * los diferentes enemigos con distintos ataques y estadísticas.
  */
 
-import Character from './character.js';
+import GameObject from './gameObject.js';
 
-export default class Enemy extends Character {
+export default class Enemy extends GameObject {
 
 
     constructor(scene, x, y, spritesheet, n, stats){

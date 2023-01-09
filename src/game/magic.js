@@ -1,6 +1,6 @@
-import Character from './character.js'
+import GameObject from './gameObject.js'
 
-export default class Magic extends Character
+export default class Magic extends GameObject
 {
     /** @type {boolean} */  stop
     /** @type {boolean} */  onRotation
