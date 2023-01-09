@@ -130,11 +130,11 @@ Comienza con un menú donde se selecciona “iniciar partida”. Nada más empez
 ### 1. Mecánica
    #### 1. Mecánicas del personaje:
     Se basan en las piezas del cuerpo que se van encontrando a través de los niveles.
-      ● Vida: La barra de vida será discreta, en la que aparecerán 5 corazones. Cada golpe de enemigo quita 1.
-	● Básicas: Movimiento lateral y salto. Estas mecánicas se pueden usar desde el inicio.
-	  ● Brazos: Cuando consigues los brazos, el personaje consigue la capacidad para atacar y matar a los enemigos.
+      ● Vida: La barra de vida será discreta, en la que aparecerán 9 corazones.  
+      ● Básicas: Movimiento lateral y salto. Estas mecánicas se pueden usar desde el inicio.
+      ● Brazos: Quita 1 de vida. Cuando consigues los brazos, el personaje consigue la capacidad para atacar y matar a los enemigos.
       ● Alas: Al obtener las alas podrás dar doble salto, lo que te permitirá llegar a sitios antes inaccesibles.
-      ● Cabeza: La cabeza te permite lanzar un proyectil. Con esto puedes matar a enemigos a distancia y acceder a la sala final.
+      ● Cabeza: Quita 2 de vida. La cabeza te permite lanzar un proyectil. Con esto puedes matar a enemigos a distancia y acceder a la sala final.
 	  
    #### 2. Mecánicas del escenario:
     ● Plataformas
@@ -208,18 +208,21 @@ Todo comienza en un museo, donde unos críos le quitan unas extremidades a una e
    ##### ![Pantalla inicio][esqueleto] Esqueleto   
     ● Enemigo a melé, se mueve de un lado a otro dentro de su área y si ve a un enemigo ataca.
 	● vida: 3
+	● daño: 1
 	● velocidad: baja
 	● característica: resistente al knockback del ataque, golpea con su hacha.
     
    ##### Guarda de seguridad
     ● Enemigo a distancia, espera dormido que el jugador entra en el rango de ataque empieza a atacar.
 	● vida: 2
+	● daño: 1
 	● velocidad: estática
 	● característica: carga su rifle y te dispara.
     
    ##### ![Pantalla inicio][perro] Perro
     ● No ataca pero hace daño por contacto, es más rápido que el esqueleto y persigue al jugador si esste entra en su rango de visión.
 	● vida: 1
+	● daño: 1
 	● velocidad: alta
 	● característica: solo daña al contacto, pero se le suele ver acompañado.
 
