@@ -1,10 +1,5 @@
 /* RECURSOS */
 @font-face {
-  font-family: 'Pixeled';
-  src: url('../assets/fonts/Minecraftia.ttf') format('truetype');
-}
-
-@font-face {
   font-family: 'Greconian';
   src: url('../assets/fonts/Greconian.ttf') format('truetype');
 }
@@ -12,11 +7,6 @@
 @font-face {
   font-family: 'Canterbury';
   src: url('../assets/fonts/Canterbury.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roman';
-  src: url('../assets/fonts/roman_font_7.ttf') format('truetype');
 }
 
 /* ARREGLO PARA LOS INTERLINEADOS: utilizado en canvas y en el menu de iconos. La clase info se asegura de conservarlo. */
