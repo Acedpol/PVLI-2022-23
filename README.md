@@ -89,7 +89,6 @@ Si node.js no está instalado, descargar e instalar: https://nodejs.org/dist/v16
 
 [**I - Aspectos generales**][1]  
 1. Relato breve y parcial de una partida típica
-Comienza con un menú donde se selecciona “iniciar partida”. Nada más empezar, se te introducirá el juego y su mecánica básica, y en esa misma sala se confrontará al primer enemigo, un perro, para a continuación conseguir sus brazos y poder matarlo. Una vez pasada esa sala llegarás a la segunda, que hace la función de conectar el resto de salas. En esta podrás sver por primera vez a un nuevo enemigo, los esqueletos, y cuando exploras todas la habitación encontrarás las alas y dos puertas. Una a la última sala, la cual está bloqueada hasta que tengas todas las piezas, y otra a la tercera sala, la cual te da la corona. En la sala de la coona puedes encontrarte al último tipo de enemigos, los guarias, los cuales te dispararán cuando entras en su rango. Una vez completas la sala consiguies la corona, la cual te permite entrar a la ultima sala y completarte el juego.
 
 [**II - Jugabilidad**][2]  
 1. Mecánica  
@@ -120,7 +119,7 @@ Comienza con un menú donde se selecciona “iniciar partida”. Nada más empez
 Metroidvania pixelart basado en reconstrucción de victoria. La experiencia general de juego será un plataformas en los que irás consiguiendo powerUps que te permitirán avanzar con más facilidad y acceder a nuevos sitios. 
 
 ### 1. **Relato breve y parcial de una partida típica**
-Comienza con un menú donde se selecciona “iniciar partida”. Nada más empezar, se te introducirá el juego y su mecánica básica, y en esa misma sala se confrontará un enemigo, para a continuación conseguir sus brazos. Una vez pasada esa sala 
+Comienza con un menú donde se selecciona “iniciar partida”. Nada más empezar, se te introducirá el juego y su mecánica básica, y en esa misma sala se confrontará al primer enemigo, un perro, para a continuación conseguir sus brazos y poder matarlo. Una vez pasada esa sala llegarás a la segunda, que hace la función de conectar el resto de salas. En esta podrás sver por primera vez a un nuevo enemigo, los esqueletos, y cuando exploras todas la habitación encontrarás las alas y dos puertas. Una a la última sala, la cual está bloqueada hasta que tengas todas las piezas, y otra a la tercera sala, la cual te da la corona. En la sala de la coona puedes encontrarte al último tipo de enemigos, los guarias, los cuales te dispararán cuando entras en su rango. Una vez completas la sala consiguies la corona, la cual te permite entrar a la ultima sala y completarte el juego.
 
 [Go back to index -->][indice]  
 
