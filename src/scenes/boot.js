@@ -34,10 +34,10 @@ export default class Boot extends Phaser.Scene
         { frameWidth: 32, frameHeight: 32 }) 
 
         // player lives 
-        this.load.image('lifeSpr', './assets/sprites/jugador/stoneHeart.png');
+        this.load.image('lifeSpr', './assets/sprites/interfaz/stoneHeart.png');
 
         // player jump power
-        this.load.image('jumpBar', './assets/sprites/jugador/barrita.png');
+        this.load.image('jumpBar', './assets/sprites/interfaz/jumpPower.png');
 
         // --- ENEMIGOS ---
 
@@ -109,19 +109,19 @@ export default class Boot extends Phaser.Scene
         // --- OBJECTS --- 
 
         // pocion
-        this.load.spritesheet('potiSprite', "./assets/sprites/llena.png",
+        this.load.spritesheet('potiSprite', "./assets/sprites/objetos/llena.png",
         { frameWidth: 16, frameHeight: 16 })
 		    
         //alas
-        this.load.spritesheet('alasSprite', "./assets/sprites/jugador/alas.png", 
+        this.load.spritesheet('alasSprite', "./assets/sprites/objetos/alas.png", 
         { frameWidth: 32, frameHeight: 32 })
         
         //aureola
-        this.load.spritesheet('aureolaSprite', "./assets/sprites/jugador/aureola.png", 
+        this.load.spritesheet('aureolaSprite', "./assets/sprites/objetos/aureola.png", 
         { frameWidth: 32, frameHeight: 32 })
         
         //aureola
-        this.load.spritesheet('brazoSprite', "./assets/sprites/jugador/brazo.png",
+        this.load.spritesheet('brazoSprite', "./assets/sprites/objetos/brazo.png",
         { frameWidth: 32, frameHeight: 31 })
         
         // --- SCENE --- 

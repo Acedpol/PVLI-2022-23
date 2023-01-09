@@ -9,4 +9,3 @@
 | https://oisougabo.itch.io/gap-i | Enemigos |
 | https://szadiart.itch.io/pixle-castle-2d | Fondo y mapa |
 | Castlevania SOTN: Dance of Pales https://www.youtube.com/watch?v=Oquad3rnZSI&list=PL9C2427AFB919D8C2 | Musica |
- 	
