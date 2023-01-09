@@ -217,9 +217,6 @@ export default class blankGame extends blankScene
             .setZoom(zx,zy)
             .setViewport(mw,mh,this.zw,this.zh);
 
-        // establece el area de libertad de movimiento (sin que la cámara persiga) a 0.15x del tamaño total.
-        this.cameras.main.setDeadzone(this.logicWidth * 0.15, this.logicHeight * 0.15);
-
         // debugger: datos del canvas y la cámara
         if (debug) this.debugCameraAndViewport(z);
     }
