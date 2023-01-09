@@ -36,7 +36,7 @@ export default class Guard extends Enemy {
     {
         if(this.y + 75 > this.target.y  && this.y - 125 < this.target.y)
         {
-            if((this.x+175 > this.target.x && this.x < this.target.x)||(this.x-175 < this.target.x && this.x > this.target.x))
+            if((this.x+125 > this.target.x && this.x < this.target.x)||(this.x-175 < this.target.x && this.x > this.target.x))
             {
                 if(this.x < this.target.x)
                 {
