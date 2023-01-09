@@ -30,25 +30,15 @@ export default class Skeleton extends Enemy {
     }
 
     move(){   
-        
-        if(this.canMove)
-        {           
-            if(this.checkRange())
-            {
-                if(this.canAttack)
-                    this.attack();
-            }
-            else
-            {
-                if(this.canAttack)
-                {
+        if (!this.canMove || !this.canAttack) return;
 
-                    this.play('skeleton_walk', true);
-                    this.checkPatrol();
-                    this.setVelocityX(this.speed*this.dir);
-                    this.body.width = 22;
-                }
-            }  
+        if (this.checkRange()) {
+            this.attack();
+        } else {
+            this.play('skeleton_walk', true);
+            this.checkPatrol();
+            this.setVelocityX(this.speed*this.dir);
+            this.body.width = 22;
         }
     }
     attack()

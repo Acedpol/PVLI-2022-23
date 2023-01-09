@@ -326,32 +326,14 @@ export default class blankMenu extends blankScene
      * @returns color, relleno y contorno
      */
     btnColor(N) {
-        // selecciona el color del texto, del relleno y del borde
-        let _color, _fill, _line
-        switch (N) {
-            case 1:
-                _color = '#0000FF' //
-                _fill = 0xffffff
-                _line = 0x0000ff
-                break;
-            case 2:
-                _color = '#00FF00' //
-                _fill = 0x440044
-                _line = 0x00ff00
-                break;
-            case 3: 
-                _color = '#FF0000' //
-                _fill = 0x111111
-                _line = 0xff0000
-                break;  
-            case 4: 
-                _color = '#FFFFFF' //
-                _fill = 0x000000
-                _line = 0xffffff
-                break;       
-            default:
-                break;
-        }
-        return {color: _color, relleno: _fill, contorno: _line};
+        const BUTTON_COLORS = {
+            1: { color: '#0000FF', relleno: 0xffffff, contorno: 0x0000ff },
+            2: { color: '#00FF00', relleno: 0x440044, contorno: 0x00ff00 },
+            3: { color: '#FF0000', relleno: 0x111111, contorno: 0xff0000 },
+            4: { color: '#FFFFFF', relleno: 0x000000, contorno: 0xffffff },
+        };
+        
+        if (N in BUTTON_COLORS) return BUTTON_COLORS[N];
+        throw new RangeError(`N must be one of: ${Object.keys(BUTTON_COLORS).join(', ')}`);
     }
 };

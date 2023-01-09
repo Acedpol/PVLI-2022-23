@@ -39,7 +39,7 @@ export default class pvliGame extends blankGame
         super.init(args);
 
         if (this.ambConfig.volume === 0.60) this.ambConfig.volume -= 0.35;
-        scene.sound.play('musica_game', scene.ambConfig);
+        this.sound.play('musica_game', this.ambConfig);
 
         // debugSettings();
 
@@ -98,13 +98,8 @@ export default class pvliGame extends blankGame
             this.switchMap(ori, dest);
             
             // busca la puerta destino y reubica al jugador
-            this.objects.forEach(obj => {
-                if (obj.name === 'puerta') {
-                    if (obj.origen === dest && obj.destino === ori) {
-                        this.playerContainer.setPosition(obj.x, obj.y - obj.height * 0.5);
-                    }
-                }
-            });
+            const door = this.objects.find(obj => obj.name === 'puerta' && obj.origen === dest && obj.destino === ori);
+            if (door) this.playerContainer.setPosition(door.x, door.y - door.height * 0.5);
         }
     }
 
@@ -153,11 +148,13 @@ export default class pvliGame extends blankGame
     createObjects() {
         // el tag del ObjectLayer('...') es el mismo que TILED
         for (const objeto of this.map.getObjectLayer('entidades').objects) {
-            if (objeto.properties) {
-                for (const { name, value } of objeto.properties) {
-                    if (name === 'type')
-                        switch (value) {
-                            case 'hound':
+            if (!objeto.properties) continue;
+          
+            for (const { name, value } of objeto.properties) {
+                if (name !== 'type') continue;
+          
+                switch (value) {
+                    case 'hound':
                                 this.addToScene(new Hound(this, objeto.x, objeto.y), true);
                                 break;
                             case 'Magic':
@@ -202,7 +199,6 @@ export default class pvliGame extends blankGame
                                 break;
                             default:
                                 break;
-                        }
                 }
             }
         }
