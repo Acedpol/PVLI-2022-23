@@ -1,6 +1,6 @@
-import Character from './character.js';
+import GameObject from './gameObject.js';
 
-export default class Portal extends Character {
+export default class Portal extends GameObject {
 
     constructor(scene, x, y, w, h, properties){
         super(scene, x + w * 0.5, y + h * 0.5, '');

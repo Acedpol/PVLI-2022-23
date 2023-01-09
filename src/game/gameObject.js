@@ -1,12 +1,12 @@
 /**
- * Clase Character. Todas las entidades que pueden potencialmente interactuar con el jugador. 
+ * Clase GameObject. Todas las entidades que pueden potencialmente interactuar con el jugador. 
  * De momento tanto los enemigos como los pinchos heredan de esta clase, 
  * ya que necesitan tener puntero del jugador.
  */
 
 import Entity from "./entity.js";
 
-export default class Character extends Entity
+export default class GameObject extends Entity
 {
     /**
      * Constructor de enemigo

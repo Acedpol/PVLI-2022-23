@@ -1,6 +1,6 @@
 /* @type {Phaser.GameObjects.GameObject} */
-import Character from './character.js';
-export default class DeadZone extends Character
+import GameObject from './gameObject.js';
+export default class DeadZone extends GameObject
 {
     constructor(scene, x, y, w, h){
         super(scene, x + w * 0.5, y + h * 0.5,'');

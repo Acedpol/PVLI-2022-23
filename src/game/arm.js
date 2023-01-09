@@ -1,6 +1,6 @@
-import Character from './character.js';
+import GameObject from './gameObject.js';
 
-export default class Arm extends Character
+export default class Arm extends GameObject
 {
 
     /**

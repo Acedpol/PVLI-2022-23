@@ -1,6 +1,6 @@
-import Character from './character.js';
+import GameObject from './gameObject.js';
 
-export default class Potion extends Character
+export default class Potion extends GameObject
 {
     /**
      * Constructor del objeto

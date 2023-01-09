@@ -1,7 +1,7 @@
-import Character from './character.js';
+import GameObject from './gameObject.js';
 import Magic from './magic.js';
 
-export default class Aura extends Character
+export default class Aura extends GameObject
 {
 
     /**
