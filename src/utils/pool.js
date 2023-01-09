@@ -11,7 +11,7 @@ export default class Pool extends Phaser.GameObjects.Group
      * @param {Phaser.Scene} scene escena a la que pertenece
      * @param {Phaser.GameObjects.Sprite} type tipo de objeto
      */
-    constructor(scene, type = Phaser.GameObjects.Sprite)
+    constructor(scene, type)
     {
         super(scene, type);
     }

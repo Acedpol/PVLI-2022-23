@@ -12,7 +12,7 @@ export default class Dock extends Pool
      * @param {Struct} args parametros de posición y espaciado
      * @param {Phaser.GameObjects.Sprite} type tipo de objeto
      */
-    constructor(scene, args, type = Phaser.GameObjects.Sprite)
+    constructor(scene, args, type)
     {
         super(scene, type);
         this.setOrigin(0.5);

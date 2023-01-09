@@ -1,5 +1,4 @@
 import { offInfo, offInfoBar, onInfo, onInfoBar } from "../../modulosJS/pauseCtrl.js";
-import { gameLogic } from "../game.js"
 
 // ejemplo:
 // gameLogic.scene.getScene('menuGame').scene.start('pvliGame');
@@ -52,13 +51,6 @@ export function swithToSonido(scene) {     // --->
 }
 export function backFromSonido(scene) {    // <---
     scene.scene.start('menuOptions', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
-}
-
-export function turnOnGameMusic(scene) {
-    if (scene.active) {
-        scene.sound.stopAll();
-        scene.sound.play('musica_game', scene.ambConfig);
-    }
 }
 
 // soundMenu: speaker

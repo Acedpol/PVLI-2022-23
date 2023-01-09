@@ -128,7 +128,6 @@ export default class Boot extends Phaser.Scene
 
         // background
         this.load.image('img_back', './assets/images/background.jpg')
-        this.load.image('img_back2', './assets/images/fondo-ladrillos.jpg')
         this.load.image('img_back3', './assets/images/victoria-de-samotracia__1080x567v2.png')
 
         // map

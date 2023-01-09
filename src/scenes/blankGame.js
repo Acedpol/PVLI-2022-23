@@ -37,10 +37,6 @@ export default class blankGame extends blankScene
         super.init(args);
         this.objects = [];
 
-        // Level select assignment
-        // this.level = level
-        // console.log('Level = ' + this.level)
-
         // UI interface
         this.scene.launch('UI', args);
         // console.log('-- new UI --');
@@ -72,6 +68,7 @@ export default class blankGame extends blankScene
     handleGameLose()
     {
         // kill object and play feedback
+        this.sound.stopAll();
         this.playerContainer.destroy();
         gameOver(this);
     }

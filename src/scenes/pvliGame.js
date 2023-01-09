@@ -1,5 +1,4 @@
 import Magic from '../game/magic.js'
-import PlayerContainer from '../game/playerContainer.js'
 import Hound from '../game/hound.js'
 import Guard from '../game/guard.js'
 import Skeleton from '../game/skeleton.js'
@@ -11,7 +10,7 @@ import Arm from '../game/arm.js'
 import DeathZone from '../game/deathZone.js'
 import Puerta from '../game/puerta.js'
 import Portal from '../game/portal.js'
-import { gameComplete, turnOnGameMusic } from '../utils/callbacks.js'
+import { gameComplete } from '../utils/callbacks.js'
 //import Trigger from '../game/trigger.js'
 
 export default class pvliGame extends blankGame
@@ -39,14 +38,8 @@ export default class pvliGame extends blankGame
     {
         super.init(args);
 
-        // solucion para la musica nada mas empezar
-        this.input.once('pointermove', () => {
-            if (!this.sonando) {
-                if (this.ambConfig.volume === 0.60) this.ambConfig.volume -= 0.35;
-                turnOnGameMusic(this);
-                this.sonando = true;
-            }
-        });
+        if (this.ambConfig.volume === 0.60) this.ambConfig.volume -= 0.35;
+        scene.sound.play('musica_game', scene.ambConfig);
 
         // debugSettings();
 
