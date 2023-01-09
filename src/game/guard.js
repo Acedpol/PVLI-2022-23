@@ -1,14 +1,12 @@
 import Enemy from './enemy.js';
 import Proyectile from './proyectile.js';
-//import Trigger from './trigger.js';
 
 export default class Guard extends Enemy {
     constructor(scene, x, y) {
         let stats = { health: 2, speed: 40 };
         super(scene, x, y,'guardIdleSprite', 3, stats);
         this.play('guard_sleep');
-        //this.play('guard_idle');
-       // this.setOrigin(1);
+        
         this.dir = 1;
         this.shooting = false;
         this.sleep = false;
@@ -28,7 +26,7 @@ export default class Guard extends Enemy {
     }
 
     /**
-     * Método ir hacia el jugador (si lo toca le disminuye la vida)
+     * Método detectar e ir hacia el jugador (si lo toca le disminuye la vida)
      * @param {GameObject} target lo que persigue
      */
 

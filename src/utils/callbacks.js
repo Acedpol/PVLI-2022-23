@@ -20,7 +20,6 @@ export function startGame(scene) {
 }
 export function gameOver(scene) {
     gameActive = false;
-    // scene.sound.play('lose', scene.sfxConfig);
     scene.scene.start('GameOver', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
     scene.scene.stop('UI');
     scene.scene.stop('pvliGame');
@@ -75,7 +74,6 @@ export function toggleMute(scene) {
 // pause / play any scene
 export function setPause(scene) {
     onInfo(); onInfoBar();
-    // console.log('key: ' + scene.scene.key);
 
     if (gameActive) 
     {

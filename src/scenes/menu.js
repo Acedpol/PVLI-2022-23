@@ -1,14 +1,5 @@
 import blankScene from "./scene.js";
 
-// const rectStyle = {
-//     contorno: Number,
-//     relleno: Number,
-//     alphaFill: Number,
-//     alphaLine: Number,
-//     fill: Boolean,
-//     line: Boolean
-// }
-
 export default class blankMenu extends blankScene
 {
     constructor(keyname) 

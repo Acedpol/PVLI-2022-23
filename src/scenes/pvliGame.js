@@ -161,8 +161,6 @@ export default class pvliGame extends blankGame
         // el tag del ObjectLayer('...') es el mismo que TILED
         for (const objeto of this.map.getObjectLayer('entidades').objects) {
             if (objeto.properties) {
-                // console.log("tiene properties");
-                // console.log(objeto.properties);
                 for (const { name, value } of objeto.properties) {
                     if (name === 'type')
                         switch (value) {

@@ -108,8 +108,6 @@ export class Controls extends Entity
         super(scene, x, y, 'controls', n);
         this.setDepth(2);
         this.setDisplaySize(this.width * scene.coeWidth, this.height * scene.coeHeight);
-
-        // console.log("- icon dims: { w: " + this.width + ", h: " + this.height + " } ");
     }
 
     preUpdate(t,dt) 

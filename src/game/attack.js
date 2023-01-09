@@ -5,7 +5,7 @@ export default class Attack extends GameObject
     
     /**
      * Constructor de Heal
-     * @param {Scene} scene Escena en la que aparece el bate
+     * @param {Scene} scene Escena en la que aparece el hechizo
      * @param {number} x coordenada x
      * @param {number} y coordenada y
      */

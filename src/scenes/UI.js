@@ -13,7 +13,6 @@ export default class UI extends blankMenu
 
     init(args) {
         super.init(args);
-        // console.log('UI iniciada!');
         this.initC = true;
     }
 
@@ -38,7 +37,6 @@ export default class UI extends blankMenu
         this.jumps = new Dock(this, {x: z, y: z * 2, stepX: z + dz, stepY: 0 }, Jump.prototype);
         this.jumps.setPlayer();
         this.jumps.reset(this.playerContainer.player.maxJumps, 'jumpBar');
-        //this.jumps.scaleXY(0.5)
         this.initP = true;
     }
 

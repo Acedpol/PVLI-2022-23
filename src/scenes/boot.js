@@ -142,7 +142,6 @@ export default class Boot extends Phaser.Scene
 
         // --- UI --- 
         // button background
-        this.load.image('button', './assets/images/btn-piedra.png')//Esto igual cambiar texto y resultado
         this.load.spritesheet('controls', "./assets/images/controles.png",
         { frameWidth: 308, frameHeight: 168 })
         
@@ -151,7 +150,7 @@ export default class Boot extends Phaser.Scene
 
         //Audios
         // pick audio
-        this.load.audio('pick', './assets/sounds/pick.wav')//yo lo dejaria
+        this.load.audio('pick', './assets/sounds/pick.wav')
 
         // musica - in game
         this.load.audio('musica_game', './assets/sounds/musicafondocastelvania.mp3')

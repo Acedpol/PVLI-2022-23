@@ -169,19 +169,16 @@ export default class PlayerLogic extends Entity
         // move input
         if (this.left)
         {
-            // this.setVelocityX(-80);
             this.velocity.x = -80;
             this.flipX = true;
         }
         else if (this.right)
         {
-            // this.setVelocityX(80);
             this.velocity.x = 80;
             this.flipX = false;
         }
         else
         {
-            // this.setVelocityX(0);
             this.velocity.x = 0;
         }
 
@@ -190,8 +187,6 @@ export default class PlayerLogic extends Entity
         {
             this.allowedJumps--;
             if (this.scene.UI.initP) this.scene.UI.jumps.deleteLast(); // UI
-            // console.log('allowed jumps: ' + this.allowedJumps);
-            // this.setVelocityY(-190);
             this.velocity.y = -190;
             this.nextJump = this.scene.time.now + 500;
         }
