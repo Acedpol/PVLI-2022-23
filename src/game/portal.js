@@ -32,7 +32,7 @@ export default class Portal extends GameObject {
     /** @override */
     effect() {
         if (!this.overlapping && (!this.bloqueado || this.playerContainer.magic!=null)) {
-            console.log('origen: ' + this.origen + ', destino: ' + this.destino);
+            // console.log('origen: ' + this.origen + ', destino: ' + this.destino);
             let dist = {X: this.playerContainer.x - this.x, Y: this.playerContainer.y - this.y}; 
             this.scene.portal_switchMap(this.origen, this.destino, dist);
         }
