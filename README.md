@@ -176,31 +176,36 @@ En la parte del PLAY se le introducirán al jugador los controles para a continu
 
 Todo comienza en un museo, donde unos críos le quitan unas extremidades a una estatua que ya de por sí le faltaban alguna que otra. Poco después, de repente, cae un estruendoso rayo que da vida a todas las estatuas del museo (incluyendo a nuestra protagonista). Ella, sabiendo lo que le acaban de quitar esos críos y lo que adicionalmente le falta para volver a ser la que fue, para estar "completa". Emprendiendo este camino de justicia deberá enfrentarse a multitud de enemigos que obstaculizan su camino hacia la victoria.
 
-### 2. Niveles
+### 2. Niveles  
 
- ![Pantalla inicio][niveles]
- ###Descripción de niveles.
-   ####  Nivel 1:
-    Se basan en las piezas del cuerpo que se van encontrando a través de los niveles.
+ ![Pantalla inicio][niveles]  
+ 
+ ### Descripción de niveles:  
+ 
+   ####  Nivel 1:  
+    Se basan en las piezas del cuerpo que se van encontrando a través de los niveles.  
       ● Cumple las funciones básicas de tutorial, te muestra como moverte y saltar y puedes practicarlo.
 	Antes de llegar a la salida, se puede ver un camino hacia arriba que conduce al nivel 3,
-	de momento inaccesible. Al final del nivel obtendrás los brazos.
-	####  Nivel 2:
+	de momento inaccesible. Al final del nivel obtendrás los brazos.  
+	
+  ####  Nivel 2:  
 	  ● Al llegar al nivel dos puedes ver una sala amplia con varias plataformas y enemigos.
 	Una vez te hayas hecho paso, podrás ver que hay otro camino hacia arriba, aún inaccesible.
 	Cuando el personaje sigue por el único camino restante y termina con más enemigos podrá llegar a por
-	las alas para conseguir el doble salto y llegar al nivel 3 por ese camino anterior.
-	####  Nivel 3:
+	las alas para conseguir el doble salto y llegar al nivel 3 por ese camino anterior.  
+	
+  ####  Nivel 3:  
       ● Accedes a este nivel depués de conseguir las alas desde el nivel 2.
 	Será un nivel mixtro en el que entraran los enemigos a distancia y zonas de parkour en las que habrá que usar doble salto.
 	Antes de completarlo, a la izquierda se encontrará el ultimo powerUp, la cabeza, solo que antes habrá que pasar por una zona en la
 	que te puedes caer, y llegar de nuevo al nivel uno por el pasadizo que ves al principio,
-	pero si aún no has conseguido la cabeza tendrás que volverlo a intentar.
-	####  Nivel 4:
+	pero si aún no has conseguido la cabeza tendrás que volverlo a intentar.  
+	
+  ####  Nivel 4:  
       ● Una vez pasado en nivel tres, podrás volver al 2 y abrir un pasadizo subterrane o que confuce al nivel final, el 4.
 	Aquí aparecerán los perros, enemigos que te podrán perseguir, acompañados de el resto de enemigos antes vistos.
 	En este nivel el jugador tendrá que superar el mayor reto,
-	formado por todos los obstaculos vistos anteriormente, para poder completar el juego.
+	formado por todos los obstaculos vistos anteriormente, para poder completar el juego.  
 
 ### 3. Personaje y enemigos
 
