@@ -9,7 +9,7 @@ Proyecto final de PVLI curso 22/23 para el grado GDV-UCM.
 ---  
 
 ## Idea principal
-Venus de Milo es la protagonista, que llegado un día un crío coge un bate y la revienta la cabeza, dado que se cae también pierde las piernas, entonces por cosas de la vida cobra vida propia y comienza a moverse en busca de sus extremidades, las cuales le van a ir dando power-ups, primero recuperará las piernas, con lo que podrá andar y saltar, luego un brazo con el que podrá pegar a los enemigos, luego el otro brazo que la dará la posibilidad de alcanzar sitios lejanos o atrapar enemigos con un gancho y finalmente la cabeza que la dará un poder mágico como defensa o algo parecido. Sería una especie de frankestein y podría ir cambiando sus piezas.
+Venus de Milo es la protagonista, que llegado un día un crío coge un bate y la revienta la cabeza, dado que se cae también pierde las piernas, entonces por cosas de la vida cobra vida propia y comienza a moverse en busca de sus extremidades, las cuales le van a ir dando power-ups, primero recuperará las piernas, con lo que podrá andar y saltar, luego un brazo con el que podrá pegar a los enemigos, luego las alas le darán la capacidad de dar doble salto y finalmente la cabeza que la dará un proyectil mágico con recorrido parabólico.
 
 ## Para iniciar el servidor http  
 Primero, iniciar Git Bash en la ruta del proyecto y luego ejecutar el comando: `npx http-server`  
@@ -56,7 +56,7 @@ Si node.js no está instalado, descargar e instalar: https://nodejs.org/dist/v16
 
 | **Introducción** |  |
 | :--- | ---: |
-| **Descripción** | Se trata de un juego plataformas estilo metroidvania con scroll lateral donde el personaje es una estatua que debe recuperar sus extremidades perdidas. El objetivo principal es acabar con Jefe,para ello debemos ir avanzando a lo largo del museo y recuperando nuevas piezas para  acceder a sitios que anteriormente estaban bloqueados. A lo largo del juego nos encontraremos con enemigos y consumibles que podremos usar. |
+| **Descripción** | Se trata de un juego plataformas estilo metroidvania con scroll lateral donde el personaje es una estatua que debe recuperar sus extremidades perdidas. El objetivo principal es terminar todos los niveles, para ello debemos ir avanzando a lo largo del museo y recuperando nuevas piezas para  acceder a sitios que anteriormente estaban bloqueados. A lo largo del juego nos encontraremos con enemigos y consumibles que podremos usar. |
 | **Versión** | ( v-1.0 ) –-> 24 de octubre de 2022 | -->
 
 | **Detalles generales** |  |
@@ -88,7 +88,8 @@ Si node.js no está instalado, descargar e instalar: https://nodejs.org/dist/v16
 ## Índice  
 
 [**I - Aspectos generales**][1]  
-1. Relato breve y parcial de una partida típica  
+1. Relato breve y parcial de una partida típica
+Comienza con un menú donde se selecciona “iniciar partida”. Nada más empezar, se te introducirá el juego y su mecánica básica, y en esa misma sala se confrontará al primer enemigo, un perro, para a continuación conseguir sus brazos y poder matarlo. Una vez pasada esa sala llegarás a la segunda, que hace la función de conectar el resto de salas. En esta podrás sver por primera vez a un nuevo enemigo, los esqueletos, y cuando exploras todas la habitación encontrarás las alas y dos puertas. Una a la última sala, la cual está bloqueada hasta que tengas todas las piezas, y otra a la tercera sala, la cual te da la corona. En la sala de la coona puedes encontrarte al último tipo de enemigos, los guarias, los cuales te dispararán cuando entras en su rango. Una vez completas la sala consiguies la corona, la cual te permite entrar a la ultima sala y completarte el juego.
 
 [**II - Jugabilidad**][2]  
 1. Mecánica  
@@ -119,7 +120,7 @@ Si node.js no está instalado, descargar e instalar: https://nodejs.org/dist/v16
 Metroidvania pixelart basado en reconstrucción de victoria. La experiencia general de juego será un plataformas en los que irás consiguiendo powerUps que te permitirán avanzar con más facilidad y acceder a nuevos sitios. 
 
 ### 1. **Relato breve y parcial de una partida típica**
-Comienza con un menú donde se selecciona “iniciar partida”. Nada más empezar, se te introducirá el juego y su mecánica básica, y en esa misma sala se confrontará un enemigo, para a continuación conseguir sus brazos. Una vez pasada esa sala ...  
+Comienza con un menú donde se selecciona “iniciar partida”. Nada más empezar, se te introducirá el juego y su mecánica básica, y en esa misma sala se confrontará un enemigo, para a continuación conseguir sus brazos. Una vez pasada esa sala 
 
 [Go back to index -->][indice]  
 
