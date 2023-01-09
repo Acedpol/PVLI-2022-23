@@ -1,4 +1,4 @@
-import blankScene from './scene.js';
+import blankScene from './blankScene.js';
 
 export default class Pause extends blankScene
 {

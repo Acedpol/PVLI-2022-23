@@ -1,5 +1,5 @@
 import { startMain } from "../utils/callbacks.js";
-import blankMenu from "./menu.js";
+import blankMenu from "./blankMenu.js";
 
 export default class GameOver extends blankMenu
 {

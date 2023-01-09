@@ -1,6 +1,6 @@
 import { Jump, Life } from "../utils/icons.js";
 import Dock from "../utils/dock.js";
-import blankMenu from "./menu.js";
+import blankMenu from "./blankMenu.js";
 
 export default class UI extends blankMenu
 {

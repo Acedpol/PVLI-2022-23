@@ -1,4 +1,4 @@
-import blankMenu from "./menu.js";
+import blankMenu from "./blankMenu.js";
 import { startGame, swithToSonido, backFromOptions } from "../utils/callbacks.js";
 import { Controls } from "../utils/icons.js";
 

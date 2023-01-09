@@ -1,4 +1,4 @@
-import blankMenu from "./menu.js";
+import blankMenu from "./blankMenu.js";
 import { startGame, swithToOptions } from "../utils/callbacks.js";
 
 export default class Menu extends blankMenu

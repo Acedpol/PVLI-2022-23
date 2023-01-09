@@ -1,5 +1,5 @@
 import PlayerContainer from '../game/playerContainer.js'
-import blankScene from './scene.js'
+import blankScene from './blankScene.js'
 import { gameOver } from '../utils/callbacks.js'
 import PlayerLogic from '../game/player.js'
 
@@ -39,7 +39,6 @@ export default class blankGame extends blankScene
 
         // UI interface
         this.scene.launch('UI', args);
-        // console.log('-- new UI --');
         this.events.on('resume', (scene, args) => { this.scene.resume('UI', args); console.log('--> resume UI!'); });
         this.UI = this.game.scene.getScene('UI');
     }
