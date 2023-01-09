@@ -2,7 +2,7 @@
 Proyecto final de PVLI curso 22/23 para el grado GDV-UCM.  
 > Pivotal: https://www.pivotaltracker.com/n/projects/2597082  
 > Twitter: https://www.twitter.com/StormSudio  
-> Videojuego: https://www.acedpol.github.io/PVLI-2022-23/  
+> Videojuego: https://acedpol.github.io/PVLI-2022-23/  
 > Arquitectura: [visualizar UML][img-final]  
 > Video-demo final: [demo][video]  
 
