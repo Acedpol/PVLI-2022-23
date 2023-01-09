@@ -88,18 +88,19 @@ export default class Guard extends Enemy {
         }
 
     }
+
     shoot()
     {
         this.shooting = false
         this.play('guard_charge', true)
         this.timer = this.scene.time.addEvent({
             delay: 1000,
-            callback: onEvent,
+            callback: cargar,
             callbackScope: this,
             loop: false
         });
 
-        function onEvent() {
+        function cargar() {
             if(this.canBeDamaged && !this.dead)
             {
                 this.play('guard_shoot', true)
@@ -108,12 +109,12 @@ export default class Guard extends Enemy {
                 this.shooting = false;
                 this.timer = this.scene.time.addEvent({
                 delay: 400,
-                callback: onEvent,
+                callback: espera,
                 callbackScope: this,
                 loop: false
                 });
                 
-                function onEvent() {
+                function espera() {
                     //shoot
                     if(this.rangeCheck())
                         this.shooting = true;
