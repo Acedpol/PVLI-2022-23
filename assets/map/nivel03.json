@@ -46,44 +46,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":283.534871137205,
-                 "y":224.701048541373
-                }, 
-                {
-                 "height":0,
-                 "id":2,
-                 "name":"",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"Aura"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":283.794732723495,
-                 "y":224.231082441796
-                }, 
-                {
-                 "height":0,
-                 "id":3,
-                 "name":"",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"Wings"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":283.320642332781,
-                 "y":224.431907300024
+                 "x":279.534871137205,
+                 "y":225.701048541373
                 }, 
                 {
                  "height":0,
@@ -417,7 +381,7 @@
  "nextobjectid":21,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.7.2",
+ "tiledversion":"2021.03.23",
  "tileheight":16,
  "tilesets":[
         {
@@ -7488,6 +7452,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":"1.6",
+ "version":1.5,
  "width":100
 }
