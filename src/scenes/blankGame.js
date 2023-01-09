@@ -1,5 +1,5 @@
 import PlayerContainer from '../game/playerContainer.js'
-import blankScene from './scene.js'
+import blankScene from './blankScene.js'
 import { gameOver } from '../utils/callbacks.js'
 import PlayerLogic from '../game/player.js'
 
@@ -37,13 +37,8 @@ export default class blankGame extends blankScene
         super.init(args);
         this.objects = [];
 
-        // Level select assignment
-        // this.level = level
-        // console.log('Level = ' + this.level)
-
         // UI interface
         this.scene.launch('UI', args);
-        // console.log('-- new UI --');
         this.events.on('resume', (scene, args) => { this.scene.resume('UI', args); console.log('--> resume UI!'); });
         this.UI = this.game.scene.getScene('UI');
     }
@@ -72,6 +67,7 @@ export default class blankGame extends blankScene
     handleGameLose()
     {
         // kill object and play feedback
+        this.sound.stopAll();
         this.playerContainer.destroy();
         gameOver(this);
     }

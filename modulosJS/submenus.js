@@ -1,3 +1,5 @@
+// Conjunto de métodos para crear los menús HTML desplegables
+
 function compruebaContenido(origen) {
     return document.getElementById('content-' + origen).style.display == 'block';
 }

@@ -1,7 +1,4 @@
 import Magic from './magic.js'
-import Wings from './wings.js'
-import Aura from './aura.js'
-import Arm from './arm.js'
 import PlayerLogic from './player.js'
 
 /** @type {Phaser.GameObjects.Container} */
@@ -43,15 +40,11 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
     }
 
     setPlayerSize() {
-        //this.player.setHabilities()
         this.body.setSize(this.player.width * 11 / 100, this.player.height * 48 / 100);
-        // console.log('player + container = playerContainer!');
     }
 
     preUpdate(t,dt)
     {
-        //this.iterate( (child) => child.preUpdate(t,dt) ) // for animations
-
         // revisar si esta en contacto con el suelo y recargar salto
         this.groundCheck = this.body.onFloor();
 
@@ -69,19 +62,18 @@ export default class PlayerContainer extends Phaser.GameObjects.Container
         {
             if (!this.groundCheck)
             {
-                // console.log("index flying: " + this.player.anims.currentFrame.index);
                 let index = this.player.anims.currentFrame.index;
-                let zoom = 2; // this.scene.game.config.zoom;
+                let zoom = 2;
                 let sx = this.player.scaleX;
                 let sy = this.player.scaleY;
                 if (index >= 2 && index <= 6) {
-                    let ix = 1.639 * sx; // - ((this.player.width * 1 / 4) * 100 / 122); 
-                    let iy = 2.105 * sy; // - ((this.player.height * 1 / 4) * 100 / 95);
+                    let ix = 1.639 * sx;
+                    let iy = 2.105 * sy;
                     this.xHead += ix / zoom * sx;
                     this.yHead += iy / zoom * sy;
                 } else if (index > 6 && index <= 9) {
-                    let ix = 2.459 * sx; // - ((this.player.width * 1 / 4) * 100 / 122);
-                    let iy = 3.158 * sy; // - ((this.player.height * 1 / 4) * 100 / 95);
+                    let ix = 2.459 * sx;
+                    let iy = 3.158 * sy;
                     this.xHead -= ix / zoom * sx;
                     this.yHead -= iy / zoom * sy;
                 } else {

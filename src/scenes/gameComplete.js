@@ -1,5 +1,5 @@
 import { startMain } from "../utils/callbacks.js";
-import blankMenu from "./menu.js";
+import blankMenu from "./blankMenu.js";
 
 export default class GameComplete extends blankMenu
 {
@@ -13,7 +13,6 @@ export default class GameComplete extends blankMenu
 
     init(args) {
         super.init(args);
-        this.sound.stopAll();
         this.sound.play('musica_end_complete', this.ambConfig);
     }
 
@@ -35,6 +34,7 @@ export default class GameComplete extends blankMenu
 
         // click to play again
         this.input.keyboard.once('keydown-SPACE', () => {
+            this.sound.stopAll();
             startMain(this);
         });
     }

@@ -1,3 +1,4 @@
+// Conjunto de métodos para crear eventos en el DOM
 
 function pause() {
     toggleAsk();

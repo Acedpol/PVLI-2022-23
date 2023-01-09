@@ -48,8 +48,6 @@ export default class blankScene extends Phaser.Scene
             key: keyname
         });
 
-        // console.log("::: creando " + keyname + " :::");
-
         this.audioConfig = {
             mute: false,
             volume: 0.2,
@@ -63,7 +61,6 @@ export default class blankScene extends Phaser.Scene
 
     init(args)
     {
-        // console.log("::: initialising scene :::");
         this.args = args;
         this.onResume(args);
         this.events.on('resume', (scene, args) => { this.onResume(args); } );
@@ -84,8 +81,7 @@ export default class blankScene extends Phaser.Scene
         this.coeHeight = this.getCoeHeight();
         this.AR = this.getAR();
 
-        this.zoom = this.game.config.zoom;  
-        // this.aspect_16_9();
+        this.zoom = this.game.config.zoom;
         this.aspect_4_3();
 
         this.rectStyle = new makeStruct('relleno, contorno, alphaFill, alphaLine, drawFill, drawLine');
@@ -126,13 +122,6 @@ export default class blankScene extends Phaser.Scene
             loop: false,
             delay: 0
         };
-
-        // console.log("args <<< ");
-        // console.log(this.optA);
-        // console.log(this.optB);
-        // console.log(this.volGen);
-        // console.log(this.volAmb);
-        // console.log(this.volSFX);
     }
 
     preload() 

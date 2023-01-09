@@ -1,5 +1,5 @@
 import { startMain } from "../utils/callbacks.js";
-import blankMenu from "./menu.js";
+import blankMenu from "./blankMenu.js";
 
 export default class GameOver extends blankMenu
 {
@@ -13,7 +13,6 @@ export default class GameOver extends blankMenu
 
     init(args) {
         super.init(args);
-        this.sound.stopAll();
         if (this.ambConfig.volume + 0.25 < 1) { 
             this.ambConfig.volume += 0.25;
             this.plus = true;

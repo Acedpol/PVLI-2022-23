@@ -1,4 +1,4 @@
-import blankMenu from "./menu.js";
+import blankMenu from "./blankMenu.js";
 import { startGame, backFromSonido } from "../utils/callbacks.js";
 import volumeCtrl from "../utils/volumeCtrl.js";
 import { Speaker } from "../utils/icons.js";

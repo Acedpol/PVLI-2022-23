@@ -1,3 +1,5 @@
+// Conjunto de métodos alternativos para crear y asignar clases CSS por código en JS
+
 var final_style = document.createElement('style');
 final_style.type = 'text/css';
 
