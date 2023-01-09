@@ -1,4 +1,4 @@
-import { offInfo, offInfoBar, onInfo, onInfoBar } from "../../lib/pauseCtrl.js";
+import { offInfo, offInfoBar, onInfo, onInfoBar } from "../../modulosJS/pauseCtrl.js";
 import { gameLogic } from "../game.js"
 
 // ejemplo:
@@ -55,14 +55,6 @@ export function backFromSonido(scene) {    // <---
     scene.scene.start('menuOptions', {optA: scene.optA, optB: scene.optB, volGen: scene.volGen, volAmb: scene.volAmb, volSFX: scene.volSFX, mute: scene.mute});
 }
 
-export function turnOnMainMenuMusic(scene) {
-    // console.log(' - pointer move!! ');
-    console.log(scene.active);
-    if (scene.active) {
-        scene.sound.stopAll();
-        scene.sound.play('musica_menu', scene.ambConfig);
-    }
-}
 export function turnOnGameMusic(scene) {
     if (scene.active) {
         scene.sound.stopAll();

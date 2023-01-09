@@ -1,4 +1,3 @@
-import { toggleInfo } from '../../lib/pauseCtrl.js'
 import blankScene from './scene.js';
 
 export default class Pause extends blankScene

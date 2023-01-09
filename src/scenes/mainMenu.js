@@ -1,5 +1,5 @@
 import blankMenu from "./menu.js";
-import { startGame, swithToOptions, turnOnMainMenuMusic } from "../utils/callbacks.js";
+import { startGame, swithToOptions } from "../utils/callbacks.js";
 
 export default class Menu extends blankMenu
 {
@@ -10,15 +10,7 @@ export default class Menu extends blankMenu
     }
 
     init(args) {
-        super.init(args);    
-        
-        // solucion para la musica nada mas empezar
-        this.input.once('pointermove', () => {
-            if (!this.sonando) {
-                turnOnMainMenuMusic(this);
-                this.sonando = true;
-            }
-        });
+        super.init(args);
     }
 
     preload() 

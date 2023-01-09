@@ -40,6 +40,7 @@ export default class GameOver extends blankMenu
         // click to play again
         this.input.keyboard.once('keydown-SPACE', () => {
             if (this.plus) this.ambConfig.volume -= 0.25;
+            this.sound.stopAll();
             startMain(this);
         });
     }

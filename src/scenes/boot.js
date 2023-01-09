@@ -156,9 +156,6 @@ export default class Boot extends Phaser.Scene
         // musica - in game
         this.load.audio('musica_game', './assets/sounds/musicafondocastelvania.mp3')
 
-        // musica - menu principal
-        this.load.audio('musica_menu', './assets/sounds/EkaterinaShelehova-EarthMelodies.mp3')
-
         // musica - end game (complete)
         this.load.audio('musica_end_complete', './assets/sounds/EkaterinaShelehova-endgame.mp3')
 
