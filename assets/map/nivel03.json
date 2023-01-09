@@ -309,7 +309,7 @@
                         {
                          "name":"enlace",
                          "type":"int",
-                         "value":32
+                         "value":31
                         }, 
                         {
                          "name":"type",
@@ -417,7 +417,7 @@
  "nextobjectid":21,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"2021.03.23",
+ "tiledversion":"1.7.2",
  "tileheight":16,
  "tilesets":[
         {
@@ -7488,6 +7488,6 @@
         }],
  "tilewidth":16,
  "type":"map",
- "version":1.5,
+ "version":"1.6",
  "width":100
 }
