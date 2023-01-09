@@ -106,11 +106,6 @@ export default class Boot extends Phaser.Scene
         this.load.spritesheet('skeletonDeadSprite', "./assets/sprites/Skeleton/SkeletonDead.png",
         { frameWidth: 33, frameHeight: 37 })       
 
-
-        // // guard - walk
-        // this.load.spritesheet('guardMoveSprite', "./assets/sprites/guardSprites/move.png",
-        // { frameWidth: 41, frameHeight: 39 })
-
         // --- OBJECTS --- 
 
         // pocion
