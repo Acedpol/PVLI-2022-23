@@ -214,7 +214,6 @@ export default class PlayerLogic extends Entity
      * Sets the basic controlls for the player (WASD)
      */
     setInputA() {
-        // this.keys = this.input.keyboard.addKeys('W,S,A,D'); no funciona
         this.cw = this.scene.input.keyboard.addKey('W');
         this.a = this.scene.input.keyboard.addKey('A');
         this.s = this.scene.input.keyboard.addKey('S');
@@ -222,21 +221,16 @@ export default class PlayerLogic extends Entity
         this.j = this.scene.input.keyboard.addKey('J');
         this.k = this.scene.input.keyboard.addKey('K');
         this.space = this.scene.input.keyboard.addKey('SPACE');
-        // this.leftClick = this.scene.input.mousePointer.leftButtonDown;
-        // this.rightClick = this.scene.input.mousePointer.rightButtonDown;
     }
 
     /**
      * Sets the basic controlls for the player (arrows)
      */
     setInputB() {
-        // this.keys = this.input.keyboard.addKeys('W,S,A,D'); no funciona
         this.cursors = this.scene.input.keyboard.createCursorKeys();
         this.cz = this.scene.input.keyboard.addKey('Z');
         this.cx = this.scene.input.keyboard.addKey('X'); // !!! cuidado con this.x !!!
         this.space = this.scene.input.keyboard.addKey('SPACE');
-        // this.leftClick = this.scene.input.mousePointer.leftButtonDown;
-        // this.rightClick = this.scene.input.mousePointer.rightButtonDown;
     }
 
     deleteInputA() {

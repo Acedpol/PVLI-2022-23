@@ -2,6 +2,7 @@ import Character from "./character.js";
 
 export default class Attack extends Character
 {
+    
     /**
      * Constructor de Heal
      * @param {Scene} scene Escena en la que aparece el bate
